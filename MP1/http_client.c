@@ -11,7 +11,6 @@
 #include <sys/types.h>
 #include <netinet/in.h>
 #include <sys/socket.h>
-
 #include <arpa/inet.h>
 
 #define MAXDATASIZE 1024 // max number of bytes we can get at once 
@@ -44,7 +43,7 @@ int main(int argc, char *argv[])
 	    exit(1);
 	}
 
-	// check iput url has protocol of http
+	/* Check if input url has the correct protocol of http. */
 	strncpy(protocol_input, argv[1], 7);
 	protocol_input[7] = '\0';  
 
@@ -53,7 +52,7 @@ int main(int argc, char *argv[])
 	    exit(1);
 	}
 
-	// parse input url into host, port and path
+	/* Parse input url into host, port and path. */
 	sscanf(argv[1] + 7, "%[^/]%s", host_port, path);
 
 	int split_result = sscanf(host_port, "%[^:]:%s", host, port);
@@ -71,6 +70,7 @@ int main(int argc, char *argv[])
 	printf("path : '%s'\n", path);
 	*/
 
+	/* Set up protocols and address info for the to-be-connected host. */
 	memset(&hints, 0, sizeof hints);
 	hints.ai_family = AF_UNSPEC;
 	hints.ai_socktype = SOCK_STREAM;
@@ -80,15 +80,15 @@ int main(int argc, char *argv[])
 		fprintf(fp, "%s", "NOCONNECTION");
 		return 1;
 	}
-	
 
-	// loop through all the results and connect to the first we can
+	/* Loop through all the results and connect to the first we can. */
 	for(p = servinfo; p != NULL; p = p->ai_next) {
 		if ((sockfd = socket(p->ai_family, p->ai_socktype, p->ai_protocol)) == -1) {
 			perror("client: socket");
 			continue;
 		}
 
+		// p->ai_addr has the address family, port and ip address information.
 		if (connect(sockfd, p->ai_addr, p->ai_addrlen) == -1) {
 			close(sockfd);
 			perror("client: socket connect error.");
@@ -104,11 +104,14 @@ int main(int argc, char *argv[])
 		return 2;
 	}
 
+	// print server information.
 	inet_ntop(p->ai_family, get_in_addr((struct sockaddr *)p->ai_addr), s, sizeof s);
 	printf("client: connecting to %s\n", s);
 
 	freeaddrinfo(servinfo); // all done with this structure
 
+	/* Send http request to the server. */
+	// Fill request with host and path information
 	snprintf(request, sizeof(request), "GET %s HTTP/1.1\r\nAccept: */*\r\nHost: %s\r\n\r\n", path, host);
 	// printf("sent request :\n'%s'\n", request);
 
@@ -117,19 +120,18 @@ int main(int argc, char *argv[])
 		exit(5);
 	}
 
-	// extract header and save received http response into a file
+	/* Recev once and extract header and save data into a file. */
 	if ((numbytes = recv(sockfd, buf, MAXDATASIZE-1, 0)) == -1) {
 	    perror("recv");
 	    exit(1);
 	}
-
-	printf("client received first part data:\n'%s'\n", buf);
+	// printf("client received first part data:\n'%s'\n", buf);
 
 	char *data = strstr(buf, "\r\n\r\n" );
 	char *first_line = strtok(buf, "\n");
-
 	// printf("first_line:\n'%s'\n", first_line);
 
+	// if there is 404 not found response
 	if (strstr(first_line, "404") != NULL) {
 		fprintf(fp, "%s", "FILENOTFOUND");
 		exit(6);
@@ -139,10 +141,10 @@ int main(int argc, char *argv[])
 
 	fwrite(data, 1, numbytes - (data - buf), fp);
 
-	// if there is additional data, write it to the file
+	/* Save additional data to the file. */
 	memset(buf, 0, sizeof(buf));
 	while ((numbytes = recv(sockfd, buf, MAXDATASIZE-1, 0)) > 0) {
-		printf("\nclient received additional data:\n\n'%s'\n", buf);
+		// printf("\nclient received additional data:\n\n'%s'\n", buf);
 		fwrite(buf, 1, numbytes, fp);
 		memset(buf, 0, sizeof(buf));
 	}
