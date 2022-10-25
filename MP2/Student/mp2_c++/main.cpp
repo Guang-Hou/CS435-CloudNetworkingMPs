@@ -16,18 +16,41 @@ int main(int argc, char **argv)
     string costFile = argv[2];
     string logFile = argv[3];
 
-    Node node(inputId);
+    Node node(inputId, costFile, logFile);
 
-    // Read and parse initial costs file. default to cost 1 if no entry for a node. file may be empty.
+    // node.broadcastLSA();
 
-    node.readCostFile(costFile);
+    /*
+    pqOfPaths pathVector[256];
+    vector<int> path{1}; // for nodeID 1
+    dp distancePathPair{0, path};
+    pathVector[1].push(distancePathPair);
 
-    node.broadcastLSA();
-    
+    pqOfPaths *currPaths = &pathVector[2];
+    vector<int> fromToDestPath{2};
+    vector<int> newPath(fromToDestPath);
+
+    // bool isEmpty = currPaths.empty();
+    // cout << "Is the currPaths empty: " << isEmpty << endl;
+
+    currPaths->push(make_pair(0, newPath));
+    // cout << "Adding new path." << endl;
+    cout << "is the path empty? " << pathVector[2].empty() << endl;
+    if (!pathVector[2].empty())
+    {
+        json j_vector(pathVector[2].top().second);
+        string s1 = j_vector.dump();
+        cout << "Updated path: " << s1 << endl;
+    }
+    */
+
     std::thread th1(&Node::sendHeartbeats, node);
 
     // good luck, have fun!
-    node.listenForNeighbors();
+    // node.listenForNeighbors();
+
+    std::thread th2(&Node::listenForNeighbors, node);
 
     th1.join();
+    th2.join();
 }
