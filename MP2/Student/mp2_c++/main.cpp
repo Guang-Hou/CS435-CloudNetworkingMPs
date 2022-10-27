@@ -18,39 +18,44 @@ int main(int argc, char **argv)
 
     Node node(inputId, costFile, logFile);
 
-    // node.broadcastLSA();
+    std::thread th1(&Node::sendHeartbeats, &node);
 
-    /*
-    pqOfPaths pathVector[256];
-    vector<int> path{1}; // for nodeID 1
-    dp distancePathPair{0, path};
-    pathVector[1].push(distancePathPair);
-
-    pqOfPaths *currPaths = &pathVector[2];
-    vector<int> fromToDestPath{2};
-    vector<int> newPath(fromToDestPath);
-
-    // bool isEmpty = currPaths.empty();
-    // cout << "Is the currPaths empty: " << isEmpty << endl;
-
-    currPaths->push(make_pair(0, newPath));
-    // cout << "Adding new path." << endl;
-    cout << "is the path empty? " << pathVector[2].empty() << endl;
-    if (!pathVector[2].empty())
-    {
-        json j_vector(pathVector[2].top().second);
-        string s1 = j_vector.dump();
-        cout << "Updated path: " << s1 << endl;
-    }
-    */
-
-    std::thread th1(&Node::sendHeartbeats, node);
-
-    // good luck, have fun!
-    // node.listenForNeighbors();
-
-    std::thread th2(&Node::listenForNeighbors, node);
+    node.listenForNeighbors();
+    // std::thread th2(&Node::listenForNeighbors, node);
 
     th1.join();
-    th2.join();
+    //  th2.join();
+
+    /*
+    int destId = 1;
+    set<int> nodesInPath = {1, 2, 3, 4};
+    PATHT myPath = {1, 1, nodesInPath};
+
+    json LSA = {
+        {"fromID", inputId}, // 3
+        {"destID", 0},
+        {"dist", get<0>(myPath)}, // 1
+        {"nodesInPath", get<2>(myPath)}};
+
+    string strLSA = LSA.dump();
+
+    cout << "LSA jason string: " << strLSA << endl;
+
+    // when receving LSA from neighbor
+    json rLSA = json::parse(strLSA);
+    int rneighborId = rLSA["fromID"];
+    int rdestId = rLSA["destID"];
+    int fdistance = rLSA["dist"];
+    set<int> s1 = rLSA["nodesInPath"];
+
+    cout << "Parsed LSA: " << rneighborId << ", " << rdestId << ", " << fdistance << endl;
+
+    set<int, greater<int>>::iterator itr;
+    cout << "\nThe set s1 is : \n";
+    for (itr = s1.begin(); itr != s1.end(); itr++)
+    {
+        cout << *itr << " ";
+    }
+    cout << endl;
+    */
 }

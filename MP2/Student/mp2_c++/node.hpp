@@ -1,13 +1,14 @@
 
 #pragma once
+
 #include <stdio.h>
 #include <netdb.h>
-#include <queue>
+#include <map>
 #include <set>
+#include <string.h>
 //#include <stdlib.h>
 //#include <unistd.h>
 //#include <errno.h>
-//#include <string.h>
 //#include <sys/types.h>
 //#include <netinet/in.h>
 //#include <sys/socket.h>
@@ -33,19 +34,7 @@
 
 using namespace std;
 
-typedef pair<int, vector<int>> dp; // distance, path pair
-
-class Compare
-{
-public:
-    bool operator()(dp distPath1, dp distPath2)
-    {
-        return distPath1.first > distPath2.first || (distPath1.first == distPath2.first && distPath1.second[0] > distPath2.second[0]);
-    }
-};
-
-typedef priority_queue<dp, vector<dp>, Compare> pqOfPaths; // min priority queue of (distance, path) pairs
-// typedef priority_queue<dp> pqOfPaths; // min priority queue of (distance, path) pairs
+typedef tuple<int, int, set<int>> PATH;
 
 class Node
 {
@@ -53,24 +42,27 @@ public:
     int myNodeId, mySocketUDP;
     struct timeval previousHeartbeat[256];      // track last time a neighbor is seen to figure out who is lost
     struct sockaddr_in allNodeSocketAddrs[256]; //
-    set<int> neighbors;
+    // set<int> neighbors;
     int linkCost[256];
-    pqOfPaths pathVector[256]; // path vector to all other nodes. for example pathVector[2] stores a priority queue of all paths from this node to node 2
-    FILE *fcost, *flog;
-
+    map<int, map<int, PATH>> myPathRecords; // myPathRecords[i][j] means neighborNode i's best path to destNode j. inside the array each element is the best path (distance, (nextHop, nodesInPath))
+    FILE *flog;
     Node(int inputId, string costFile, string logFile);
-
-    void readCostFile();
+    void readCostFile(string costFile);
     void saveLog();
     void sendHeartbeats();
-    void announceToNeighbors();
-    void broadcastLSA(int fromNodeId, int destNodeId, int distance, const vector<int> *path, int skipId);
-    void broadcastMessage(const char *message, int skipId);
-    void processLSAMessage(map<int, pair<int, vector<int>>> otherNodePathVector);
+    // void announceToNeighbors();
+    string generateStrPath(int destId);
+    void broadcastPath(int destId);
+    void broadcastMessage(const char *message);
+    // void processLSAMessage(map<int, pair<int, vector<int>>> otherNodePathVector);
     void listenForNeighbors();
-    void updateDistanceAndPath(int fromNodeId, int destNodeId, int fromToDestDistance, const vector<int> *fromToDestPath);
-    void setupNodeSockets();
+    // void updatePathsFromNeighbor(int neighborId, string strNeighborPaths);
+    void processNeighborLSA(int neighborId, int destId, int distance, int nextHop, set<int> nodesInPath);
+    bool isNeighborPathBetter(int neighborId, int destId, int distance, set<int> nodesInPath);
+    void useNeighborPath(int neighborId, int destId, int distance, set<int> nodesInPath);
     void directMessage(int destNodeId, char *message, int messageByte);
+    void selectBestPath(int destId);
     void sharePathsToNewNeighbor(int newNeighborId);
-    string generateStrLSA(int fromNodeId, int destNodeId, int distance, const vector<int> *path);
+    void handleBrokenLink(int brokenNeighborId);
+    void setupNodeSockets();
 };
