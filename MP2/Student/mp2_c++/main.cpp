@@ -18,44 +18,117 @@ int main(int argc, char **argv)
 
     Node node(inputId, costFile, logFile);
 
-    std::thread th1(&Node::sendHeartbeats, &node);
+    thread th1(&Node::sendHeartbeats, &node);
 
-    node.listenForNeighbors();
-    // std::thread th2(&Node::listenForNeighbors, node);
-
-    th1.join();
-    //  th2.join();
+    // node.listenForNeighbors();
+    std::thread th2(&Node::listenForNeighbors, &node);
 
     /*
-    int destId = 1;
-    set<int> nodesInPath = {1, 2, 3, 4};
-    PATHT myPath = {1, 1, nodesInPath};
+    char fromAddr[100];
+    struct sockaddr_in theirAddr;
+    socklen_t theirAddrLen = sizeof(theirAddr);
+    char recvBuf[BUFFERSIZE];
+    int bytesRecvd;
 
-    json LSA = {
-        {"fromID", inputId}, // 3
-        {"destID", 0},
-        {"dist", get<0>(myPath)}, // 1
-        {"nodesInPath", get<2>(myPath)}};
-
-    string strLSA = LSA.dump();
-
-    cout << "LSA jason string: " << strLSA << endl;
-
-    // when receving LSA from neighbor
-    json rLSA = json::parse(strLSA);
-    int rneighborId = rLSA["fromID"];
-    int rdestId = rLSA["destID"];
-    int fdistance = rLSA["dist"];
-    set<int> s1 = rLSA["nodesInPath"];
-
-    cout << "Parsed LSA: " << rneighborId << ", " << rdestId << ", " << fdistance << endl;
-
-    set<int, greater<int>>::iterator itr;
-    cout << "\nThe set s1 is : \n";
-    for (itr = s1.begin(); itr != s1.end(); itr++)
+    while (1)
     {
-        cout << *itr << " ";
+        memset(recvBuf, 0, sizeof(recvBuf));
+        if ((bytesRecvd = recvfrom(node.mySocketUDP, recvBuf, BUFFERSIZE, 0,
+                                   (struct sockaddr *)&theirAddr, &theirAddrLen)) == -1)
+        {
+            perror("connectivity listener: recvfrom failed");
+            exit(1);
+        }
+
+        inet_ntop(AF_INET, &theirAddr.sin_addr, fromAddr, 100);
+
+        // string s(recvBuf);
+        // std::cout << "Received number of bytes: " << bytesRecvd << std::endl;
+
+        struct timeval now;
+        gettimeofday(&now, 0);
+        // printf("Now in seconds : %ld\tmicro seconds : %ld\n", now.tv_sec, now.tv_usec);
+
+        // heartbeat message to identify new neighbors
+        short int heardFrom = -1;
+        if (strstr(fromAddr, "10.1.1."))
+        {
+            heardFrom = atoi(
+                strchr(strchr(strchr(fromAddr, '.') + 1, '.') + 1, '.') + 1);
+
+            long usecondDifference = (now.tv_sec - node.previousHeartbeat[heardFrom].tv_sec) * 1000000L + now.tv_usec - node.previousHeartbeat[heardFrom].tv_usec;
+
+            if (node.previousHeartbeat[heardFrom].tv_sec == 0 || usecondDifference > 600000) // timeout 0.6 second
+            {
+                string logContent = "Saw new neighbor ";
+                logContent += to_string(heardFrom);
+                node.logMessage(logContent.c_str());
+
+                // string timeStr = "Time difference in usecond: ";
+                // timeStr += to_string(usecondDifference);
+                // logMessage(timeStr.c_str());
+
+                // node.handleNewNeighbor(heardFrom, heardFrom, 0, heardFrom, set<int>{heardFrom});
+                thread *hn = new thread(&Node::handleNewNeighbor, &node, heardFrom, heardFrom, 0, heardFrom, set<int>{heardFrom});
+            }
+
+            //  record that we heard from heardFrom just now.
+            gettimeofday(&node.previousHeartbeat[heardFrom], 0);
+        }
+
+        // check if there is any neighbor link is broken, if so update  pathRecords and broadcast LSA
+        for (int i = 0; i < 256; i += 1)
+        {
+            if (i != node.myNodeId)
+            {
+                long timeDifference = (now.tv_sec - node.previousHeartbeat[i].tv_sec) * 1000000L + now.tv_usec - node.previousHeartbeat[i].tv_usec;
+                if (node.previousHeartbeat[i].tv_sec != 0 && timeDifference > 600000) // missed two hearbeats
+                {
+                    string logContent = "Link broken to node: ";
+                    logContent += to_string(i);
+                    node.logMessage(logContent.c_str());
+
+                    thread *bl = new thread(&Node::handleBrokenLink, &node, i);
+                }
+            }
+        }
+
+        if (!strncmp(recvBuf, "send", 4) || !strncmp(recvBuf, "fowd", 4)) // send message
+        {
+            short int destNodeId;
+            memcpy(&destNodeId, recvBuf + 4, 2);
+            destNodeId = ntohs(destNodeId);
+            recvBuf[bytesRecvd] = 0;
+
+            string logContent = "Just received send or forward message.";
+            node.logMessage(logContent.c_str());
+            node.logTime();
+            string content;
+            content.assign(recvBuf, bytesRecvd + 1);
+
+            thread *dm = new thread(&Node::directMessage, &node, destNodeId, content, bytesRecvd + 1);
+        }
+        else if (!strncmp(recvBuf, "LSAs", 4)) // LSA message
+        {
+            // cout << "Received LSAs message." << endl;
+            string strLSA(recvBuf + 4);
+            json LSA = json::parse(strLSA);
+
+            int neighborId = LSA["fromID"];
+            int destId = LSA["destID"];
+            int distance = LSA["dist"];
+            int nextHop = LSA["nextHop"];
+            set<int> nodesInPath = LSA["nodesInPath"];
+
+            // node.processNeighborLSA(neighborId, destId, distance, nextHop, nodesInPath);
+            thread *pn = new thread(&Node::processNeighborLSA, &node, neighborId, destId, distance, nextHop, nodesInPath);
+        }
     }
-    cout << endl;
     */
+
+    th1.join();
+    th2.join();
+
+    //(should never reach here)
+    close(node.mySocketUDP);
 }
