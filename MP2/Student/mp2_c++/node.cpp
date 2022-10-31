@@ -256,12 +256,16 @@ void processSingleLSA(int neighborId, int destId, int distance, int nextHop, set
             sendPathToNeighbors(destId);
         }
     }
-    else if (distance == -1 && myDistance != -1 && get<1>(myPaths[destId]) == neighborId)
-    {   // neighbor lost a path to destId, and I am using that neighbor as next hop, then I lost the path to destId
-        m.lock();
-        get<0>(myPaths[destId]) = -1;
-        m.unlock();
-        sendPathToNeighbors(destId);
+    else if (distance == -1 && myDistance != -1) // neighbor lost a path to destId
+    {   
+        if (get<1>(myPaths[destId]).count(neighborId) != 0) {
+            // The neighbor is in my path to destId, then I lost the path to destId
+            m.lock();
+            get<0>(myPaths[destId]) = -1;
+            m.unlock();
+        } 
+
+        sendPathToNeighbors(destId);  // broadcast my path to my neighbors (also covers the case if my path is not using the neighbor)
     }
 
     logContent = "Finished processing singleLSA path.";
