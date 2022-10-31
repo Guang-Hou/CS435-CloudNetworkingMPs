@@ -1,0 +1,1192 @@
+Log: Initialization.
+Processed at <1667187377.906212>
+Log: Saw new neighbor 66
+Processed at <1667187378.938244>
+Log: Received path : 
+{"destID":11,"dist":1,"fromID":66,"nextHop":11,"nodesInPath":[11,66]}
+Processed at <1667187378.952414>
+Log: Finished processing path.
+Processed at <1667187378.953035>
+Log: Received path : 
+{"destID":0,"dist":3,"fromID":66,"nextHop":11,"nodesInPath":[0,1,11,66]}
+Processed at <1667187379.050388>
+Log: Finished processing path.
+Processed at <1667187379.051148>
+Log: Saw new neighbor 75
+Processed at <1667187379.063747>
+Log: Sent out my path update of destId 75 to neighbor 66 : 
+LSAs{"destID":75,"dist":1,"fromID":76,"nextHop":75,"nodesInPath":[75,76]}
+Processed at <1667187379.064136>
+Log: Shared my path of destId 0 to new neighbor 75 : 
+LSAs{"destID":0,"dist":4,"fromID":76,"nextHop":66,"nodesInPath":[0,1,11,66,76]}
+Processed at <1667187379.064847>
+Log: Shared my path of destId 11 to new neighbor 75 : 
+LSAs{"destID":11,"dist":2,"fromID":76,"nextHop":66,"nodesInPath":[11,66,76]}
+Processed at <1667187379.065033>
+Log: Shared my path of destId 66 to new neighbor 75 : 
+LSAs{"destID":66,"dist":1,"fromID":76,"nextHop":66,"nodesInPath":[66,76]}
+Processed at <1667187379.065279>
+Log: Received path : 
+{"destID":1,"dist":2,"fromID":66,"nextHop":11,"nodesInPath":[1,11,66]}
+Processed at <1667187379.092527>
+Log: Sent out my path update of destId 1 to neighbor 75 : 
+LSAs{"destID":1,"dist":3,"fromID":76,"nextHop":66,"nodesInPath":[1,11,66,76]}
+Processed at <1667187379.092818>
+Log: Finished processing path.
+Processed at <1667187379.093234>
+Log: Saw new neighbor 77
+Processed at <1667187379.098812>
+Log: Sent out my path update of destId 77 to neighbor 66 : 
+LSAs{"destID":77,"dist":1,"fromID":76,"nextHop":77,"nodesInPath":[76,77]}
+Processed at <1667187379.099080>
+Log: Sent out my path update of destId 77 to neighbor 75 : 
+LSAs{"destID":77,"dist":1,"fromID":76,"nextHop":77,"nodesInPath":[76,77]}
+Processed at <1667187379.099263>
+Log: Shared my path of destId 0 to new neighbor 77 : 
+LSAs{"destID":0,"dist":4,"fromID":76,"nextHop":66,"nodesInPath":[0,1,11,66,76]}
+Processed at <1667187379.100265>
+Log: Shared my path of destId 1 to new neighbor 77 : 
+LSAs{"destID":1,"dist":3,"fromID":76,"nextHop":66,"nodesInPath":[1,11,66,76]}
+Processed at <1667187379.100451>
+Log: Shared my path of destId 11 to new neighbor 77 : 
+LSAs{"destID":11,"dist":2,"fromID":76,"nextHop":66,"nodesInPath":[11,66,76]}
+Processed at <1667187379.100616>
+Log: Shared my path of destId 66 to new neighbor 77 : 
+LSAs{"destID":66,"dist":1,"fromID":76,"nextHop":66,"nodesInPath":[66,76]}
+Processed at <1667187379.100868>
+Log: Shared my path of destId 75 to new neighbor 77 : 
+LSAs{"destID":75,"dist":1,"fromID":76,"nextHop":75,"nodesInPath":[75,76]}
+Processed at <1667187379.101029>
+Log: Received path : 
+{"destID":2,"dist":3,"fromID":66,"nextHop":11,"nodesInPath":[1,2,11,66]}
+Processed at <1667187379.163015>
+Log: Sent out my path update of destId 2 to neighbor 75 : 
+LSAs{"destID":2,"dist":4,"fromID":76,"nextHop":66,"nodesInPath":[1,2,11,66,76]}
+Processed at <1667187379.163398>
+Log: Sent out my path update of destId 2 to neighbor 77 : 
+LSAs{"destID":2,"dist":4,"fromID":76,"nextHop":66,"nodesInPath":[1,2,11,66,76]}
+Processed at <1667187379.166451>
+Log: Finished processing path.
+Processed at <1667187379.166893>
+Log: Received path : 
+{"destID":3,"dist":4,"fromID":66,"nextHop":11,"nodesInPath":[1,2,3,11,66]}
+Processed at <1667187379.278168>
+Log: Sent out my path update of destId 3 to neighbor 75 : 
+LSAs{"destID":3,"dist":5,"fromID":76,"nextHop":66,"nodesInPath":[1,2,3,11,66,76]}
+Processed at <1667187379.278462>
+Log: Sent out my path update of destId 3 to neighbor 77 : 
+LSAs{"destID":3,"dist":5,"fromID":76,"nextHop":66,"nodesInPath":[1,2,3,11,66,76]}
+Processed at <1667187379.281020>
+Log: Finished processing path.
+Processed at <1667187379.281440>
+Log: Received path : 
+{"destID":67,"dist":1,"fromID":77,"nextHop":67,"nodesInPath":[67,77]}
+Processed at <1667187379.307931>
+Log: Sent out my path update of destId 67 to neighbor 66 : 
+LSAs{"destID":67,"dist":2,"fromID":76,"nextHop":77,"nodesInPath":[67,76,77]}
+Processed at <1667187379.308236>
+Log: Sent out my path update of destId 67 to neighbor 75 : 
+LSAs{"destID":67,"dist":2,"fromID":76,"nextHop":77,"nodesInPath":[67,76,77]}
+Processed at <1667187379.308364>
+Log: Finished processing path.
+Processed at <1667187379.308895>
+Log: Received path : 
+{"destID":57,"dist":2,"fromID":77,"nextHop":67,"nodesInPath":[57,67,77]}
+Processed at <1667187379.321012>
+Log: Sent out my path update of destId 57 to neighbor 66 : 
+LSAs{"destID":57,"dist":3,"fromID":76,"nextHop":77,"nodesInPath":[57,67,76,77]}
+Processed at <1667187379.321290>
+Log: Sent out my path update of destId 57 to neighbor 75 : 
+LSAs{"destID":57,"dist":3,"fromID":76,"nextHop":77,"nodesInPath":[57,67,76,77]}
+Processed at <1667187379.321505>
+Log: Finished processing path.
+Processed at <1667187379.321954>
+Log: Received path : 
+{"destID":4,"dist":5,"fromID":66,"nextHop":11,"nodesInPath":[1,2,3,4,11,66]}
+Processed at <1667187379.328306>
+Log: Sent out my path update of destId 4 to neighbor 75 : 
+LSAs{"destID":4,"dist":6,"fromID":76,"nextHop":66,"nodesInPath":[1,2,3,4,11,66,76]}
+Processed at <1667187379.328624>
+Log: Sent out my path update of destId 4 to neighbor 77 : 
+LSAs{"destID":4,"dist":6,"fromID":76,"nextHop":66,"nodesInPath":[1,2,3,4,11,66,76]}
+Processed at <1667187379.328746>
+Log: Finished processing path.
+Processed at <1667187379.332023>
+Log: Received path : 
+{"destID":66,"dist":2,"fromID":77,"nextHop":67,"nodesInPath":[66,67,77]}
+Processed at <1667187379.351295>
+Log: Finished processing path.
+Processed at <1667187379.351325>
+Log: Received path : 
+{"destID":5,"dist":6,"fromID":66,"nextHop":11,"nodesInPath":[1,2,3,4,5,11,66]}
+Processed at <1667187379.433271>
+Log: Sent out my path update of destId 5 to neighbor 75 : 
+LSAs{"destID":5,"dist":7,"fromID":76,"nextHop":66,"nodesInPath":[1,2,3,4,5,11,66,76]}
+Processed at <1667187379.435891>
+Log: Sent out my path update of destId 5 to neighbor 77 : 
+LSAs{"destID":5,"dist":7,"fromID":76,"nextHop":66,"nodesInPath":[1,2,3,4,5,11,66,76]}
+Processed at <1667187379.436139>
+Log: Finished processing path.
+Processed at <1667187379.436663>
+Log: Received path : 
+{"destID":74,"dist":1,"fromID":75,"nextHop":74,"nodesInPath":[74,75]}
+Processed at <1667187379.458909>
+Log: Sent out my path update of destId 74 to neighbor 66 : 
+LSAs{"destID":74,"dist":2,"fromID":76,"nextHop":75,"nodesInPath":[74,75,76]}
+Processed at <1667187379.459243>
+Log: Sent out my path update of destId 74 to neighbor 77 : 
+LSAs{"destID":74,"dist":2,"fromID":76,"nextHop":75,"nodesInPath":[74,75,76]}
+Processed at <1667187379.459519>
+Log: Finished processing path.
+Processed at <1667187379.460145>
+Log: Received path : 
+{"destID":65,"dist":1,"fromID":75,"nextHop":65,"nodesInPath":[65,75]}
+Processed at <1667187379.597040>
+Log: Sent out my path update of destId 65 to neighbor 66 : 
+LSAs{"destID":65,"dist":2,"fromID":76,"nextHop":75,"nodesInPath":[65,75,76]}
+Processed at <1667187379.597375>
+Log: Sent out my path update of destId 65 to neighbor 77 : 
+LSAs{"destID":65,"dist":2,"fromID":76,"nextHop":75,"nodesInPath":[65,75,76]}
+Processed at <1667187379.597599>
+Log: Finished processing path.
+Processed at <1667187379.598032>
+Log: Received path : 
+{"destID":57,"dist":2,"fromID":77,"nextHop":67,"nodesInPath":[57,67,77]}
+Processed at <1667187380.243721>
+Log: Finished processing path.
+Processed at <1667187380.243751>
+Log: Received path : 
+{"destID":13,"dist":10,"fromID":75,"nextHop":65,"nodesInPath":[13,23,32,33,42,43,53,63,64,65,75]}
+Processed at <1667187380.663788>
+Log: Sent out my path update of destId 13 to neighbor 66 : 
+LSAs{"destID":13,"dist":11,"fromID":76,"nextHop":75,"nodesInPath":[13,23,32,33,42,43,53,63,64,65,75,76]}
+Processed at <1667187380.664093>
+Log: Sent out my path update of destId 13 to neighbor 77 : 
+LSAs{"destID":13,"dist":11,"fromID":76,"nextHop":75,"nodesInPath":[13,23,32,33,42,43,53,63,64,65,75,76]}
+Processed at <1667187380.664312>
+Log: Finished processing path.
+Processed at <1667187380.664731>
+Log: Received path : 
+{"destID":53,"dist":4,"fromID":75,"nextHop":65,"nodesInPath":[53,63,64,65,75]}
+Processed at <1667187380.753042>
+Log: Sent out my path update of destId 53 to neighbor 66 : 
+LSAs{"destID":53,"dist":5,"fromID":76,"nextHop":75,"nodesInPath":[53,63,64,65,75,76]}
+Processed at <1667187380.753356>
+Log: Sent out my path update of destId 53 to neighbor 77 : 
+LSAs{"destID":53,"dist":5,"fromID":76,"nextHop":75,"nodesInPath":[53,63,64,65,75,76]}
+Processed at <1667187380.753502>
+Log: Finished processing path.
+Processed at <1667187380.753944>
+Log: Received path : 
+{"destID":54,"dist":3,"fromID":75,"nextHop":65,"nodesInPath":[54,64,65,75]}
+Processed at <1667187380.899727>
+Log: Sent out my path update of destId 54 to neighbor 66 : 
+LSAs{"destID":54,"dist":4,"fromID":76,"nextHop":75,"nodesInPath":[54,64,65,75,76]}
+Processed at <1667187380.899996>
+Log: Sent out my path update of destId 54 to neighbor 77 : 
+LSAs{"destID":54,"dist":4,"fromID":76,"nextHop":75,"nodesInPath":[54,64,65,75,76]}
+Processed at <1667187380.900142>
+Log: Finished processing path.
+Processed at <1667187380.905143>
+Log: Received path : 
+{"destID":6,"dist":8,"fromID":77,"nextHop":67,"nodesInPath":[6,7,17,27,37,47,57,67,77]}
+Processed at <1667187381.702127>
+Log: Sent out my path update of destId 6 to neighbor 66 : 
+LSAs{"destID":6,"dist":9,"fromID":76,"nextHop":77,"nodesInPath":[6,7,17,27,37,47,57,67,76,77]}
+Processed at <1667187381.702443>
+Log: Sent out my path update of destId 6 to neighbor 75 : 
+LSAs{"destID":6,"dist":9,"fromID":76,"nextHop":77,"nodesInPath":[6,7,17,27,37,47,57,67,76,77]}
+Processed at <1667187381.702583>
+Log: Finished processing path.
+Processed at <1667187381.703036>
+Log: Received path : 
+{"destID":7,"dist":7,"fromID":77,"nextHop":67,"nodesInPath":[7,17,27,37,47,57,67,77]}
+Processed at <1667187381.811700>
+Log: Sent out my path update of destId 7 to neighbor 66 : 
+LSAs{"destID":7,"dist":8,"fromID":76,"nextHop":77,"nodesInPath":[7,17,27,37,47,57,67,76,77]}
+Processed at <1667187381.811991>
+Log: Sent out my path update of destId 7 to neighbor 75 : 
+LSAs{"destID":7,"dist":8,"fromID":76,"nextHop":77,"nodesInPath":[7,17,27,37,47,57,67,76,77]}
+Processed at <1667187381.812128>
+Log: Finished processing path.
+Processed at <1667187381.843731>
+Log: Received path : 
+{"destID":0,"dist":3,"fromID":66,"nextHop":11,"nodesInPath":[0,1,11,66]}
+Processed at <1667187382.270738>
+Log: Finished processing path.
+Processed at <1667187382.270771>
+Log: Received path : 
+{"destID":1,"dist":2,"fromID":66,"nextHop":11,"nodesInPath":[1,11,66]}
+Processed at <1667187382.328528>
+Log: Finished processing path.
+Processed at <1667187382.328557>
+Log: Received path : 
+{"destID":2,"dist":3,"fromID":66,"nextHop":11,"nodesInPath":[1,2,11,66]}
+Processed at <1667187382.431812>
+Log: Finished processing path.
+Processed at <1667187382.431845>
+Log: Received path : 
+{"destID":3,"dist":4,"fromID":66,"nextHop":11,"nodesInPath":[1,2,3,11,66]}
+Processed at <1667187382.542970>
+Log: Finished processing path.
+Processed at <1667187382.543013>
+Log: Received path : 
+{"destID":4,"dist":5,"fromID":66,"nextHop":11,"nodesInPath":[1,2,3,4,11,66]}
+Processed at <1667187382.548009>
+Log: Finished processing path.
+Processed at <1667187382.548053>
+Log: Received path : 
+{"destID":5,"dist":6,"fromID":66,"nextHop":11,"nodesInPath":[1,2,3,4,5,11,66]}
+Processed at <1667187382.556224>
+Log: Finished processing path.
+Processed at <1667187382.556267>
+Log: Received path : 
+{"destID":6,"dist":7,"fromID":66,"nextHop":11,"nodesInPath":[1,2,3,4,5,6,11,66]}
+Processed at <1667187382.563831>
+Log: Sent out my path update of destId 6 to neighbor 75 : 
+LSAs{"destID":6,"dist":8,"fromID":76,"nextHop":66,"nodesInPath":[1,2,3,4,5,6,11,66,76]}
+Processed at <1667187382.564242>
+Log: Sent out my path update of destId 6 to neighbor 77 : 
+LSAs{"destID":6,"dist":8,"fromID":76,"nextHop":66,"nodesInPath":[1,2,3,4,5,6,11,66,76]}
+Processed at <1667187382.564505>
+Log: Finished processing path.
+Processed at <1667187382.565045>
+Log: Link broken to node: 75
+Processed at <1667187382.632517>
+Log: For brokenLink selection to desId 75For brokenLink selection, No alternative middle node, will broadcast -1 path to my neighbors.
+Processed at <1667187382.634230>
+Log: Sent out my path update of destId 75 to neighbor 66 : 
+LSAs{"destID":75,"dist":-1,"fromID":76,"nextHop":75,"nodesInPath":[75,76]}
+Processed at <1667187382.634588>
+Log: Sent out my path update of destId 75 to neighbor 77 : 
+LSAs{"destID":75,"dist":-1,"fromID":76,"nextHop":75,"nodesInPath":[75,76]}
+Processed at <1667187382.634758>
+Log: For brokenLink selection to desId 13, selected middle node 75
+Processed at <1667187382.784876>
+Log: Sent out my path update of destId 13 to neighbor 66 : 
+LSAs{"destID":13,"dist":9,"fromID":76,"nextHop":75,"nodesInPath":[13,23,32,33,42,43,53,63,64,65,75,76]}
+Processed at <1667187382.785136>
+Log: Sent out my path update of destId 13 to neighbor 77 : 
+LSAs{"destID":13,"dist":9,"fromID":76,"nextHop":75,"nodesInPath":[13,23,32,33,42,43,53,63,64,65,75,76]}
+Processed at <1667187382.785290>
+Log: For brokenLink selection to desId 53, selected middle node 75
+Processed at <1667187382.787293>
+Log: Sent out my path update of destId 53 to neighbor 66 : 
+LSAs{"destID":53,"dist":3,"fromID":76,"nextHop":75,"nodesInPath":[53,63,64,65,75,76]}
+Processed at <1667187382.983599>
+Log: Sent out my path update of destId 53 to neighbor 77 : 
+LSAs{"destID":53,"dist":3,"fromID":76,"nextHop":75,"nodesInPath":[53,63,64,65,75,76]}
+Processed at <1667187382.983754>
+Log: For brokenLink selection to desId 54, selected middle node 75
+Processed at <1667187382.985512>
+Log: Sent out my path update of destId 54 to neighbor 66 : 
+LSAs{"destID":54,"dist":2,"fromID":76,"nextHop":75,"nodesInPath":[54,64,65,75,76]}
+Processed at <1667187382.985784>
+Log: Sent out my path update of destId 54 to neighbor 77 : 
+LSAs{"destID":54,"dist":2,"fromID":76,"nextHop":75,"nodesInPath":[54,64,65,75,76]}
+Processed at <1667187382.985927>
+Log: For brokenLink selection to desId 65, selected middle node 75
+Processed at <1667187383.195974>
+Log: Sent out my path update of destId 65 to neighbor 66 : 
+LSAs{"destID":65,"dist":0,"fromID":76,"nextHop":75,"nodesInPath":[65,75,76]}
+Processed at <1667187383.196286>
+Log: Sent out my path update of destId 65 to neighbor 77 : 
+LSAs{"destID":65,"dist":0,"fromID":76,"nextHop":75,"nodesInPath":[65,75,76]}
+Processed at <1667187383.196464>
+Log: For brokenLink selection to desId 74, selected middle node 75
+Processed at <1667187383.242591>
+Log: Sent out my path update of destId 74 to neighbor 66 : 
+LSAs{"destID":74,"dist":0,"fromID":76,"nextHop":75,"nodesInPath":[74,75,76]}
+Processed at <1667187383.242834>
+Log: Sent out my path update of destId 74 to neighbor 77 : 
+LSAs{"destID":74,"dist":0,"fromID":76,"nextHop":75,"nodesInPath":[74,75,76]}
+Processed at <1667187383.242973>
+Log: Saw new neighbor 66
+Processed at <1667187383.504109>
+Log: Shared my path of destId 7 to new neighbor 66 : 
+LSAs{"destID":7,"dist":8,"fromID":76,"nextHop":77,"nodesInPath":[7,17,27,37,47,57,67,76,77]}
+Processed at <1667187383.504302>
+Log: Shared my path of destId 13 to new neighbor 66 : 
+LSAs{"destID":13,"dist":9,"fromID":76,"nextHop":75,"nodesInPath":[13,23,32,33,42,43,53,63,64,65,75,76]}
+Processed at <1667187383.504443>
+Log: Shared my path of destId 53 to new neighbor 66 : 
+LSAs{"destID":53,"dist":3,"fromID":76,"nextHop":75,"nodesInPath":[53,63,64,65,75,76]}
+Processed at <1667187383.504617>
+Log: Shared my path of destId 54 to new neighbor 66 : 
+LSAs{"destID":54,"dist":2,"fromID":76,"nextHop":75,"nodesInPath":[54,64,65,75,76]}
+Processed at <1667187383.504735>
+Log: Shared my path of destId 57 to new neighbor 66 : 
+LSAs{"destID":57,"dist":3,"fromID":76,"nextHop":77,"nodesInPath":[57,67,76,77]}
+Processed at <1667187383.504850>
+Log: Shared my path of destId 65 to new neighbor 66 : 
+LSAs{"destID":65,"dist":0,"fromID":76,"nextHop":75,"nodesInPath":[65,75,76]}
+Processed at <1667187383.504971>
+Log: Shared my path of destId 67 to new neighbor 66 : 
+LSAs{"destID":67,"dist":2,"fromID":76,"nextHop":77,"nodesInPath":[67,76,77]}
+Processed at <1667187383.505081>
+Log: Shared my path of destId 74 to new neighbor 66 : 
+LSAs{"destID":74,"dist":0,"fromID":76,"nextHop":75,"nodesInPath":[74,75,76]}
+Processed at <1667187383.505235>
+Log: Shared my path of destId 77 to new neighbor 66 : 
+LSAs{"destID":77,"dist":1,"fromID":76,"nextHop":77,"nodesInPath":[76,77]}
+Processed at <1667187383.505359>
+Log: Link broken to node: 77
+Processed at <1667187383.505682>
+Log: For brokenLink selection to desId 77For brokenLink selection, No alternative middle node, will broadcast -1 path to my neighbors.
+Processed at <1667187383.507095>
+Log: Sent out my path update of destId 77 to neighbor 66 : 
+LSAs{"destID":77,"dist":-1,"fromID":76,"nextHop":77,"nodesInPath":[76,77]}
+Processed at <1667187383.507333>
+Log: Received path : 
+{"destID":7,"dist":8,"fromID":66,"nextHop":11,"nodesInPath":[1,2,3,4,5,6,7,11,66]}
+Processed at <1667187383.507743>
+Log: Finished processing path.
+Processed at <1667187383.507775>
+Log: For brokenLink selection to desId 7, selected middle node 77
+Processed at <1667187383.673337>
+Log: Sent out my path update of destId 7 to neighbor 66 : 
+LSAs{"destID":7,"dist":6,"fromID":76,"nextHop":77,"nodesInPath":[7,17,27,37,47,57,67,76,77]}
+Processed at <1667187383.673590>
+Log: For brokenLink selection to desId 57, selected middle node 77
+Processed at <1667187383.675499>
+Log: Sent out my path update of destId 57 to neighbor 66 : 
+LSAs{"destID":57,"dist":1,"fromID":76,"nextHop":77,"nodesInPath":[57,67,76,77]}
+Processed at <1667187383.877363>
+Log: For brokenLink selection to desId 67, selected middle node 77
+Processed at <1667187384.012550>
+Log: Sent out my path update of destId 67 to neighbor 66 : 
+LSAs{"destID":67,"dist":0,"fromID":76,"nextHop":77,"nodesInPath":[67,76,77]}
+Processed at <1667187384.012839>
+Log: Received path : 
+{"destID":10,"dist":2,"fromID":66,"nextHop":11,"nodesInPath":[10,11,66]}
+Processed at <1667187384.091712>
+Log: Finished processing path.
+Processed at <1667187384.092316>
+Log: Received path : 
+{"destID":11,"dist":1,"fromID":66,"nextHop":11,"nodesInPath":[11,66]}
+Processed at <1667187384.149333>
+Log: Finished processing path.
+Processed at <1667187384.149363>
+Log: Received path : 
+{"destID":12,"dist":2,"fromID":66,"nextHop":11,"nodesInPath":[11,12,66]}
+Processed at <1667187384.160315>
+Log: Finished processing path.
+Processed at <1667187384.161001>
+Log: Received path : 
+{"destID":13,"dist":3,"fromID":66,"nextHop":11,"nodesInPath":[11,12,13,66]}
+Processed at <1667187384.252006>
+Log: Finished processing path.
+Processed at <1667187384.254773>
+Log: Received path : 
+{"destID":14,"dist":4,"fromID":66,"nextHop":11,"nodesInPath":[11,12,13,14,66]}
+Processed at <1667187384.323900>
+Log: Finished processing path.
+Processed at <1667187384.324507>
+Log: Received path : 
+{"destID":15,"dist":7,"fromID":66,"nextHop":11,"nodesInPath":[1,2,3,4,5,11,15,66]}
+Processed at <1667187384.383916>
+Log: Finished processing path.
+Processed at <1667187384.384641>
+Log: Received path : 
+{"destID":16,"dist":8,"fromID":66,"nextHop":11,"nodesInPath":[1,2,3,4,5,11,15,16,66]}
+Processed at <1667187384.436752>
+Log: Finished processing path.
+Processed at <1667187384.437522>
+Log: Received path : 
+{"destID":20,"dist":3,"fromID":66,"nextHop":11,"nodesInPath":[11,20,21,66]}
+Processed at <1667187384.468620>
+Log: Finished processing path.
+Processed at <1667187384.469360>
+Log: Received path : 
+{"destID":21,"dist":2,"fromID":66,"nextHop":11,"nodesInPath":[11,21,66]}
+Processed at <1667187384.477029>
+Log: Finished processing path.
+Processed at <1667187384.477640>
+Log: Received path : 
+{"destID":22,"dist":3,"fromID":66,"nextHop":11,"nodesInPath":[11,12,22,66]}
+Processed at <1667187384.489207>
+Log: Finished processing path.
+Processed at <1667187384.489820>
+Log: Received path : 
+{"destID":23,"dist":4,"fromID":66,"nextHop":11,"nodesInPath":[11,21,22,23,66]}
+Processed at <1667187384.496243>
+Log: Finished processing path.
+Processed at <1667187384.496933>
+Log: Received path : 
+{"destID":24,"dist":5,"fromID":66,"nextHop":11,"nodesInPath":[11,21,22,23,24,66]}
+Processed at <1667187384.508049>
+Log: Finished processing path.
+Processed at <1667187384.516590>
+Log: Received path : 
+{"destID":25,"dist":6,"fromID":66,"nextHop":11,"nodesInPath":[11,21,22,23,24,25,66]}
+Processed at <1667187384.611873>
+Log: Finished processing path.
+Processed at <1667187384.612487>
+Log: Received path : 
+{"destID":30,"dist":2,"fromID":66,"nextHop":11,"nodesInPath":[10,11,20,30,66]}
+Processed at <1667187384.631336>
+Log: Finished processing path.
+Processed at <1667187384.632194>
+Log: Received path : 
+{"destID":31,"dist":3,"fromID":66,"nextHop":11,"nodesInPath":[10,11,20,21,31,66]}
+Processed at <1667187384.688259>
+Log: Finished processing path.
+Processed at <1667187384.688882>
+Log: Received path : 
+{"destID":32,"dist":4,"fromID":66,"nextHop":11,"nodesInPath":[11,21,22,32,66]}
+Processed at <1667187384.707073>
+Log: Finished processing path.
+Processed at <1667187384.707730>
+Log: Received path : 
+{"destID":33,"dist":5,"fromID":66,"nextHop":11,"nodesInPath":[11,21,22,23,33,66]}
+Processed at <1667187384.720406>
+Log: Finished processing path.
+Processed at <1667187384.721037>
+Log: Received path : 
+{"destID":34,"dist":6,"fromID":66,"nextHop":11,"nodesInPath":[11,21,22,32,33,34,66]}
+Processed at <1667187384.737618>
+Log: Finished processing path.
+Processed at <1667187384.738569>
+Log: Received path : 
+{"destID":40,"dist":5,"fromID":66,"nextHop":11,"nodesInPath":[11,21,30,31,40,66]}
+Processed at <1667187384.752867>
+Log: Finished processing path.
+Processed at <1667187384.753454>
+Log: Received path : 
+{"destID":41,"dist":4,"fromID":66,"nextHop":11,"nodesInPath":[11,21,31,41,66]}
+Processed at <1667187384.760560>
+Log: Finished processing path.
+Processed at <1667187384.761190>
+Log: Saw new neighbor 75
+Processed at <1667187384.761293>
+Log: Sent out my path update of destId 75 to neighbor 66 : 
+LSAs{"destID":75,"dist":1,"fromID":76,"nextHop":75,"nodesInPath":[75,76]}
+Processed at <1667187384.761549>
+Log: Shared my path of destId 0 to new neighbor 75 : 
+LSAs{"destID":0,"dist":4,"fromID":76,"nextHop":66,"nodesInPath":[0,1,11,66,76]}
+Processed at <1667187384.762080>
+Log: Shared my path of destId 1 to new neighbor 75 : 
+LSAs{"destID":1,"dist":3,"fromID":76,"nextHop":66,"nodesInPath":[1,11,66,76]}
+Processed at <1667187384.762192>
+Log: Shared my path of destId 2 to new neighbor 75 : 
+LSAs{"destID":2,"dist":4,"fromID":76,"nextHop":66,"nodesInPath":[1,2,11,66,76]}
+Processed at <1667187384.762304>
+Log: Shared my path of destId 3 to new neighbor 75 : 
+LSAs{"destID":3,"dist":5,"fromID":76,"nextHop":66,"nodesInPath":[1,2,3,11,66,76]}
+Processed at <1667187384.762417>
+Log: Shared my path of destId 4 to new neighbor 75 : 
+LSAs{"destID":4,"dist":6,"fromID":76,"nextHop":66,"nodesInPath":[1,2,3,4,11,66,76]}
+Processed at <1667187384.762535>
+Log: Shared my path of destId 5 to new neighbor 75 : 
+LSAs{"destID":5,"dist":7,"fromID":76,"nextHop":66,"nodesInPath":[1,2,3,4,5,11,66,76]}
+Processed at <1667187384.762688>
+Log: Shared my path of destId 6 to new neighbor 75 : 
+LSAs{"destID":6,"dist":8,"fromID":76,"nextHop":66,"nodesInPath":[1,2,3,4,5,6,11,66,76]}
+Processed at <1667187384.762810>
+Log: Shared my path of destId 7 to new neighbor 75 : 
+LSAs{"destID":7,"dist":6,"fromID":76,"nextHop":77,"nodesInPath":[7,17,27,37,47,57,67,76,77]}
+Processed at <1667187384.762930>
+Log: Shared my path of destId 10 to new neighbor 75 : 
+LSAs{"destID":10,"dist":3,"fromID":76,"nextHop":66,"nodesInPath":[10,11,66,76]}
+Processed at <1667187384.763044>
+Log: Shared my path of destId 11 to new neighbor 75 : 
+LSAs{"destID":11,"dist":2,"fromID":76,"nextHop":66,"nodesInPath":[11,66,76]}
+Processed at <1667187384.763152>
+Log: Shared my path of destId 12 to new neighbor 75 : 
+LSAs{"destID":12,"dist":3,"fromID":76,"nextHop":66,"nodesInPath":[11,12,66,76]}
+Processed at <1667187384.763265>
+Log: Shared my path of destId 13 to new neighbor 75 : 
+LSAs{"destID":13,"dist":4,"fromID":76,"nextHop":66,"nodesInPath":[11,12,13,66,76]}
+Processed at <1667187384.763376>
+Log: Shared my path of destId 14 to new neighbor 75 : 
+LSAs{"destID":14,"dist":5,"fromID":76,"nextHop":66,"nodesInPath":[11,12,13,14,66,76]}
+Processed at <1667187384.763489>
+Log: Shared my path of destId 15 to new neighbor 75 : 
+LSAs{"destID":15,"dist":8,"fromID":76,"nextHop":66,"nodesInPath":[1,2,3,4,5,11,15,66,76]}
+Processed at <1667187384.780378>
+Log: Shared my path of destId 16 to new neighbor 75 : 
+LSAs{"destID":16,"dist":9,"fromID":76,"nextHop":66,"nodesInPath":[1,2,3,4,5,11,15,16,66,76]}
+Processed at <1667187384.780518>
+Log: Shared my path of destId 20 to new neighbor 75 : 
+LSAs{"destID":20,"dist":4,"fromID":76,"nextHop":66,"nodesInPath":[11,20,21,66,76]}
+Processed at <1667187384.780635>
+Log: Shared my path of destId 21 to new neighbor 75 : 
+LSAs{"destID":21,"dist":3,"fromID":76,"nextHop":66,"nodesInPath":[11,21,66,76]}
+Processed at <1667187384.780744>
+Log: Shared my path of destId 22 to new neighbor 75 : 
+LSAs{"destID":22,"dist":4,"fromID":76,"nextHop":66,"nodesInPath":[11,12,22,66,76]}
+Processed at <1667187384.780855>
+Log: Shared my path of destId 23 to new neighbor 75 : 
+LSAs{"destID":23,"dist":5,"fromID":76,"nextHop":66,"nodesInPath":[11,21,22,23,66,76]}
+Processed at <1667187384.780967>
+Log: Shared my path of destId 24 to new neighbor 75 : 
+LSAs{"destID":24,"dist":6,"fromID":76,"nextHop":66,"nodesInPath":[11,21,22,23,24,66,76]}
+Processed at <1667187384.781084>
+Log: Shared my path of destId 25 to new neighbor 75 : 
+LSAs{"destID":25,"dist":7,"fromID":76,"nextHop":66,"nodesInPath":[11,21,22,23,24,25,66,76]}
+Processed at <1667187384.781257>
+Log: Shared my path of destId 30 to new neighbor 75 : 
+LSAs{"destID":30,"dist":3,"fromID":76,"nextHop":66,"nodesInPath":[10,11,20,30,66,76]}
+Processed at <1667187384.781388>
+Log: Shared my path of destId 31 to new neighbor 75 : 
+LSAs{"destID":31,"dist":4,"fromID":76,"nextHop":66,"nodesInPath":[10,11,20,21,31,66,76]}
+Processed at <1667187384.781505>
+Log: Shared my path of destId 32 to new neighbor 75 : 
+LSAs{"destID":32,"dist":5,"fromID":76,"nextHop":66,"nodesInPath":[11,21,22,32,66,76]}
+Processed at <1667187384.781620>
+Log: Shared my path of destId 33 to new neighbor 75 : 
+LSAs{"destID":33,"dist":6,"fromID":76,"nextHop":66,"nodesInPath":[11,21,22,23,33,66,76]}
+Processed at <1667187384.781737>
+Log: Shared my path of destId 34 to new neighbor 75 : 
+LSAs{"destID":34,"dist":7,"fromID":76,"nextHop":66,"nodesInPath":[11,21,22,32,33,34,66,76]}
+Processed at <1667187384.781856>
+Log: Shared my path of destId 40 to new neighbor 75 : 
+LSAs{"destID":40,"dist":6,"fromID":76,"nextHop":66,"nodesInPath":[11,21,30,31,40,66,76]}
+Processed at <1667187384.781981>
+Log: Shared my path of destId 41 to new neighbor 75 : 
+LSAs{"destID":41,"dist":5,"fromID":76,"nextHop":66,"nodesInPath":[11,21,31,41,66,76]}
+Processed at <1667187384.782096>
+Log: Shared my path of destId 57 to new neighbor 75 : 
+LSAs{"destID":57,"dist":1,"fromID":76,"nextHop":77,"nodesInPath":[57,67,76,77]}
+Processed at <1667187384.782257>
+Log: Shared my path of destId 66 to new neighbor 75 : 
+LSAs{"destID":66,"dist":1,"fromID":76,"nextHop":66,"nodesInPath":[66,76]}
+Processed at <1667187384.782379>
+Log: Shared my path of destId 67 to new neighbor 75 : 
+LSAs{"destID":67,"dist":0,"fromID":76,"nextHop":77,"nodesInPath":[67,76,77]}
+Processed at <1667187384.782487>
+Log: Saw new neighbor 77
+Processed at <1667187384.795810>
+Log: Sent out my path update of destId 77 to neighbor 66 : 
+LSAs{"destID":77,"dist":1,"fromID":76,"nextHop":77,"nodesInPath":[76,77]}
+Processed at <1667187384.796146>
+Log: Sent out my path update of destId 77 to neighbor 75 : 
+LSAs{"destID":77,"dist":1,"fromID":76,"nextHop":77,"nodesInPath":[76,77]}
+Processed at <1667187384.796276>
+Log: Shared my path of destId 0 to new neighbor 77 : 
+LSAs{"destID":0,"dist":4,"fromID":76,"nextHop":66,"nodesInPath":[0,1,11,66,76]}
+Processed at <1667187384.797089>
+Log: Shared my path of destId 1 to new neighbor 77 : 
+LSAs{"destID":1,"dist":3,"fromID":76,"nextHop":66,"nodesInPath":[1,11,66,76]}
+Processed at <1667187384.797203>
+Log: Shared my path of destId 2 to new neighbor 77 : 
+LSAs{"destID":2,"dist":4,"fromID":76,"nextHop":66,"nodesInPath":[1,2,11,66,76]}
+Processed at <1667187384.797319>
+Log: Shared my path of destId 3 to new neighbor 77 : 
+LSAs{"destID":3,"dist":5,"fromID":76,"nextHop":66,"nodesInPath":[1,2,3,11,66,76]}
+Processed at <1667187384.797431>
+Log: Shared my path of destId 4 to new neighbor 77 : 
+LSAs{"destID":4,"dist":6,"fromID":76,"nextHop":66,"nodesInPath":[1,2,3,4,11,66,76]}
+Processed at <1667187384.797550>
+Log: Shared my path of destId 5 to new neighbor 77 : 
+LSAs{"destID":5,"dist":7,"fromID":76,"nextHop":66,"nodesInPath":[1,2,3,4,5,11,66,76]}
+Processed at <1667187384.797680>
+Log: Shared my path of destId 6 to new neighbor 77 : 
+LSAs{"destID":6,"dist":8,"fromID":76,"nextHop":66,"nodesInPath":[1,2,3,4,5,6,11,66,76]}
+Processed at <1667187384.797854>
+Log: Shared my path of destId 10 to new neighbor 77 : 
+LSAs{"destID":10,"dist":3,"fromID":76,"nextHop":66,"nodesInPath":[10,11,66,76]}
+Processed at <1667187384.798012>
+Log: Shared my path of destId 11 to new neighbor 77 : 
+LSAs{"destID":11,"dist":2,"fromID":76,"nextHop":66,"nodesInPath":[11,66,76]}
+Processed at <1667187384.798133>
+Log: Shared my path of destId 12 to new neighbor 77 : 
+LSAs{"destID":12,"dist":3,"fromID":76,"nextHop":66,"nodesInPath":[11,12,66,76]}
+Processed at <1667187384.798254>
+Log: Shared my path of destId 13 to new neighbor 77 : 
+LSAs{"destID":13,"dist":4,"fromID":76,"nextHop":66,"nodesInPath":[11,12,13,66,76]}
+Processed at <1667187384.798384>
+Log: Shared my path of destId 14 to new neighbor 77 : 
+LSAs{"destID":14,"dist":5,"fromID":76,"nextHop":66,"nodesInPath":[11,12,13,14,66,76]}
+Processed at <1667187384.798497>
+Log: Shared my path of destId 15 to new neighbor 77 : 
+LSAs{"destID":15,"dist":8,"fromID":76,"nextHop":66,"nodesInPath":[1,2,3,4,5,11,15,66,76]}
+Processed at <1667187384.798617>
+Log: Shared my path of destId 16 to new neighbor 77 : 
+LSAs{"destID":16,"dist":9,"fromID":76,"nextHop":66,"nodesInPath":[1,2,3,4,5,11,15,16,66,76]}
+Processed at <1667187384.798772>
+Log: Shared my path of destId 20 to new neighbor 77 : 
+LSAs{"destID":20,"dist":4,"fromID":76,"nextHop":66,"nodesInPath":[11,20,21,66,76]}
+Processed at <1667187384.798892>
+Log: Shared my path of destId 21 to new neighbor 77 : 
+LSAs{"destID":21,"dist":3,"fromID":76,"nextHop":66,"nodesInPath":[11,21,66,76]}
+Processed at <1667187384.799001>
+Log: Shared my path of destId 22 to new neighbor 77 : 
+LSAs{"destID":22,"dist":4,"fromID":76,"nextHop":66,"nodesInPath":[11,12,22,66,76]}
+Processed at <1667187384.799112>
+Log: Shared my path of destId 23 to new neighbor 77 : 
+LSAs{"destID":23,"dist":5,"fromID":76,"nextHop":66,"nodesInPath":[11,21,22,23,66,76]}
+Processed at <1667187384.799229>
+Log: Shared my path of destId 24 to new neighbor 77 : 
+LSAs{"destID":24,"dist":6,"fromID":76,"nextHop":66,"nodesInPath":[11,21,22,23,24,66,76]}
+Processed at <1667187384.799348>
+Log: Shared my path of destId 25 to new neighbor 77 : 
+LSAs{"destID":25,"dist":7,"fromID":76,"nextHop":66,"nodesInPath":[11,21,22,23,24,25,66,76]}
+Processed at <1667187384.799467>
+Log: Shared my path of destId 30 to new neighbor 77 : 
+LSAs{"destID":30,"dist":3,"fromID":76,"nextHop":66,"nodesInPath":[10,11,20,30,66,76]}
+Processed at <1667187384.847021>
+Log: Shared my path of destId 31 to new neighbor 77 : 
+LSAs{"destID":31,"dist":4,"fromID":76,"nextHop":66,"nodesInPath":[10,11,20,21,31,66,76]}
+Processed at <1667187384.847190>
+Log: Shared my path of destId 32 to new neighbor 77 : 
+LSAs{"destID":32,"dist":5,"fromID":76,"nextHop":66,"nodesInPath":[11,21,22,32,66,76]}
+Processed at <1667187384.847341>
+Log: Shared my path of destId 33 to new neighbor 77 : 
+LSAs{"destID":33,"dist":6,"fromID":76,"nextHop":66,"nodesInPath":[11,21,22,23,33,66,76]}
+Processed at <1667187384.847497>
+Log: Shared my path of destId 34 to new neighbor 77 : 
+LSAs{"destID":34,"dist":7,"fromID":76,"nextHop":66,"nodesInPath":[11,21,22,32,33,34,66,76]}
+Processed at <1667187384.847742>
+Log: Shared my path of destId 40 to new neighbor 77 : 
+LSAs{"destID":40,"dist":6,"fromID":76,"nextHop":66,"nodesInPath":[11,21,30,31,40,66,76]}
+Processed at <1667187384.847907>
+Log: Shared my path of destId 41 to new neighbor 77 : 
+LSAs{"destID":41,"dist":5,"fromID":76,"nextHop":66,"nodesInPath":[11,21,31,41,66,76]}
+Processed at <1667187384.848071>
+Log: Shared my path of destId 53 to new neighbor 77 : 
+LSAs{"destID":53,"dist":3,"fromID":76,"nextHop":75,"nodesInPath":[53,63,64,65,75,76]}
+Processed at <1667187384.848247>
+Log: Shared my path of destId 54 to new neighbor 77 : 
+LSAs{"destID":54,"dist":2,"fromID":76,"nextHop":75,"nodesInPath":[54,64,65,75,76]}
+Processed at <1667187384.848412>
+Log: Shared my path of destId 65 to new neighbor 77 : 
+LSAs{"destID":65,"dist":0,"fromID":76,"nextHop":75,"nodesInPath":[65,75,76]}
+Processed at <1667187384.848613>
+Log: Shared my path of destId 66 to new neighbor 77 : 
+LSAs{"destID":66,"dist":1,"fromID":76,"nextHop":66,"nodesInPath":[66,76]}
+Processed at <1667187384.848752>
+Log: Shared my path of destId 74 to new neighbor 77 : 
+LSAs{"destID":74,"dist":0,"fromID":76,"nextHop":75,"nodesInPath":[74,75,76]}
+Processed at <1667187384.848911>
+Log: Shared my path of destId 75 to new neighbor 77 : 
+LSAs{"destID":75,"dist":1,"fromID":76,"nextHop":75,"nodesInPath":[75,76]}
+Processed at <1667187384.849050>
+Log: Received path : 
+{"destID":42,"dist":5,"fromID":66,"nextHop":11,"nodesInPath":[11,21,31,32,42,66]}
+Processed at <1667187384.930324>
+Log: Sent out my path update of destId 42 to neighbor 75 : 
+LSAs{"destID":42,"dist":6,"fromID":76,"nextHop":66,"nodesInPath":[11,21,31,32,42,66,76]}
+Processed at <1667187384.930720>
+Log: Sent out my path update of destId 42 to neighbor 77 : 
+LSAs{"destID":42,"dist":6,"fromID":76,"nextHop":66,"nodesInPath":[11,21,31,32,42,66,76]}
+Processed at <1667187384.930919>
+Log: Finished processing path.
+Processed at <1667187384.931430>
+Log: Received path : 
+{"destID":56,"dist":1,"fromID":66,"nextHop":56,"nodesInPath":[56,66]}
+Processed at <1667187385.035828>
+Log: Sent out my path update of destId 56 to neighbor 75 : 
+LSAs{"destID":56,"dist":2,"fromID":76,"nextHop":66,"nodesInPath":[56,66,76]}
+Processed at <1667187385.036209>
+Log: Sent out my path update of destId 56 to neighbor 77 : 
+LSAs{"destID":56,"dist":2,"fromID":76,"nextHop":66,"nodesInPath":[56,66,76]}
+Processed at <1667187385.036353>
+Log: Finished processing path.
+Processed at <1667187385.036909>
+Log: Received path : 
+{"destID":57,"dist":2,"fromID":66,"nextHop":67,"nodesInPath":[57,66,67]}
+Processed at <1667187385.062641>
+Log: Finished processing path.
+Processed at <1667187385.062672>
+Log: Received path : 
+{"destID":65,"dist":1,"fromID":66,"nextHop":65,"nodesInPath":[65,66]}
+Processed at <1667187385.152089>
+Log: Finished processing path.
+Processed at <1667187385.152161>
+Log: Received path : 
+{"destID":67,"dist":1,"fromID":66,"nextHop":67,"nodesInPath":[66,67]}
+Processed at <1667187385.170608>
+Log: Finished processing path.
+Processed at <1667187385.170637>
+Log: Received path : 
+{"destID":67,"dist":-1,"fromID":66,"nextHop":67,"nodesInPath":[66,67]}
+Processed at <1667187385.229459>
+Log: Finished processing path.
+Processed at <1667187385.229490>
+Log: Received path : 
+{"destID":57,"dist":0,"fromID":66,"nextHop":67,"nodesInPath":[57,66,67]}
+Processed at <1667187385.313554>
+Log: Sent out my path update of destId 57 to neighbor 75 : 
+LSAs{"destID":57,"dist":1,"fromID":76,"nextHop":66,"nodesInPath":[57,66,67,76]}
+Processed at <1667187385.319455>
+Log: Sent out my path update of destId 57 to neighbor 77 : 
+LSAs{"destID":57,"dist":1,"fromID":76,"nextHop":66,"nodesInPath":[57,66,67,76]}
+Processed at <1667187385.319660>
+Log: Finished processing path.
+Processed at <1667187385.320199>
+Log: Received path : 
+{"destID":11,"dist":-1,"fromID":66,"nextHop":11,"nodesInPath":[11,66]}
+Processed at <1667187385.358405>
+Log: For brokenLink selection to desId 11For brokenLink selection, No alternative middle node, will broadcast -1 path to my neighbors.
+Processed at <1667187385.359861>
+Log: Finished processing path.
+Processed at <1667187385.359877>
+Log: Received path : 
+{"destID":0,"dist":1,"fromID":66,"nextHop":11,"nodesInPath":[0,1,11,66]}
+Processed at <1667187385.479043>
+Log: Sent out my path update of destId 0 to neighbor 75 : 
+LSAs{"destID":0,"dist":2,"fromID":76,"nextHop":66,"nodesInPath":[0,1,11,66,76]}
+Processed at <1667187385.551807>
+Log: Sent out my path update of destId 0 to neighbor 77 : 
+LSAs{"destID":0,"dist":2,"fromID":76,"nextHop":66,"nodesInPath":[0,1,11,66,76]}
+Processed at <1667187385.551925>
+Log: Finished processing path.
+Processed at <1667187385.552639>
+Log: Received path : 
+{"destID":1,"dist":0,"fromID":66,"nextHop":11,"nodesInPath":[1,11,66]}
+Processed at <1667187385.579440>
+Log: Sent out my path update of destId 1 to neighbor 75 : 
+LSAs{"destID":1,"dist":1,"fromID":76,"nextHop":66,"nodesInPath":[1,11,66,76]}
+Processed at <1667187385.600057>
+Log: Sent out my path update of destId 1 to neighbor 77 : 
+LSAs{"destID":1,"dist":1,"fromID":76,"nextHop":66,"nodesInPath":[1,11,66,76]}
+Processed at <1667187385.600174>
+Log: Finished processing path.
+Processed at <1667187385.600619>
+Log: Received path : 
+{"destID":2,"dist":1,"fromID":66,"nextHop":11,"nodesInPath":[1,2,11,66]}
+Processed at <1667187385.616295>
+Log: Sent out my path update of destId 2 to neighbor 75 : 
+LSAs{"destID":2,"dist":2,"fromID":76,"nextHop":66,"nodesInPath":[1,2,11,66,76]}
+Processed at <1667187385.616588>
+Log: Sent out my path update of destId 2 to neighbor 77 : 
+LSAs{"destID":2,"dist":2,"fromID":76,"nextHop":66,"nodesInPath":[1,2,11,66,76]}
+Processed at <1667187385.616703>
+Log: Finished processing path.
+Processed at <1667187385.617143>
+Log: Received path : 
+{"destID":3,"dist":2,"fromID":66,"nextHop":11,"nodesInPath":[1,2,3,11,66]}
+Processed at <1667187385.634250>
+Log: Sent out my path update of destId 3 to neighbor 75 : 
+LSAs{"destID":3,"dist":3,"fromID":76,"nextHop":66,"nodesInPath":[1,2,3,11,66,76]}
+Processed at <1667187385.634565>
+Log: Sent out my path update of destId 3 to neighbor 77 : 
+LSAs{"destID":3,"dist":3,"fromID":76,"nextHop":66,"nodesInPath":[1,2,3,11,66,76]}
+Processed at <1667187385.634681>
+Log: Finished processing path.
+Processed at <1667187385.635098>
+Log: Received path : 
+{"destID":4,"dist":3,"fromID":66,"nextHop":11,"nodesInPath":[1,2,3,4,11,66]}
+Processed at <1667187385.644556>
+Log: Sent out my path update of destId 4 to neighbor 75 : 
+LSAs{"destID":4,"dist":4,"fromID":76,"nextHop":66,"nodesInPath":[1,2,3,4,11,66,76]}
+Processed at <1667187385.644853>
+Log: Sent out my path update of destId 4 to neighbor 77 : 
+LSAs{"destID":4,"dist":4,"fromID":76,"nextHop":66,"nodesInPath":[1,2,3,4,11,66,76]}
+Processed at <1667187385.644973>
+Log: Finished processing path.
+Processed at <1667187385.645420>
+Log: Received path : 
+{"destID":5,"dist":4,"fromID":66,"nextHop":11,"nodesInPath":[1,2,3,4,5,11,66]}
+Processed at <1667187385.668723>
+Log: Sent out my path update of destId 5 to neighbor 75 : 
+LSAs{"destID":5,"dist":5,"fromID":76,"nextHop":66,"nodesInPath":[1,2,3,4,5,11,66,76]}
+Processed at <1667187385.669125>
+Log: Sent out my path update of destId 5 to neighbor 77 : 
+LSAs{"destID":5,"dist":5,"fromID":76,"nextHop":66,"nodesInPath":[1,2,3,4,5,11,66,76]}
+Processed at <1667187385.669293>
+Log: Finished processing path.
+Processed at <1667187385.669866>
+Log: Received path : 
+{"destID":6,"dist":5,"fromID":66,"nextHop":11,"nodesInPath":[1,2,3,4,5,6,11,66]}
+Processed at <1667187385.685874>
+Log: Sent out my path update of destId 6 to neighbor 75 : 
+LSAs{"destID":6,"dist":6,"fromID":76,"nextHop":66,"nodesInPath":[1,2,3,4,5,6,11,66,76]}
+Processed at <1667187385.686215>
+Log: Sent out my path update of destId 6 to neighbor 77 : 
+LSAs{"destID":6,"dist":6,"fromID":76,"nextHop":66,"nodesInPath":[1,2,3,4,5,6,11,66,76]}
+Processed at <1667187385.686387>
+Log: Finished processing path.
+Processed at <1667187385.686902>
+Log: Received path : 
+{"destID":7,"dist":6,"fromID":66,"nextHop":11,"nodesInPath":[1,2,3,4,5,6,7,11,66]}
+Processed at <1667187385.697977>
+Log: Finished processing path.
+Processed at <1667187385.698016>
+Log: Received path : 
+{"destID":10,"dist":0,"fromID":66,"nextHop":11,"nodesInPath":[10,11,66]}
+Processed at <1667187385.711170>
+Log: Sent out my path update of destId 10 to neighbor 75 : 
+LSAs{"destID":10,"dist":1,"fromID":76,"nextHop":66,"nodesInPath":[10,11,66,76]}
+Processed at <1667187385.711462>
+Log: Sent out my path update of destId 10 to neighbor 77 : 
+LSAs{"destID":10,"dist":1,"fromID":76,"nextHop":66,"nodesInPath":[10,11,66,76]}
+Processed at <1667187385.711640>
+Log: Finished processing path.
+Processed at <1667187385.712740>
+Log: Received path : 
+{"destID":12,"dist":0,"fromID":66,"nextHop":11,"nodesInPath":[11,12,66]}
+Processed at <1667187385.724823>
+Log: Sent out my path update of destId 12 to neighbor 75 : 
+LSAs{"destID":12,"dist":1,"fromID":76,"nextHop":66,"nodesInPath":[11,12,66,76]}
+Processed at <1667187385.725123>
+Log: Sent out my path update of destId 12 to neighbor 77 : 
+LSAs{"destID":12,"dist":1,"fromID":76,"nextHop":66,"nodesInPath":[11,12,66,76]}
+Processed at <1667187385.725258>
+Log: Finished processing path.
+Processed at <1667187385.725676>
+Log: Received path : 
+{"destID":13,"dist":1,"fromID":66,"nextHop":11,"nodesInPath":[11,12,13,66]}
+Processed at <1667187385.738131>
+Log: Sent out my path update of destId 13 to neighbor 75 : 
+LSAs{"destID":13,"dist":2,"fromID":76,"nextHop":66,"nodesInPath":[11,12,13,66,76]}
+Processed at <1667187385.738419>
+Log: Sent out my path update of destId 13 to neighbor 77 : 
+LSAs{"destID":13,"dist":2,"fromID":76,"nextHop":66,"nodesInPath":[11,12,13,66,76]}
+Processed at <1667187385.738533>
+Log: Finished processing path.
+Processed at <1667187385.744127>
+Log: Received path : 
+{"destID":14,"dist":2,"fromID":66,"nextHop":11,"nodesInPath":[11,12,13,14,66]}
+Processed at <1667187385.847443>
+Log: Sent out my path update of destId 14 to neighbor 75 : 
+LSAs{"destID":14,"dist":3,"fromID":76,"nextHop":66,"nodesInPath":[11,12,13,14,66,76]}
+Processed at <1667187385.847913>
+Log: Sent out my path update of destId 14 to neighbor 77 : 
+LSAs{"destID":14,"dist":3,"fromID":76,"nextHop":66,"nodesInPath":[11,12,13,14,66,76]}
+Processed at <1667187385.848070>
+Log: Finished processing path.
+Processed at <1667187385.848623>
+Log: Received path : 
+{"destID":15,"dist":5,"fromID":66,"nextHop":11,"nodesInPath":[1,2,3,4,5,11,15,66]}
+Processed at <1667187385.888312>
+Log: Sent out my path update of destId 15 to neighbor 75 : 
+LSAs{"destID":15,"dist":6,"fromID":76,"nextHop":66,"nodesInPath":[1,2,3,4,5,11,15,66,76]}
+Processed at <1667187385.888630>
+Log: Sent out my path update of destId 15 to neighbor 77 : 
+LSAs{"destID":15,"dist":6,"fromID":76,"nextHop":66,"nodesInPath":[1,2,3,4,5,11,15,66,76]}
+Processed at <1667187385.888753>
+Log: Finished processing path.
+Processed at <1667187385.889191>
+Log: Link broken to node: 77
+Processed at <1667187385.889361>
+Log: For brokenLink selection to desId 77For brokenLink selection, No alternative middle node, will broadcast -1 path to my neighbors.
+Processed at <1667187385.890671>
+Log: Sent out my path update of destId 77 to neighbor 66 : 
+LSAs{"destID":77,"dist":-1,"fromID":76,"nextHop":77,"nodesInPath":[76,77]}
+Processed at <1667187385.890888>
+Log: Sent out my path update of destId 77 to neighbor 75 : 
+LSAs{"destID":77,"dist":-1,"fromID":76,"nextHop":77,"nodesInPath":[76,77]}
+Processed at <1667187385.891010>
+Log: For brokenLink selection to desId 7, selected middle node 66
+Processed at <1667187385.946593>
+Log: Sent out my path update of destId 7 to neighbor 75 : 
+LSAs{"destID":7,"dist":7,"fromID":76,"nextHop":66,"nodesInPath":[1,2,3,4,5,6,7,11,66,76]}
+Processed at <1667187385.946877>
+Log: Received path : 
+{"destID":16,"dist":6,"fromID":66,"nextHop":11,"nodesInPath":[1,2,3,4,5,11,15,16,66]}
+Processed at <1667187385.997829>
+Log: Sent out my path update of destId 16 to neighbor 75 : 
+LSAs{"destID":16,"dist":7,"fromID":76,"nextHop":66,"nodesInPath":[1,2,3,4,5,11,15,16,66,76]}
+Processed at <1667187385.998172>
+Log: Finished processing path.
+Processed at <1667187385.998616>
+Log: For brokenLink selection to desId 67, selected middle node 77
+Processed at <1667187386.041306>
+Log: Sent out my path update of destId 67 to neighbor 66 : 
+LSAs{"destID":67,"dist":0,"fromID":76,"nextHop":77,"nodesInPath":[67,76,77]}
+Processed at <1667187386.041637>
+Log: Sent out my path update of destId 67 to neighbor 75 : 
+LSAs{"destID":67,"dist":0,"fromID":76,"nextHop":77,"nodesInPath":[67,76,77]}
+Processed at <1667187386.041798>
+Log: Link broken to node: 75
+Processed at <1667187386.056791>
+Log: For brokenLink selection to desId 75For brokenLink selection, No alternative middle node, will broadcast -1 path to my neighbors.
+Processed at <1667187386.058576>
+Log: Sent out my path update of destId 75 to neighbor 66 : 
+LSAs{"destID":75,"dist":-1,"fromID":76,"nextHop":75,"nodesInPath":[75,76]}
+Processed at <1667187386.058903>
+Log: Received path : 
+{"destID":20,"dist":1,"fromID":66,"nextHop":11,"nodesInPath":[11,20,21,66]}
+Processed at <1667187386.059829>
+Log: Finished processing path.
+Processed at <1667187386.060557>
+Log: For brokenLink selection to desId 53, selected middle node 75
+Processed at <1667187386.123947>
+Log: Sent out my path update of destId 53 to neighbor 66 : 
+LSAs{"destID":53,"dist":3,"fromID":76,"nextHop":75,"nodesInPath":[53,63,64,65,75,76]}
+Processed at <1667187386.124269>
+Log: For brokenLink selection to desId 54, selected middle node 75
+Processed at <1667187386.132991>
+Log: Sent out my path update of destId 54 to neighbor 66 : 
+LSAs{"destID":54,"dist":2,"fromID":76,"nextHop":75,"nodesInPath":[54,64,65,75,76]}
+Processed at <1667187386.133367>
+Log: For brokenLink selection to desId 65, selected middle node 66
+Processed at <1667187386.356033>
+Log: For brokenLink selection to desId 74, selected middle node 75
+Processed at <1667187386.358539>
+Log: Sent out my path update of destId 74 to neighbor 66 : 
+LSAs{"destID":74,"dist":0,"fromID":76,"nextHop":75,"nodesInPath":[74,75,76]}
+Processed at <1667187386.358885>
+Log: Saw new neighbor 77
+Processed at <1667187386.747655>
+Log: Sent out my path update of destId 77 to neighbor 66 : 
+LSAs{"destID":77,"dist":1,"fromID":76,"nextHop":77,"nodesInPath":[76,77]}
+Processed at <1667187386.748045>
+Log: Shared my path of destId 0 to new neighbor 77 : 
+LSAs{"destID":0,"dist":2,"fromID":76,"nextHop":66,"nodesInPath":[0,1,11,66,76]}
+Processed at <1667187386.748775>
+Log: Shared my path of destId 1 to new neighbor 77 : 
+LSAs{"destID":1,"dist":1,"fromID":76,"nextHop":66,"nodesInPath":[1,11,66,76]}
+Processed at <1667187386.748937>
+Log: Shared my path of destId 2 to new neighbor 77 : 
+LSAs{"destID":2,"dist":2,"fromID":76,"nextHop":66,"nodesInPath":[1,2,11,66,76]}
+Processed at <1667187386.749145>
+Log: Shared my path of destId 3 to new neighbor 77 : 
+LSAs{"destID":3,"dist":3,"fromID":76,"nextHop":66,"nodesInPath":[1,2,3,11,66,76]}
+Processed at <1667187386.749302>
+Log: Shared my path of destId 4 to new neighbor 77 : 
+LSAs{"destID":4,"dist":4,"fromID":76,"nextHop":66,"nodesInPath":[1,2,3,4,11,66,76]}
+Processed at <1667187386.749505>
+Log: Shared my path of destId 5 to new neighbor 77 : 
+LSAs{"destID":5,"dist":5,"fromID":76,"nextHop":66,"nodesInPath":[1,2,3,4,5,11,66,76]}
+Processed at <1667187386.749668>
+Log: Shared my path of destId 6 to new neighbor 77 : 
+LSAs{"destID":6,"dist":6,"fromID":76,"nextHop":66,"nodesInPath":[1,2,3,4,5,6,11,66,76]}
+Processed at <1667187386.749827>
+Log: Shared my path of destId 7 to new neighbor 77 : 
+LSAs{"destID":7,"dist":7,"fromID":76,"nextHop":66,"nodesInPath":[1,2,3,4,5,6,7,11,66,76]}
+Processed at <1667187386.749988>
+Log: Shared my path of destId 10 to new neighbor 77 : 
+LSAs{"destID":10,"dist":1,"fromID":76,"nextHop":66,"nodesInPath":[10,11,66,76]}
+Processed at <1667187386.750137>
+Log: Shared my path of destId 12 to new neighbor 77 : 
+LSAs{"destID":12,"dist":1,"fromID":76,"nextHop":66,"nodesInPath":[11,12,66,76]}
+Processed at <1667187386.750417>
+Log: Shared my path of destId 13 to new neighbor 77 : 
+LSAs{"destID":13,"dist":2,"fromID":76,"nextHop":66,"nodesInPath":[11,12,13,66,76]}
+Processed at <1667187386.750558>
+Log: Shared my path of destId 14 to new neighbor 77 : 
+LSAs{"destID":14,"dist":3,"fromID":76,"nextHop":66,"nodesInPath":[11,12,13,14,66,76]}
+Processed at <1667187386.750701>
+Log: Shared my path of destId 15 to new neighbor 77 : 
+LSAs{"destID":15,"dist":6,"fromID":76,"nextHop":66,"nodesInPath":[1,2,3,4,5,11,15,66,76]}
+Processed at <1667187386.750853>
+Log: Shared my path of destId 16 to new neighbor 77 : 
+LSAs{"destID":16,"dist":7,"fromID":76,"nextHop":66,"nodesInPath":[1,2,3,4,5,11,15,16,66,76]}
+Processed at <1667187386.751010>
+Log: Shared my path of destId 20 to new neighbor 77 : 
+LSAs{"destID":20,"dist":2,"fromID":76,"nextHop":66,"nodesInPath":[11,20,21,66,76]}
+Processed at <1667187386.751187>
+Log: Shared my path of destId 21 to new neighbor 77 : 
+LSAs{"destID":21,"dist":3,"fromID":76,"nextHop":66,"nodesInPath":[11,21,66,76]}
+Processed at <1667187386.751369>
+Log: Shared my path of destId 22 to new neighbor 77 : 
+LSAs{"destID":22,"dist":4,"fromID":76,"nextHop":66,"nodesInPath":[11,12,22,66,76]}
+Processed at <1667187386.751514>
+Log: Shared my path of destId 23 to new neighbor 77 : 
+LSAs{"destID":23,"dist":5,"fromID":76,"nextHop":66,"nodesInPath":[11,21,22,23,66,76]}
+Processed at <1667187387.055866>
+Log: Shared my path of destId 24 to new neighbor 77 : 
+LSAs{"destID":24,"dist":6,"fromID":76,"nextHop":66,"nodesInPath":[11,21,22,23,24,66,76]}
+Processed at <1667187387.056030>
+Log: Shared my path of destId 25 to new neighbor 77 : 
+LSAs{"destID":25,"dist":7,"fromID":76,"nextHop":66,"nodesInPath":[11,21,22,23,24,25,66,76]}
+Processed at <1667187387.056121>
+Log: Shared my path of destId 30 to new neighbor 77 : 
+LSAs{"destID":30,"dist":3,"fromID":76,"nextHop":66,"nodesInPath":[10,11,20,30,66,76]}
+Processed at <1667187387.056237>
+Log: Shared my path of destId 31 to new neighbor 77 : 
+LSAs{"destID":31,"dist":4,"fromID":76,"nextHop":66,"nodesInPath":[10,11,20,21,31,66,76]}
+Processed at <1667187387.056402>
+Log: Shared my path of destId 32 to new neighbor 77 : 
+LSAs{"destID":32,"dist":5,"fromID":76,"nextHop":66,"nodesInPath":[11,21,22,32,66,76]}
+Processed at <1667187387.056553>
+Log: Shared my path of destId 33 to new neighbor 77 : 
+LSAs{"destID":33,"dist":6,"fromID":76,"nextHop":66,"nodesInPath":[11,21,22,23,33,66,76]}
+Processed at <1667187387.056707>
+Log: Shared my path of destId 34 to new neighbor 77 : 
+LSAs{"destID":34,"dist":7,"fromID":76,"nextHop":66,"nodesInPath":[11,21,22,32,33,34,66,76]}
+Processed at <1667187387.056897>
+Log: Shared my path of destId 40 to new neighbor 77 : 
+LSAs{"destID":40,"dist":6,"fromID":76,"nextHop":66,"nodesInPath":[11,21,30,31,40,66,76]}
+Processed at <1667187387.057074>
+Log: Shared my path of destId 41 to new neighbor 77 : 
+LSAs{"destID":41,"dist":5,"fromID":76,"nextHop":66,"nodesInPath":[11,21,31,41,66,76]}
+Processed at <1667187387.057235>
+Log: Shared my path of destId 42 to new neighbor 77 : 
+LSAs{"destID":42,"dist":6,"fromID":76,"nextHop":66,"nodesInPath":[11,21,31,32,42,66,76]}
+Processed at <1667187387.057393>
+Log: Shared my path of destId 53 to new neighbor 77 : 
+LSAs{"destID":53,"dist":3,"fromID":76,"nextHop":75,"nodesInPath":[53,63,64,65,75,76]}
+Processed at <1667187387.057563>
+Log: Shared my path of destId 54 to new neighbor 77 : 
+LSAs{"destID":54,"dist":2,"fromID":76,"nextHop":75,"nodesInPath":[54,64,65,75,76]}
+Processed at <1667187387.057711>
+Log: Shared my path of destId 56 to new neighbor 77 : 
+LSAs{"destID":56,"dist":2,"fromID":76,"nextHop":66,"nodesInPath":[56,66,76]}
+Processed at <1667187387.057875>
+Log: Shared my path of destId 57 to new neighbor 77 : 
+LSAs{"destID":57,"dist":1,"fromID":76,"nextHop":66,"nodesInPath":[57,66,67,76]}
+Processed at <1667187387.058023>
+Log: Shared my path of destId 65 to new neighbor 77 : 
+LSAs{"destID":65,"dist":2,"fromID":76,"nextHop":66,"nodesInPath":[65,66,76]}
+Processed at <1667187387.058184>
+Log: Shared my path of destId 66 to new neighbor 77 : 
+LSAs{"destID":66,"dist":1,"fromID":76,"nextHop":66,"nodesInPath":[66,76]}
+Processed at <1667187387.058337>
+Log: Shared my path of destId 74 to new neighbor 77 : 
+LSAs{"destID":74,"dist":0,"fromID":76,"nextHop":75,"nodesInPath":[74,75,76]}
+Processed at <1667187387.058510>
+Log: Link broken to node: 66
+Processed at <1667187387.058948>
+Log: For brokenLink selection to desId 66, selected middle node 77
+Processed at <1667187387.165082>
+Log: For brokenLink selection to desId 0, selected middle node 66
+Processed at <1667187387.167473>
+Log: For brokenLink selection to desId 1, selected middle node 66
+Processed at <1667187387.530267>
+Log: For brokenLink selection to desId 2, selected middle node 66
+Processed at <1667187387.889025>
+Log: For brokenLink selection to desId 3, selected middle node 66
+Processed at <1667187387.891038>
+Log: For brokenLink selection to desId 4, selected middle node 66
+Processed at <1667187388.128668>
+Log: For brokenLink selection to desId 5, selected middle node 66
+Processed at <1667187388.130564>
+Log: For brokenLink selection to desId 6, selected middle node 66
+Processed at <1667187388.722338>
+Log: For brokenLink selection to desId 7, selected middle node 66
+Processed at <1667187388.828786>
+Log: For brokenLink selection to desId 10, selected middle node 66
+Processed at <1667187388.878734>
+Log: For brokenLink selection to desId 12, selected middle node 66
+Processed at <1667187388.985366>
+Log: For brokenLink selection to desId 13, selected middle node 66
+Processed at <1667187389.108005>
+Log: For brokenLink selection to desId 14, selected middle node 66
+Processed at <1667187389.110483>
+Log: For brokenLink selection to desId 15, selected middle node 66
+Processed at <1667187389.260692>
+Log: For brokenLink selection to desId 16, selected middle node 66
+Processed at <1667187389.328826>
+Log: For brokenLink selection to desId 20, selected middle node 66
+Processed at <1667187389.330794>
+Log: For brokenLink selection to desId 21, selected middle node 66
+Processed at <1667187389.338896>
+Log: For brokenLink selection to desId 22, selected middle node 66
+Processed at <1667187389.345839>
+Log: For brokenLink selection to desId 23, selected middle node 66
+Processed at <1667187389.355801>
+Log: For brokenLink selection to desId 24, selected middle node 66
+Processed at <1667187389.357769>
+Log: For brokenLink selection to desId 25, selected middle node 66
+Processed at <1667187389.361991>
+Log: For brokenLink selection to desId 30, selected middle node 66
+Processed at <1667187389.393569>
+Log: For brokenLink selection to desId 31, selected middle node 66
+Processed at <1667187389.514329>
+Log: For brokenLink selection to desId 32, selected middle node 66
+Processed at <1667187389.636061>
+Log: For brokenLink selection to desId 33, selected middle node 66
+Processed at <1667187389.654216>
+Log: For brokenLink selection to desId 34, selected middle node 66
+Processed at <1667187389.749199>
+Log: For brokenLink selection to desId 40, selected middle node 66
+Processed at <1667187389.751076>
+Log: For brokenLink selection to desId 41, selected middle node 66
+Processed at <1667187389.957571>
+Log: For brokenLink selection to desId 42, selected middle node 66
+Processed at <1667187390.138620>
+Log: For brokenLink selection to desId 56, selected middle node 66
+Processed at <1667187390.140838>
+Log: For brokenLink selection to desId 57, selected middle node 66
+Processed at <1667187390.142959>
+Log: For brokenLink selection to desId 65, selected middle node 75
+Processed at <1667187390.569548>
+Log: Sent out my path update of destId 65 to neighbor 77 : 
+LSAs{"destID":65,"dist":0,"fromID":76,"nextHop":75,"nodesInPath":[65,75,76]}
+Processed at <1667187390.624442>
+Log: Received path : 
+{"destID":21,"dist":0,"fromID":66,"nextHop":11,"nodesInPath":[11,21,66]}
+Processed at <1667187390.687868>
+Log: Sent out my path update of destId 21 to neighbor 77 : 
+LSAs{"destID":21,"dist":1,"fromID":76,"nextHop":66,"nodesInPath":[11,21,66,76]}
+Processed at <1667187390.688209>
+Log: Finished processing path.
+Processed at <1667187390.688646>
+Log: Saw new neighbor 66
+Processed at <1667187390.688775>
+Log: Sent out my path update of destId 66 to neighbor 77 : 
+LSAs{"destID":66,"dist":1,"fromID":76,"nextHop":66,"nodesInPath":[66,76]}
+Processed at <1667187390.689062>
+Log: Shared my path of destId 53 to new neighbor 66 : 
+LSAs{"destID":53,"dist":3,"fromID":76,"nextHop":75,"nodesInPath":[53,63,64,65,75,76]}
+Processed at <1667187390.689735>
+Log: Shared my path of destId 54 to new neighbor 66 : 
+LSAs{"destID":54,"dist":2,"fromID":76,"nextHop":75,"nodesInPath":[54,64,65,75,76]}
+Processed at <1667187390.689852>
+Log: Shared my path of destId 65 to new neighbor 66 : 
+LSAs{"destID":65,"dist":0,"fromID":76,"nextHop":75,"nodesInPath":[65,75,76]}
+Processed at <1667187390.689982>
+Log: Shared my path of destId 67 to new neighbor 66 : 
+LSAs{"destID":67,"dist":0,"fromID":76,"nextHop":77,"nodesInPath":[67,76,77]}
+Processed at <1667187390.690092>
+Log: Shared my path of destId 74 to new neighbor 66 : 
+LSAs{"destID":74,"dist":0,"fromID":76,"nextHop":75,"nodesInPath":[74,75,76]}
+Processed at <1667187390.690211>
+Log: Shared my path of destId 77 to new neighbor 66 : 
+LSAs{"destID":77,"dist":1,"fromID":76,"nextHop":77,"nodesInPath":[76,77]}
+Processed at <1667187390.690340>
+Log: Link broken to node: 77
+Processed at <1667187390.690701>
+Log: For brokenLink selection to desId 77For brokenLink selection, No alternative middle node, will broadcast -1 path to my neighbors.
+Processed at <1667187390.790252>
+Log: Sent out my path update of destId 77 to neighbor 66 : 
+LSAs{"destID":77,"dist":-1,"fromID":76,"nextHop":77,"nodesInPath":[76,77]}
+Processed at <1667187390.790500>
+Log: For brokenLink selection to desId 0, selected middle node 66
+Processed at <1667187390.894094>
+Log: For brokenLink selection to desId 1, selected middle node 66
+Processed at <1667187390.929101>
+Log: For brokenLink selection to desId 2, selected middle node 66
+Processed at <1667187390.957724>
+Log: For brokenLink selection to desId 3, selected middle node 66
+Processed at <1667187391.102878>
+Log: For brokenLink selection to desId 4, selected middle node 66
+Processed at <1667187391.104829>
+Log: For brokenLink selection to desId 5, selected middle node 66
+Processed at <1667187391.225214>
+Log: For brokenLink selection to desId 6, selected middle node 66
+Processed at <1667187391.227455>
+Log: For brokenLink selection to desId 7, selected middle node 66
+Processed at <1667187391.351351>
+Log: For brokenLink selection to desId 10, selected middle node 66
+Processed at <1667187391.389968>
+Log: For brokenLink selection to desId 12, selected middle node 66
+Processed at <1667187391.461117>
+Log: For brokenLink selection to desId 13, selected middle node 66
+Processed at <1667187391.463067>
+Log: For brokenLink selection to desId 14, selected middle node 66
+Processed at <1667187391.557127>
+Log: For brokenLink selection to desId 15, selected middle node 66
+Processed at <1667187391.559229>
+Log: For brokenLink selection to desId 16, selected middle node 66
+Processed at <1667187391.656437>
+Log: For brokenLink selection to desId 20, selected middle node 66
+Processed at <1667187391.658361>
+Log: For brokenLink selection to desId 22, selected middle node 66
+Processed at <1667187391.760489>
+Log: For brokenLink selection to desId 23, selected middle node 66
+Processed at <1667187391.762880>
+Log: For brokenLink selection to desId 24, selected middle node 66
+Processed at <1667187391.819644>
+Log: For brokenLink selection to desId 25, selected middle node 66
+Processed at <1667187391.856531>
+Log: For brokenLink selection to desId 30, selected middle node 66
+Processed at <1667187391.858425>
+Log: For brokenLink selection to desId 31, selected middle node 66
+Processed at <1667187391.887759>
+Log: For brokenLink selection to desId 32, selected middle node 66
+Processed at <1667187391.916360>
+Log: For brokenLink selection to desId 33, selected middle node 66
+Processed at <1667187391.918259>
+Log: For brokenLink selection to desId 34, selected middle node 66
+Processed at <1667187391.938432>
+Log: For brokenLink selection to desId 40, selected middle node 66
+Processed at <1667187391.954979>
+Log: For brokenLink selection to desId 41, selected middle node 66
+Processed at <1667187391.961025>
+Log: For brokenLink selection to desId 42, selected middle node 66
+Processed at <1667187391.963041>
