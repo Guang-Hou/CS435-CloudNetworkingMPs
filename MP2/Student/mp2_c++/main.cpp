@@ -41,17 +41,16 @@ int main(int argc, char **argv)
         short int heardFrom = -1;
         heardFrom = atoi(strchr(strchr(strchr(fromAddr, '.') + 1, '.') + 1, '.') + 1);
 
-        if (strstr(fromAddr, "10.1.1."))
+        if (!strncmp(recvBuf, "HEREIAM", 7))
         {
             if (threads[1].joinable())
             {
                 threads[1].join();
             }
 
-            threads[1] = thread(checkNewAndLostNeighbor, heardFrom);       // check too often for lost neighbor?
+            threads[1] = thread(checkNewAndLostNeighbor, heardFrom);      
         }
-
-        if (!strncmp(recvBuf, "send", 4) || !strncmp(recvBuf, "fowd", 4))  // send/forward message
+        else if (!strncmp(recvBuf, "send", 4) || !strncmp(recvBuf, "fowd", 4))  // send/forward message
         {
             if (threads[2].joinable())
             {
