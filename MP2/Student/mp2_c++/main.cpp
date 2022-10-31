@@ -52,7 +52,7 @@ int main(int argc, char **argv)
                 threads[1].join();
             }
 
-            threads[1] = thread(checkNewAndLostNeighbor, heardFrom);
+            threads[1] = thread(checkNewAndLostNeighbor, heardFrom);  // check too often for lost neighbor?
         }
 
         if (!strncmp(recvBuf, "send", 4) || !strncmp(recvBuf, "fowd", 4)) // send message
@@ -73,8 +73,15 @@ int main(int argc, char **argv)
 
             threads[3] = thread(processLSAMessage, content);
         }
+        else {
+            logMessage("Should Not Happen!!!!!1");
+        }
     }
 
+    if (threads[0].joinable())
+    {
+        threads[0].join();
+    }
     //(should never reach here)
     close(mySocketUDP);
 }

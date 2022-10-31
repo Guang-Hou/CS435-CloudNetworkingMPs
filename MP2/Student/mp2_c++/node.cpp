@@ -285,9 +285,8 @@ void processSingleLSA(int neighborId, int destId, int distance, int nextHop, set
         }
     }
     else if (distance == -1 && myDistance != -1 && get<1>(myPathRecords[myNodeId][destId]) == neighborId)
-    { // neighbor lost a path to destId
-        selectBestPath(destId);
-        // sendPathToNeighbors(destId);
+    { // neighbor lost a path to destId, and I am using that neighbor as next hop, then we need a new neighbor as nextHop
+        handleLostPath(neighborId, destId);
     }
 }
 
@@ -314,46 +313,47 @@ void sharePathsToNewNeighbor(int newNeighborId)
     }
 }
 
-void selectBestPath(int destId)
+// The neighborId lost path to destId and I am using this neighbor as my next Hop to reach destId.
+// Basically we need to find a new neighbor as nextHop for destId, the path could not contain this neighbor.
+// This can handle the special case that neighborId == myNodeId, i.e. I lost my path to desId
+void handleLostPath(int neighborId, int destId)
 {
-    int smallestDistance = INT_MAX;
-    int bestMiddleNodeId = -1;
-    int bestNextHop = -1;
+    int shortestDistance = INT_MAX;
+    int bestNeighborId = -1;
 
-    for (int middleNode = 0; middleNode < 256; middleNode += 1)
-    {
-        if (middleNode != myNodeId)
-        {
-            int middleDistanceToDest = get<0>(myPathRecords[middleNode][destId]);
-            int myDistanceToNeighbor = get<0>(myPathRecords[myNodeId][destId]);
-            int nextHop = get<1>(myPathRecords[myNodeId][middleNode]);
-            int totalDistance = myDistanceToNeighbor + middleDistanceToDest;
+    for (int node = 0; node < 256; node += 1)
+    {   // check if node is a neighbor
+        if (node != myNodeId && node != neighborId && get<0>(myPathRecords[node][node]) != -1)
+        {   
+            int nodeDistanceToDest = get<0>(myPathRecords[node][destId]);
+            int myDistanceToNode = linkCost[node];  // assume we go through this neighbor
+            int totalDistance = myDistanceToNode + nodeDistanceToDest;
 
-            if (middleDistanceToDest != -1 && myDistanceToNeighbor != -1)
+            if (nodeDistanceToDest != -1 && get<2>(myPathRecords[node][destId]).count(neighborId) == 0 
+                && get<2>(myPathRecords[node][destId]).count(myNodeId) == 0 ) // node -> destId could not go through me, otherwise there is a better neighbor
             {
-                if ((totalDistance < smallestDistance) || (totalDistance == smallestDistance && nextHop < bestNextHop))
+                if ((totalDistance < shortestDistance) || (totalDistance == shortestDistance && node < bestNeighborId))
                 {
-                    smallestDistance = totalDistance;
-                    bestMiddleNodeId = middleNode;
-                    bestNextHop = nextHop;
+                    shortestDistance = totalDistance;
+                    bestNeighborId = node;
                 }
             }
         }
     }
 
-    if (bestMiddleNodeId != -1)
+    if (bestNeighborId != -1)
     {
         // usePath(bestNeighborId, destId, get<0>(myPathRecords[bestNeighborId][destId]), get<2>(myPathRecords[bestNeighborId][destId]));
         m.lock();
-        get<0>(myPathRecords[myNodeId][destId]) = get<0>(myPathRecords[myNodeId][bestMiddleNodeId]) + get<0>(myPathRecords[bestMiddleNodeId][destId]);
-        get<1>(myPathRecords[myNodeId][destId]) = get<1>(myPathRecords[myNodeId][bestMiddleNodeId]);
-        get<2>(myPathRecords[myNodeId][destId]) = get<2>(myPathRecords[myNodeId][bestMiddleNodeId]);
-        get<2>(myPathRecords[myNodeId][destId]).insert(get<2>(myPathRecords[bestMiddleNodeId][destId]).begin(), get<2>(myPathRecords[bestMiddleNodeId][destId]).end());
+        get<0>(myPathRecords[myNodeId][destId]) = get<0>(myPathRecords[myNodeId][bestNeighborId]) + get<0>(myPathRecords[bestNeighborId][destId]);
+        get<1>(myPathRecords[myNodeId][destId]) = bestNeighborId;
+        get<2>(myPathRecords[myNodeId][destId]) = get<2>(myPathRecords[myNodeId][bestNeighborId]);
+        get<2>(myPathRecords[myNodeId][destId]).insert(get<2>(myPathRecords[bestNeighborId][destId]).begin(), get<2>(myPathRecords[bestNeighborId][destId]).end());
         m.unlock();
         string logContent = "For brokenLink selection to desId ";
         logContent += to_string(destId);
-        logContent += ", selected middle node ";
-        logContent += to_string(bestMiddleNodeId);
+        logContent += ", selected nextHop to be neighbor node ";
+        logContent += to_string(bestNeighborId);
         logMessage(logContent.c_str());
         logTime();
     }
@@ -369,6 +369,8 @@ void selectBestPath(int destId)
         logMessage(logContent.c_str());
         logTime();
     }
+
+    sendPathToNeighbors(destId);
 }
 
 void handleBrokenLink(int brokenNeighborId)
@@ -377,15 +379,11 @@ void handleBrokenLink(int brokenNeighborId)
     get<0>(myPathRecords[brokenNeighborId][brokenNeighborId]) = -1;
     m.unlock();
 
-    selectBestPath(brokenNeighborId);
-    sendPathToNeighbors(brokenNeighborId);
-
     for (int destId = 0; destId < 256; destId += 1)
     {
-        if (destId != brokenNeighborId && destId != myNodeId && get<0>(myPathRecords[myNodeId][destId]) != -1 && get<1>(myPathRecords[myNodeId][destId]) == brokenNeighborId)
+        if (destId != myNodeId && get<0>(myPathRecords[myNodeId][destId]) != -1 && get<1>(myPathRecords[myNodeId][destId]) == brokenNeighborId)
         {
-            selectBestPath(destId);
-            sendPathToNeighbors(destId);
+            handleLostPath(myNodeId, destId);
         }
     }
 }
