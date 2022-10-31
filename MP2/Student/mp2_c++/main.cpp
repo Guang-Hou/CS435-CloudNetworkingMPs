@@ -10,8 +10,6 @@ int main(int argc, char **argv)
         exit(1);
     }
 
-    // initialization: get this process's node ID, record what time it is,
-    // and set up our sockaddr_in's for sending to the other nodes.
     int inputId = atoi(argv[1]);
     string costFile = argv[2];
     string logFile = argv[3];
@@ -19,7 +17,6 @@ int main(int argc, char **argv)
     init(inputId, costFile, logFile);
 
     std::thread threads[4];
-
     threads[0] = thread(sendHeartbeats);
 
     char fromAddr[100];
@@ -40,7 +37,6 @@ int main(int argc, char **argv)
         inet_ntop(AF_INET, &theirAddr.sin_addr, fromAddr, 100);
 
         string content(recvBuf, recvBuf + bytesRecvd + 1);
-        //  std::cout << "Received number of bytes: " << bytesRecvd << std::endl;
 
         short int heardFrom = -1;
         heardFrom = atoi(strchr(strchr(strchr(fromAddr, '.') + 1, '.') + 1, '.') + 1);
@@ -52,10 +48,10 @@ int main(int argc, char **argv)
                 threads[1].join();
             }
 
-            threads[1] = thread(checkNewAndLostNeighbor, heardFrom);  // check too often for lost neighbor?
+            threads[1] = thread(checkNewAndLostNeighbor, heardFrom);       // check too often for lost neighbor?
         }
 
-        if (!strncmp(recvBuf, "send", 4) || !strncmp(recvBuf, "fowd", 4)) // send message
+        if (!strncmp(recvBuf, "send", 4) || !strncmp(recvBuf, "fowd", 4))  // send/forward message
         {
             if (threads[2].joinable())
             {
@@ -82,6 +78,7 @@ int main(int argc, char **argv)
     {
         threads[0].join();
     }
+
     //(should never reach here)
     close(mySocketUDP);
 }

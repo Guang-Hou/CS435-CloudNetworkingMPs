@@ -35,41 +35,36 @@
 
 using namespace std;
 
-typedef tuple<int, int, set<int>> PATH;
+typedef tuple<int, int, set<int>> PATH;  // distance, nextHop, nodesInPath
 
 int myNodeId, mySocketUDP;
 struct timeval previousHeartbeat[256];      // track last time a neighbor is seen to figure out who is lost
-struct sockaddr_in allNodeSocketAddrs[256]; //
-// set<int> neighbors;
+struct sockaddr_in allNodeSocketAddrs[256]; 
 int linkCost[256];
-
-atomic<bool> doesNeighborAffectsMyPaths(false);
-map<int, map<int, PATH>> myPathRecords; // myPathRecords[i][j] means neighborNode i's best path to destNode j. inside the array each element is the best path (distance, (nextHop, nodesInPath))
+map<int, PATH> myPaths; // myPaths[i] means my path to destNode i: (distance, nextHop, nodesInPath)
 FILE *flog;
 
 void init(int inputId, string costFile, string logFile);
 void readCostFile(const char *costFile);
-void saveLog();
+
 void sendHeartbeats();
-// void announceToNeighbors();
+void checkNewAndLostNeighbor(int heardFrom);
+void handleBrokenLink(int brokenNeighborId);
+
+void sharePathsToNewNeighbor(int newNeighborId);
+void sendPathToNeighbors(int destId);
 string generateStrPath(int destId);
-void sendPathToNeighbors();
-void handleNewNeighbor(int neighborId, int destId, int distance, int nextHop, set<int> nodesInPath);
-// void broadcastMessage(const char *message);
-//  void processLSAMessage(map<int, pair<int, vector<int>>> otherNodePathVector);
-// void listenForNeighbors();
-// void updatePathsFromNeighbor(int neighborId, string strNeighborPaths);
+
 void processLSAMessage(string recvBuf);
 void processSingleLSA(int neighborId, int destId, int distance, int nextHop, set<int> nodesInPath);
-bool isNeighborPathBetter(int neighborId, int destId, int distance, set<int> nodesInPath);
-void useNeighborPath(int neighborId, int destId, int distance, set<int> nodesInPath);
+
+void sendOrFowdMessage(string recvBuf, int bytesRecvd);
 void directMessage(int destNodeId, string message, int messageByte);
-void selectBestPath(int destId);
-void sharePathsToNewNeighbor(int newNeighborId);
-void handleBrokenLink(int brokenNeighborId);
+
 void setupNodeSockets();
 void logMessage(const char *message);
-void logPath();
 void logTime();
-void checkNewAndLostNeighbor(int heardFrom);
-void sendOrFowdMessage(string recvBuf, int bytesRecvd);
+void logMyPaths();
+
+
+
