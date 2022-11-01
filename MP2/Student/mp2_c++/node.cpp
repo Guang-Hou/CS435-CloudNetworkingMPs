@@ -45,8 +45,8 @@ void init(int inputId, string costFile, string logFile)
 
     flog = fopen(logFile.c_str(), "a");
 
-    logMessage("Initialization.");
-    logTime();
+    string logContent = "Initialization.";
+    logMessageAndTime(logContent.c_str());
 }
 
 void readCostFile(const char *costFile)
@@ -83,7 +83,7 @@ void sendHeartbeats()
             {
                 // string logContent = "Inside sendHearbeat, will send haerbeat to node ";
                 // logContent += to_string(i);
-                // logMessage(logContent.c_str());
+                // logMessageAndTime(logContent.c_str());
 
                 sendto(mySocketUDP, heartBeats, 8, 0,
                        (struct sockaddr *)&allNodeSocketAddrs[i], sizeof(allNodeSocketAddrs[i]));
@@ -100,24 +100,30 @@ string generateStrPath(int destId) //
 
     strcpy(payload, "LSAs");
 
-    distance = get<0>(myPaths[destId]);
-    if (distance == -1) {
+    int distance = get<0>(myPaths[destId]);
+    string strLSA;
+
+    if (distance == -1)
+    {
         json LSA = {
             {"fromID", myNodeId},
             {"destID", destId},
             {"dist", -1},
             {"nextHop", -1},
-            {"nodesInPath", set<int> {}}};
-    } else {
+            {"nodesInPath", set<int>{}}};
+        strLSA = LSA.dump();
+    }
+    else
+    {
         json LSA = {
             {"fromID", myNodeId},
             {"destID", destId},
             {"dist", distance},
             {"nextHop", get<1>(myPaths[destId])},
             {"nodesInPath", get<2>(myPaths[destId])}};
+        strLSA = LSA.dump();
     }
 
-    string strLSA = LSA.dump();
     memcpy(payload + 4, strLSA.c_str(), strLSA.length());
 
     string payloadStr(payload, payload + 4 + strLSA.length() + 1);
@@ -135,14 +141,13 @@ void sendPathToNeighbors(int destId)
             sendto(mySocketUDP, strLSA.c_str(), strLSA.length(), 0,
                    (struct sockaddr *)&allNodeSocketAddrs[i], sizeof(allNodeSocketAddrs[i]));
 
-            string logContent = "Sent out my path update of destId ";
-            logContent += to_string(destId);
-            logContent += " to neighbor ";
-            logContent += to_string(i);
-            logContent += " : \n";
-            logContent += strLSA;
-            logMessage(logContent.c_str());
-            logTime();
+            // string logContent = "Sent out my path update of destId ";
+            // logContent += to_string(destId);
+            // logContent += " to neighbor ";
+            // logContent += to_string(i);
+            // logContent += " : \n";
+            // logContent += strLSA;
+            // logMessageAndTime(logContent.c_str());
         }
     }
 }
@@ -152,25 +157,28 @@ void checkNewAndLostNeighbor(int heardFrom)
     struct timeval now;
     gettimeofday(&now, 0);
 
-    long usecondDifference = (now.tv_sec - previousHeartbeat[heardFrom].tv_sec) * 1000000L + now.tv_usec - previousHeartbeat[heardFrom].tv_usec;
-
-    if (previousHeartbeat[heardFrom].tv_sec == 0 || usecondDifference > 600000) // timeout 0.6 second
+    if (previousHeartbeat[heardFrom].tv_sec == 0)
     {
         string logContent = "Saw new neighbor ";
         logContent += to_string(heardFrom);
-        logMessage(logContent.c_str());
-        logTime();
+        logMessageAndTime(logContent.c_str());
 
         // string timeStr = "Time difference in usecond: ";
         // timeStr += to_string(usecondDifference);
         // logMessage(timeStr.c_str());
 
         processSingleLSA(heardFrom, heardFrom, 0, heardFrom, set<int>{heardFrom});
+
+        logContent = "Finished processing new neighbor path.";
+        logMessageAndTime(logContent.c_str());
+
         sharePathsToNewNeighbor(heardFrom);
     }
 
     //  record that we heard from heardFrom just now.
+    m.lock();
     gettimeofday(&previousHeartbeat[heardFrom], 0);
+    m.unlock();
 
     // check if there is any neighbor link is broken, if so update pathRecords and broadcast LSA
     for (int i = 0; i < 256; i += 1)
@@ -178,12 +186,31 @@ void checkNewAndLostNeighbor(int heardFrom)
         if (i != myNodeId)
         {
             long timeDifference = (now.tv_sec - previousHeartbeat[i].tv_sec) * 1000000L + now.tv_usec - previousHeartbeat[i].tv_usec;
-            if (previousHeartbeat[i].tv_sec != 0 && timeDifference > 600000) // missed two hearbeats
+            if (previousHeartbeat[i].tv_sec != 0 && timeDifference > 800000) // missed two hearbeats
             {
                 string logContent = "Link broken to node ";
                 logContent += to_string(i);
-                logMessage(logContent.c_str());
-                logTime();
+
+                logContent += ". The node was previously seen at ";
+                logContent += to_string(previousHeartbeat[i].tv_sec);
+                logContent += " s, and ";
+                logContent += to_string(previousHeartbeat[i].tv_usec);
+                logContent += " ms. \n";
+
+                logContent += "Now the time is ";
+                logContent += to_string(now.tv_sec);
+                logContent += " s, and ";
+                logContent += to_string(now.tv_usec);
+                logContent += " ms. \n";
+
+                logContent += "The time difference is  ";
+                logContent += to_string(timeDifference);
+
+                logMessageAndTime(logContent.c_str());
+
+                m.lock();
+                previousHeartbeat[i].tv_sec = 0;
+                m.unlock();
 
                 handleBrokenLink(i);
             }
@@ -200,8 +227,7 @@ void sendOrFowdMessage(string buffContent, int bytesRecvd)
     destNodeId = ntohs(destNodeId);
 
     string logContent = "Received send or forward message.";
-    logMessage(logContent.c_str());
-    logTime();
+    logMessageAndTime(logContent.c_str());
 
     directMessage(destNodeId, buffContent, bytesRecvd + 1);
 }
@@ -218,17 +244,19 @@ void processLSAMessage(string buffContent)
     int nextHop = LSA["nextHop"];
     set<int> nodesInPath = LSA["nodesInPath"];
 
-    string logContent = "Received path : \n";
+    string logContent = "Received path ";
     logContent += strLSA;
-    logMessage(logContent.c_str());
-    logTime();
+    logMessageAndTime(logContent.c_str());
 
     processSingleLSA(neighborId, destId, distance, nextHop, nodesInPath);
+
+    logContent = "Finished processing the neighbor's updated path.";
+    logMessageAndTime(logContent.c_str());
 }
 
 void processSingleLSA(int neighborId, int destId, int distance, int nextHop, set<int> nodesInPath)
 {
-    bool containsMyNodeId = nodesInPath.count(myNodeId) != 0;     // if neighbor LSA path has myNodeId in the path
+    bool containsMyNodeId = nodesInPath.count(myNodeId) != 0; // if neighbor LSA path has myNodeId in the path
     int myDistance = get<0>(myPaths[destId]);
     int myNexthop = get<1>(myPaths[destId]);
 
@@ -240,7 +268,10 @@ void processSingleLSA(int neighborId, int destId, int distance, int nextHop, set
     if (distance != -1 && myDistance == -1)
     { // I do not have path to dest, but my neighbor has one. Use this neighbor path to destId
         m.lock();
-        myPaths[destId] = {linkCost[neighborId] + distance, neighborId, nodesInPath.insert(myNodeId};
+        get<0>(myPaths[destId]) = linkCost[neighborId] + distance;
+        get<1>(myPaths[destId]) = neighborId;
+        get<2>(myPaths[destId]) = nodesInPath;
+        get<2>(myPaths[destId]).insert(myNodeId);
         m.unlock();
         sendPathToNeighbors(destId);
     }
@@ -251,26 +282,26 @@ void processSingleLSA(int neighborId, int destId, int distance, int nextHop, set
         if ((myDistance > newDistance) || (myDistance == newDistance && neighborId < myNexthop))
         {
             m.lock();
-            myPaths[destId] = {newDistance, neighborId, nodesInPath.insert(myNodeId};
+            get<0>(myPaths[destId]) = linkCost[neighborId] + distance;
+            get<1>(myPaths[destId]) = neighborId;
+            get<2>(myPaths[destId]) = nodesInPath;
+            get<2>(myPaths[destId]).insert(myNodeId);
             m.unlock();
             sendPathToNeighbors(destId);
         }
     }
     else if (distance == -1 && myDistance != -1) // neighbor lost a path to destId
-    {   
-        if (get<1>(myPaths[destId]).count(neighborId) != 0) {
+    {
+        if (get<2>(myPaths[destId]).count(neighborId) != 0)
+        {
             // The neighbor is in my path to destId, then I lost the path to destId
             m.lock();
             get<0>(myPaths[destId]) = -1;
             m.unlock();
-        } 
+        }
 
-        sendPathToNeighbors(destId);  // broadcast my path to my neighbors (also covers the case if my path is not using the neighbor)
+        sendPathToNeighbors(destId); // broadcast my path to my neighbors (also covers the case if my path is not using the neighbor)
     }
-
-    logContent = "Finished processing singleLSA path.";
-    logMessage(logContent.c_str());
-    logTime();
 }
 
 void sharePathsToNewNeighbor(int newNeighborId) // do we need to send desId if disance == -1
@@ -287,10 +318,9 @@ void sharePathsToNewNeighbor(int newNeighborId) // do we need to send desId if d
             logContent += to_string(destId);
             logContent += " to new neighbor ";
             logContent += to_string(newNeighborId);
-            logContent += " : \n";
+            logContent += " : ";
             logContent += string(strLSA);
-            logMessage(logContent.c_str());
-            logTime();
+            logMessageAndTime(logContent.c_str());
         }
     }
 }
@@ -300,7 +330,7 @@ void handleBrokenLink(int brokenNeighborId)
     for (int destId = 0; destId < 256; destId += 1)
     {
         if (destId != myNodeId && get<0>(myPaths[destId]) != -1 && get<1>(myPaths[destId]) == brokenNeighborId)
-        {   // I lost the path to destId due to broken link to the neighbor
+        { // I lost the path to destId due to broken link to the neighbor
             m.lock();
             get<0>(myPaths[destId]) = -1;
             m.unlock();
@@ -309,12 +339,13 @@ void handleBrokenLink(int brokenNeighborId)
     }
 }
 
-void logMessage(const char *message)
+void logMessageAndTime(const char *message)
 {
     char logLine[BUFFERSIZE];
     sprintf(logLine, "Log: %s\n", message);
     fwrite(logLine, 1, strlen(logLine), flog);
     fflush(flog);
+    logTime();
 }
 
 void logTime()
@@ -323,7 +354,7 @@ void logTime()
     gettimeofday(&now, 0);
 
     char logLine[100];
-    sprintf(logLine, "Processed at <%ld.%06ld>\n", (long int)(now.tv_sec), (long int)(now.tv_usec));
+    sprintf(logLine, "Time is at <%ld.%06ld>\n", (long int)(now.tv_sec), (long int)(now.tv_usec));
     fwrite(logLine, 1, strlen(logLine), flog);
     fflush(flog);
 }

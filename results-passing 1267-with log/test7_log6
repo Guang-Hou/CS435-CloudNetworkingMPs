@@ -1,0 +1,650 @@
+Log: Initialization.
+Time is at <1667304690.338287>
+Log: Received heartbeat from neighbor node: 5
+Time is at <1667304690.354295>
+Log: Saw new neighbor 5
+Time is at <1667304690.354437>
+Log: Received heartbeat from neighbor node: 7
+Time is at <1667304690.356192>
+Log: Finished processing new neighbor path.
+Time is at <1667304690.661313>
+Log: Saw new neighbor 7
+Time is at <1667304690.671718>
+Log: Received path {"destID":5,"dist":4,"fromID":7,"nextHop":6,"nodesInPath":[5,6,7]}
+Time is at <1667304690.675873>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304690.675909>
+Log: Received path {"destID":4,"dist":1,"fromID":1,"nextHop":4,"nodesInPath":[1,4]}
+Time is at <1667304690.687782>
+Log: Finished processing new neighbor path.
+Time is at <1667304690.843268>
+Log: Shared my path of destId 4 to new neighbor 7 : LSAs{"destID":4,"dist":2,"fromID":6,"nextHop":1,"nodesInPath":[1,4,6]}
+Time is at <1667304690.843412>
+Log: Shared my path of destId 5 to new neighbor 7 : LSAs{"destID":5,"dist":1,"fromID":6,"nextHop":5,"nodesInPath":[5,6]}
+Time is at <1667304690.853839>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304690.855429>
+Log: Received heartbeat from neighbor node: 1
+Time is at <1667304690.855617>
+Log: Received heartbeat from neighbor node: 5
+Time is at <1667304690.855661>
+Log: Saw new neighbor 1
+Time is at <1667304690.855703>
+Log: Received path {"destID":4,"dist":3,"fromID":5,"nextHop":1,"nodesInPath":[1,4,5]}
+Time is at <1667304690.861923>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304690.861951>
+Log: Finished processing new neighbor path.
+Time is at <1667304691.029482>
+Log: Shared my path of destId 5 to new neighbor 1 : LSAs{"destID":5,"dist":1,"fromID":6,"nextHop":5,"nodesInPath":[5,6]}
+Time is at <1667304691.029647>
+Log: Shared my path of destId 7 to new neighbor 1 : LSAs{"destID":7,"dist":3,"fromID":6,"nextHop":7,"nodesInPath":[6,7]}
+Time is at <1667304691.029786>
+Log: Received heartbeat from neighbor node: 7
+Time is at <1667304691.032265>
+Log: Received path {"destID":4,"dist":1,"fromID":7,"nextHop":4,"nodesInPath":[4,7]}
+Time is at <1667304691.037457>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304691.037489>
+Log: Received path {"destID":4,"dist":3,"fromID":5,"nextHop":1,"nodesInPath":[1,4,5]}
+Time is at <1667304691.049623>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304691.049654>
+Log: Received path {"destID":2,"dist":1,"fromID":5,"nextHop":2,"nodesInPath":[2,5]}
+Time is at <1667304691.059758>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304691.183486>
+Log: Received heartbeat from neighbor node: 1
+Time is at <1667304691.195991>
+Log: Received path {"destID":3,"dist":2,"fromID":7,"nextHop":4,"nodesInPath":[3,4,7]}
+Time is at <1667304691.207843>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304691.311532>
+Log: Received heartbeat from neighbor node: 5
+Time is at <1667304691.327713>
+Log: Received heartbeat from neighbor node: 7
+Time is at <1667304691.327757>
+Log: Received path {"destID":1,"dist":2,"fromID":5,"nextHop":1,"nodesInPath":[1,5]}
+Time is at <1667304691.331789>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304691.331810>
+Log: Received path {"destID":2,"dist":54,"fromID":1,"nextHop":2,"nodesInPath":[1,2]}
+Time is at <1667304691.339778>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304691.339800>
+Log: Received path {"destID":3,"dist":2,"fromID":1,"nextHop":4,"nodesInPath":[1,3,4]}
+Time is at <1667304691.341818>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304691.535101>
+Log: Received path {"destID":4,"dist":1,"fromID":1,"nextHop":4,"nodesInPath":[1,4]}
+Time is at <1667304691.549501>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304691.549532>
+Log: Received path {"destID":5,"dist":2,"fromID":1,"nextHop":6,"nodesInPath":[1,5,6]}
+Time is at <1667304691.559959>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304691.559992>
+Log: Received path {"destID":5,"dist":2,"fromID":1,"nextHop":5,"nodesInPath":[1,5]}
+Time is at <1667304691.566324>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304691.566356>
+Log: Received path {"destID":1,"dist":4,"fromID":7,"nextHop":6,"nodesInPath":[1,6,7]}
+Time is at <1667304691.577796>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304691.577830>
+Log: Received path {"destID":7,"dist":4,"fromID":5,"nextHop":6,"nodesInPath":[5,6,7]}
+Time is at <1667304691.580556>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304691.580620>
+Log: Received path {"destID":255,"dist":1,"fromID":1,"nextHop":255,"nodesInPath":[1,255]}
+Time is at <1667304691.588016>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304691.694494>
+Log: Received heartbeat from neighbor node: 1
+Time is at <1667304691.694748>
+Log: Received path {"destID":7,"dist":2,"fromID":1,"nextHop":4,"nodesInPath":[1,4,7]}
+Time is at <1667304691.699848>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304691.790063>
+Log: Received heartbeat from neighbor node: 5
+Time is at <1667304691.794247>
+Log: Received path {"destID":1,"dist":2,"fromID":7,"nextHop":4,"nodesInPath":[1,4,7]}
+Time is at <1667304691.807769>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304691.807806>
+Log: Received heartbeat from neighbor node: 7
+Time is at <1667304691.807982>
+Log: Received path {"destID":3,"dist":2,"fromID":5,"nextHop":2,"nodesInPath":[2,3,5]}
+Time is at <1667304691.823926>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304691.824074>
+Log: Received path {"destID":2,"dist":5,"fromID":7,"nextHop":6,"nodesInPath":[2,5,6,7]}
+Time is at <1667304691.845810>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304691.845843>
+Log: Received path {"destID":0,"dist":556,"fromID":1,"nextHop":255,"nodesInPath":[0,1,255]}
+Time is at <1667304691.847121>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304692.012743>
+Log: Received heartbeat from neighbor node: 1
+Time is at <1667304692.012901>
+Log: Received heartbeat from neighbor node: 5
+Time is at <1667304692.012956>
+Log: Received heartbeat from neighbor node: 7
+Time is at <1667304692.019807>
+Log: Received path {"destID":7,"dist":4,"fromID":5,"nextHop":2,"nodesInPath":[2,3,4,5,7]}
+Time is at <1667304692.020003>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304692.020034>
+Log: Received path {"destID":2,"dist":3,"fromID":1,"nextHop":5,"nodesInPath":[1,2,5]}
+Time is at <1667304692.037739>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304692.037884>
+Log: Received path {"destID":255,"dist":3,"fromID":5,"nextHop":1,"nodesInPath":[1,5,255]}
+Time is at <1667304692.045005>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304692.045037>
+Log: Received heartbeat from neighbor node: 1
+Time is at <1667304692.067750>
+Log: Received heartbeat from neighbor node: 5
+Time is at <1667304692.067873>
+Log: Received path {"destID":5,"dist":4,"fromID":7,"nextHop":4,"nodesInPath":[2,3,4,5,7]}
+Time is at <1667304692.067925>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304692.067961>
+Log: Received heartbeat from neighbor node: 7
+Time is at <1667304692.072192>
+Log: Received path {"destID":255,"dist":5,"fromID":7,"nextHop":6,"nodesInPath":[1,6,7,255]}
+Time is at <1667304692.081153>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304692.081190>
+Log: Received path {"destID":2,"dist":3,"fromID":1,"nextHop":4,"nodesInPath":[1,2,3,4]}
+Time is at <1667304692.088816>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304692.088857>
+Log: Received path {"destID":7,"dist":4,"fromID":5,"nextHop":1,"nodesInPath":[1,4,5,7]}
+Time is at <1667304692.095387>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304692.095422>
+Log: Received path {"destID":2,"dist":3,"fromID":7,"nextHop":4,"nodesInPath":[2,3,4,7]}
+Time is at <1667304692.104582>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304692.104642>
+Log: Received heartbeat from neighbor node: 1
+Time is at <1667304692.124883>
+Log: Received path {"destID":0,"dist":558,"fromID":5,"nextHop":1,"nodesInPath":[0,1,5,255]}
+Time is at <1667304692.147286>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304692.147323>
+Log: Received heartbeat from neighbor node: 5
+Time is at <1667304692.166218>
+Log: Received path {"destID":0,"dist":560,"fromID":7,"nextHop":6,"nodesInPath":[0,1,6,7,255]}
+Time is at <1667304692.192182>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304692.192206>
+Log: Received heartbeat from neighbor node: 7
+Time is at <1667304692.195781>
+Log: Received path {"destID":255,"dist":3,"fromID":7,"nextHop":4,"nodesInPath":[1,4,7,255]}
+Time is at <1667304692.223800>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304692.223825>
+Log: Received path {"destID":0,"dist":558,"fromID":7,"nextHop":4,"nodesInPath":[0,1,4,7,255]}
+Time is at <1667304692.247484>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304692.247519>
+Log: Received heartbeat from neighbor node: 1
+Time is at <1667304692.435799>
+Log: Received heartbeat from neighbor node: 5
+Time is at <1667304692.474881>
+Log: Received heartbeat from neighbor node: 7
+Time is at <1667304692.500126>
+Log: Received heartbeat from neighbor node: 1
+Time is at <1667304692.740427>
+Log: Received heartbeat from neighbor node: 5
+Time is at <1667304692.789709>
+Log: Received heartbeat from neighbor node: 7
+Time is at <1667304692.802753>
+Log: Received heartbeat from neighbor node: 1
+Time is at <1667304693.053612>
+Log: Received heartbeat from neighbor node: 5
+Time is at <1667304693.096755>
+Log: Received heartbeat from neighbor node: 7
+Time is at <1667304693.107803>
+Log: Received heartbeat from neighbor node: 1
+Time is at <1667304693.356591>
+Log: Received heartbeat from neighbor node: 7
+Time is at <1667304693.412743>
+Log: Received heartbeat from neighbor node: 5
+Time is at <1667304693.416368>
+Log: Received heartbeat from neighbor node: 1
+Time is at <1667304693.674738>
+Log: Received heartbeat from neighbor node: 7
+Time is at <1667304693.718578>
+Log: Received heartbeat from neighbor node: 5
+Time is at <1667304693.722428>
+Log: Received heartbeat from neighbor node: 1
+Time is at <1667304693.992044>
+Log: Received heartbeat from neighbor node: 7
+Time is at <1667304694.021807>
+Log: Received heartbeat from neighbor node: 5
+Time is at <1667304694.027770>
+Log: Received heartbeat from neighbor node: 1
+Time is at <1667304694.307330>
+Log: Received heartbeat from neighbor node: 7
+Time is at <1667304694.326175>
+Log: Received heartbeat from neighbor node: 5
+Time is at <1667304694.330418>
+Log: Received heartbeat from neighbor node: 1
+Time is at <1667304694.616003>
+Log: Received heartbeat from neighbor node: 5
+Time is at <1667304694.632621>
+Log: Received heartbeat from neighbor node: 7
+Time is at <1667304694.634671>
+Log: Received heartbeat from neighbor node: 1
+Time is at <1667304694.917816>
+Log: Received heartbeat from neighbor node: 7
+Time is at <1667304694.935752>
+Log: Received heartbeat from neighbor node: 5
+Time is at <1667304694.938284>
+Log: Received heartbeat from neighbor node: 1
+Time is at <1667304695.224550>
+Log: Received heartbeat from neighbor node: 7
+Time is at <1667304695.239616>
+Log: Received heartbeat from neighbor node: 5
+Time is at <1667304695.239719>
+Log: Received heartbeat from neighbor node: 1
+Time is at <1667304695.524944>
+Log: Received heartbeat from neighbor node: 5
+Time is at <1667304695.542562>
+Log: Received heartbeat from neighbor node: 7
+Time is at <1667304695.545101>
+Log: Received heartbeat from neighbor node: 1
+Time is at <1667304695.835630>
+Log: Received heartbeat from neighbor node: 5
+Time is at <1667304695.845200>
+Log: Received heartbeat from neighbor node: 7
+Time is at <1667304695.850937>
+Log: Received heartbeat from neighbor node: 5
+Time is at <1667304696.148053>
+Log: Received heartbeat from neighbor node: 1
+Time is at <1667304696.151291>
+Log: Received heartbeat from neighbor node: 7
+Time is at <1667304696.155060>
+Log: Received heartbeat from neighbor node: 5
+Time is at <1667304696.452444>
+Log: Received heartbeat from neighbor node: 1
+Time is at <1667304696.453995>
+Log: Received heartbeat from neighbor node: 5
+Time is at <1667304696.754328>
+Log: Received heartbeat from neighbor node: 1
+Time is at <1667304696.759931>
+Log: Received heartbeat from neighbor node: 5
+Time is at <1667304697.055150>
+Log: Link broken to node 7. The node was previously seen at 1667304696 s, and 155146 ms. 
+Now the time is 1667304697 s, and 55509 ms. 
+The time difference is  900363
+Time is at <1667304697.055596>
+Log: Received heartbeat from neighbor node: 1
+Time is at <1667304697.064195>
+Log: Received heartbeat from neighbor node: 1
+Time is at <1667304697.375929>
+Log: Received heartbeat from neighbor node: 5
+Time is at <1667304697.379407>
+Log: Received path {"destID":2,"dist":-1,"fromID":1,"nextHop":-1,"nodesInPath":[]}
+Time is at <1667304697.380027>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304697.465885>
+Log: Received path {"destID":2,"dist":1,"fromID":5,"nextHop":2,"nodesInPath":[2,5]}
+Time is at <1667304697.479828>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304697.479871>
+Log: Received path {"destID":3,"dist":-1,"fromID":1,"nextHop":-1,"nodesInPath":[]}
+Time is at <1667304697.483781>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304697.607875>
+Log: Received path {"destID":0,"dist":558,"fromID":5,"nextHop":1,"nodesInPath":[0,1,5,255]}
+Time is at <1667304697.616751>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304697.616785>
+Log: Received path {"destID":4,"dist":-1,"fromID":1,"nextHop":-1,"nodesInPath":[]}
+Time is at <1667304697.627871>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304697.756570>
+Log: Received heartbeat from neighbor node: 5
+Time is at <1667304697.756748>
+Log: Received heartbeat from neighbor node: 1
+Time is at <1667304697.756839>
+Log: Received path {"destID":3,"dist":2,"fromID":5,"nextHop":2,"nodesInPath":[2,3,5]}
+Time is at <1667304697.763833>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304697.864091>
+Log: Received path {"destID":7,"dist":-1,"fromID":1,"nextHop":-1,"nodesInPath":[]}
+Time is at <1667304697.879977>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304697.963496>
+Log: Received path {"destID":3,"dist":2,"fromID":5,"nextHop":2,"nodesInPath":[2,3,5]}
+Time is at <1667304697.999985>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304698.000028>
+Log: Received path {"destID":2,"dist":3,"fromID":1,"nextHop":5,"nodesInPath":[1,2,5]}
+Time is at <1667304698.006339>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304698.006371>
+Log: Received path {"destID":1,"dist":2,"fromID":5,"nextHop":1,"nodesInPath":[1,5]}
+Time is at <1667304698.010811>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304698.010844>
+Log: Received heartbeat from neighbor node: 5
+Time is at <1667304698.010961>
+Log: Received heartbeat from neighbor node: 1
+Time is at <1667304698.011022>
+Log: Received path {"destID":0,"dist":556,"fromID":1,"nextHop":255,"nodesInPath":[0,1,255]}
+Time is at <1667304698.012157>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304698.012188>
+Log: Received path {"destID":4,"dist":-1,"fromID":5,"nextHop":-1,"nodesInPath":[]}
+Time is at <1667304698.069960>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304698.069991>
+Log: Received path {"destID":2,"dist":3,"fromID":1,"nextHop":5,"nodesInPath":[1,2,5]}
+Time is at <1667304698.075799>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304698.075822>
+Log: Received path {"destID":3,"dist":-1,"fromID":5,"nextHop":-1,"nodesInPath":[]}
+Time is at <1667304698.131795>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304698.179515>
+Log: Received path {"destID":3,"dist":4,"fromID":1,"nextHop":5,"nodesInPath":[1,2,3,5]}
+Time is at <1667304698.181930>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304698.260851>
+Log: Received path {"destID":7,"dist":-1,"fromID":5,"nextHop":-1,"nodesInPath":[]}
+Time is at <1667304698.261798>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304698.261825>
+Log: Received path {"destID":255,"dist":1,"fromID":1,"nextHop":255,"nodesInPath":[1,255]}
+Time is at <1667304698.269646>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304698.269689>
+Log: Received path {"destID":255,"dist":3,"fromID":5,"nextHop":1,"nodesInPath":[1,5,255]}
+Time is at <1667304698.272117>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304698.272147>
+Log: Received path {"destID":3,"dist":-1,"fromID":1,"nextHop":-1,"nodesInPath":[]}
+Time is at <1667304698.282531>
+Log: Received heartbeat from neighbor node: 1
+Time is at <1667304698.297862>
+Log: Received heartbeat from neighbor node: 5
+Time is at <1667304698.298001>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304698.328890>
+Log: Received heartbeat from neighbor node: 1
+Time is at <1667304698.602151>
+Log: Received heartbeat from neighbor node: 5
+Time is at <1667304698.602215>
+Log: Received heartbeat from neighbor node: 1
+Time is at <1667304698.906206>
+Log: Received heartbeat from neighbor node: 5
+Time is at <1667304698.910982>
+Log: Received heartbeat from neighbor node: 1
+Time is at <1667304699.209667>
+Log: Received heartbeat from neighbor node: 5
+Time is at <1667304699.214082>
+Log: Received heartbeat from neighbor node: 1
+Time is at <1667304699.513940>
+Log: Received heartbeat from neighbor node: 5
+Time is at <1667304699.515700>
+Log: Received heartbeat from neighbor node: 1
+Time is at <1667304699.819679>
+Log: Received heartbeat from neighbor node: 5
+Time is at <1667304699.819793>
+Log: Received heartbeat from neighbor node: 1
+Time is at <1667304700.131246>
+Log: Received heartbeat from neighbor node: 5
+Time is at <1667304700.131330>
+Log: Received heartbeat from neighbor node: 5
+Time is at <1667304700.440146>
+Log: Received heartbeat from neighbor node: 1
+Time is at <1667304700.443838>
+Log: Received heartbeat from neighbor node: 5
+Time is at <1667304700.750477>
+Log: Received heartbeat from neighbor node: 1
+Time is at <1667304700.750546>
+Log: Received heartbeat from neighbor node: 5
+Time is at <1667304701.054996>
+Log: Received heartbeat from neighbor node: 1
+Time is at <1667304701.055069>
+Log: Received heartbeat from neighbor node: 5
+Time is at <1667304701.355820>
+Log: Received heartbeat from neighbor node: 1
+Time is at <1667304701.357461>
+Log: Received heartbeat from neighbor node: 5
+Time is at <1667304701.662178>
+Log: Received heartbeat from neighbor node: 1
+Time is at <1667304701.662276>
+Log: Received heartbeat from neighbor node: 7
+Time is at <1667304701.665200>
+Log: Saw new neighbor 7
+Time is at <1667304701.671115>
+Log: Received path {"destID":7,"dist":4,"fromID":5,"nextHop":6,"nodesInPath":[5,6,7]}
+Time is at <1667304701.689792>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304701.689828>
+Log: Received path {"destID":7,"dist":4,"fromID":1,"nextHop":6,"nodesInPath":[1,6,7]}
+Time is at <1667304701.699846>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304701.699879>
+Log: Finished processing new neighbor path.
+Time is at <1667304701.759328>
+Log: Received path {"destID":3,"dist":2,"fromID":7,"nextHop":4,"nodesInPath":[3,4,7]}
+Time is at <1667304701.776610>
+Log: Shared my path of destId 0 to new neighbor 7 : LSAs{"destID":0,"dist":557,"fromID":6,"nextHop":1,"nodesInPath":[0,1,6,255]}
+Time is at <1667304701.779707>
+Log: Shared my path of destId 1 to new neighbor 7 : LSAs{"destID":1,"dist":1,"fromID":6,"nextHop":1,"nodesInPath":[1,6]}
+Time is at <1667304701.779859>
+Log: Shared my path of destId 2 to new neighbor 7 : LSAs{"destID":2,"dist":2,"fromID":6,"nextHop":5,"nodesInPath":[2,5,6]}
+Time is at <1667304701.779995>
+Log: Shared my path of destId 5 to new neighbor 7 : LSAs{"destID":5,"dist":1,"fromID":6,"nextHop":5,"nodesInPath":[5,6]}
+Time is at <1667304701.780136>
+Log: Shared my path of destId 255 to new neighbor 7 : LSAs{"destID":255,"dist":2,"fromID":6,"nextHop":1,"nodesInPath":[1,6,255]}
+Time is at <1667304701.783986>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304701.873131>
+Log: Received path {"destID":4,"dist":1,"fromID":7,"nextHop":4,"nodesInPath":[4,7]}
+Time is at <1667304701.883023>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304702.032967>
+Log: Received path {"destID":0,"dist":560,"fromID":7,"nextHop":6,"nodesInPath":[0,1,6,7,255]}
+Time is at <1667304702.051818>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304702.051879>
+Log: Received path {"destID":3,"dist":6,"fromID":5,"nextHop":6,"nodesInPath":[3,4,5,6,7]}
+Time is at <1667304702.067776>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304702.067810>
+Log: Received path {"destID":3,"dist":6,"fromID":1,"nextHop":6,"nodesInPath":[1,3,4,6,7]}
+Time is at <1667304702.095905>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304702.095937>
+Log: Received path {"destID":1,"dist":4,"fromID":7,"nextHop":6,"nodesInPath":[1,6,7]}
+Time is at <1667304702.107753>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304702.107777>
+Log: Received heartbeat from neighbor node: 7
+Time is at <1667304702.107964>
+Log: Received heartbeat from neighbor node: 1
+Time is at <1667304702.108040>
+Log: Received path {"destID":4,"dist":5,"fromID":5,"nextHop":6,"nodesInPath":[4,5,6,7]}
+Time is at <1667304702.115663>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304702.115685>
+Log: Received heartbeat from neighbor node: 5
+Time is at <1667304702.123796>
+Log: Received path {"destID":4,"dist":5,"fromID":1,"nextHop":6,"nodesInPath":[1,4,6,7]}
+Time is at <1667304702.155318>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304702.155401>
+Log: Received path {"destID":4,"dist":1,"fromID":1,"nextHop":4,"nodesInPath":[1,4]}
+Time is at <1667304702.159438>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304702.297627>
+Log: Received path {"destID":2,"dist":5,"fromID":7,"nextHop":6,"nodesInPath":[2,5,6,7]}
+Time is at <1667304702.303745>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304702.303767>
+Log: Received path {"destID":5,"dist":4,"fromID":7,"nextHop":6,"nodesInPath":[5,6,7]}
+Time is at <1667304702.312061>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304702.312083>
+Log: Received path {"destID":255,"dist":5,"fromID":7,"nextHop":6,"nodesInPath":[1,6,7,255]}
+Time is at <1667304702.315707>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304702.315731>
+Log: Received path {"destID":3,"dist":2,"fromID":5,"nextHop":2,"nodesInPath":[2,3,5]}
+Time is at <1667304702.323701>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304702.399100>
+Log: Received path {"destID":2,"dist":3,"fromID":7,"nextHop":4,"nodesInPath":[2,3,4,7]}
+Time is at <1667304702.411842>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304702.411876>
+Log: Received heartbeat from neighbor node: 7
+Time is at <1667304702.412072>
+Log: Received heartbeat from neighbor node: 1
+Time is at <1667304702.412147>
+Log: Received path {"destID":4,"dist":3,"fromID":5,"nextHop":1,"nodesInPath":[1,4,5]}
+Time is at <1667304702.415781>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304702.415812>
+Log: Received heartbeat from neighbor node: 5
+Time is at <1667304702.416105>
+Log: Received path {"destID":2,"dist":3,"fromID":1,"nextHop":4,"nodesInPath":[1,2,3,4]}
+Time is at <1667304702.424003>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304702.424040>
+Log: Received path {"destID":1,"dist":2,"fromID":7,"nextHop":4,"nodesInPath":[1,4,7]}
+Time is at <1667304702.436198>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304702.436220>
+Log: Received path {"destID":3,"dist":4,"fromID":1,"nextHop":5,"nodesInPath":[1,2,3,5]}
+Time is at <1667304702.436710>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304702.436748>
+Log: Received path {"destID":7,"dist":4,"fromID":5,"nextHop":2,"nodesInPath":[2,3,4,5,7]}
+Time is at <1667304702.437189>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304702.437212>
+Log: Received path {"destID":0,"dist":558,"fromID":7,"nextHop":4,"nodesInPath":[0,1,4,7,255]}
+Time is at <1667304702.487874>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304702.487911>
+Log: Received path {"destID":3,"dist":2,"fromID":1,"nextHop":4,"nodesInPath":[1,3,4]}
+Time is at <1667304702.503767>
+Log: Received heartbeat from neighbor node: 7
+Time is at <1667304702.568893>
+Log: Received heartbeat from neighbor node: 1
+Time is at <1667304702.571799>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304702.582032>
+Log: Received heartbeat from neighbor node: 5
+Time is at <1667304702.590224>
+Log: Received path {"destID":7,"dist":2,"fromID":1,"nextHop":4,"nodesInPath":[1,4,7]}
+Time is at <1667304702.607828>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304702.719793>
+Log: Received path {"destID":5,"dist":4,"fromID":7,"nextHop":4,"nodesInPath":[1,4,5,7]}
+Time is at <1667304702.728435>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304702.728470>
+Log: Received path {"destID":7,"dist":4,"fromID":5,"nextHop":1,"nodesInPath":[1,4,5,7]}
+Time is at <1667304702.735814>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304702.735847>
+Log: Received path {"destID":255,"dist":3,"fromID":7,"nextHop":4,"nodesInPath":[1,4,7,255]}
+Time is at <1667304702.792134>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304702.792167>
+Log: Received heartbeat from neighbor node: 7
+Time is at <1667304702.872767>
+Log: Received heartbeat from neighbor node: 1
+Time is at <1667304702.876382>
+Log: Received heartbeat from neighbor node: 5
+Time is at <1667304702.893078>
+Log: Received heartbeat from neighbor node: 7
+Time is at <1667304703.175073>
+Log: Received heartbeat from neighbor node: 1
+Time is at <1667304703.179163>
+Log: Received heartbeat from neighbor node: 5
+Time is at <1667304703.195570>
+Log: Received heartbeat from neighbor node: 7
+Time is at <1667304703.478209>
+Log: Received heartbeat from neighbor node: 1
+Time is at <1667304703.482413>
+Log: Received heartbeat from neighbor node: 5
+Time is at <1667304703.496577>
+Log: Received heartbeat from neighbor node: 7
+Time is at <1667304703.782160>
+Log: Received heartbeat from neighbor node: 1
+Time is at <1667304703.785506>
+Log: Received heartbeat from neighbor node: 5
+Time is at <1667304703.798803>
+Log: Received heartbeat from neighbor node: 7
+Time is at <1667304704.084294>
+Log: Received heartbeat from neighbor node: 1
+Time is at <1667304704.085961>
+Log: Received heartbeat from neighbor node: 5
+Time is at <1667304704.103821>
+Log: Received heartbeat from neighbor node: 7
+Time is at <1667304704.391481>
+Log: Received heartbeat from neighbor node: 1
+Time is at <1667304704.391642>
+Log: Received heartbeat from neighbor node: 5
+Time is at <1667304704.404001>
+Log: Received heartbeat from neighbor node: 1
+Time is at <1667304704.694275>
+Log: Received heartbeat from neighbor node: 7
+Time is at <1667304704.697425>
+Log: Received heartbeat from neighbor node: 5
+Time is at <1667304704.708064>
+Log: Received heartbeat from neighbor node: 1
+Time is at <1667304704.999540>
+Log: Received heartbeat from neighbor node: 7
+Time is at <1667304705.000942>
+Log: Received heartbeat from neighbor node: 5
+Time is at <1667304705.012891>
+Log: Received heartbeat from neighbor node: 1
+Time is at <1667304705.299965>
+Log: Received heartbeat from neighbor node: 7
+Time is at <1667304705.303635>
+Log: Received heartbeat from neighbor node: 5
+Time is at <1667304705.315377>
+Log: Received heartbeat from neighbor node: 7
+Time is at <1667304705.607046>
+Log: Received heartbeat from neighbor node: 1
+Time is at <1667304705.611652>
+Log: Received heartbeat from neighbor node: 5
+Time is at <1667304705.615386>
+Log: Received heartbeat from neighbor node: 7
+Time is at <1667304705.915900>
+Log: Received heartbeat from neighbor node: 1
+Time is at <1667304705.915971>
+Log: Received heartbeat from neighbor node: 5
+Time is at <1667304705.917120>
+Log: Received heartbeat from neighbor node: 7
+Time is at <1667304706.219772>
+Log: Received heartbeat from neighbor node: 5
+Time is at <1667304706.219907>
+Log: Received heartbeat from neighbor node: 1
+Time is at <1667304706.234709>
+Log: Received heartbeat from neighbor node: 7
+Time is at <1667304706.531884>
+Log: Received heartbeat from neighbor node: 1
+Time is at <1667304706.539468>
+Log: Received heartbeat from neighbor node: 5
+Time is at <1667304706.539833>
+Log: Received heartbeat from neighbor node: 7
+Time is at <1667304706.842934>
+Log: Received heartbeat from neighbor node: 1
+Time is at <1667304706.843011>
+Log: Received heartbeat from neighbor node: 5
+Time is at <1667304706.846444>

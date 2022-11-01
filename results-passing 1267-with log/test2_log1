@@ -1,0 +1,58 @@
+Log: Initialization.
+Time is at <1667304546.316237>
+Log: Received heartbeat from neighbor node: 2
+Time is at <1667304546.322901>
+Log: Saw new neighbor 2
+Time is at <1667304546.325851>
+Log: Received heartbeat from neighbor node: 4
+Time is at <1667304546.348113>
+Log: Received path {"destID":3,"dist":1,"fromID":2,"nextHop":3,"nodesInPath":[2,3]}
+Time is at <1667304546.351979>
+Log: Finished processing new neighbor path.
+Time is at <1667304546.403826>
+Log: Saw new neighbor 4
+Time is at <1667304546.427734>
+Log: Finished processing new neighbor path.
+Time is at <1667304546.595086>
+Log: Shared my path of destId 2 to new neighbor 4 : LSAs{"destID":2,"dist":54,"fromID":1,"nextHop":2,"nodesInPath":[1,2]}
+Time is at <1667304546.595239>
+Log: Shared my path of destId 3 to new neighbor 4 : LSAs{"destID":3,"dist":55,"fromID":1,"nextHop":2,"nodesInPath":[1,2,3]}
+Time is at <1667304546.595383>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304546.736062>
+Log: Received path {"destID":4,"dist":2,"fromID":2,"nextHop":3,"nodesInPath":[2,3,4]}
+Time is at <1667304546.736491>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304546.736523>
+Log: Received path {"destID":3,"dist":56,"fromID":4,"nextHop":1,"nodesInPath":[1,2,3,4]}
+Time is at <1667304546.745599>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304546.745624>
+Log: Received heartbeat from neighbor node: 5
+Time is at <1667304546.745774>
+Log: Saw new neighbor 5
+Time is at <1667304546.745881>
+Log: Received path {"destID":7,"dist":1,"fromID":4,"nextHop":7,"nodesInPath":[4,7]}
+Time is at <1667304546.751450>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304547.016120>
+Log: Received heartbeat from neighbor node: 6
+Time is at <1667304547.016240>
+Log: Received path {"destID":4,"dist":3,"fromID":5,"nextHop":1,"nodesInPath":[1,4,5]}
+Time is at <1667304547.019786>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304547.019817>
+Log: Finished processing new neighbor path.
+Time is at <1667304547.042057>
+Log: Shared my path of destId 2 to new neighbor 5 : LSAs{"destID":2,"dist":54,"fromID":1,"nextHop":2,"nodesInPath":[1,2]}
+Time is at <1667304547.042205>
+Log: Shared my path of destId 3 to new neighbor 5 : LSAs{"destID":3,"dist":55,"fromID":1,"nextHop":2,"nodesInPath":[1,2,3]}
+Time is at <1667304547.042346>
+Log: Shared my path of destId 4 to new neighbor 5 : LSAs{"destID":4,"dist":1,"fromID":1,"nextHop":4,"nodesInPath":[1,4]}
+Time is at <1667304547.042483>
+Log: Shared my path of destId 7 to new neighbor 5 : LSAs{"destID":7,"dist":2,"fromID":1,"nextHop":4,"nodesInPath":[1,4,7]}
+Time is at <1667304547.042621>
+Log: Received path {"destID":6,"dist":1,"fromID":5,"nextHop":6,"nodesInPath":[5,6]}
+Time is at <1667304547.073683>
+Log: Saw new neighbor 6
+Time is at <1667304547.083428>

@@ -1,0 +1,112 @@
+Log: Initialization.
+Time is at <1667304641.971285>
+Log: Received path {"destID":3,"dist":1,"fromID":4,"nextHop":3,"nodesInPath":[3,4]}
+Time is at <1667304641.999852>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304642.263996>
+Log: Received heartbeat from neighbor node: 6
+Time is at <1667304642.264143>
+Log: Received path {"destID":2,"dist":2,"fromID":4,"nextHop":3,"nodesInPath":[2,3,4]}
+Time is at <1667304642.295689>
+Log: Saw new neighbor 6
+Time is at <1667304642.299644>
+Log: Finished processing new neighbor path.
+Time is at <1667304642.875502>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304642.970441>
+Log: Received path {"destID":3,"dist":3,"fromID":6,"nextHop":5,"nodesInPath":[3,4,5,6]}
+Time is at <1667304643.023828>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304643.023872>
+Log: Received heartbeat from neighbor node: 15
+Time is at <1667304643.024038>
+Log: Shared my path of destId 2 to new neighbor 6 : LSAs{"destID":2,"dist":3,"fromID":5,"nextHop":4,"nodesInPath":[2,3,4,5]}
+Time is at <1667304643.031832>
+Log: Shared my path of destId 3 to new neighbor 6 : LSAs{"destID":3,"dist":2,"fromID":5,"nextHop":4,"nodesInPath":[3,4,5]}
+Time is at <1667304643.031978>
+Log: Received path {"destID":7,"dist":1,"fromID":6,"nextHop":7,"nodesInPath":[6,7]}
+Time is at <1667304643.079773>
+Log: Saw new neighbor 15
+Time is at <1667304643.087736>
+Log: Finished processing new neighbor path.
+Time is at <1667304644.055381>
+Log: Shared my path of destId 2 to new neighbor 15 : LSAs{"destID":2,"dist":3,"fromID":5,"nextHop":4,"nodesInPath":[2,3,4,5]}
+Time is at <1667304644.055578>
+Log: Shared my path of destId 3 to new neighbor 15 : LSAs{"destID":3,"dist":2,"fromID":5,"nextHop":4,"nodesInPath":[3,4,5]}
+Time is at <1667304644.055716>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304644.432172>
+Log: Received heartbeat from neighbor node: 4
+Time is at <1667304644.432297>
+Log: Shared my path of destId 6 to new neighbor 15 : LSAs{"destID":6,"dist":1,"fromID":5,"nextHop":6,"nodesInPath":[5,6]}
+Time is at <1667304644.464847>
+Log: Shared my path of destId 7 to new neighbor 15 : LSAs{"destID":7,"dist":2,"fromID":5,"nextHop":6,"nodesInPath":[5,6,7]}
+Time is at <1667304644.464965>
+Log: Received heartbeat from neighbor node: 6
+Time is at <1667304644.465470>
+Log: Saw new neighbor 4
+Time is at <1667304644.539692>
+Log: Received path {"destID":13,"dist":2,"fromID":15,"nextHop":14,"nodesInPath":[13,14,15]}
+Time is at <1667304644.539800>
+Log: Finished processing new neighbor path.
+Time is at <1667304645.988735>
+Log: Shared my path of destId 6 to new neighbor 4 : LSAs{"destID":6,"dist":1,"fromID":5,"nextHop":6,"nodesInPath":[5,6]}
+Time is at <1667304645.988891>
+Log: Shared my path of destId 7 to new neighbor 4 : LSAs{"destID":7,"dist":2,"fromID":5,"nextHop":6,"nodesInPath":[5,6,7]}
+Time is at <1667304645.989015>
+Log: Shared my path of destId 13 to new neighbor 4 : LSAs{"destID":13,"dist":3,"fromID":5,"nextHop":15,"nodesInPath":[5,13,14,15]}
+Time is at <1667304645.989124>
+Log: Shared my path of destId 15 to new neighbor 4 : LSAs{"destID":15,"dist":1,"fromID":5,"nextHop":15,"nodesInPath":[5,15]}
+Time is at <1667304645.989262>
+Log: Link broken to node 6. The node was previously seen at 1667304643 s, and 32325 ms. 
+Now the time is 1667304644 s, and 539656 ms. 
+The time difference is  1507331
+Time is at <1667304645.989561>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304646.069452>
+Log: Saw new neighbor 6
+Time is at <1667304649.558029>
+Log: Received path {"destID":16,"dist":1,"fromID":6,"nextHop":16,"nodesInPath":[6,16]}
+Time is at <1667304649.559763>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304650.683162>
+Log: Received heartbeat from neighbor node: 15
+Time is at <1667304650.683307>
+Log: Received path {"destID":15,"dist":2,"fromID":6,"nextHop":16,"nodesInPath":[6,15,16]}
+Time is at <1667304650.889562>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304650.889601>
+Log: Finished processing new neighbor path.
+Time is at <1667304651.113947>
+Log: Shared my path of destId 2 to new neighbor 6 : LSAs{"destID":2,"dist":3,"fromID":5,"nextHop":4,"nodesInPath":[2,3,4,5]}
+Time is at <1667304651.114064>
+Log: Shared my path of destId 3 to new neighbor 6 : LSAs{"destID":3,"dist":2,"fromID":5,"nextHop":4,"nodesInPath":[3,4,5]}
+Time is at <1667304651.114167>
+Log: Shared my path of destId 4 to new neighbor 6 : LSAs{"destID":4,"dist":1,"fromID":5,"nextHop":4,"nodesInPath":[4,5]}
+Time is at <1667304651.114267>
+Log: Shared my path of destId 13 to new neighbor 6 : LSAs{"destID":13,"dist":3,"fromID":5,"nextHop":15,"nodesInPath":[5,13,14,15]}
+Time is at <1667304651.114376>
+Log: Shared my path of destId 15 to new neighbor 6 : LSAs{"destID":15,"dist":1,"fromID":5,"nextHop":15,"nodesInPath":[5,15]}
+Time is at <1667304651.114477>
+Log: Link broken to node 4. The node was previously seen at 1667304645 s, and 989538 ms. 
+Now the time is 1667304649 s, and 557961 ms. 
+The time difference is  3568423
+Time is at <1667304651.114710>
+Log: Link broken to node 15. The node was previously seen at 1667304644 s, and 465187 ms. 
+Now the time is 1667304649 s, and 557961 ms. 
+The time difference is  5092774
+Time is at <1667304656.793255>
+Log: Received heartbeat from neighbor node: 4
+Time is at <1667304664.819770>
+Log: Saw new neighbor 15
+Time is at <1667304664.995722>
+Log: Finished processing new neighbor path.
+Time is at <1667304668.291458>
+Log: Shared my path of destId 6 to new neighbor 15 : LSAs{"destID":6,"dist":1,"fromID":5,"nextHop":6,"nodesInPath":[5,6]}
+Time is at <1667304668.687771>
+Log: Shared my path of destId 16 to new neighbor 15 : LSAs{"destID":16,"dist":2,"fromID":5,"nextHop":6,"nodesInPath":[5,6,16]}
+Time is at <1667304668.687927>
+Log: Link broken to node 6. The node was previously seen at 1667304651 s, and 114695 ms. 
+Now the time is 1667304664 s, and 995598 ms. 
+The time difference is  13880903
+Time is at <1667304668.688320>

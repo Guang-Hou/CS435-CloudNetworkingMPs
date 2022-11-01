@@ -1,0 +1,264 @@
+Log: Initialization.
+Time is at <1667304721.216135>
+Log: Received heartbeat from neighbor node: 52
+Time is at <1667304721.231001>
+Log: Received heartbeat from neighbor node: 41
+Time is at <1667304721.318076>
+Log: Saw new neighbor 52
+Time is at <1667304721.323841>
+Log: Finished processing new neighbor path.
+Time is at <1667304723.087787>
+Log: Received heartbeat from neighbor node: 50
+Time is at <1667304723.088437>
+Log: Saw new neighbor 41
+Time is at <1667304723.183633>
+Log: Received path {"destID":42,"dist":1,"fromID":52,"nextHop":42,"nodesInPath":[42,52]}
+Time is at <1667304723.187719>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304724.342782>
+Log: Finished processing new neighbor path.
+Time is at <1667304725.090729>
+Log: Shared my path of destId 42 to new neighbor 41 : LSAs{"destID":42,"dist":2,"fromID":51,"nextHop":52,"nodesInPath":[42,51,52]}
+Time is at <1667304725.091351>
+Log: Shared my path of destId 52 to new neighbor 41 : LSAs{"destID":52,"dist":1,"fromID":51,"nextHop":52,"nodesInPath":[51,52]}
+Time is at <1667304725.091507>
+Log: Received heartbeat from neighbor node: 52
+Time is at <1667304725.544440>
+Log: Saw new neighbor 50
+Time is at <1667304725.967798>
+Log: Finished processing new neighbor path.
+Time is at <1667304727.114487>
+Log: Shared my path of destId 41 to new neighbor 50 : LSAs{"destID":41,"dist":1,"fromID":51,"nextHop":41,"nodesInPath":[41,51]}
+Time is at <1667304727.114713>
+Log: Shared my path of destId 42 to new neighbor 50 : LSAs{"destID":42,"dist":2,"fromID":51,"nextHop":52,"nodesInPath":[42,51,52]}
+Time is at <1667304727.114856>
+Log: Shared my path of destId 52 to new neighbor 50 : LSAs{"destID":52,"dist":1,"fromID":51,"nextHop":52,"nodesInPath":[51,52]}
+Time is at <1667304727.115001>
+Log: Link broken to node 52. The node was previously seen at 1667304723 s, and 88137 ms. 
+Now the time is 1667304725 s, and 746379 ms. 
+The time difference is  2658242
+Time is at <1667304727.115264>
+Log: Received heartbeat from neighbor node: 41
+Time is at <1667304731.355803>
+Log: Saw new neighbor 52
+Time is at <1667304731.777180>
+Log: Finished processing new neighbor path.
+Time is at <1667304735.555720>
+Log: Shared my path of destId 41 to new neighbor 52 : LSAs{"destID":41,"dist":1,"fromID":51,"nextHop":41,"nodesInPath":[41,51]}
+Time is at <1667304735.557360>
+Log: Shared my path of destId 50 to new neighbor 52 : LSAs{"destID":50,"dist":1,"fromID":51,"nextHop":50,"nodesInPath":[50,51]}
+Time is at <1667304735.557502>
+Log: Link broken to node 41. The node was previously seen at 1667304725 s, and 532527 ms. 
+Now the time is 1667304731 s, and 777124 ms. 
+The time difference is  6244597
+Time is at <1667304735.558256>
+Log: Link broken to node 50. The node was previously seen at 1667304727 s, and 115241 ms. 
+Now the time is 1667304731 s, and 777124 ms. 
+The time difference is  4661883
+Time is at <1667304737.316147>
+Log: Received heartbeat from neighbor node: 50
+Time is at <1667304741.699888>
+Log: Saw new neighbor 41
+Time is at <1667304741.903702>
+Log: Received path {"destID":42,"dist":1,"fromID":41,"nextHop":42,"nodesInPath":[41,42]}
+Time is at <1667304741.911805>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304745.827924>
+Log: Finished processing new neighbor path.
+Time is at <1667304746.223491>
+Log: Shared my path of destId 52 to new neighbor 41 : LSAs{"destID":52,"dist":1,"fromID":51,"nextHop":52,"nodesInPath":[51,52]}
+Time is at <1667304746.709502>
+Log: Link broken to node 52. The node was previously seen at 1667304735 s, and 558231 ms. 
+Now the time is 1667304741 s, and 903641 ms. 
+The time difference is  6345410
+Time is at <1667304746.709861>
+Log: Received heartbeat from neighbor node: 52
+Time is at <1667304750.187901>
+Log: Saw new neighbor 50
+Time is at <1667304750.215769>
+Log: Finished processing new neighbor path.
+Time is at <1667304755.048096>
+Log: Shared my path of destId 41 to new neighbor 50 : LSAs{"destID":41,"dist":1,"fromID":51,"nextHop":41,"nodesInPath":[41,51]}
+Time is at <1667304755.048498>
+Log: Shared my path of destId 42 to new neighbor 50 : LSAs{"destID":42,"dist":2,"fromID":51,"nextHop":41,"nodesInPath":[41,42,51]}
+Time is at <1667304755.048748>
+Log: Link broken to node 41. The node was previously seen at 1667304746 s, and 709823 ms. 
+Now the time is 1667304750 s, and 215636 ms. 
+The time difference is  3505813
+Time is at <1667304755.049378>
+Log: Received heartbeat from neighbor node: 61
+Time is at <1667304763.456808>
+Log: Saw new neighbor 52
+Time is at <1667304763.649555>
+Log: Finished processing new neighbor path.
+Time is at <1667304767.386877>
+Log: Shared my path of destId 50 to new neighbor 52 : LSAs{"destID":50,"dist":1,"fromID":51,"nextHop":50,"nodesInPath":[50,51]}
+Time is at <1667304767.387080>
+Log: Link broken to node 50. The node was previously seen at 1667304755 s, and 49351 ms. 
+Now the time is 1667304763 s, and 649513 ms. 
+The time difference is  8600162
+Time is at <1667304767.387347>
+Log: Received heartbeat from neighbor node: 41
+Time is at <1667304771.675718>
+Log: Saw new neighbor 61
+Time is at <1667304771.839719>
+Log: Finished processing new neighbor path.
+Time is at <1667304776.710383>
+Log: Shared my path of destId 52 to new neighbor 61 : LSAs{"destID":52,"dist":1,"fromID":51,"nextHop":52,"nodesInPath":[51,52]}
+Time is at <1667304776.710586>
+Log: Link broken to node 52. The node was previously seen at 1667304767 s, and 387322 ms. 
+Now the time is 1667304771 s, and 839664 ms. 
+The time difference is  4452342
+Time is at <1667304776.710822>
+Log: Received heartbeat from neighbor node: 50
+Time is at <1667304780.674614>
+Log: Saw new neighbor 41
+Time is at <1667304780.897430>
+Log: Finished processing new neighbor path.
+Time is at <1667304784.696678>
+Log: Shared my path of destId 61 to new neighbor 41 : LSAs{"destID":61,"dist":1,"fromID":51,"nextHop":61,"nodesInPath":[51,61]}
+Time is at <1667304784.696838>
+Log: Link broken to node 61. The node was previously seen at 1667304776 s, and 710799 ms. 
+Now the time is 1667304780 s, and 897354 ms. 
+The time difference is  4186555
+Time is at <1667304784.697035>
+Log: Received heartbeat from neighbor node: 52
+Time is at <1667304788.431833>
+Log: Saw new neighbor 50
+Time is at <1667304788.607686>
+Log: Finished processing new neighbor path.
+Time is at <1667304792.549229>
+Log: Shared my path of destId 41 to new neighbor 50 : LSAs{"destID":41,"dist":1,"fromID":51,"nextHop":41,"nodesInPath":[41,51]}
+Time is at <1667304792.549442>
+Log: Link broken to node 41. The node was previously seen at 1667304784 s, and 697019 ms. 
+Now the time is 1667304788 s, and 607631 ms. 
+The time difference is  3910612
+Time is at <1667304792.549716>
+Log: Received heartbeat from neighbor node: 61
+Time is at <1667304794.777955>
+Log: Saw new neighbor 52
+Time is at <1667304794.976865>
+Log: Finished processing new neighbor path.
+Time is at <1667304798.918593>
+Log: Shared my path of destId 50 to new neighbor 52 : LSAs{"destID":50,"dist":1,"fromID":51,"nextHop":50,"nodesInPath":[50,51]}
+Time is at <1667304798.918770>
+Log: Link broken to node 50. The node was previously seen at 1667304792 s, and 549691 ms. 
+Now the time is 1667304794 s, and 976805 ms. 
+The time difference is  2427114
+Time is at <1667304798.918974>
+Log: Received heartbeat from neighbor node: 41
+Time is at <1667304802.758959>
+Log: Saw new neighbor 61
+Time is at <1667304802.955709>
+Log: Received path {"destID":60,"dist":1,"fromID":61,"nextHop":60,"nodesInPath":[60,61]}
+Time is at <1667304802.959936>
+Log: Finished processing new neighbor path.
+Time is at <1667304806.960779>
+Log: Shared my path of destId 52 to new neighbor 61 : LSAs{"destID":52,"dist":1,"fromID":51,"nextHop":52,"nodesInPath":[51,52]}
+Time is at <1667304806.960987>
+Log: Link broken to node 52. The node was previously seen at 1667304798 s, and 918958 ms. 
+Now the time is 1667304802 s, and 955630 ms. 
+The time difference is  4036672
+Time is at <1667304806.961276>
+Log: Finished processing the neighbor's updated path.
+Time is at <1667304807.934845>
+Log: Received heartbeat from neighbor node: 50
+Time is at <1667304810.865778>
+Log: Saw new neighbor 41
+Time is at <1667304811.162954>
+Log: Finished processing new neighbor path.
+Time is at <1667304814.352347>
+Log: Shared my path of destId 60 to new neighbor 41 : LSAs{"destID":60,"dist":2,"fromID":51,"nextHop":61,"nodesInPath":[51,60,61]}
+Time is at <1667304814.597325>
+Log: Shared my path of destId 61 to new neighbor 41 : LSAs{"destID":61,"dist":1,"fromID":51,"nextHop":61,"nodesInPath":[51,61]}
+Time is at <1667304814.597433>
+Log: Link broken to node 61. The node was previously seen at 1667304806 s, and 961232 ms. 
+Now the time is 1667304811 s, and 162898 ms. 
+The time difference is  4201666
+Time is at <1667304814.597632>
+Log: Received heartbeat from neighbor node: 52
+Time is at <1667304820.562416>
+Log: Saw new neighbor 50
+Time is at <1667304820.773705>
+Log: Finished processing new neighbor path.
+Time is at <1667304823.827600>
+Log: Shared my path of destId 41 to new neighbor 50 : LSAs{"destID":41,"dist":1,"fromID":51,"nextHop":41,"nodesInPath":[41,51]}
+Time is at <1667304824.244753>
+Log: Link broken to node 41. The node was previously seen at 1667304814 s, and 597616 ms. 
+Now the time is 1667304820 s, and 773672 ms. 
+The time difference is  6176056
+Time is at <1667304824.245032>
+Log: Received heartbeat from neighbor node: 61
+Time is at <1667304827.604041>
+Log: Saw new neighbor 52
+Time is at <1667304828.007688>
+Log: Finished processing new neighbor path.
+Time is at <1667304831.526700>
+Log: Shared my path of destId 50 to new neighbor 52 : LSAs{"destID":50,"dist":1,"fromID":51,"nextHop":50,"nodesInPath":[50,51]}
+Time is at <1667304831.526874>
+Log: Link broken to node 50. The node was previously seen at 1667304824 s, and 245008 ms. 
+Now the time is 1667304828 s, and 7629 ms. 
+The time difference is  3762621
+Time is at <1667304831.527078>
+Log: Received heartbeat from neighbor node: 41
+Time is at <1667304835.144251>
+Log: Saw new neighbor 61
+Time is at <1667304835.346151>
+Log: Finished processing new neighbor path.
+Time is at <1667304839.825628>
+Log: Shared my path of destId 52 to new neighbor 61 : LSAs{"destID":52,"dist":1,"fromID":51,"nextHop":52,"nodesInPath":[51,52]}
+Time is at <1667304839.825837>
+Log: Link broken to node 52. The node was previously seen at 1667304831 s, and 527063 ms. 
+Now the time is 1667304835 s, and 346086 ms. 
+The time difference is  3819023
+Time is at <1667304839.826101>
+Log: Received heartbeat from neighbor node: 50
+Time is at <1667304844.336335>
+Log: Saw new neighbor 41
+Time is at <1667304844.508769>
+Log: Finished processing new neighbor path.
+Time is at <1667304847.859652>
+Log: Shared my path of destId 61 to new neighbor 41 : LSAs{"destID":61,"dist":1,"fromID":51,"nextHop":61,"nodesInPath":[51,61]}
+Time is at <1667304847.859850>
+Log: Link broken to node 61. The node was previously seen at 1667304839 s, and 826076 ms. 
+Now the time is 1667304844 s, and 508706 ms. 
+The time difference is  4682630
+Time is at <1667304847.860096>
+Log: Received heartbeat from neighbor node: 52
+Time is at <1667304851.936216>
+Log: Saw new neighbor 50
+Time is at <1667304852.143693>
+Log: Finished processing new neighbor path.
+Time is at <1667304855.153045>
+Log: Shared my path of destId 41 to new neighbor 50 : LSAs{"destID":41,"dist":1,"fromID":51,"nextHop":41,"nodesInPath":[41,51]}
+Time is at <1667304855.153191>
+Log: Link broken to node 41. The node was previously seen at 1667304847 s, and 860031 ms. 
+Now the time is 1667304852 s, and 143645 ms. 
+The time difference is  4283614
+Time is at <1667304855.153403>
+Log: Received heartbeat from neighbor node: 61
+Time is at <1667304859.541521>
+Log: Saw new neighbor 52
+Time is at <1667304859.771682>
+Log: Finished processing new neighbor path.
+Time is at <1667304863.345221>
+Log: Shared my path of destId 50 to new neighbor 52 : LSAs{"destID":50,"dist":1,"fromID":51,"nextHop":50,"nodesInPath":[50,51]}
+Time is at <1667304863.345414>
+Log: Link broken to node 50. The node was previously seen at 1667304855 s, and 153387 ms. 
+Now the time is 1667304859 s, and 771620 ms. 
+The time difference is  4618233
+Time is at <1667304863.345729>
+Log: Received heartbeat from neighbor node: 41
+Time is at <1667304865.932582>
+Log: Saw new neighbor 61
+Time is at <1667304866.123695>
+Log: Finished processing new neighbor path.
+Time is at <1667304867.758103>
+Log: Shared my path of destId 52 to new neighbor 61 : LSAs{"destID":52,"dist":1,"fromID":51,"nextHop":52,"nodesInPath":[51,52]}
+Time is at <1667304867.758303>
+Log: Link broken to node 52. The node was previously seen at 1667304863 s, and 345704 ms. 
+Now the time is 1667304866 s, and 123644 ms. 
+The time difference is  2777940
+Time is at <1667304867.758570>
+Log: Received heartbeat from neighbor node: 50
+Time is at <1667304868.848238>
