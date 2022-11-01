@@ -35,10 +35,11 @@
 
 using namespace std;
 
-typedef tuple<int, int, set<int>> PATH; // distance, nextHop, nodesInPath
+typedef tuple<int, int, unordered_set<int>> PATH; // distance, nextHop, nodesInPath
 
 int myNodeId, mySocketUDP;
 int linkCost[256];
+unordered_set<int> myNeighbors;
 struct timeval previousHeartbeat[256]; // track last time a neighbor is seen to figure out who is lost
 struct sockaddr_in allNodeSocketAddrs[256];
 map<int, PATH> myPaths; // myPaths[i] means my path to destNode i: (distance, nextHop, nodesInPath)
@@ -47,8 +48,8 @@ FILE *flog;
 void init(int inputId, string costFile, string logFile);
 void readCostFile(const char *costFile);
 
-void sendHeartbeats();
-void checkNewAndLostNeighbor(int heardFrom);
+void sendHeartbeatAndCheckLostNeighbor();
+void checkNewNeighbor(int heardFrom);
 void handleBrokenLink(int brokenNeighborId);
 
 void sharePathsToNewNeighbor(int newNeighborId);

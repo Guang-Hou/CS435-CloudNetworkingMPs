@@ -17,7 +17,7 @@ int main(int argc, char **argv)
     init(inputId, costFile, logFile);
 
     std::thread threads[4];
-    threads[0] = thread(sendHeartbeats);
+    threads[0] = thread(sendHeartbeatAndCheckLostNeighbor);
 
     char fromAddr[100];
     struct sockaddr_in theirAddr;
@@ -52,7 +52,7 @@ int main(int argc, char **argv)
                 threads[1].join();
             }
 
-            threads[1] = thread(checkNewAndLostNeighbor, heardFrom);
+            threads[1] = thread(checkNewNeighbor, heardFrom);
         }
         else if (!strncmp(recvBuf, "send", 4) || !strncmp(recvBuf, "fowd", 4)) // send/forward message
         {

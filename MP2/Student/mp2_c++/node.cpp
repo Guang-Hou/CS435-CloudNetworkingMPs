@@ -67,7 +67,7 @@ void readCostFile(const char *costFile)
     fclose(fcost);
 }
 
-void sendHeartbeats()
+void sendHeartbeatAndCheckLostNeighbor()
 {
     struct timespec sleepFor;
     sleepFor.tv_sec = 0;
@@ -79,17 +79,92 @@ void sendHeartbeats()
     {
         for (int i = 0; i < 256; i += 1)
         {
+            string logContent = "Sent haerbeats out. ";
+            logMessageAndTime(logContent.c_str());
+
             if (i != myNodeId)
             {
-                // string logContent = "Inside sendHearbeat, will send haerbeat to node ";
-                // logContent += to_string(i);
-                // logMessageAndTime(logContent.c_str());
-
                 sendto(mySocketUDP, heartBeats, 8, 0,
                        (struct sockaddr *)&allNodeSocketAddrs[i], sizeof(allNodeSocketAddrs[i]));
             }
         }
+
+        // check if there is any neighbor link is broken, if so update pathRecords and broadcast LSA
+        for (int i = 0; i < 256; i += 1)
+        {
+            struct timeval now;
+            gettimeofday(&now, 0);
+
+            if (i != myNodeId)
+            {
+                long timeDifference = (now.tv_sec - previousHeartbeat[i].tv_sec) * 1000000L + now.tv_usec - previousHeartbeat[i].tv_usec;
+                if (previousHeartbeat[i].tv_sec != 0 && timeDifference > 800000) // missed two hearbeats
+                {
+                    string logContent = "Link broken to node ";
+                    logContent += to_string(i);
+
+                    logContent += ". The node was previously seen at ";
+                    logContent += to_string(previousHeartbeat[i].tv_sec);
+                    logContent += " s, and ";
+                    logContent += to_string(previousHeartbeat[i].tv_usec);
+                    logContent += " ms. \n";
+
+                    logContent += "Now the time is ";
+                    logContent += to_string(now.tv_sec);
+                    logContent += " s, and ";
+                    logContent += to_string(now.tv_usec);
+                    logContent += " ms. \n";
+
+                    logContent += "The time difference is  ";
+                    logContent += to_string(timeDifference);
+
+                    logMessageAndTime(logContent.c_str());
+
+                    m.lock();
+                    previousHeartbeat[i].tv_sec = 0;
+                    myNeighbors.erase(heardFrom);
+                    m.unlock();
+
+                    handleBrokenLink(i);
+                }
+            }
+        }
+
         nanosleep(&sleepFor, 0);
+    }
+}
+
+void checkNewNeighbor(int heardFrom)
+{
+    struct timeval now;
+    gettimeofday(&now, 0);
+    long previousSeenInSecond = previousHeartbeat[heardFrom].tv_sec;
+
+    //  record that we heard from heardFrom just now.
+    m.lock();
+    gettimeofday(&previousHeartbeat[heardFrom], 0);
+    m.unlock();
+
+    if (previousSeenInSecond == 0)
+    {
+        string logContent = "Saw new neighbor ";
+        logContent += to_string(heardFrom);
+        logMessageAndTime(logContent.c_str());
+
+        m.lock();
+        myNeighbors.add(heardFrom);
+        m.unlock();
+        // string timeStr = "Time difference in usecond: ";
+        // timeStr += to_string(usecondDifference);
+        // logMessage(timeStr.c_str());
+
+        processSingleLSA(heardFrom, heardFrom, 0, heardFrom, set<int>{heardFrom});
+
+        logContent = "Finished processing seeing new neighbor ";
+        logContent += to_string(heardFrom);
+        logMessageAndTime(logContent.c_str());
+
+        sharePathsToNewNeighbor(heardFrom);
     }
 }
 
@@ -135,7 +210,7 @@ void sendPathToNeighbors(int destId)
 {
     for (int i = 0; i < 256; i += 1)
     {
-        if (i != myNodeId && i != destId) // no filtering to avoid nodes in the path, filtering will cause problem for broken link annoucnements
+        if (i != myNodeId && i != destId && get<2>(myPaths[destId]).count(destId) == 0 && myNeighbors.count(i) == 1) 
         {
             string strLSA = generateStrPath(destId);
             sendto(mySocketUDP, strLSA.c_str(), strLSA.length(), 0,
@@ -152,71 +227,6 @@ void sendPathToNeighbors(int destId)
     }
 }
 
-void checkNewAndLostNeighbor(int heardFrom)
-{
-    struct timeval now;
-    gettimeofday(&now, 0);
-
-    if (previousHeartbeat[heardFrom].tv_sec == 0)
-    {
-        string logContent = "Saw new neighbor ";
-        logContent += to_string(heardFrom);
-        logMessageAndTime(logContent.c_str());
-
-        // string timeStr = "Time difference in usecond: ";
-        // timeStr += to_string(usecondDifference);
-        // logMessage(timeStr.c_str());
-
-        processSingleLSA(heardFrom, heardFrom, 0, heardFrom, set<int>{heardFrom});
-
-        logContent = "Finished processing new neighbor path.";
-        logMessageAndTime(logContent.c_str());
-
-        sharePathsToNewNeighbor(heardFrom);
-    }
-
-    //  record that we heard from heardFrom just now.
-    m.lock();
-    gettimeofday(&previousHeartbeat[heardFrom], 0);
-    m.unlock();
-
-    // check if there is any neighbor link is broken, if so update pathRecords and broadcast LSA
-    for (int i = 0; i < 256; i += 1)
-    {
-        if (i != myNodeId)
-        {
-            long timeDifference = (now.tv_sec - previousHeartbeat[i].tv_sec) * 1000000L + now.tv_usec - previousHeartbeat[i].tv_usec;
-            if (previousHeartbeat[i].tv_sec != 0 && timeDifference > 800000) // missed two hearbeats
-            {
-                string logContent = "Link broken to node ";
-                logContent += to_string(i);
-
-                logContent += ". The node was previously seen at ";
-                logContent += to_string(previousHeartbeat[i].tv_sec);
-                logContent += " s, and ";
-                logContent += to_string(previousHeartbeat[i].tv_usec);
-                logContent += " ms. \n";
-
-                logContent += "Now the time is ";
-                logContent += to_string(now.tv_sec);
-                logContent += " s, and ";
-                logContent += to_string(now.tv_usec);
-                logContent += " ms. \n";
-
-                logContent += "The time difference is  ";
-                logContent += to_string(timeDifference);
-
-                logMessageAndTime(logContent.c_str());
-
-                m.lock();
-                previousHeartbeat[i].tv_sec = 0;
-                m.unlock();
-
-                handleBrokenLink(i);
-            }
-        }
-    }
-}
 
 void sendOrFowdMessage(string buffContent, int bytesRecvd)
 {
@@ -244,19 +254,24 @@ void processLSAMessage(string buffContent)
     int nextHop = LSA["nextHop"];
     set<int> nodesInPath = LSA["nodesInPath"];
 
-    string logContent = "Received path ";
+    string logContent = "Received path from neighbor ";
+    logContent += to_string(neighborId);
+    logContent + = " ";
     logContent += strLSA;
     logMessageAndTime(logContent.c_str());
 
     processSingleLSA(neighborId, destId, distance, nextHop, nodesInPath);
 
-    logContent = "Finished processing the neighbor's updated path.";
+    logContent = "Finished processing the neighbor ";
+    logContent += to_string(neighborId);
+    logContent + = " 's updated path to destId ";
+    logContent += to_string(destId);
     logMessageAndTime(logContent.c_str());
 }
 
 void processSingleLSA(int neighborId, int destId, int distance, int nextHop, set<int> nodesInPath)
 {
-    bool containsMyNodeId = nodesInPath.count(myNodeId) != 0; // if neighbor LSA path has myNodeId in the path
+    bool containsMyNodeId = nodesInPath.count(myNodeId) == 1; // if neighbor LSA path has myNodeId in the path
     int myDistance = get<0>(myPaths[destId]);
     int myNexthop = get<1>(myPaths[destId]);
 
@@ -292,11 +307,12 @@ void processSingleLSA(int neighborId, int destId, int distance, int nextHop, set
     }
     else if (distance == -1 && myDistance != -1) // neighbor lost a path to destId
     {
-        if (get<2>(myPaths[destId]).count(neighborId) != 0)
+        if (get<2>(myPaths[destId]).count(neighborId) == 1)
         {
             // The neighbor is in my path to destId, then I lost the path to destId
             m.lock();
             get<0>(myPaths[destId]) = -1;
+            get<2>(myPaths[destId]).clear();
             m.unlock();
         }
 
@@ -333,6 +349,7 @@ void handleBrokenLink(int brokenNeighborId)
         { // I lost the path to destId due to broken link to the neighbor
             m.lock();
             get<0>(myPaths[destId]) = -1;
+            get<2>(myPaths[destId]).clear();
             m.unlock();
             sendPathToNeighbors(destId);
         }
