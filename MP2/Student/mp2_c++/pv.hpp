@@ -242,24 +242,23 @@ void *announceToNeighbors(void *unusedParam)
         sleepFor.tv_sec = 0;
         sleepFor.tv_nsec = 300 * 1000 * 1000; // 300 ms
         const char *heartBeats = "HEREIAM";
-        while (1)
+
+        for (int i = 0; i < 256; i += 1)
         {
-            for (int i = 0; i < 256; i += 1)
+            // string logContent = "Sent haerbeats out. ";
+            // logMessageAndTime(logContent.c_str());
+
+            if (i != myNodeId)
             {
-                // string logContent = "Sent haerbeats out. ";
+                // string logContent = "Inside sendHearbeat, will send haerbeat to node ";
+                // logContent += to_string(i);
                 // logMessageAndTime(logContent.c_str());
 
-                if (i != myNodeId)
-                {
-                    // string logContent = "Inside sendHearbeat, will send haerbeat to node ";
-                    // logContent += to_string(i);
-                    // logMessageAndTime(logContent.c_str());
-
-                    sendto(mySocketUDP, heartBeats, 8, 0,
-                        (struct sockaddr *)&allNodeSocketAddrs[i], sizeof(allNodeSocketAddrs[i]));
-                }
+                sendto(mySocketUDP, heartBeats, 8, 0,
+                    (struct sockaddr *)&allNodeSocketAddrs[i], sizeof(allNodeSocketAddrs[i]));
             }
         }
+   
 
         sendLSAsToNeighbors();
 

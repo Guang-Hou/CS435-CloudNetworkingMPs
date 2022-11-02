@@ -176,8 +176,8 @@ void *announceToNeighbors(void *unusedParam)
                         (struct sockaddr *)&allNodeSocketAddrs[i], sizeof(allNodeSocketAddrs[i]));
                 }
             }
+            nanosleep(&sleepFor, 0);
         }
-        nanosleep(&sleepFor, 0);
     }
 }
 
