@@ -1,4 +1,4 @@
-// path vector, sending all my paths as LSA updates to neighbor
+// path vector, sending all my paths as LSA updates to all nodes periodically
 
 #pragma once
 #include "json.hpp"

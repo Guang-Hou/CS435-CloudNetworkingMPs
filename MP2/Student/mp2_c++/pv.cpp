@@ -1,12 +1,10 @@
-// path vector, sending single LSA updates to neighbor for every update
+// path vector, sending single LSA updates to neighbors periodically
+// upon receiving LSA, process it but do not send it out immediately
 
-#include "pv_single.hpp"
+#include "pv.hpp"
 #include <iostream>
 #include <thread>
 #include <pthread.h>
-
-void listenForNeighbors();
-void *announceToNeighbors(void *unusedParam);
 
 int main(int argc, char **argv)
 {

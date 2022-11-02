@@ -1,6 +1,6 @@
-// path vector, sending all my paths as LSA updates to neighbor
+// path vector, sending all my paths as LSA updates to all nodes periodically
 
-#include "node.hpp"
+#include "pv_full.hpp"
 #include <iostream>
 #include <thread>
 #include <pthread.h>
