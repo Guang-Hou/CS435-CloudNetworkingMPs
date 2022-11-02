@@ -1,3 +1,5 @@
+// path vector, sending all my paths as LSA updates to neighbor
+
 #include "node.hpp"
 #include <iostream>
 #include <thread>
