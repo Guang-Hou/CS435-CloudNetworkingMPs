@@ -9,4 +9,4 @@ ls: main.c monitor_neighbors.c
 
 .PHONY: clean
 clean:
-	rm main manager_send
+	rm main manager_send log1 log2 log3
