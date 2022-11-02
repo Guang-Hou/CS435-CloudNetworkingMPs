@@ -1,12 +1,9 @@
 // link stage, sending single path LSA updates to neighbor
 
-#include "node.hpp"
+#include "pv.hpp"
 #include <iostream>
 #include <thread>
 #include <pthread.h>
-
-void listenForNeighbors();
-void *announceToNeighbors(void *unusedParam);
 
 int main(int argc, char **argv)
 {
