@@ -530,7 +530,7 @@ void handleBrokenLink(int neighborId)
 
 void logMessageAndTime(const char *message)
 {
-    // return;
+    return;
 
     char logLine[BUFFERSIZE];
     sprintf(logLine, " %s\n", message);
