@@ -1,6 +1,6 @@
 // link stage, sending single path LSA updates to neighbor
 
-#include "pv.hpp"
+#include "ls.hpp"
 #include <iostream>
 #include <thread>
 #include <pthread.h>
@@ -23,4 +23,6 @@ int main(int argc, char **argv)
     pthread_create(&announcerThread, 0, announceToNeighbors, (void *)0);
 
     listenForNeighbors();
+
+    // testDij(6, 3);
 }
