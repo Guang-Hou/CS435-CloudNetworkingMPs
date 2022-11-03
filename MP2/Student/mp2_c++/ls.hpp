@@ -1,6 +1,10 @@
-// path vector, sending single LSA updates to neighbors once any of my direct link changes
-// upon receiving LSA, add it to my graph and forward it out
-// for new neighbor, share my whole graph to it
+/* Link State Routing
+ - Periodically send my link status to neighbors. 
+ - Upon receiving LSA, 
+    - immediately forward it out to my neighbors
+    - use it to update my graph database but do not immediately send my LSA out.
+ - For new neighbor, share my graph to it? Probably no need.
+*/
 
 #pragma once
 #include "json.hpp"
@@ -70,15 +74,14 @@ void readCostFile(const char *costFile);
 void listenForNeighbors();
 
 void *announceToNeighbors(void *unusedParam);
-void processNeighborHeartbeat(int heardFrom);
 void checkNewNeighbor(int heardFrom);
 void checkLostNeighbor();
 // void handleBrokenLink(int neighborId);
 
 // void sendPathToNeighbors(int destId);
-string generateStrGraph();
+//string generateStrGraph();
 string generateStrLSA();
-void sharePathsToNewNeighbor(int newNeighborId);
+//void sharePathsToNewNeighbor(int newNeighborId);
 void sendReceivedLSAToOtherNeighbors(string buffContent, int neighborId);
 void sendMyLSAToNeighbors();
 
@@ -225,7 +228,7 @@ void listenForNeighbors()
             // logMessageAndTime(logContent.c_str());
             // cout << logContent << endl;
 
-            processNeighborHeartbeat(heardFrom);
+            checkNewNeighbor(heardFrom);
             checkLostNeighbor();
         }
 
@@ -246,9 +249,9 @@ void listenForNeighbors()
     close(mySocketUDP);
 }
 
-void processNeighborHeartbeat(int heardFrom)
+void checkNewNeighbor(int heardFrom)
 {
-    // cout << "Inside processNeighborHeartbeat function." << endl;
+    // cout << "Inside checkNewNeighbor function." << endl;
 
     struct timeval now;
     gettimeofday(&now, 0);
@@ -274,7 +277,7 @@ void processNeighborHeartbeat(int heardFrom)
         // logMessageAndTime(logContent.c_str());
         // cout << logContent << endl;
     }
-    string logContent = "  Finished processNeighborHeartbeat.";
+    string logContent = "  Finished checkNewNeighbor.";
     // logMessageAndTime(logContent.c_str());
 }
 
@@ -452,6 +455,7 @@ void sendMyLSAToNeighbors()
     //  cout << logContent << endl;
 }
 
+/*
 void sharePathsToNewNeighbor(int newNeighborId) // this will send my self path to the new neighbor
 {
     // cout << "Inside sharePathsToNewNeighbor function." << endl;
@@ -483,6 +487,7 @@ void sharePathsToNewNeighbor(int newNeighborId) // this will send my self path t
     logMessageAndTime(logContent.c_str());
     // cout << logContent << endl;
 }
+*/
 
 /*
 string generateStrLSA()
