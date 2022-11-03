@@ -1,5 +1,11 @@
-// path vector, sending single LSA updates to neighbors periodically
-// upon receiving LSA, process it but do not send it out immediately
+/* Path Vector Routing
+ - Periodically send only new, valid paths to existing neighbors. To avoid overflood the network if dynamically send every new path.
+ - Upon receiving LSA, use it to update my paths but do not immediately send my updated paths out.
+ - Immediately share all my valid paths to a new neighbor, either old or new paths. To accelerate the convergence.
+ - During the whole process, check if a path to destId is changed since previous periodical sending out. This changed[] will be used in periodical send out.
+    - New link or lost link
+    - processing LSA
+*/
 
 #pragma once
 #include "json.hpp"
@@ -67,13 +73,11 @@ void readCostFile(const char *costFile);
 void listenForNeighbors();
 
 void *announceToNeighbors(void *unusedParam);
-void processNeighborHeartbeat(int heardFrom);
 void checkNewNeighbor(int heardFrom);
 void checkLostNeighbor();
 void handleBrokenLink(int neighborId);
 
 void sharePathsToNewNeighbor(int newNeighborId);
-// void sendPathToNeighbors(int destId);
 string generateStrPath(int destId);
 void sendLSAsToNeighbors();
 
@@ -179,8 +183,7 @@ void listenForNeighbors()
             logContent += to_string(heardFrom);
             logMessageAndTime(logContent.c_str());
 
-            processNeighborHeartbeat(heardFrom);
-
+            checkNewNeighbor(heardFrom);
             checkLostNeighbor();
         }
 
@@ -259,14 +262,13 @@ void *announceToNeighbors(void *unusedParam)
             }
         }
    
-
         sendLSAsToNeighbors();
 
         nanosleep(&sleepFor, 0);
     }
 }
 
-// batch process, node will process neighbor LSAs for sometime, then broad valid updates to those neighbors
+// Periodically send out new and valid path updates to existing neighbors
 void sendLSAsToNeighbors() {
 
     for (int destId = 0; destId < 256; destId += 1)
@@ -293,7 +295,7 @@ void sendLSAsToNeighbors() {
     // cout << logContent << endl;
 }
 
-void processNeighborHeartbeat(int heardFrom)
+void checkNewNeighbor(int heardFrom)
 {
     // cout << "Inside processNeighborHeartbeat function." << endl;
 
@@ -315,11 +317,8 @@ void processNeighborHeartbeat(int heardFrom)
 
         myNeighbors.insert(heardFrom);
 
-        m.lock();
-        changed[heardFrom] = true;
-        m.unlock();
-
-        // processSingleLSA(heardFrom, heardFrom, 0, heardFrom, unordered_set<int>{heardFrom});   this will be handled by the sharePathsToNeiNeighbor function
+        processSingleLSA(heardFrom, heardFrom, 0, heardFrom, unordered_set<int>{heardFrom}); 
+        sendLSAsToNeighbors();  
         sharePathsToNewNeighbor(heardFrom);
 
         logContent = "  Finished processing seeing new neighbor ";
@@ -346,40 +345,22 @@ void checkLostNeighbor()
             if (previousHeartbeat[i].tv_sec != 0 && timeDifference > 800000) // missed two hearbeats
             {
 
-                string logContent = "  Link broken to node ";
-                logContent += to_string(i);
-
-                logContent += ". The node was previously seen at ";
-                logContent += to_string(previousHeartbeat[i].tv_sec);
-                logContent += " s, and ";
-                logContent += to_string(previousHeartbeat[i].tv_usec);
-                logContent += " ms. \n";
-
-                logContent += "  Now the time is ";
-                logContent += to_string(now.tv_sec);
-                logContent += " s, and ";
-                logContent += to_string(now.tv_usec);
-                logContent += " ms. \n";
-
-                logContent += "  The time difference is  ";
-                logContent += to_string(timeDifference);
-
-                logMessageAndTime(logContent.c_str());
+                char buff[200]; 
+                snprintf(buff, sizeof(buff), "  Link broken to node %d. The node was previously seen at %ld s, and ld% us.\n   Now the time is ld% s, and ld% us. \n The time difference is ls%.", i, previousHeartbeat[i].tv_sec, previousHeartbeat[i].tv_usec, now.tv_sec, now.tv_usec, timeDifference );
+                logMessageAndTime(buff);
 
                 // cout << logContent << endl;
 
-
                 previousHeartbeat[i].tv_sec = 0;
                 myNeighbors.erase(i);
-                
-                m.lock();
-                changed[i] = true;
-                m.unlock();
 
                 handleBrokenLink(i);
             }
         }
     }
+
+    sendLSAsToNeighbors();  // if the lost neighbor changed any path, send these updated paths to neighbor
+
     string logContent = "  Finished checkLostNeighbor.";
     logMessageAndTime(logContent.c_str());
 }
@@ -522,7 +503,7 @@ void processSingleLSA(int neighborId, int destId, int distance, int nextHop, set
     }
 }
 
-void sharePathsToNewNeighbor(int newNeighborId) // this will send my self path to the new neighbor
+void sharePathsToNewNeighbor(int newNeighborId) // this will all valid paths out, including my self path
 {
     for (int destId = 0; destId < 256; destId += 1)
     {
@@ -542,29 +523,6 @@ void sharePathsToNewNeighbor(int newNeighborId) // this will send my self path t
         }
     }
 }
-
-/*
-void sendPathToNeighbors(int neighborId) 
-{
-    for (int i = 0; i < 256; i += 1)
-    {
-        if (i != myNodeId && i != destId && get<2>(myPaths[destId]).count(i) == 0 && myNeighbors.count(i) == 1)
-        {
-            string strLSA = generateStrPath(destId);
-            sendto(mySocketUDP, strLSA.c_str(), strLSA.length(), 0,
-                   (struct sockaddr *)&allNodeSocketAddrs[i], sizeof(allNodeSocketAddrs[i]));
-
-            string logContent = "Sent out my path update of destId ";
-            logContent += to_string(destId);
-            logContent += " to neighbor ";
-            logContent += to_string(i);
-            logContent += " : \n";
-            logContent += strLSA;
-            logMessageAndTime(logContent.c_str());
-        }
-    }
-}
-*/
 
 
 void handleBrokenLink(int neighborId)
