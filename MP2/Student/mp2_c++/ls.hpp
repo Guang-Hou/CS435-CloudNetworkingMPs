@@ -220,9 +220,9 @@ void listenForNeighbors()
 
         if (strstr(fromAddr, "10.1.1."))
         {
-            string logContent = "Received message from neighbor node ";
+            string logContent = "Received message(hello or LSA or send) from neighbor node ";
             logContent += to_string(heardFrom);
-            logMessageAndTime(logContent.c_str());
+            // logMessageAndTime(logContent.c_str());
             // cout << logContent << endl;
 
             processNeighborHeartbeat(heardFrom);
@@ -269,23 +269,20 @@ void processNeighborHeartbeat(int heardFrom)
         graph[myNodeId][heardFrom] = linkCost[heardFrom];
         // sendMyLSAToNeighbors();
 
-        // processSingleLSA(heardFrom, heardFrom, 0, heardFrom, unordered_set<int>{heardFrom});   this will be handled by the sharePathsToNeiNeighbor function
-        // sharePathsToNewNeighbor(heardFrom);
-
         logContent = "  Finished processing seeing new neighbor ";
         logContent += to_string(heardFrom);
-        logMessageAndTime(logContent.c_str());
+        // logMessageAndTime(logContent.c_str());
         // cout << logContent << endl;
     }
     string logContent = "  Finished processNeighborHeartbeat.";
-    logMessageAndTime(logContent.c_str());
+    // logMessageAndTime(logContent.c_str());
 }
 
 void checkLostNeighbor()
 {
     // cout << "Inside checkLostNeighbor function." << endl;
     string logContent = "Inside checkLostNeighbor function.";
-    logMessageAndTime(logContent.c_str());
+    // logMessageAndTime(logContent.c_str());
     // check if there is any neighbor link is broken, if so update pathRecords and broadcast LSA
     for (int i = 0; i < 256; i += 1)
     {
@@ -297,6 +294,11 @@ void checkLostNeighbor()
             long timeDifference = (now.tv_sec - previousHeartbeat[i].tv_sec) * 1000000L + now.tv_usec - previousHeartbeat[i].tv_usec;
             if (previousHeartbeat[i].tv_sec != 0 && timeDifference > 800000) // missed two hearbeats
             {
+                char buff[200]; 
+                snprintf(buff, sizeof(buff), "  Link broken to node %d. The node was previously seen at %ld s, and ld% us.\n   Now the time is ld% s, and ld% us. \n The time difference is ls%.", i, previousHeartbeat[i].tv_sec, previousHeartbeat[i].tv_usec, now.tv_sec, now.tv_usec, timeDifference );
+                logMessageAndTime(buff);
+
+                /*
                 string logContent = "  Link broken to node ";
                 logContent += to_string(i);
                 logContent += ". The node was previously seen at ";
@@ -312,6 +314,7 @@ void checkLostNeighbor()
                 logContent += "  The time difference is  ";
                 logContent += to_string(timeDifference);
                 logMessageAndTime(logContent.c_str());
+                */
 
                 previousHeartbeat[i].tv_sec = 0;
                 graph[myNodeId][i] = -1;
@@ -320,7 +323,7 @@ void checkLostNeighbor()
         }
     }
     logContent = "  Finished checkLostNeighbor.";
-    logMessageAndTime(logContent.c_str());
+    // logMessageAndTime(logContent.c_str());
     // cout << logContent << endl;
 }
 
@@ -328,41 +331,41 @@ void processLSAMessage(string buffContent, int neighborId)
 {
     // cout << "Inside processLSAMessage function." << endl;
     string logContent = "    Entering processLSAMessage function.";
-    logMessageAndTime(logContent.c_str());
+    // logMessageAndTime(logContent.c_str());
     // cout << logContent << endl;
 
     string strLSA;
     strLSA.assign(buffContent.begin() + 4, buffContent.end() - 0);
 
     json LSA = json::parse(strLSA);
+    int sourceId = LSA["sourceId"];
     int otherSeq = LSA["seq"];
 
-    if (neighborId == myNodeId || otherSeq < seq[neighborId])
+    if (sourceId == myNodeId || otherSeq < seq[sourceId])
     {
+        char buff[200]; 
+        snprintf(buff, sizeof(buff), "    Old LSA from node %d, the received seq number is %d, and my recorded seq is %d. \n", neighborId, otherSeq, seq[sourceId]);
+        logMessageAndTime(buff);
         return;
     }
 
-    seq[neighborId] = otherSeq;
+    seq[sourceId] = otherSeq;
     map<int, int> otherLinks = LSA["links"];
 
     sendReceivedLSAToOtherNeighbors(buffContent, neighborId);
 
-    logContent = "    Received and forwarded paths from neighbor node ";
-    logContent += to_string(neighborId);
-    logContent += strLSA;
-    logMessageAndTime(logContent.c_str());
-    // cout << logContent << endl;
-
     for (int destId = 0; destId < 256; destId += 1)
     {
-        graph[neighborId][destId] = otherLinks[destId];
+        graph[sourceId][destId] = otherLinks[destId];
     }
 
-    logContent = "    Finished processing the neighbor ";
-    logContent += to_string(neighborId);
-    logContent += " 's LSA ";
-    logMessageAndTime(logContent.c_str());
+    char buff[200];
+    snprintf(buff, sizeof(buff),"     New LSA from node %d, with seq number %d.", sourceId, otherSeq);
+    logMessageAndTime(buff);
+
+    logMessageAndTime(strLSA.c_str());
     // cout << logContent << endl;
+
 }
 
 void processShareMessage(string buffContent, int neighborId)
@@ -410,7 +413,8 @@ void sendReceivedLSAToOtherNeighbors(string buffContent, int neighborId)
         }
     }
 
-    string logContent = "Resent received LSA update. ";
+    string logContent = "Resent received LSA from node ";
+    logContent += to_string(neighborId);
     logMessageAndTime(logContent.c_str());
     // cout << logContent << endl;
 }
@@ -430,6 +434,7 @@ void sendMyLSAToNeighbors()
             seq[myNodeId] += 1;
 
             json LSA = {
+                {"sourceId", myNodeId},
                 {"seq", seq[myNodeId]},
                 {"links", graph[myNodeId]}};
             string strLSA = LSA.dump();
