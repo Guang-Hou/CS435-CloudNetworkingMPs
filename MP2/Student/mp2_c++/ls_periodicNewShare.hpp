@@ -29,6 +29,7 @@
 #include <sys/types.h>
 #include <netinet/in.h>
 #include <sys/socket.h>
+#include <mutex>
 
 #define DEBUG 1
 
@@ -197,14 +198,13 @@ void listenForNeighbors()
 
     while (1)
     {
-        //memset(recvBuf, 0, sizeof(recvBuf));
+        memset(recvBuf, 0, sizeof(recvBuf));
         if ((bytesRecvd = recvfrom(mySocketUDP, recvBuf, BUFFERSIZE, 0,
                                    (struct sockaddr *)&theirAddr, &theirAddrLen)) == -1)
         {
             perror("connectivity listener: recvfrom failed");
             exit(1);
         }
-        recvBuf[bytesRecvd] = '\0';
 
         inet_ntop(AF_INET, &theirAddr.sin_addr, fromAddr, 100);
 
@@ -648,27 +648,28 @@ void setupNodeSockets()
         close(mySocketUDP);
         exit(2);
     }
+}
 
-    void logMessageAndTime(const char *message)
-    {
-        return;
-        char logLine[BUFFERSIZE];
-        sprintf(logLine, " %s\n", message);
-        fwrite(logLine, 1, strlen(logLine), flog);
-        fflush(flog);
-        logTime();
-    }
+void logMessageAndTime(const char *message)
+{
+    return;
+    char logLine[BUFFERSIZE];
+    sprintf(logLine, " %s\n", message);
+    fwrite(logLine, 1, strlen(logLine), flog);
+    fflush(flog);
+    logTime();
+}
 
-    void logTime()
-    {
-        struct timeval now;
-        gettimeofday(&now, 0);
+void logTime()
+{
+    struct timeval now;
+    gettimeofday(&now, 0);
 
-        char logLine[100];
-        sprintf(logLine, "Time is at <%ld.%06ld>\n", (long int)(now.tv_sec), (long int)(now.tv_usec));
-        fwrite(logLine, 1, strlen(logLine), flog);
-        fflush(flog);
-    }
+    char logLine[100];
+    sprintf(logLine, "Time is at <%ld.%06ld>\n", (long int)(now.tv_sec), (long int)(now.tv_usec));
+    fwrite(logLine, 1, strlen(logLine), flog);
+    fflush(flog);
+}
 
     /*
 void testDij(int nodeId, int destId)
