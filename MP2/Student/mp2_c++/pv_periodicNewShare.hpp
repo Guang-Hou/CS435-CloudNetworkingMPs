@@ -1,13 +1,15 @@
 /* Path Vector Routing
- - Periodically send only new, valid paths to existing neighbors. To avoid overflood the network if dynamically send every new path.
- - Upon receiving LSA, use it to update my paths but do not immediately send my updated paths out.
- - Immediately share all my valid paths to a new neighbor, either old or new paths. To accelerate the convergence.
+ - Periodically send only new, changed paths to existing neighbors. This avoids overflooding the network if dynamically send every new path.
+ - Upon receiving a neighbor LSA (fromID-it is for sure my neighbor, destID, dist, nextHop, nodesInPath)
+    - use it to update my paths but do not immediately send my updated paths out.
  - During the whole process, check if a path to destId is changed since previous periodical sending out. This changed[] will be used in periodical send out.
-    - New link or lost link
-    - processing LSA
+    - New link or lost link may change some of my path to some destID
+    - processing LSA may change some of my path to some destID
+- For a new neighbor
+    - Immediately share all my valid paths to a new neighbor, either old or new paths. To accelerate the convergence.
 */
 
-#pragma once
+//#pragma once
 #include "json.hpp"
 #include <iostream>
 #include <sstream>
@@ -17,13 +19,13 @@
 #include <climits>
 #include <string>
 #include <thread>
-#include <mutex>
 #include <stdio.h>
 #include <netdb.h>
 #include <map>
+#include <queue>
 #include <unordered_set>
+#include <unordered_map>
 #include <string.h>
-#include <atomic>
 #include <unistd.h>
 #include <errno.h>
 #include <sys/types.h>
@@ -48,49 +50,46 @@
                     __LINE__, __func__);                                         \
     } while (0)
 
-using json = nlohmann::json;
-
-int BUFFERSIZE = 1000;
-mutex m;
-
-using namespace std;
+//using json = nlohmann::json;
 
 typedef tuple<int, int, unordered_set<int>> PATH; // distance, nextHop, nodesInPath
 
+int BUFFERSIZE = 2000;
 int myNodeId, mySocketUDP;
 int linkCost[256];
 unordered_set<int> myNeighbors;
+mutex m;
 bool changed[256];  // has myPath[i] changed since last time 
 map<int, PATH> myPaths; // myPaths[i] means my path to destNode i: (distance, nextHop, nodesInPath)
 
-struct timeval previousHeartbeat[256]; // track last time a neighbor is seen to figure out who is lost
+struct timeval previousHeartbeat[256];      // track last time a neighbor is seen to figure out who is lost
 struct sockaddr_in allNodeSocketAddrs[256];
 FILE *flog;
 
 void init(int inputId, string costFile, string logFile);
 void readCostFile(const char *costFile);
 
-void listenForNeighbors();
+void *announceHeartbeat(void *unusedParam);
+void *announceLSA(void *unusedParam);
 
-void *announceToNeighbors(void *unusedParam);
+void listenForNeighbors();
 void checkNewNeighbor(int heardFrom);
 void checkLostNeighbor();
-void handleBrokenLink(int neighborId);
 
-void sharePathsToNewNeighbor(int newNeighborId);
-string generateStrPath(int destId);
-void sendLSAsToNeighbors();
+void sendMyLSAToNeighbors();
+void processLSAMessage(char *recvBuf, int bytesRecvd, int heardFrom);
+void sendReceivedLSAToOtherNeighbors(char *recvBuf, int bytesRecvd, int neighborId);
+void directMessage(char *recvBuf, int bytesRecvd);
+int getNextHop(int destId);
 
-void processLSAMessage(string buffContent, int neighborId);
-void processSingleLSA(int neighborId, int destId, int distance, int nextHop, set<int> nodesInPath);
-
-void sendOrFowdMessage(string recvBuf, int bytesRecvd);
-void directMessage(int destNodeId, string message, int messageByte);
+void syncSeq(int newNeighborId);
+void processSeqShare(string content, int heardFrom);
 
 void setupNodeSockets();
 void logMessageAndTime(const char *message);
 void logTime();
-void logMyPaths();
+
+//void testDij(int MyNodeId, int destId);
 
 void init(int inputId, string costFile, string logFile)
 {
@@ -147,8 +146,47 @@ void readCostFile(const char *costFile)
     // cout << "Finished reading cost file" << endl;
 }
 
+void *announceHeartbeat(void *unusedParam)
+{
+    // cout << "Inside announceHeartbeat function." << endl;
+
+    struct timespec sleepFor;
+    sleepFor.tv_sec = 0;
+    sleepFor.tv_nsec = 300 * 1000 * 1000; // 300 ms
+    const char *heartBeats = "H";
+
+    while (1)
+    {
+        for (int i = 0; i < 256; i += 1)
+        {
+            if (i != myNodeId)
+            {
+                sendto(mySocketUDP, heartBeats, 2, 0,
+                       (struct sockaddr *)&allNodeSocketAddrs[i], sizeof(allNodeSocketAddrs[i]));
+            }
+        }
+        nanosleep(&sleepFor, 0);
+    }
+}
+
+void *announceLSA(void *unusedParam)
+{
+    struct timespec sleepFor;
+    sleepFor.tv_sec = 0;
+    sleepFor.tv_nsec = 500 * 1000 * 1000; // 500 ms
+
+    if (isChanged)
+    {
+        sendMyLSAToNeighbors();
+
+        nanosleep(&sleepFor, 0);
+    }
+}
+
 void listenForNeighbors()
 {
+    // cout << "Inside listenForNeighbors function." << endl;
+
     char fromAddr[100];
     struct sockaddr_in theirAddr;
     socklen_t theirAddrLen = sizeof(theirAddr);
@@ -157,16 +195,16 @@ void listenForNeighbors()
 
     while (1)
     {
-        memset(recvBuf, 0, sizeof(recvBuf));
+        //memset(recvBuf, 0, sizeof(recvBuf));
         if ((bytesRecvd = recvfrom(mySocketUDP, recvBuf, BUFFERSIZE, 0,
                                    (struct sockaddr *)&theirAddr, &theirAddrLen)) == -1)
         {
             perror("connectivity listener: recvfrom failed");
             exit(1);
         }
-        inet_ntop(AF_INET, &theirAddr.sin_addr, fromAddr, 100);
+        recvBuf[bytesRecvd] = '\0';
 
-        string content(recvBuf, recvBuf + bytesRecvd + 1);
+        inet_ntop(AF_INET, &theirAddr.sin_addr, fromAddr, 100);
 
         if (bytesRecvd > BUFFERSIZE)
         {
@@ -175,13 +213,13 @@ void listenForNeighbors()
         }
 
         short int heardFrom = -1;
-        heardFrom = atoi(strchr(strchr(strchr(fromAddr, '.') + 1, '.') + 1, '.') + 1);
 
         if (strstr(fromAddr, "10.1.1."))
-        {
-            string logContent = "Received message from neighbor node ";
-            logContent += to_string(heardFrom);
-            logMessageAndTime(logContent.c_str());
+        {   heardFrom = atoi(strchr(strchr(strchr(fromAddr, '.') + 1, '.') + 1, '.') + 1);
+            // string logContent = "Received message(hello or LSA or send) from neighbor node ";
+            // logContent += to_string(heardFrom);
+            // logMessageAndTime(logContent.c_str());
+            // cout << logContent << endl;
 
             checkNewNeighbor(heardFrom);
             checkLostNeighbor();
@@ -189,110 +227,18 @@ void listenForNeighbors()
 
         if (!strncmp(recvBuf, "send", 4) || !strncmp(recvBuf, "fowd", 4)) // send/forward message
         {
-            sendOrFowdMessage(content, bytesRecvd);
+            directMessage(recvBuf, bytesRecvd);
         }
         else if (!strncmp(recvBuf, "LSAs", 4)) // LSA message
         {
-
-            string logContent = "    Starting processing LSAMessage function.";
-            logMessageAndTime(logContent.c_str());
-
-            string strLSA;
-            strLSA.assign(recvBuf + 4, recvBuf + bytesRecvd + 1);
-
-            logContent = "    After string assignment. ";
-            logMessageAndTime(logContent.c_str());
-
-            json LSA = json::parse(strLSA);
-            int neighborId = LSA["fromID"];
-            int destId = LSA["destID"];
-            int distance = LSA["dist"];
-            int nextHop = LSA["nextHop"];
-            set<int> nodesInPath = LSA["nodesInPath"];
-
-            logContent = "    After json::parse. ";
-            logMessageAndTime(logContent.c_str());
-
-            logContent = "    Received paths from neighbor node ";
-            logContent += to_string(heardFrom);
-            logContent += strLSA;
-            logMessageAndTime(logContent.c_str());
-
-            processSingleLSA(neighborId, destId, distance, nextHop, nodesInPath);
-
-            logContent = "    Finished processing the neighbor ";
-            logContent += to_string(heardFrom);
-            logContent += " 's LSA ";
-            logMessageAndTime(logContent.c_str());
-            // cout << logContent << endl;
+            processLSAMessage(recvBuf, bytesRecvd, heardFrom);
         }
-    }
-    //(should never reach here)
-    close(mySocketUDP);
-}
-
-void *announceToNeighbors(void *unusedParam)
-{
-    // cout << "Inside broadcastLSA function." << endl;
-
-    struct timespec sleepFor;
-    sleepFor.tv_sec = 0;
-    sleepFor.tv_nsec = 300 * 1000 * 1000; // 300 ms
-
-    while (1)
-    {
-        struct timespec sleepFor;
-        sleepFor.tv_sec = 0;
-        sleepFor.tv_nsec = 300 * 1000 * 1000; // 300 ms
-        const char *heartBeats = "HEREIAM";
-
-        for (int i = 0; i < 256; i += 1)
+        else if (!strncmp(recvBuf, "seqs", 4)) // new neighbor share path message
         {
-            // string logContent = "Sent haerbeats out. ";
-            // logMessageAndTime(logContent.c_str());
-
-            if (i != myNodeId)
-            {
-                // string logContent = "Inside sendHearbeat, will send haerbeat to node ";
-                // logContent += to_string(i);
-                // logMessageAndTime(logContent.c_str());
-
-                sendto(mySocketUDP, heartBeats, 8, 0,
-                    (struct sockaddr *)&allNodeSocketAddrs[i], sizeof(allNodeSocketAddrs[i]));
-            }
-        }
-   
-        sendLSAsToNeighbors();
-
-        nanosleep(&sleepFor, 0);
-    }
-}
-
-// Periodically send out new and valid path updates to existing neighbors
-void sendLSAsToNeighbors() {
-
-    for (int destId = 0; destId < 256; destId += 1)
-    {   
-        int myDistance = get<0>(myPaths[destId]);
-
-        for (const auto& nb: myNeighbors) {
-            bool isValidPath = get<2>(myPaths[destId]).count(nb) == 0;  // empty path or non-empty path without nb inside
-
-            if (changed[destId] && isValidPath) {
-                string path = generateStrPath(destId);
-                sendto(mySocketUDP, path.c_str(), path.length(), 0,
-                    (struct sockaddr *)&allNodeSocketAddrs[nb], sizeof(allNodeSocketAddrs[nb]));
-            }
-
-            m.lock();
-            changed[destId] = false;
-            m.unlock();
+            processSeqShare(recvBuf, heardFrom);
         }
     }
-
-    string logContent = "Sent out my LSA. ";
-    logMessageAndTime(logContent.c_str());
-    // cout << logContent << endl;
+    close(mySocketUDP);
 }
 
 void checkNewNeighbor(int heardFrom)
@@ -318,7 +264,6 @@ void checkNewNeighbor(int heardFrom)
         myNeighbors.insert(heardFrom);
 
         processSingleLSA(heardFrom, heardFrom, 0, heardFrom, unordered_set<int>{heardFrom}); 
-        sendLSAsToNeighbors();  
         sharePathsToNewNeighbor(heardFrom);
 
         logContent = "  Finished processing seeing new neighbor ";
@@ -365,6 +310,23 @@ void checkLostNeighbor()
     logMessageAndTime(logContent.c_str());
 }
 
+void handleBrokenLink(int neighborId)
+{
+    for (int destId = 0; destId < 256; destId += 1)
+    {
+        if (destId != myNodeId && destId != neighborId && get<0>(myPaths[destId]) != -1 && get<1>(myPaths[destId]) == neighborId)
+        { // I lost the path to destId due to broken link to the neighbor
+
+            get<0>(myPaths[destId]) = -1;
+            get<2>(myPaths[destId]).clear();
+
+            m.lock();
+            changed[destId] = true;
+            m.unlock();
+        }
+    }
+}
+
 string generateStrPath(int destId) //
 {
     char payload[BUFFERSIZE];
@@ -398,54 +360,32 @@ string generateStrPath(int destId) //
 }
 
 
-void sendOrFowdMessage(string buffContent, int bytesRecvd)
+// Periodically send out new and valid path updates to existing neighbors
+void sendLSAsToNeighbors() 
 {
-    const char *recvBuf = buffContent.c_str();
+    for (int destId = 0; destId < 256; destId += 1)
+    {   
+        int myDistance = get<0>(myPaths[destId]);
 
-    short int destNodeId;
-    memcpy(&destNodeId, recvBuf + 4, 2);
-    destNodeId = ntohs(destNodeId);
+        for (const auto& nb: myNeighbors) {
+            bool isValidPath = get<2>(myPaths[destId]).count(nb) == 0;  // empty path or non-empty path without nb inside
 
-    string logContent = "Received send or forward message.";
-    logMessageAndTime(logContent.c_str());
-    // cout << logContent << endl;
+            if (changed[destId] && isValidPath) {
+                string path = generateStrPath(destId);
+                sendto(mySocketUDP, path.c_str(), path.length(), 0,
+                    (struct sockaddr *)&allNodeSocketAddrs[nb], sizeof(allNodeSocketAddrs[nb]));
+            }
 
-    directMessage(destNodeId, buffContent, bytesRecvd + 1);
-}
-
-/*
-void processLSAMessage(string buffContent, int neighborId)
-{
-    string logContent = "    Entering processLSAMessage function.";
-    logMessageAndTime(logContent.c_str());
-    // cout << "Inside processLSAMessage function." << endl;
-    string strLSA;
-    strLSA.assign(buffContent.begin() + 4, buffContent.end() - 0);
-    json LSA = json::parse(strLSA);
-    auto neighborPaths = LSA.get<map<int, PATH>>();
-
-    logContent = "    Received paths from neighbor node ";
-    logContent += to_string(neighborId);
-    logContent += strLSA;
-    logMessageAndTime(logContent.c_str());
-    // cout << logContent << endl;
-
-    for (int i = 0; i < 256; i += 1)
-    {
-        if (i != myNodeId && i != neighborId)
-        {
-            processSingleLSA(neighborId, i, neighborPaths[i]);
+            m.lock();
+            changed[destId] = false;
+            m.unlock();
         }
     }
 
-    logContent = "    Finished processing the neighbor ";
-    logContent += to_string(neighborId);
-    logContent += " 's LSA ";
-
+    string logContent = "Sent out my LSA. ";
     logMessageAndTime(logContent.c_str());
     // cout << logContent << endl;
 }
-*/
 
 void processSingleLSA(int neighborId, int destId, int distance, int nextHop, set<int> nodesInPath)
 {
@@ -503,11 +443,11 @@ void processSingleLSA(int neighborId, int destId, int distance, int nextHop, set
     }
 }
 
-void sharePathsToNewNeighbor(int newNeighborId) // this will all valid paths out, including my self path
+void sharePathsToNewNeighbor(int newNeighborId) // this will send all valid paths out, except my self path which will be handled by neighbor's dection of me as new neighbor
 {
     for (int destId = 0; destId < 256; destId += 1)
     {
-        if (destId != newNeighborId && get<0>(myPaths[destId]) != -1 && get<2>(myPaths[destId]).count(newNeighborId) == 0)
+        if (destId != myNodeId && destId != newNeighborId && get<0>(myPaths[destId]) != -1 && get<2>(myPaths[destId]).count(newNeighborId) == 0)
         {
             string strLSA = generateStrPath(destId);
             sendto(mySocketUDP, strLSA.c_str(), strLSA.length(), 0,
@@ -525,87 +465,44 @@ void sharePathsToNewNeighbor(int newNeighborId) // this will all valid paths out
 }
 
 
-void handleBrokenLink(int neighborId)
+void directMessage(char *recvBuf, int bytesRecvd)
 {
-    for (int destId = 0; destId < 256; destId += 1)
-    {
-        if (destId != myNodeId && destId != neighborId && get<0>(myPaths[destId]) != -1 && get<1>(myPaths[destId]) == neighborId)
-        { // I lost the path to destId due to broken link to the neighbor
+    short int destNodeId;
+    memcpy(&destNodeId, recvBuf + 4, 2);
+    destNodeId = ntohs(destNodeId);
 
-            get<0>(myPaths[destId]) = -1;
-            get<2>(myPaths[destId]).clear();
+    // string logContent = "Received send or forward message.";
+    // logMessageAndTime(logContent.c_str());
+    // cout << logContent << endl;
 
-            m.lock();
-            changed[destId] = true;
-            m.unlock();
-        }
-    }
-}
-
-void logMessageAndTime(const char *message)
-{
-    // return;
-
-    char logLine[BUFFERSIZE];
-    sprintf(logLine, " %s\n", message);
-    fwrite(logLine, 1, strlen(logLine), flog);
-    fflush(flog);
-    logTime();
-}
-
-void logTime()
-{
-    struct timeval now;
-    gettimeofday(&now, 0);
-
-    char logLine[100];
-    sprintf(logLine, "Time is at <%ld.%06ld>\n", (long int)(now.tv_sec), (long int)(now.tv_usec));
-    fwrite(logLine, 1, strlen(logLine), flog);
-    fflush(flog);
-}
-
-void logMyPaths()
-{
-    char logLine[BUFFERSIZE];
-    json j_map(myPaths);
-    string path = j_map.dump();
-    sprintf(logLine, "%s\n", path.c_str());
-    fwrite(logLine, 1, strlen(logLine), flog);
-    fflush(flog);
-}
-
-void directMessage(int destNodeId, string message, int messageByte)
-{
     char logLine[BUFFERSIZE];
 
     if (myNodeId == destNodeId)
     {
-        sprintf(logLine, "receive packet message %s\n", message.c_str() + 6);
+        sprintf(logLine, "receive packet message %s\n", recvBuf + 6);
     }
     else
     {
-        int distance = get<0>(myPaths[destNodeId]);
-        if (distance != -1)
+        int nexthop = getNextHop(destNodeId);
+        if (nexthop != -1)
         {
-            int nexthop = get<1>(myPaths[destNodeId]);
-
-            if (!strncmp(message.c_str(), "send", 4))
+            if (!strncmp(recvBuf, "send", 4))
             {
-                char fowdMessage[messageByte];
+                char fowdMessage[bytesRecvd + 1];
                 strcpy(fowdMessage, "fowd");
-                memcpy(fowdMessage + 4, message.c_str() + 4, messageByte - 4);
+                memcpy(fowdMessage + 4, recvBuf + 4, bytesRecvd - 4);
 
-                sendto(mySocketUDP, fowdMessage, messageByte, 0,
+                sendto(mySocketUDP, fowdMessage, bytesRecvd, 0,
                        (struct sockaddr *)&allNodeSocketAddrs[nexthop], sizeof(allNodeSocketAddrs[nexthop]));
 
-                sprintf(logLine, "sending packet dest %d nexthop %d message %s\n", destNodeId, nexthop, message.c_str() + 6);
+                sprintf(logLine, "sending packet dest %d nexthop %d message %s\n", destNodeId, nexthop, recvBuf + 6);
             }
-            else if (!strncmp(message.c_str(), "fowd", 4))
+            else if (!strncmp(recvBuf, "fowd", 4))
             {
-                sendto(mySocketUDP, message.c_str(), messageByte, 0,
+                sendto(mySocketUDP, recvBuf, bytesRecvd, 0,
                        (struct sockaddr *)&allNodeSocketAddrs[nexthop], sizeof(allNodeSocketAddrs[nexthop]));
 
-                sprintf(logLine, "forward packet dest %d nexthop %d message %s\n", destNodeId, nexthop, message.c_str() + 6);
+                sprintf(logLine, "forward packet dest %d nexthop %d message %s\n", destNodeId, nexthop, recvBuf + 6);
             }
         }
         else
@@ -644,4 +541,26 @@ void setupNodeSockets()
         close(mySocketUDP);
         exit(2);
     }
+
+    void logMessageAndTime(const char *message)
+    {
+        return;
+        char logLine[BUFFERSIZE];
+        sprintf(logLine, " %s\n", message);
+        fwrite(logLine, 1, strlen(logLine), flog);
+        fflush(flog);
+        logTime();
+    }
+
+    void logTime()
+    {
+        struct timeval now;
+        gettimeofday(&now, 0);
+
+        char logLine[100];
+        sprintf(logLine, "Time is at <%ld.%06ld>\n", (long int)(now.tv_sec), (long int)(now.tv_usec));
+        fwrite(logLine, 1, strlen(logLine), flog);
+        fflush(flog);
+    }
+
 }

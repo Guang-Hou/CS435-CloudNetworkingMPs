@@ -1,7 +1,7 @@
 // path vector, sending single LSA updates to neighbors periodically
 // upon receiving LSA, process it but do not send it out immediately
 
-#include "pv_periodicNew.hpp"
+#include "pv_periodicNewShare.hpp"
 #include <iostream>
 #include <thread>
 #include <pthread.h>
@@ -20,8 +20,11 @@ int main(int argc, char **argv)
 
     init(inputId, costFile, logFile);
 
-    pthread_t announcerThread;
-    pthread_create(&announcerThread, 0, announceToNeighbors, (void *)0);
+    pthread_t announcerHeartbeat;
+    pthread_create(&announcerHeartbeat, 0, announceHeartbeat, (void *)0);
+
+    pthread_t announcerLSA;
+    pthread_create(&announcerLSA, 0, announceLSA, (void *)0);
 
     listenForNeighbors();
 }
