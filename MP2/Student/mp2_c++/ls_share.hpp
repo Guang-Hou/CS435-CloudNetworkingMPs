@@ -1,9 +1,10 @@
 /* Link State Routing
- - Once my link changes, send out LSA to neighbors.
+ // Once my link changes, send out LSA to neighbors.
+ - Periodically share LSA if my link status changes.
  - Upon receiving LSA,
     - immediately forward it out to my neighbors
     - use it to update my graph database but do not send my LSA out.
- - For new neighbor, share all my links to it.
+ - For new neighbor, share all my links to it. To begin, turn off this function.
 */
 
 #pragma once
@@ -59,7 +60,7 @@ int BUFFERSIZE = 3000;
 int myNodeId, mySocketUDP;
 int linkCost[256];
 // unordered_set<int> myNeighbors;
-// bool changed[256];             // has myPath[i] changed since last time
+bool isChanged;                // my link status has changed since last time send out LSA
 map<int, map<int, int>> graph; // graph[i][j] indicates i->j link status, -1 means not connected and 1 means they are not connected
 int nextHop[256];              // nexHop[i] means the nextHop to reach destination i, -1 means no reachable
 int seq[256];                  // seq[i] means the sequence number of previous LSA from node i
@@ -183,6 +184,8 @@ void *announceToNeighbors(void *unusedParam)
             }
         }
 
+        sendMyLSAToNeighbors();
+
         nanosleep(&sleepFor, 0);
     }
 }
@@ -273,8 +276,9 @@ void checkNewNeighbor(int heardFrom)
         // cout << logContent << endl;
 
         graph[myNodeId][heardFrom] = linkCost[heardFrom];
-        shareSeq(heardFrom);
-        sendMyLSAToNeighbors();
+        isChanged = true;
+        // shareSeq(heardFrom);
+        //  sendMyLSAToNeighbors();
 
         logContent = "  Finished processing seeing new neighbor ";
         logContent += to_string(heardFrom);
@@ -309,7 +313,8 @@ void checkLostNeighbor()
 
                 previousHeartbeat[i].tv_sec = 0;
                 graph[myNodeId][i] = -1;
-                sendMyLSAToNeighbors();
+                isChanged = false;
+                // sendMyLSAToNeighbors();
             }
         }
     }
@@ -382,30 +387,35 @@ void sendReceivedLSAToOtherNeighbors(string buffContent, int neighborId)
 void sendMyLSAToNeighbors()
 {
     // cout << "Inside sendMyLSAToNeighbors function." << endl;
-    for (int destId = 0; destId < 256; destId += 1)
+    if (isChanged)
     {
-        bool isNeighbor = graph[myNodeId][destId] != -1;
-
-        if (isNeighbor)
+        for (int destId = 0; destId < 256; destId += 1)
         {
-            char payload[BUFFERSIZE];
-            memset(payload, 0, BUFFERSIZE);
-            strcpy(payload, "LSAs");
-            seq[myNodeId] += 1;
+            bool isNeighbor = graph[myNodeId][destId] != -1;
 
-            json LSA = {
-                {"sourceId", myNodeId},
-                {"seq", seq[myNodeId]},
-                {"links", graph[myNodeId]}};
-            string strLSA = LSA.dump();
+            if (isNeighbor)
+            {
+                char payload[BUFFERSIZE];
+                memset(payload, 0, BUFFERSIZE);
+                strcpy(payload, "LSAs");
+                seq[myNodeId] += 1;
 
-            memcpy(payload + 4, strLSA.c_str(), strLSA.length());
+                json LSA = {
+                    {"sourceId", myNodeId},
+                    {"seq", seq[myNodeId]},
+                    {"links", graph[myNodeId]}};
+                string strLSA = LSA.dump();
 
-            // cout << "LSA string length " << strLSA.length() << endl;
-            sendto(mySocketUDP, payload, strLSA.length() + 5, 0,
-                   (struct sockaddr *)&allNodeSocketAddrs[destId], sizeof(allNodeSocketAddrs[destId]));
+                memcpy(payload + 4, strLSA.c_str(), strLSA.length());
+
+                // cout << "LSA string length " << strLSA.length() << endl;
+                sendto(mySocketUDP, payload, strLSA.length() + 5, 0,
+                       (struct sockaddr *)&allNodeSocketAddrs[destId], sizeof(allNodeSocketAddrs[destId]));
+            }
         }
     }
+
+    isChanged = false;
 
     // string logContent = "Sent out my updated LSA links. ";
     // logMessageAndTime(logContent.c_str());
