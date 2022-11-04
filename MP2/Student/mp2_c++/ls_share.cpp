@@ -22,6 +22,9 @@ int main(int argc, char **argv)
     pthread_t announcerThread;
     pthread_create(&announcerThread, 0, announceToNeighbors, (void *)0);
 
+    pthread_t lsaThread;
+    pthread_create(&lsaThread, 0, announceLSA, (void *)0);
+
     listenForNeighbors();
 
     // testDij(6, 3);

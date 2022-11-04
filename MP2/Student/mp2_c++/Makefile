@@ -14,4 +14,4 @@ ls_share: ls_share.cpp manager_send.c
 
 .PHONY: clean
 clean:
-	rm manager_send log1 log2 log3 ls_share
+	rm manager_send log1 log2 log3 ls_share ls_periodic
