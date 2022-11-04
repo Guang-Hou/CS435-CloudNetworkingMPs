@@ -1,6 +1,7 @@
 /* Link State Routing
  - Periodically send LSA only if my link status changes. New link status will be sent out. If no change, then no LSA.
  - Upon receiving LSA,
+    - check ttl if it is still fresh. If it is too old, discard it.
     - immediately forward it out to my neighbors
     - use it to update my graph database but do not send my LSA out.
  - For new neighbor, share all my links to it. Currently this function is not implemented.
