@@ -1,6 +1,6 @@
 // link stage, sending single path LSA updates to neighbor
 
-#include "ls_share.hpp"
+#include "ls_periodicAll.hpp"
 #include <iostream>
 #include <thread>
 #include <pthread.h>
