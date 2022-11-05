@@ -12,6 +12,10 @@ ls_share: ls_share.cpp manager_send.c
 	  gcc manager_send.c -o manager_send 
 	  g++ ls_share.cpp -pthread -o ls_share
 
+lsPeriodicNew: lsPeriodicNewShare.cpp manager_send.c
+	  gcc manager_send.c -o manager 
+	  g++ lsPeriodicNewShare.cpp -pthread -o lsP
+
 .PHONY: clean
 clean:
-	rm manager_send log1 log2 log3 ls_share ls_periodic
+	rm manager lsP log1 log2 log3 ls_share ls_periodic lsPeriodicNew

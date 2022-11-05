@@ -220,8 +220,8 @@ void listenForNeighbors()
         inet_ntop(AF_INET, &theirAddr.sin_addr, fromAddr, 100);
 
         //std::string logContent = "Received recvBuf content:  ";
-        //std::string content;
-        //content.assign(recvBuf, recvBuf + bytesRecvd);
+        std::string buffContent;
+        buffContent.assign(recvBuf, recvBuf + bytesRecvd);
         //logContent += content;
         //logMessageAndTime(logContent.c_str());
 
@@ -240,15 +240,15 @@ void listenForNeighbors()
         {
             //string logContent = "Got send or fowd message.";
             //logMessageAndTime(logContent.c_str());
-            directMessage(recvBuf, bytesRecvd);
+            directMessage(buffContent, bytesRecvd);
         }
         else if (!strncmp(recvBuf, "LSAs", 4)) // LSA message
         {
-            processLSAMessage(recvBuf, bytesRecvd, heardFrom);
+            processLSAMessage(buffContent, bytesRecvd, heardFrom);
         }
         else if (!strncmp(recvBuf, "seqs", 4)) // new neighbor share path message
         {
-            processSeqShareWrapper(recvBuf, bytesRecvd, heardFrom);
+            processSeqShareWrapper(buffContent, bytesRecvd, heardFrom);
         }
         else {
             string logContent = "Received heartbeat from neighbor node ";
