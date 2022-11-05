@@ -700,7 +700,6 @@ void directMessage(string buffContent, int bytesRecvd)
 void setupNodeSockets()
 {
     //std::cout << "Inside setup socket function." << std::endl;
-
     for (int i = 0; i < 256; i++)
     {
         char tempaddr[100];
