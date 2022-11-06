@@ -1,9 +1,18 @@
 // link state routing
 
 #include "lsPeriodicNewShare.hpp"
+#include <stdio.h>
+#include <stdlib.h>
+#include <map>
 #include <pthread.h>
 
-int main(int argc, char **argv)
+
+
+
+
+
+
+int main(int argc, char** argv)
 {
     if (argc != 4)
     {
@@ -17,11 +26,11 @@ int main(int argc, char **argv)
 
     init(inputId, costFile, logFile);
 
-    pthread_t announcerHeartbeat;
-    pthread_create(&announcerHeartbeat, 0, announceHeartbeat, (void *)0);
+    //pthread_t announcerHeartbeat;
+    //pthread_create(&announcerHeartbeat, 0, announceHeartbeat, (void *)0);
 
     pthread_t announcerLSA;
-    pthread_create(&announcerLSA, 0, announceLSA, (void *)0);
+    pthread_create(&announcerLSA, 0, announceLSA, (void*)0);
 
     listenForNeighbors();
 
