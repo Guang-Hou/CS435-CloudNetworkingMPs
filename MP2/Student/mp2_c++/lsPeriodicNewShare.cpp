@@ -1,16 +1,7 @@
 // link state routing
 
 #include "lsPeriodicNewShare.hpp"
-#include <stdio.h>
-#include <stdlib.h>
-#include <map>
 #include <pthread.h>
-
-
-
-
-
-
 
 int main(int argc, char** argv)
 {
