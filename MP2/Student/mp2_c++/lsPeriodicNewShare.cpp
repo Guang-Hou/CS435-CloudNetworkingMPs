@@ -17,8 +17,10 @@ int main(int argc, char** argv)
 
     init(inputId, costFile, logFile);
 
-    //pthread_t announcerHeartbeat;
-    //pthread_create(&announcerHeartbeat, 0, announceHeartbeat, (void *)0);
+    pthread_t announcerHeartbeat;
+    pthread_create(&announcerHeartbeat, 0, announceHeartbeat, (void*)0);
+
+    //detectNeighbors();
 
     pthread_t announcerLSA;
     pthread_create(&announcerLSA, 0, announceLSA, (void*)0);
