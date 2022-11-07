@@ -1,7 +1,7 @@
 all: main ls
 
 ls: lsPeriodicNewShare.cpp 
-	  g++ lsPeriodicNewShare.cpp -pthread -o ls
+	  g++ -pthread -g -std=c++11 -o ls lsPeriodicNewShare.cpp 
 
 pv: pv_periodicNewShare.cpp 
 	  g++ pv_PeriodicNewShare.cpp -pthread -o pv

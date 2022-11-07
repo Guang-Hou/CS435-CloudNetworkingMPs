@@ -2,11 +2,11 @@
 // upon receiving LSA, process it but do not send it out immediately
 
 #include "pv_periodicNewShare.hpp"
-#include <iostream>
-#include <thread>
+#include <stdlib.h>
+//#include <thread>
 #include <pthread.h>
 
-int main(int argc, char **argv)
+int main(int argc, char** argv)
 {
     if (argc != 4)
     {
@@ -21,10 +21,10 @@ int main(int argc, char **argv)
     init(inputId, costFile, logFile);
 
     pthread_t announcerHeartbeat;
-    pthread_create(&announcerHeartbeat, 0, announceHeartbeat, (void *)0);
+    pthread_create(&announcerHeartbeat, 0, announceHeartbeat, (void*)0);
 
     pthread_t announcerLSA;
-    pthread_create(&announcerLSA, 0, announceLSA, (void *)0);
+    pthread_create(&announcerLSA, 0, announceLSA, (void*)0);
 
     listenForNeighbors();
 }

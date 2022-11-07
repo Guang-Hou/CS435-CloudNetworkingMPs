@@ -17,6 +17,7 @@
 #include <arpa/inet.h>
 #include <climits>
 #include <string>
+#include <string.h>
 #include <thread>
 #include <stdio.h>
 #include <netdb.h>
@@ -24,7 +25,6 @@
 #include <queue>
 #include <unordered_set>
 #include <unordered_map>
-#include <string.h>
 #include <unistd.h>
 #include <errno.h>
 #include <sys/types.h>
@@ -49,9 +49,9 @@
                     __LINE__, __func__);                                         \
     } while (0)
 
-//using json = nlohmann::json;
+using json = nlohmann::json;
 
-typedef pair<int, int> DN; // Used for Dijkstra's algorithm, total distance to source node and this node's id
+typedef std::pair<int, int> DN; // Used for Dijkstra's algorithm, total distance to source node and this node's id
 
 int BUFFERSIZE = 3000;
 int myNodeId, mySocketUDP;
@@ -64,7 +64,7 @@ struct timeval previousHeartbeat[256];      // track last time a neighbor is see
 struct sockaddr_in allNodeSocketAddrs[256];
 FILE *flog;
 
-void init(int inputId, string costFile, string logFile);
+void init(int inputId, std::string costFile, std::string logFile);
 void readCostFile(const char *costFile);
 
 void *announceHeartbeat(void *unusedParam);
@@ -87,7 +87,7 @@ void logTime();
 
 //void testDij(int MyNodeId, int destId);
 
-void init(int inputId, string costFile, string logFile)
+void init(int inputId, std::string costFile, std::string logFile)
 {
     myNodeId = inputId;
 
@@ -202,7 +202,7 @@ void listenForNeighbors()
 
         if (bytesRecvd > BUFFERSIZE)
         {
-            string logContent = "Buffer size is not large enough!!!!";
+            std::string logContent = "Buffer size is not large enough!!!!";
             logMessageAndTime(logContent.c_str());
         }
 
@@ -244,8 +244,8 @@ void checkNewNeighbor(int heardFrom)
 
     if (previousSeenInSecond == 0)
     {
-        string logContent = "  Saw a new neighbor ";
-        logContent += to_string(heardFrom);
+        std::string logContent = "  Saw a new neighbor ";
+        logContent += std::to_string(heardFrom);
         logMessageAndTime(logContent.c_str());
         //  cout << logContent << endl;
 
@@ -299,12 +299,12 @@ void sendMyLSAToNeighbors()
             strcpy(payload, "LSAs");
             seq[myNodeId] += 1;
 
-            json LSA = {
+            nlohmann::json LSA = {
                 {"sourceId", myNodeId},
                 {"seq", seq[myNodeId]},
                 {"links", graph[myNodeId]},
                 {"ttl", now.tv_usec + 500000}};  // 500 ms
-            string strLSA = LSA.dump();
+            std::string strLSA = LSA.dump();
 
             memcpy(payload + 4, strLSA.c_str(), strLSA.length());
 
@@ -326,7 +326,7 @@ void processLSAMessage(char *recvBuff, int bytesRecvd, int neighborId)
     // logMessageAndTime(logContent.c_str());
     // cout << logContent << endl;
 
-    string strLSA;
+    std::string strLSA;
     strLSA.assign(recvBuff + 4, recvBuff + bytesRecvd);
 
     struct timeval now;
@@ -538,7 +538,7 @@ void setupNodeSockets()
         close(mySocketUDP);
         exit(2);
     }
-
+}
     void logMessageAndTime(const char *message)
     {
         return;

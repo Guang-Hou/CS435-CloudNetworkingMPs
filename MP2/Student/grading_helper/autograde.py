@@ -12,7 +12,7 @@ directory_results = "results/"
 manager_file = "./manager/manager_send"
 maketopology_file = "manager/make_topology.pl"
 network_name = "enp0s3" #Replace this with the name of the network you see with ifconfig command in the terminal
-program_name = "./main" #Replace this with your program name
+program_name = "./lsP" #Replace this with your program name
 
 def initialize_results():
 	if (os.path.exists(directory_results)):

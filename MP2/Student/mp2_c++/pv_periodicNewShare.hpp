@@ -83,6 +83,11 @@ void checkNewNeighbor(int heardFrom);
 void checkLostNeighbor();
 void handleBrokenLink(int neighborId);
 
+void syncSeq(int newNeighborId);
+void processSeqShare(string buffContent, int bytesRecvd, int newNeighborId);
+void processSeqShareWrapper(string buffContent, int bytesRecvd, int newNeighborId);
+
+
 void processLSAMessage(string buffContent, int bytesRecvd, int heardFrom);
 void processSingleLSA(int neighborId, int destId, int distance, int nextHop, unordered_set<int> nodesInPath);
 
@@ -235,7 +240,7 @@ void listenForNeighbors()
         }
         else if (!strncmp(recvBuf, "seqs", 4)) // new neighbor share path message
         {
-            //processSeqShare(buffContent, heardFrom);
+            processSeqShare(buffContent, heardFrom);
         }
         else {
             string logContent = "Received heartbeat from neighbor node ";
@@ -279,6 +284,106 @@ void checkNewNeighbor(int heardFrom)
     }
     string logContent = "  Finished processNeighborHeartbeat.";
     logMessageAndTime(logContent.c_str());
+}
+
+void syncSeq(int newNeighborId) // share my seq records to new neighbor
+{
+    char payload[BUFFERSIZE];
+    memset(payload, 0, BUFFERSIZE);
+
+    strcpy(payload, "seqs");
+
+    //seq_lock.lock();
+    nlohmann::json LSA = {
+        {"seqRecord", seqRecord},
+    };
+    //seq_lock.unlock();
+
+    std::string strLSA = LSA.dump();
+
+    // cout << "strLSA length " << strLSA.length() << endl;
+    memcpy(payload + 4, strLSA.c_str(), strLSA.length());
+
+    sendto(mySocketUDP, payload, strLSA.length() + 4, 0,
+        (struct sockaddr*)&allNodeSocketAddrs[newNeighborId], sizeof(allNodeSocketAddrs[newNeighborId]));
+
+    std::string logContent = "        Shared my seqRecord to neighbor";
+    logContent += std::to_string(newNeighborId);
+    logContent += " : ";
+    logContent += string(strLSA);
+    logMessageAndTime(logContent.c_str());
+}
+
+void processSeqShareWrapper(string buffContent, int bytesRecvd, int newNeighborId) // when receiving header "seqs"
+{
+    thread share_thread(processSeqShare, buffContent, bytesRecvd, newNeighborId);
+    share_thread.detach();
+}
+
+void processSeqShare(string buffContent, int bytesRecvd, int newNeighborId) // when receiving header "seqs"
+{
+    // cout << "Inside sharePathsToNewNeighbor function." << endl;
+    // string logContent = "Inside processSeqShare function. ";
+    // logContent += to_string(newNeighborId);
+    // logMessageAndTime(logContent.c_str());
+
+    std::string strSeq;
+    strSeq.assign(buffContent.c_str() + 4, buffContent.c_str() + bytesRecvd);
+
+    string logContent = "        Received new neighbor seq list from neighbor  ";
+    logContent += to_string(newNeighborId);
+    logContent += strSeq;
+    logMessageAndTime(logContent.c_str());
+
+    //cout << logContent << endl;
+    nlohmann::json LSA = nlohmann::json::parse(strSeq);
+    map<int, int> otherSeq = LSA["seqRecord"];
+
+    //graph_lock.lock();
+    //map<int, map<int, int>> graphCopy = graph;
+    //graph_lock.unlock();
+
+    //seq_lock.lock();
+    //map<int, int> seqCopy = seq;
+    //seq_lock.unlock();
+
+    char payload[BUFFERSIZE];
+    for (int i = 0; i < 256; i += 1)
+    {
+        if (i != newNeighborId && i != myNodeId && seqRecord[i] > 0 && seqRecord[i] > otherSeq[i]) // do not need to share mine, a new neibhbor is an enent triggering a LSA already
+        {
+            struct timeval now;
+            gettimeofday(&now, 0);
+
+            memset(payload, 0, BUFFERSIZE);
+            strcpy(payload, "LSAs");
+
+            nlohmann::json LSA = {
+                {"sourceId", i},
+                {"seq", seqRecord[i]},
+                {"links", graph[i]},
+                //{"ttl", (now.tv_sec * 1000000L + now.tv_usec + 500000) / 1000} }; // 500 ms
+                {"ttl", 0 } // mark this that it is repacked by me, not from soureId
+            };
+
+            std::string strLSA = LSA.dump();
+
+            memcpy(payload + 4, strLSA.c_str(), strLSA.length());
+
+            sendto(mySocketUDP, payload, strLSA.length() + 5, 0,
+                (struct sockaddr*)&allNodeSocketAddrs[newNeighborId], sizeof(allNodeSocketAddrs[newNeighborId]));
+
+            std::string logContent = "        Shared my newer path of sourceId ";
+            logContent += to_string(i);
+            logContent += " to new neighbor ";
+            logContent += std::to_string(newNeighborId);
+            logContent += " : ";
+            logContent += string(strLSA);
+            logMessageAndTime(logContent.c_str());
+            //  cout << logContent << endl;
+
+        }
+    }
 }
 
 void checkLostNeighbor()
@@ -562,18 +667,24 @@ void setupNodeSockets()
         exit(1);
     }
 
-    struct sockaddr_in bindAddr = allNodeSocketAddrs[myNodeId];
+    char myAddr[100];
+    struct sockaddr_in bindAddr;
+    sprintf(myAddr, "10.1.1.%d", myNodeId);
+    memset(&bindAddr, 0, sizeof(bindAddr));
+    bindAddr.sin_family = AF_INET;
+    bindAddr.sin_port = htons(7777);
+    inet_pton(AF_INET, myAddr, &bindAddr.sin_addr);
     if (bind(mySocketUDP, (struct sockaddr*)&bindAddr, sizeof(struct sockaddr_in)) < 0)
     {
-        perror("bind error");
+        perror("bind");
         close(mySocketUDP);
-        exit(2);
+        exit(1);
     }
 }
 
 void logMessageAndTime(const char* message)
 {
-    return;
+    //return;
     char logLine[BUFFERSIZE];
     sprintf(logLine, " %s\n", message);
     fwrite(logLine, 1, strlen(logLine), flog);
