@@ -1,9 +1,8 @@
-// path vector, sending single LSA updates to neighbors periodically
-// upon receiving LSA, process it but do not send it out immediately
+/* Path vector routing, sending single LSA updates to neighbors periodically. 
+   Share my newer paths to new neighbor. */
 
 #include "pv_periodicNewShare.hpp"
 #include <stdlib.h>
-//#include <thread>
 #include <pthread.h>
 
 int main(int argc, char** argv)
@@ -27,4 +26,6 @@ int main(int argc, char** argv)
     pthread_create(&announcerLSA, 0, announceLSA, (void*)0);
 
     listenForNeighbors();
+
+    // testDij(3);
 }
