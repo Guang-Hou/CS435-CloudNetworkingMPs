@@ -404,7 +404,6 @@ int getNextHop(int destId)
     int distanceToMyNode[256]; // i's total distance to desId
     prev[destId] = -1;
     bool visited[256];
-    visited[myNodeId] = true;
 
     class Compare
     {
@@ -419,41 +418,34 @@ int getNextHop(int destId)
     for (auto const& kv : graph) {
         int nodeId = kv.first;
         distanceToMyNode[nodeId] = INT_MAX;
-        //frontier.push(std::make_pair(INT_MAX, nodeId));
     }
     distanceToMyNode[myNodeId] = 0;
     frontier.push(std::make_pair(0, myNodeId));
 
     bool found = false;
     while (!frontier.empty()) {
-
         int uDist = frontier.top().first;
         int u = frontier.top().second;
-
         frontier.pop();
-        //visited[u] = true;
-        //if (u == destId) {
-        //    break;
-        //}
+
+        if (visited[u]) {  // remove redudent entries of larger distance for teh same node
+            continue;
+        } 
+        visited[u] = true;
+
+        if (u == destId) {
+            break;
+        }
         for (auto const& kvPair : graph[u].second) {  // kv will be u's adjacent list map: (neighborId, cost)
             int v = kvPair.first;
             int uvCost = kvPair.second;
-            if (distanceToMyNode[u] + uvCost < distanceToMyNode[v]) {
-                distanceToMyNode[v] = uDist + uvCost;
-                frontier.push(std::make_pair(distanceToMyNode[v], v));
-                prev[v] = u;
-            }
-
-            /*
             if (visited[v] == false) {
-                if (distanceToMyNode[u] + uvCost < distanceToMyNode[v]) {
+                if (uDist + uvCost < distanceToMyNode[v]) {
                     distanceToMyNode[v] = distanceToMyNode[u] + uvCost;
-                    frontier.push(std::make_pair(distanceToMyNode[v], v));
+                    frontier.push(std::make_pair(distanceToMyNode[v], v));  // this may add mutiple copies of one node to the priority_queue
                     prev[v] = u;
                 }
-                visited[v] = true;
             }
-            */
         }
     }
 
