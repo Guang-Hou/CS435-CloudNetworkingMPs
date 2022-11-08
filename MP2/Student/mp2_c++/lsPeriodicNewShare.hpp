@@ -31,7 +31,7 @@
 #include <netinet/in.h>
 #include <sys/socket.h>
 #include <atomic>
-#define BUFFERSIZE 3000
+#define BUFFERSIZE 2000
 
 using json = nlohmann::json;
 using namespace std;
@@ -57,17 +57,20 @@ void* announceHeartbeat(void* unusedParam);
 void* announceLSA(void* unusedParam);
 void detectNeighbors();
 void listenForNeighbors();
-bool checkNewNeighbor(int heardFrom)
+bool checkNewNeighbor(int heardFrom);
 void checkLostNeighbor();
+void broadcastToValidNeighbor(const char* packetBuffer, int packetSize, int skipNeighbor);
 
 void syncSeq(int newNeighborId);
 void processSeqShare(const char* recvBuf, int bytesRecvd, int newNeighborId);
 int createLSAPacket(char* packetBuffer, int nodeId);
 
 void sendLSAToNeighbors();
-void processLSAMessage(const char* recvBuf,, int bytesRecvd, int heardFrom);
+//void processLSAMessage(const char* recvBuf, int bytesRecvd, int heardFrom);
+void processLSAMessage(string buffContent, int bytesRecvd, int heardFrom);
 int getNextHop(int destId);
-void directMessage(const char* recvBuf, int bytesRecvd);
+//void directMessage(const char* recvBuf, int bytesRecvd);
+void directMessage(string buffContent, int bytesRecvd);
 // void testDij(int MyNodeId, int destId);
 
 void setupNodeSockets();
@@ -115,7 +118,7 @@ void* announceHeartbeat(void* unusedParam) {
     }
 }
 
-/*  Periodically chcek if there is any change in my link status (new neighbor or I lost any neighbor), 
+/*  Periodically chcek if there is any change in my link status (new neighbor or I lost any neighbor),
     send a new LSA to my neighbors. */
 void* announceLSA(void* unusedParam) {
     struct timespec sleepFor;
@@ -167,23 +170,25 @@ void listenForNeighbors() {
             if (th[0].joinable()) {
                 th[0].join();
             }
-            th[0] = thread(directMessage, buffContent.c_str(), bytesRecvd);
+            th[0] = thread(directMessage, buffContent, bytesRecvd);
 
             // if not using separate thread, no need to create a string
-            // directMessage(recvBuf, bytesRecvd);
+            //directMessage(recvBuf, bytesRecvd);
         }
         // LSA message
         else if (!strncmp(recvBuf, "LSAs", 4)) {
+
             string buffContent;
             buffContent.assign(recvBuf, recvBuf + bytesRecvd);
             if (th[1].joinable()) {
                 th[1].join();
             }
-            th[1] = thread(processLSAMessage, buffContent.c_str(), bytesRecvd, heardFrom);
+            th[1] = thread(processLSAMessage, buffContent, bytesRecvd, heardFrom);
+
 
             // if not using separate thread, no need to create a string
-            // processLSAMessage(recvBuf, bytesRecvd, heardFrom);
-        } 
+            //processLSAMessage(recvBuf, bytesRecvd, heardFrom);
+        }
         // seqShare message from new neighbor
         else if (!strncmp(recvBuf, "seqs", 4)) {
             //string buffContent;
@@ -196,14 +201,14 @@ void listenForNeighbors() {
             // if not using separate thread, no need to create a string
             //processSeqShare(recvBuf, bytesRecvd, heardFrom);
         }
-        
+
     }
     close(mySocketUDP);
 }
 
 /* When receiving a data from a neighbor, check if it is a new neighbor. */
 bool checkNewNeighbor(int heardFrom)
-{   
+{
     bool isNew = false;
     graph_lock.lock();
     if (graph[myNodeId].second.find(heardFrom) == graph[myNodeId].second.end()) {
@@ -218,27 +223,29 @@ bool checkNewNeighbor(int heardFrom)
 
 /* Check if there is any neighbor link is broken.
    This is used in announceLSA thread, so we need lock to protect shared data. */
-void checkLostNeighbor()  {
+void checkLostNeighbor() {
     struct timeval now;
     gettimeofday(&now, 0);
 
-    for (int i = 0; i < 256; i += 1) {
-        if (i != myNodeId && graph[myNodeId].second.find(i) != graph[myNodeId].second.end()) {
-            long timeDifference = (now.tv_sec - previousHeartbeat[i].tv_sec) * 1000000L + now.tv_usec - previousHeartbeat[i].tv_usec;
-            if (timeDifference > 800000) { // saw befor in longer than 800 ms
-                graph_lock.lock();
-                graph[myNodeId].second.erase(i);
-                graph_lock.unlock();
+    // graph[myNodeId].second is the map: neighborId -> cost
+    for (auto it = graph[myNodeId].second.cbegin(); it != graph[myNodeId].second.cend(); ) {
+        long timeDifference = (now.tv_sec - previousHeartbeat[it->first].tv_sec) * 1000000L + now.tv_usec - previousHeartbeat[it->first].tv_usec;
+        if (it->first != myNodeId && timeDifference > 800000) { // saw befor in longer than 800 ms
+            graph_lock.lock();
+            graph[myNodeId].second.erase(it++);
+            graph_lock.unlock();
 
-                isChanged = true;
-            }
+            isChanged = true;
+        }
+        else {
+            ++it;
         }
     }
 }
 
-/* Share my active nodes' seq records to the new neighbor. 
+/* Share my active nodes' seq records to the new neighbor.
    The message format is ("seqs", map of validSeq <activeNodeId, latest seq number>). */
-void syncSeq(int newNeighborId) 
+void syncSeq(int newNeighborId)
 {
     char payload[BUFFERSIZE];
     memset(payload, 0, BUFFERSIZE);
@@ -247,7 +254,7 @@ void syncSeq(int newNeighborId)
     map<int, int> validSeq;
     for (int i = 0; i < 256; i += 1) {
         if (graph.find(i) != graph.end()) {  // graph only stores active node sequence sicne a node record is created when seeing a LSA
-            validSeq[i] = graph[i].first;                      
+            validSeq[i] = graph[i].first;
         }
     }
     json myAdj(validSeq);  // it is a map nodeId->seq number for valid node in my graph
@@ -255,35 +262,37 @@ void syncSeq(int newNeighborId)
 
     memcpy(payload + 4, strAdj.c_str(), strAdj.length());
 
-    sendto(mySocketUDP, payload, strLSA.length() + 4, 0,
+    sendto(mySocketUDP, payload, strAdj.length() + 4, 0,
         (struct sockaddr*)&allNodeSocketAddrs[newNeighborId], sizeof(allNodeSocketAddrs[newNeighborId]));
 }
 
 /* Process the syncSeq message from new neighbor. The message header is "seqs"*/
-void processSeqShare(const char* recvBuf, int bytesRecvd, int newNeighborId) 
+void processSeqShare(const char* recvBuf, int bytesRecvd, int newNeighborId)
 {
     std::string strSeq;
     strSeq.assign(recvBuf + 4, recvBuf + bytesRecvd);
 
     map<int, int> otherSeq = json::parse(strSeq);  // node->seq in new neighbor's database
 
-    // if I have newer sequence for a node, share this node's LSA to the neighbor
-    for (auto const& i : graph)
-    {   
-        bool needToShare = otherSeq.find(i) == otherSeq.end() || graph[i].first > otherSeq[i]; // my record does exit in neighbor or my record is newer
+    // if I have a node sequence which the other node doesn't have, or I have  a newer sequence for a node, 
+    // share this node's LSA to the neighbor.
+    for (auto const& kvPair : graph)
+    {
+        bool needToShare = otherSeq.count(kvPair.first) == 0 || graph[kvPair.first].first > otherSeq[kvPair.first]; // my record does exit in neighbor or my record is newer
 
-        char packetBuffer[BUFFERSIZE];
-        memset(packetBuffer, 0, BUFFERSIZE);
+        if (needToShare) {
+            char packetBuffer[BUFFERSIZE];
+            memset(packetBuffer, 0, BUFFERSIZE);
 
-        int packetSize = createLSAPacket(packetBuffer, i);
+            int packetSize = createLSAPacket(packetBuffer, kvPair.first);
 
-        sendto(mySocketUDP, packetBuffer, packetSize, 0,
-            (struct sockaddr*)&allNodeSocketAddrs[newNeighborId], sizeof(allNodeSocketAddrs[newNeighborId]));
-        
+            sendto(mySocketUDP, packetBuffer, packetSize, 0,
+                (struct sockaddr*)&allNodeSocketAddrs[newNeighborId], sizeof(allNodeSocketAddrs[newNeighborId]));
+        }
     }
 }
 
-/* Create LSA packet for the nodeId in my graph. Store the restuls in bufer packetBuffer, return the byte size of LSA packet. 
+/* Create LSA packet for the nodeId in my graph. Store the restuls in bufer packetBuffer, return the byte size of LSA packet.
    LSA format is ("LSAs", nodeId, sequenceNum, map of all adj neighbors <neighbor, cost>).
    This is used in sendLSAToNeighbors() and processSeqShare(). */
 int createLSAPacket(char* packetBuffer, int nodeId) {
@@ -324,8 +333,10 @@ void sendLSAToNeighbors() {
 
 /*  Process the received LSA message, discard it if it is not newer than my record.
     Send it to other neighbors (except the neighbor sendind this to me). */
-void processLSAMessage(const char* recvBuf, int bytesRecvd, int neighborId)
+    //void processLSAMessage(const char* recvBuf, int bytesRecvd, int neighborId)
+void processLSAMessage(string buffContent, int bytesRecvd, int neighborId)
 {
+    const char* recvBuf = buffContent.c_str();
     std::string strLSA;
     strLSA.assign(recvBuf + 4 + sizeof(short int) + sizeof(int), recvBuf + bytesRecvd);
 
@@ -333,11 +344,11 @@ void processLSAMessage(const char* recvBuf, int bytesRecvd, int neighborId)
     int receivedSeq;
     memcpy(&sourceId, recvBuf + 4, sizeof(short int));
     memcpy(&receivedSeq, recvBuf + 4 + sizeof(short int), sizeof(int));
-    bool seqExistAndLarger = graph.find[i] != graph.end() && graph[i].first >= receiveSeq;
+    bool seqExistAndLarger = graph.find(sourceId) != graph.end() && graph[sourceId].first >= receivedSeq;
 
     if (sourceId == myNodeId || seqExistAndLarger) {
         char buff[200];
-        snprintf(buff, sizeof(buff), "Old LSA from neighbor %d, for sourceId %d, the received seq number is %d, and my recorded seq is %d.", neighborId, sourceId, receivedSeq, graph[i].first);
+        snprintf(buff, sizeof(buff), "Old LSA from neighbor %d, for sourceId %d, the received seq number is %d, and my recorded seq is %d.", neighborId, sourceId, receivedSeq, graph[sourceId].first);
         logMessageAndTime(buff);
         return;
     }
@@ -345,23 +356,25 @@ void processLSAMessage(const char* recvBuf, int bytesRecvd, int neighborId)
     map<int, int> otherAdj = json::parse(strLSA);
 
     graph_lock.lock();
-    graph[i].first = receivedSeq;
-    graph[i].second = otherAdj;
+    graph[sourceId].first = receivedSeq;
+    graph[sourceId].second = otherAdj;
     graph_lock.unlock();
 
     char buff[200];
-    snprintf(buff, sizeof(buff), "New LSA from neighbor %d, for sourceId %d, the received seq number is %d, and my recorded seq is %d. The links are %s.", neighborId, sourceId, receivedSeq, graph[i].first, buffContent.c_str() + 8);
+    snprintf(buff, sizeof(buff), "New LSA from neighbor %d, for sourceId %d, the received seq number is %d, and my recorded seq is %d. The links are %s.", neighborId, sourceId, receivedSeq, graph[sourceId].first, recvBuf + 4 + sizeof(short int) + sizeof(int));
     logMessageAndTime(buff);
 
     broadcastToValidNeighbor(recvBuf, bytesRecvd, neighborId);
 }
 
-/* send out content to my valid neighbors. It isused for sendLSAToNeighbors() and processLSAMessage(). */
+/* Send out content to my valid neighbors. It is used for sendLSAToNeighbors() and processLSAMessage(). */
 void broadcastToValidNeighbor(const char* packetBuffer, int packetSize, int skipNeighbor) {
-    for (int i = 0; i < 256; i += 1) {
-        if (i != myNodeId && i != skipNeighbor && graph[myNodeId].second.find(i) != graph[myNodeId].second.end()) {
+    // iterate through the adjacey list Map:  neighborID -> cost
+    for (auto const& kv : graph[myNodeId].second) {
+        // here we will not send the message to the skiNeighbor, it is useful for resend LSA and skip the neighbor sending this LSA to me
+        if (kv.first != myNodeId && kv.first != skipNeighbor) {
             sendto(mySocketUDP, packetBuffer, packetSize, 0,
-                (struct sockaddr*)&allNodeSocketAddrs[i], sizeof(allNodeSocketAddrs[i]));
+                (struct sockaddr*)&allNodeSocketAddrs[kv.first], sizeof(allNodeSocketAddrs[kv.first]));
         }
     }
 }
@@ -369,6 +382,23 @@ void broadcastToValidNeighbor(const char* packetBuffer, int packetSize, int skip
 /* Run Dijkstra's algorithm to find nextHop to reach destId from myself. */
 int getNextHop(int destId)
 {
+    char payload[BUFFERSIZE];
+    memset(payload, 0, BUFFERSIZE);
+    strcpy(payload, "seqs");
+
+    map<int, int> validSeq;
+    for (int i = 0; i < 256; i += 1) {
+        if (graph.find(i) != graph.end()) {  // graph only stores active node sequence sicne a node record is created when seeing a LSA
+            validSeq[i] = graph[i].first;
+        }
+    }
+    json myAdj(validSeq);  // it is a map nodeId->seq number for valid node in my graph
+    std::string strAdj = myAdj.dump();
+
+    memcpy(payload + 4, strAdj.c_str(), strAdj.length());
+
+    logMessageAndTime(payload);
+
     // cout << "Inside getNextHop function." << endl;
     int prev[256];             // i's previous node in path to desId
     int distanceToMyNode[256]; // i's total distance to desId
@@ -376,88 +406,98 @@ int getNextHop(int destId)
     bool visited[256];
     visited[myNodeId] = true;
 
-    std::priority_queue<DN, std::vector<DN>, std::greater<DN>> frontier;  // pair<distanceToMyNode, nodeId>
-    frontier.push(std::make_pair(0, myNodeId));
-
-    for (int i = 0; i < 256; i += 1)
+    class Compare
     {
-        distanceToMyNode[i] = INT_MAX;
+    public:
+        bool operator() (DN d1, DN d2)
+        {
+            return d1.first > d2.first || (d1.first == d2.first && d1.second > d2.second);
+        }
+    };
+
+    std::priority_queue<DN, std::vector<DN>, Compare> frontier;  // pair<distanceToMyNode, nodeId>
+    for (auto const& kv : graph) {
+        int nodeId = kv.first;
+        distanceToMyNode[nodeId] = INT_MAX;
+        //frontier.push(std::make_pair(INT_MAX, nodeId));
     }
     distanceToMyNode[myNodeId] = 0;
+    frontier.push(std::make_pair(0, myNodeId));
 
     bool found = false;
+    while (!frontier.empty()) {
 
-    while (!frontier.empty())    {
-        int size = frontier.size();
+        int uDist = frontier.top().first;
+        int u = frontier.top().second;
 
-        for (int i = 0; i < size; i += 1)    {
-            int dist = frontier.top().first;
-            int u = frontier.top().second;
-
-            frontier.pop();
-
-            if (u == destId)   {
-                found = true;
-                break;
+        frontier.pop();
+        //visited[u] = true;
+        //if (u == destId) {
+        //    break;
+        //}
+        for (auto const& kvPair : graph[u].second) {  // kv will be u's adjacent list map: (neighborId, cost)
+            int v = kvPair.first;
+            int uvCost = kvPair.second;
+            if (distanceToMyNode[u] + uvCost < distanceToMyNode[v]) {
+                distanceToMyNode[v] = uDist + uvCost;
+                frontier.push(std::make_pair(distanceToMyNode[v], v));
+                prev[v] = u;
             }
 
-            if (graph.find(u) != graph.end()) {
-                for (auto const& v : graph[u].second) {
-                    if (!visited[v]) {
-                        if (distanceToMyNode[v] > distanceToMyNode[u] + graph[u].second[v])      {
-                            distanceToMyNode[v] = distanceToMyNode[u] + graph[u].second[v];
-                        }
-
-                        frontier.push(std::make_pair(distanceToMyNode[v], v));
-                        prev[v] = u;
-                        visited[v] = true;
-                    }
+            /*
+            if (visited[v] == false) {
+                if (distanceToMyNode[u] + uvCost < distanceToMyNode[v]) {
+                    distanceToMyNode[v] = distanceToMyNode[u] + uvCost;
+                    frontier.push(std::make_pair(distanceToMyNode[v], v));
+                    prev[v] = u;
                 }
+                visited[v] = true;
             }
-        }
-
-        if (found)     {
-            break;
+            */
         }
     }
 
-    if (prev[destId] == -1)   {
-        // string logContent = "In getNextHop, not find next hop";
-        // logMessageAndTime(logContent.c_str());
+    if (prev[destId] == -1) {
+        string logContent = "In getNextHop, not find next hop";
+        logMessageAndTime(logContent.c_str());
         return -1;
     }
 
     int p = destId;
-    while (prev[p] != myNodeId)   {
+    while (prev[p] != myNodeId) {
         p = prev[p];
     }
 
     // string logContent = "In getNextHop, found next hop";
     // logMessageAndTime(logContent.c_str());
-
     return p;
 }
 
 /* Run init() first, then run this function to find the shortest path from myNodeId to destId. */
 void testDij(int destId)
 {
-    graph[0].second = {{255, 555}};
-    graph[1].second = {{2, 54}, {4, 1}, {5, 2}, {6, 1}, {255, 1}};
-    graph[2].second = {{1, 54}, {3, 1}, {5, 1}};
-    graph[3].second = {{2, 1}, {4, 1}};
-    graph[4].second = {{1, 1}, {3, 1}, {7, 1}};
-    graph[5].second = {{1, 2}, {2, 2}, {6, 1}};
-    graph[6].second = {{7, 3}, {1, 1}, {5, 1}};
-    graph[7].second = {{6, 3}, {4, 1}};
-    graph[255].second = {{0, 555}, {1, 1}};
+    //graph =  [[0,[1,[[0,0],[1,1],[10,1]]]],[1,[1,[[0,1],[1,0],[2,1],[11,1]]]],[2,[1,[[1,1],[2,0],[3,1],[12,1]]]],[3,[1,[[2,1],[3,0],[4,1],[13,1]]]],[4,[2,[[3,1],[4,0],[5,1],[14,1]]]],[5,[2,[[4,1],[5,0],[6,1],[15,1]]]],[6,[1,[[5,1],[6,0],[7,1],[16,1]]]],[7,[1,[[6,1],[7,0],[17,1]]]],[10,[1,[[0,1],[10,0],[11,1],[20,1]]]],[11,[2,[[1,1],[10,1],[11,0],[12,1],[21,1]]]],[12,[1,[[2,1],[11,1],[12,0],[13,1],[22,1]]]],[13,[2,[[3,1],[12,1],[13,0],[14,1],[23,1]]]],[14,[1,[[4,1],[13,1],[14,0],[15,1],[24,1]]]],[15,[2,[[5,1],[14,1],[15,0],[16,1],[25,1]]]],[16,[2,[[6,1],[15,1],[16,0],[17,1],[26,1]]]],[17,[1,[[7,1],[16,1],[17,0],[27,1]]]],[20,[1,[[10,1],[20,0],[21,1],[30,1]]]],[21,[1,[[11,1],[20,1],[21,0],[22,1],[31,1]]]],[22,[2,[[12,1],[21,1],[22,0],[23,1],[32,1]]]],[23,[1,[[13,1],[22,1],[23,0],[24,1],[33,1]]]],[24,[2,[[14,1],[23,1],[24,0],[25,1],[34,1]]]],[25,[1,[[15,1],[24,1],[25,0],[26,1],[35,1]]]],[26,[1,[[16,1],[25,1],[26,0],[27,1],[36,1]]]],[27,[2,[[17,1],[26,1],[27,0],[37,1]]]],[30,[2,[[20,1],[30,0],[31,1],[40,1]]]],[31,[1,[[21,1],[30,1],[31,0],[32,1],[41,1]]]],[32,[2,[[22,1],[31,1],[32,0],[33,1],[42,1]]]],[33,[2,[[23,1],[32,1],[33,0],[34,1],[43,1]]]],[34,[2,[[24,1],[33,1],[34,0],[35,1],[44,1]]]],[35,[2,[[25,1],[34,1],[35,0],[36,1],[45,1]]]],[36,[1,[[26,1],[35,1],[36,0],[37,1],[46,1]]]],[37,[1,[[27,1],[36,1],[37,0],[47,1]]]],[40,[1,[[30,1],[40,0],[41,1],[50,1]]]],[41,[1,[[31,1],[40,1],[41,0],[42,1],[51,1]]]],[42,[2,[[32,1],[41,1],[42,0],[43,1],[52,1]]]],[43,[1,[[33,1],[42,1],[43,0],[44,1],[53,1]]]],[44,[2,[[34,1],[43,1],[44,0],[45,1],[54,1]]]],[45,[2,[[35,1],[44,1],[45,0],[46,1],[55,1]]]],[46,[1,[[36,1],[45,1],[46,0],[47,1],[56,1]]]],[47,[1,[[37,1],[46,1],[47,0],[57,1]]]],[50,[2,[[40,1],[50,0],[51,1],[60,1]]]],[51,[2,[[41,1],[50,1],[51,0],[52,1],[61,1]]]],[52,[2,[[42,1],[51,1],[52,0],[53,1],[62,1]]]],[53,[1,[[43,1],[52,1],[53,0],[54,1],[63,1]]]],[54,[1,[[44,1],[53,1],[54,0],[55,1],[64,1]]]],[55,[1,[[45,1],[54,1],[55,0],[56,1],[65,1]]]],[56,[1,[[46,1],[55,1],[56,0],[57,1],[66,1]]]],[57,[1,[[47,1],[56,1],[57,0],[67,1]]]],[60,[1,[[50,1],[60,0],[61,1],[70,1]]]],[61,[1,[[51,1],[60,1],[61,0],[62,1],[71,1]]]],[62,[1,[[52,1],[61,1],[62,0],[63,1],[72,1]]]],[63,[2,[[53,1],[62,1],[63,0],[64,1],[73,1]]]],[64,[1,[[54,1],[63,1],[64,0],[65,1],[74,1]]]],[65,[2,[[55,1],[64,1],[65,0],[66,1],[75,1]]]],[66,[2,[[56,1],[65,1],[66,0],[67,1],[76,1]]]],[67,[1,[[57,1],[66,1],[67,0],[77,1]]]],[70,[1,[[60,1],[70,0],[71,1]]]],[71,[2,[[61,1],[70,1],[71,0],[72,1]]]],[72,[1,[[62,1],[71,1],[72,0],[73,1]]]],[73,[2,[[63,1],[72,1],[73,0],[74,1]]]],[74,[1,[[64,1],[73,1],[74,0],[75,1]]]],[75,[2,[[65,1],[74,1],[75,0],[76,1]]]],[76,[1,[[66,1],[75,1],[76,0],[77,1]]]],[77,[1,[[67,1],[76,1],[77,0]]]]];
+    graph[0].second = { {255, 555} };
+    graph[1].second = { {2, 54}, {4, 1}, {5, 2}, {6, 1}, {255, 1} };
+    graph[2].second = { {1, 54}, {3, 1}, {5, 1} };
+    graph[3].second = { {2, 1}, {4, 1} };
+    graph[4].second = { {1, 1}, {3, 1}, {7, 1} };
+    graph[5].second = { {1, 2}, {2, 2}, {6, 1} };
+    graph[6].second = { {7, 3}, {1, 1}, {5, 1} };
+    graph[7].second = { {6, 3}, {4, 1} };
+    graph[255].second = { {0, 555}, {1, 1} };
 
-    return getNextHop(destId);
+    getNextHop(destId);
 }
 
 /* Handling send or fowd message.
    If we run this with another subthread, we need to copy the recvBuf and pass a sring. */
-void directMessage(const char* recvBuf, int bytesRecvd)
+   //void directMessage(const char* recvBuf, int bytesRecvd)
+void directMessage(string buffContent, int bytesRecvd)
 {
+    const char* recvBuf = buffContent.c_str();
+    logMessageAndTime(recvBuf + 6);
+
     char logLine[100];
     short int destNodeId;
     memcpy(&destNodeId, recvBuf + 4, 2);
@@ -471,8 +511,10 @@ void directMessage(const char* recvBuf, int bytesRecvd)
         if (nexthop != -1) {
             if (!strncmp(recvBuf, "send", 4)) {
                 char fowdMessage[bytesRecvd];
+                memset(fowdMessage, 0, bytesRecvd);
+
                 strcpy(fowdMessage, "fowd");
-                memcpy(fowdMessage, recvBuf + 4, bytesRecvd - 4);
+                memcpy(fowdMessage + 4, recvBuf + 4, bytesRecvd - 4);
 
                 sendto(mySocketUDP, fowdMessage, bytesRecvd, 0,
                     (struct sockaddr*)&allNodeSocketAddrs[nexthop], sizeof(allNodeSocketAddrs[nexthop]));
