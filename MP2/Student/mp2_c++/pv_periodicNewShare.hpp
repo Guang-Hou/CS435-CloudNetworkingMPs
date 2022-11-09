@@ -1,13 +1,13 @@
 /* Path Vector Routing
- - Periodically send only new, changed paths to existing neighbors. This avoids overflooding the network if dynamically send every new path.
- - Upon receiving a neighbor LSA (fromID-it is for sure my neighbor, destID, dist, nextHop, nodesInPath)
+ - Periodically send only NEW, changed paths to existing neighbors. This avoids overflooding the network if dynamically send every new path.
+ - Upon receiving a neighbor LSA <fromID(for sure my neighbor), destID, dist, nextHop, nodesInPath>
     - use it to update my paths but do not immediately send my updated paths out.
- - During the whole process, check if a path to destId is changed since previous periodical sending out. This changed[] will be used in periodical send out.
-    - New link or lost link may change some of my path to some destID
-    - processing LSA may change some of my path to some destID
+ - During the whole process, check if a path to destId is changed since previous periodical sending out. This changedPaths will track the destId whose path from me to it has chagned.
+    - Check new neighbor when receiving hearbeat.
+    - Periodically check lost neighbor right before sending out updated LSA.
+    - Check any paths are changed when processing neighbor LSA.
 - For a new neighbor
-    - Immediately share all my valid paths to this new neighbor, either old or new paths. To accelerate the convergence.
-    - This is not enabled now.Test other first.
+    - Immediately share all my valid paths to this new neighbor. 
 */
 
 #pragma once
@@ -33,146 +33,79 @@
 #include <sys/types.h>
 #include <netinet/in.h>
 #include <sys/socket.h>
-
-#define DEBUG 1
-
-#define DEBUG_PRINTF(fmt, ...)                                                  \
-    do                                                                          \
-    {                                                                           \
-        if (DEBUG)                                                              \
-            fprintf(stderr, "node%d:%s:%d:%s(): " fmt "\n", myNodeId, __FILE__, \
-                    __LINE__, __func__, __VA_ARGS__);                           \
-    } while (0)
-
-#define DEBUG_PRINT(text)                                                        \
-    do                                                                           \
-    {                                                                            \
-        if (DEBUG)                                                               \
-            fprintf(stderr, "node%d:%s:%d:%s(): " text "\n", myNodeId, __FILE__, \
-                    __LINE__, __func__);                                         \
-    } while (0)
+#define BUFFERSIZE 3000
 
 using json = nlohmann::json;
 using namespace std;
 
-typedef tuple<int, int, unordered_set<int>> PATH; // distance, nextHop, nodesInPath
+typedef tuple<int, int, unordered_set<int>> PATH; // (distance, nextHop, nodesInPath)
+map<int, PATH> myPaths;              // myPaths[i] means my path to destNode i; i -> (my distance to node i, nextHop, nodesInPath)
+                                     // Keep it as invariant: myPaths only store destId if I have a path to it. 
+                                     // In temporary state, it may contain a destId of distance -1 when processign LSA and before sending this out in announceLSA.
+unordered_set<int> myNeighbors;      // track my live neighbors 
+unordered_set<int> changedPaths;     // track the destIds where my paths to them has changed since last sending LSA
+std::mutex change_lock;     // lock changedPaths when modifying it
+std::mutex paths_lock;      // lock myPaths when modifying it
+std::mutex neighbors_lock;  // lock myNeighbors when modifying it
 
-int BUFFERSIZE = 2000;
 int myNodeId, mySocketUDP;
-int linkCost[256];
-unordered_set<int> myNeighbors;
-std::mutex change_lock;
-std::mutex paths_lock;
-bool isChanged[256];      // has myPath[i] changed since last time 
-map<int, PATH> myPaths; // myPaths[i] means my path to destNode i: (distance, nextHop, nodesInPath)
-
-struct timeval previousHeartbeat[256];      // track last time a neighbor is seen to figure out who is lost
+struct timeval previousHeartbeat[256]; // track last time a neighbor is seen to figure out who is lost
 struct sockaddr_in allNodeSocketAddrs[256];
+int linkCost[256];
 FILE* flog;
 
+std::thread th[4];
+
 void init(int inputId, string costFile, string logFile);
-void readCostFile(const char* costFile);
 
 void* announceHeartbeat(void* unusedParam);
 void* announceLSA(void* unusedParam);
-void sendSinlgeLSAToNeighbors(int destId);
-void sendLSAsToNeighbors();
 
 void listenForNeighbors();
-void checkNewNeighbor(int heardFrom);
-void checkLostNeighbor();
-void handleBrokenLink(int neighborId);
-
-void syncSeq(int newNeighborId);
-void processSeqShare(string buffContent, int bytesRecvd, int newNeighborId);
-void processSeqShareWrapper(string buffContent, int bytesRecvd, int newNeighborId);
-
-
 void processLSAMessage(string buffContent, int bytesRecvd, int heardFrom);
-void processSingleLSA(int neighborId, int destId, int distance, int nextHop, unordered_set<int> nodesInPath);
-
 void directMessage(string buffContent, int bytesRecvd);
-int getNextHop(int destId);
 
-void sharePathsToNewNeighbor(int newNeighborId);
+bool checkNewNeighbor(int heardFrom)
+void shareMyPathsToNewNeighbor(int newNeighborId);
+void checkLostNeighbor();
 
+int createLSAPacket(char* packetBuffer, int nodeId);
+void sendLSAToNeighbors();
+
+void readCostFile(const char* costFile);
 void setupNodeSockets();
 void logMessageAndTime(const char* message);
 void logTime();
 
-//void testDij(int MyNodeId, int destId);
 
-void init(int inputId, string costFile, string logFile)
-{
+/*  Initialize myPaths, read linkcost information from file. */
+void init(int inputId, string costFile, string logFile) {
     myNodeId = inputId;
 
-    // initailize linkCost and myPaths
-    for (int i = 0; i < 256; i += 1)
-    {
-        previousHeartbeat[i].tv_sec = 0;
-        previousHeartbeat[i].tv_usec = 0;
-
-        isChanged[i] = false;
-
-        if (i == myNodeId)
-        {
-            linkCost[i] = 0;
-            myPaths[i] = { 0, myNodeId, unordered_set<int>{myNodeId} }; // for example of node 3: (0, (3,  {3})), the path includes the node itself
-        }
-        else
-        {
-            linkCost[i] = 1;
-            get<0>(myPaths[i]) = -1; // at beginning I do not have any path to other nodes
-        }
+    for (int i = 0; i < 256; i += 1) {
+        linkCost[i] = 1;
     }
+
+    linkCost[myNodeId] = 0;
+    myPaths[myNodeId] = { 0, myNodeId, unordered_set<int>{myNodeId} }; // for example of node 3: (0, (3,  {3})), the path includes the node itself
 
     setupNodeSockets();
     readCostFile(costFile.c_str());
 
     flog = fopen(logFile.c_str(), "a");
-
-    string logContent = "Initialization.";
-    logMessageAndTime(logContent.c_str());
-
-    // cout << logContent << endl;
 }
 
-void readCostFile(const char* costFile)
-{
-    FILE* fcost = fopen(costFile, "r");
-
-    if (fcost == NULL)
-    {
-        return;
-    }
-
-    int destNodeId, cost;
-
-    while (fscanf(fcost, "%d %d", &(destNodeId), &(cost)) != EOF)
-    {
-        linkCost[destNodeId] = cost;
-    }
-    fclose(fcost);
-
-    // cout << "Finished reading cost file" << endl;
-}
-
-void* announceHeartbeat(void* unusedParam)
-{
-    // cout << "Inside announceHeartbeat function." << endl;
-
+/*  Periodically send heart beats to all nodes, neighbor or not. */
+void* announceHeartbeat(void* unusedParam) {
     struct timespec sleepFor;
     sleepFor.tv_sec = 0;
     sleepFor.tv_nsec = 300 * 1000 * 1000; // 300 ms
     const char* heartBeats = "H";
 
-    while (1)
-    {
-        for (int i = 0; i < 256; i += 1)
-        {
-            if (i != myNodeId)
-            {
-                sendto(mySocketUDP, heartBeats, 2, 0,
+    while (1) {
+        for (int i = 0; i < 256; i += 1) {
+            if (i != myNodeId)    {
+                sendto(mySocketUDP, heartBeats, 1, 0,
                     (struct sockaddr*)&allNodeSocketAddrs[i], sizeof(allNodeSocketAddrs[i]));
             }
         }
@@ -180,466 +113,277 @@ void* announceHeartbeat(void* unusedParam)
     }
 }
 
-void* announceLSA(void* unusedParam)
-{
+/*  Periodically send changed paths to my neighbors. Also use this to regularly check if I lost any neighbor. */
+void* announceLSA(void* unusedParam) {
     struct timespec sleepFor;
     sleepFor.tv_sec = 0;
-    sleepFor.tv_nsec = 500 * 1000 * 1000; // 500 ms
+    sleepFor.tv_nsec = 400 * 1000 * 1000; // 400 ms
 
     while (1) {
+        checkLostNeighbor();        // periodically check if I lost any neighbor and if any paths are affected
 
-        sendLSAsToNeighbors();
+        for (const auto& i : changedPaths) {
+            sendLSAToNeighbors(i);  // create a new LSA of path to dest node i and send it out to my neighbors
+        }
+
+        change_lock.lock();
+        changedPaths.clear();
+        change_lock.unlock();
 
         nanosleep(&sleepFor, 0);
     }
 }
 
-void listenForNeighbors()
-{
-    // cout << "Inside listenForNeighbors function." << endl;
+/* Handle received messages from my neighbors. */
+void listenForNeighbors() {
     char fromAddr[100];
     struct sockaddr_in theirAddr;
     socklen_t theirAddrLen = sizeof(theirAddr);
     char recvBuf[BUFFERSIZE];
     int bytesRecvd;
 
-    while (1)
-    {
+    while (1) {
         memset(recvBuf, 0, sizeof(recvBuf));
         if ((bytesRecvd = recvfrom(mySocketUDP, recvBuf, BUFFERSIZE, 0,
-            (struct sockaddr*)&theirAddr, &theirAddrLen)) == -1)
-        {
+            (struct sockaddr*)&theirAddr, &theirAddrLen)) == -1) {
             perror("connectivity listener: recvfrom failed");
             exit(1);
         }
         inet_ntop(AF_INET, &theirAddr.sin_addr, fromAddr, 100);
 
-        std::string buffContent;
-        buffContent.assign(recvBuf, recvBuf + bytesRecvd);
-
         short int heardFrom = -1;
-        if (strstr(fromAddr, "10.1.1."))
-        {
+        if (strstr(fromAddr, "10.1.1.")) {
             heardFrom = atoi(strchr(strchr(strchr(fromAddr, '.') + 1, '.') + 1, '.') + 1);
-            // string logContent = "Received message(hello or LSA or send) from neighbor node ";
-            // logContent += to_string(heardFrom);
-            // logMessageAndTime(logContent.c_str());
-            // cout << logContent << endl;
-
-            checkNewNeighbor(heardFrom);
-            checkLostNeighbor();
+            gettimeofday(&previousHeartbeat[heardFrom], 0);
+            bool isNew = checkNewNeighbor(heardFrom);
+            if (isNew) {
+                shareMyPathsToNewNeighbor(heardFrom);
+            }
         }
-
-        if (!strncmp(recvBuf, "send", 4) || !strncmp(recvBuf, "fowd", 4)) // send/forward message
-        {
-            directMessage(buffContent, bytesRecvd);
+        // send/forward message 
+        if (!strncmp(recvBuf, "send", 4) || !strncmp(recvBuf, "fowd", 4)) {
+            string buffContent;
+            buffContent.assign(recvBuf, recvBuf + bytesRecvd);
+            if (th[0].joinable()) {
+                th[0].join();
+            }
+            th[0] = thread(directMessage, buffContent, bytesRecvd);
         }
-        else if (!strncmp(recvBuf, "LSAs", 4)) // LSA message
-        {
-            processLSAMessage(buffContent, bytesRecvd, heardFrom);
-        }
-        else if (!strncmp(recvBuf, "seqs", 4)) // new neighbor share path message
-        {
-            processSeqShare(buffContent, heardFrom);
-        }
-        else {
-            string logContent = "Received heartbeat from neighbor node ";
-            logContent += to_string(heardFrom);
-            logMessageAndTime(logContent.c_str());
-        }
+        // LSA message
+        else if (!strncmp(recvBuf, "LSAs", 4)) {
+            string buffContent;
+            buffContent.assign(recvBuf, recvBuf + bytesRecvd);
+            if (th[1].joinable()) {
+                th[1].join();
+            }
+            th[1] = thread(processLSAMessage, buffContent, bytesRecvd, heardFrom);
+        } 
     }
     close(mySocketUDP);
 }
 
-void checkNewNeighbor(int heardFrom)
-{
-    // cout << "Inside processNeighborHeartbeat function." << endl;
-
-    struct timeval now;
-    gettimeofday(&now, 0);
-    long previousSeenInSecond = previousHeartbeat[heardFrom].tv_sec;
-
-    //  record that we heard from heardFrom just now.
-    // m.lock();
-    gettimeofday(&previousHeartbeat[heardFrom], 0);
-    // m.unlock();
-
-    if (previousSeenInSecond == 0)
+/* When receiving a data from a neighbor, if it is a new neighbor, add it to myNeighbors set. 
+   No need to consider this neighbor's impact on myPaths. In next periodical announceLSA, I will receive this new neighbor's valid paths.*/
+bool checkNewNeighbor(int heardFrom) {   
+    bool isNew = false;
+    if (myNeighbors.count(heardFrom) == 0)
     {
         string logContent = "  Saw a new neighbor ";
         logContent += to_string(heardFrom);
         logMessageAndTime(logContent.c_str());
-        //  cout << logContent << endl;
 
+        neighbors_lock.lock();
         myNeighbors.insert(heardFrom);
-
-        unordered_set<int> selfPath{ heardFrom };
-        processSingleLSA(heardFrom, heardFrom, 0, heardFrom, selfPath);  // later this will not be needed since neighbor will share this to me
-        sharePathsToNewNeighbor(heardFrom);
-
-        logContent = "  Finished processing seeing new neighbor ";
-        logContent += to_string(heardFrom);
-        logMessageAndTime(logContent.c_str());
-        // cout << logContent << endl;
-    }
-    string logContent = "  Finished processNeighborHeartbeat.";
-    logMessageAndTime(logContent.c_str());
-}
-
-void syncSeq(int newNeighborId) // share my seq records to new neighbor
-{
-    char payload[BUFFERSIZE];
-    memset(payload, 0, BUFFERSIZE);
-
-    strcpy(payload, "seqs");
-
-    //seq_lock.lock();
-    nlohmann::json LSA = {
-        {"seqRecord", seqRecord},
-    };
-    //seq_lock.unlock();
-
-    std::string strLSA = LSA.dump();
-
-    // cout << "strLSA length " << strLSA.length() << endl;
-    memcpy(payload + 4, strLSA.c_str(), strLSA.length());
-
-    sendto(mySocketUDP, payload, strLSA.length() + 4, 0,
-        (struct sockaddr*)&allNodeSocketAddrs[newNeighborId], sizeof(allNodeSocketAddrs[newNeighborId]));
-
-    std::string logContent = "        Shared my seqRecord to neighbor";
-    logContent += std::to_string(newNeighborId);
-    logContent += " : ";
-    logContent += string(strLSA);
-    logMessageAndTime(logContent.c_str());
-}
-
-void processSeqShareWrapper(string buffContent, int bytesRecvd, int newNeighborId) // when receiving header "seqs"
-{
-    thread share_thread(processSeqShare, buffContent, bytesRecvd, newNeighborId);
-    share_thread.detach();
-}
-
-void processSeqShare(string buffContent, int bytesRecvd, int newNeighborId) // when receiving header "seqs"
-{
-    // cout << "Inside sharePathsToNewNeighbor function." << endl;
-    // string logContent = "Inside processSeqShare function. ";
-    // logContent += to_string(newNeighborId);
-    // logMessageAndTime(logContent.c_str());
-
-    std::string strSeq;
-    strSeq.assign(buffContent.c_str() + 4, buffContent.c_str() + bytesRecvd);
-
-    string logContent = "        Received new neighbor seq list from neighbor  ";
-    logContent += to_string(newNeighborId);
-    logContent += strSeq;
-    logMessageAndTime(logContent.c_str());
-
-    //cout << logContent << endl;
-    nlohmann::json LSA = nlohmann::json::parse(strSeq);
-    map<int, int> otherSeq = LSA["seqRecord"];
-
-    //graph_lock.lock();
-    //map<int, map<int, int>> graphCopy = graph;
-    //graph_lock.unlock();
-
-    //seq_lock.lock();
-    //map<int, int> seqCopy = seq;
-    //seq_lock.unlock();
-
-    char payload[BUFFERSIZE];
-    for (int i = 0; i < 256; i += 1)
-    {
-        if (i != newNeighborId && i != myNodeId && seqRecord[i] > 0 && seqRecord[i] > otherSeq[i]) // do not need to share mine, a new neibhbor is an enent triggering a LSA already
-        {
-            struct timeval now;
-            gettimeofday(&now, 0);
-
-            memset(payload, 0, BUFFERSIZE);
-            strcpy(payload, "LSAs");
-
-            nlohmann::json LSA = {
-                {"sourceId", i},
-                {"seq", seqRecord[i]},
-                {"links", graph[i]},
-                //{"ttl", (now.tv_sec * 1000000L + now.tv_usec + 500000) / 1000} }; // 500 ms
-                {"ttl", 0 } // mark this that it is repacked by me, not from soureId
-            };
-
-            std::string strLSA = LSA.dump();
-
-            memcpy(payload + 4, strLSA.c_str(), strLSA.length());
-
-            sendto(mySocketUDP, payload, strLSA.length() + 5, 0,
-                (struct sockaddr*)&allNodeSocketAddrs[newNeighborId], sizeof(allNodeSocketAddrs[newNeighborId]));
-
-            std::string logContent = "        Shared my newer path of sourceId ";
-            logContent += to_string(i);
-            logContent += " to new neighbor ";
-            logContent += std::to_string(newNeighborId);
-            logContent += " : ";
-            logContent += string(strLSA);
-            logMessageAndTime(logContent.c_str());
-            //  cout << logContent << endl;
-
-        }
-    }
-}
-
-void checkLostNeighbor()
-{
-    // cout << "Inside checkLostNeighbor function." << endl;
-    // check if there is any neighbor link is broken, if so update pathRecords and broadcast LSA
-    for (int i = 0; i < 256; i += 1)
-    {
-        struct timeval now;
-        gettimeofday(&now, 0);
-
-        if (i != myNodeId)
-        {
-            long timeDifference = (now.tv_sec - previousHeartbeat[i].tv_sec) * 1000000L + now.tv_usec - previousHeartbeat[i].tv_usec;
-            if (previousHeartbeat[i].tv_sec != 0 && timeDifference > 800000) // missed two hearbeats
-            {
-                char buff[200];
-                snprintf(buff, sizeof(buff), "  Link broken to node %d. The node was previously seen at %ld s, and %ld us.\n   Now the time is %ld s, and %ld us. \n The time difference is %ld.", i, previousHeartbeat[i].tv_sec, previousHeartbeat[i].tv_usec, now.tv_sec, now.tv_usec, timeDifference);
-                logMessageAndTime(buff);
-
-                // cout << logContent << endl;
-
-                previousHeartbeat[i].tv_sec = 0;
-                myNeighbors.erase(i);
-
-                handleBrokenLink(i);
-            }
-        }
+        neighbors_lock.unlock();
+        isNew = true;
     }
 
-    string logContent = "  Finished checkLostNeighbor.";
-    logMessageAndTime(logContent.c_str());
+    return isNew;
 }
 
-void handleBrokenLink(int neighborId)
-{
-    for (int destId = 0; destId < 256; destId += 1)
-    {
-        if (destId != myNodeId && destId != neighborId && get<0>(myPaths[destId]) != -1 && get<1>(myPaths[destId]) == neighborId)
-        { // I lost the path to destId due to broken link to the neighbor
+/* Check if there is any neighbor link is broken. If so, remove it from myNeighbor set, 
+   check if any path is changed because of this borken link.
+   This is used in announceLSA thread, so we need lock to protect shared data. */
+void checkLostNeighbor()  {
+    struct timeval now;
+    gettimeofday(&now, 0);
 
-            get<0>(myPaths[destId]) = -1;
-            get<2>(myPaths[destId]).clear();
+    for (auto i = myNeighbors.begin(); i != myNeighbors.end(); ) {
+        long timeDifference = (now.tv_sec - previousHeartbeat[i].tv_sec) * 1000000L + now.tv_usec - previousHeartbeat[i].tv_usec;
+        if (timeDifference > 800000) { // saw befor in longer than 800 ms
+            neighbors_lock.lock();
+            myNeighbors.erase(i);
+            neighbors_lock.unlock();
 
-            change_lock.lock();
-            isChanged[destId] = true;
-            change_lock.unlock();
-        }
-    }
-}
-
-string generateStrPath(int destId) //
-{
-    char payload[BUFFERSIZE];
-    memset(payload, 0, BUFFERSIZE);
-    strcpy(payload, "LSAs");
-    int distance = get<0>(myPaths[destId]);
-    string strLSA;
-
-    if (distance == -1)
-    {
-        json LSA = {
-            {"fromID", myNodeId},
-            {"destID", destId},
-            {"dist", -1},
-            {"nextHop", -1},
-            {"nodesInPath", unordered_set<int>{}}
-        };
-        strLSA = LSA.dump();
-    }
-    else
-    {
-        json LSA = {
-            {"fromID", myNodeId},
-            {"destID", destId},
-            {"dist", distance},
-            {"nextHop", get<1>(myPaths[destId])},
-            {"nodesInPath", get<2>(myPaths[destId])}
-        };
-        strLSA = LSA.dump();
-    }
-    memcpy(payload + 4, strLSA.c_str(), strLSA.length());
-
-    string payloadStr(payload, payload + 4 + strLSA.length() + 1);
-    return payloadStr;
-}
-
-void processLSAMessage(string buffContent, int bytesRecvd, int heardFrom)
-{
-    std::string strLSA;
-    strLSA.assign(buffContent.c_str() + 4, buffContent.c_str() + bytesRecvd);
-    nlohmann::json LSA = nlohmann::json::parse(strLSA);
-
-    int neighborId = LSA["fromID"];
-    int destId = LSA["destID"];
-    int distance = LSA["dist"];
-    int nextHop = LSA["nextHop"];
-    unordered_set<int> nodesInPath = LSA["nodesInPath"];
-
-    processSingleLSA(neighborId, destId, distance, nextHop, nodesInPath);
-}
-
-void sendSinlgeLSAToNeighbors(int destId)
-{
-    int myDistance = get<0>(myPaths[destId]);
-    if (myDistance != -1 && destId != myNodeId) {
-        for (const auto& nb : myNeighbors) {
-            bool isValidPath = get<2>(myPaths[destId]).count(nb) == 0;  // empty path or non-empty path without nb inside
-
-            if (isValidPath) {
-                string path = generateStrPath(destId);
-                sendto(mySocketUDP, path.c_str(), path.length(), 0,
-                    (struct sockaddr*)&allNodeSocketAddrs[nb], sizeof(allNodeSocketAddrs[nb]));
+            // this broken link may or may not cause myPahts to chagne
+            for (auto destId = myPaths.begin(); destId != myPaths.end(); )    {
+                if (get<1>(myPaths[destId]) == neighborId) { // I lost the path to destId due to broken link to the neighbor
+                    change_lock.lock();
+                    paths_lock.lock();
+                    changedPaths.insert(destId);
+                    myPaths.erase(destId);   // myPaths only store destId if I have a path to it
+                    paths.unlock();
+                    change_lock.unlock();
+                }
             }
         }
     }
 }
 
-// Send out all my new and valid path updates to current neighbors
-void sendLSAsToNeighbors()
-{
-    for (int destId = 0; destId < 256; destId += 1)
-    {
-        if (isChanged[destId]) {
-            sendSinlgeLSAToNeighbors(destId);
-            change_lock.lock();
-            isChanged[destId] = false;
-            change_lock.unlock();
-        }
-    }
 
-    string logContent = "Sent out my updated LSA. ";
-    logMessageAndTime(logContent.c_str());
-    // cout << logContent << endl;
-}
-
-void processSingleLSA(int neighborId, int destId, int distance, int nextHop, unordered_set<int> nodesInPath)
-{
-    // cout << "Inside processSingleLSA function." << endl;
-    bool containsMyNodeId = nodesInPath.count(myNodeId) == 1; // if neighbor LSA path has myNodeId in the path
-    int myDistance = get<0>(myPaths[destId]);
-    int myNexthop = get<1>(myPaths[destId]);
-
-    if ((destId == myNodeId) || containsMyNodeId)
-    {
-        return;
-    }
-
-    if (distance != -1 && myDistance == -1)
-    { // I do not have path to dest, but my neighbor has one. Use this neighbor path to destId
-
-        get<0>(myPaths[destId]) = linkCost[neighborId] + distance;
-        get<1>(myPaths[destId]) = neighborId;
-        get<2>(myPaths[destId]) = nodesInPath;
-        get<2>(myPaths[destId]).insert(myNodeId);
-
-        change_lock.lock();
-        isChanged[destId] = true;
-        change_lock.unlock();
-    }
-    else if (distance != -1 && myDistance != -1)
-    { // I have a path to dest, and my neighbor has one.
-      // compare two paths, if neighbor path is better then update it in myPathToNode[destId]
-        int newDistance = distance + linkCost[neighborId];
-        if ((myDistance > newDistance) || (myDistance == newDistance && neighborId < myNexthop))
-        {
-
-            get<0>(myPaths[destId]) = linkCost[neighborId] + distance;
-            get<1>(myPaths[destId]) = neighborId;
-            get<2>(myPaths[destId]) = nodesInPath;
-            get<2>(myPaths[destId]).insert(myNodeId);
-
-            change_lock.lock();
-            isChanged[destId] = true;
-            change_lock.unlock();
-        }
-    }
-    else if (distance == -1 && myDistance != -1) // neighbor lost a path to destId
-    {
-        if (get<2>(myPaths[destId]).count(neighborId) == 1)
-        {
-            // The neighbor is in my path to destId, then I lost the path to destId
-            get<0>(myPaths[destId]) = -1;
-            get<2>(myPaths[destId]).clear();
-
-            change_lock.lock();
-            isChanged[destId] = true;
-            change_lock.unlock();
+/* When seeing a new neighbor, share my paths not including the new neighbor to it. */
+void shareMyPathsToNewNeighbor(int newNeighborId) {
+    char packetBuffer[BUFFERSIZE];
+    int packetSize;
+    for (auto destId = myPaths.begin(); destId != myPaths.end(); )    {
+        if (get<2>(myPaths[destId]).count(newNeighborId) == 0) { // the new neighbor is not in the path, then share this to it
+            memset(packetBuffer, 0, BUFFERSIZE);
+            packetSize = createLSAPacket(packetBuffer, destId);
+            sendto(mySocketUDP, packetBuffer, packetSize, 0,
+            (struct sockaddr*)&allNodeSocketAddrs[newNeighborId], sizeof(allNodeSocketAddrs[newNeighborId]));
         }
     }
 }
 
-void sharePathsToNewNeighbor(int newNeighborId) // this will send all valid paths out, except my self path which will be handled by neighbor's dection of me as new neighbor
-{
-    for (int destId = 0; destId < 256; destId += 1)
-    {
-        if (destId != myNodeId && destId != newNeighborId && get<0>(myPaths[destId]) != -1 && get<2>(myPaths[destId]).count(newNeighborId) == 0)
-        {
-            string strLSA = generateStrPath(destId);
-            sendto(mySocketUDP, strLSA.c_str(), strLSA.length(), 0,
-                (struct sockaddr*)&allNodeSocketAddrs[newNeighborId], sizeof(allNodeSocketAddrs[newNeighborId]));
+/* Create LSA packet for my path to destId. Store the restuls in buffer packetBuffer, return the byte size of LSA packet. 
+   LSA format is ("LSAs", fromId, destId, distance, nextHop, nodesInPath).
+   This is used in ?. */
+int createLSAPacket(char* packetBuffer, int destinationId) {
+    strcpy(packetBuffer, "LSAs");
+    short int fromId = int myNodeId;
+    short int destId = (short int) destinationId;
+    short int distance, nextHop;
+    string strSet; // serialized nodesInPath
 
-            string logContent = "Shared my path of destId ";
-            logContent += to_string(destId);
-            logContent += " to new neighbor ";
-            logContent += to_string(newNeighborId);
-            logContent += " : ";
-            logContent += string(strLSA);
-            logMessageAndTime(logContent.c_str());
+    // if I do not have a path to this destId, this is used for sendLSAtoNeighbors when I lost my path
+    if (myPahts.find(destId) == myPahts.end()) {
+        distance = -1; 
+        strSet = "";
+    } else {
+        distance = get<0>(myPahts[destId]);
+        nextHop = get<1>(myPahts[destId]);
+        json j_set(get<1>(myPahts[destId]));
+        string strSet = j_set.dump();
+    }
+
+    memcpy(packetBuffer + 4, &fromId, sizeof(short int));
+    memcpy(packetBuffer + 4 + sizeof(short int), &destId, sizeof(short int));
+    memcpy(packetBuffer + 4 + 2*sizeof(short int), &distance, sizeof(short int));
+    memcpy(packetBuffer + 4 + 3*sizeof(short int), &nextHop, sizeof(short int));
+    memcpy(packetBuffer + 4 + 4*sizeof(short int), strSet.c_str(), strSet.length());
+
+    return 4 + 4*sizeof(short int) + strSet.length();
+}
+
+
+/* Send out all my changed paths to neighbors periodically. It is used in announceLSA(). */
+void sendLSAToNeighbors() {
+    char packetBuffer[BUFFERSIZE];
+    int packetSize;
+
+    for (auto const & destId : changedPaths) {
+        memset(packetBuffer, 0, BUFFERSIZE);
+        packetSize = createLSAPacket(packetBuffer, destId);
+        for (auto const & i : myNeighbors) {
+            if (i != myNodeId && i != skipNeighbor && graph[myNodeId].second.find(i) != graph[myNodeId].second.end()) {
+                sendto(mySocketUDP, packetBuffer, packetSize, 0,
+                    (struct sockaddr*)&allNodeSocketAddrs[i], sizeof(allNodeSocketAddrs[i]));
+            }
         }
     }
 }
 
+/*  Process the received LSA message, update myPaths. 
+    LSA format is ("LSAs", fromId, destId, distance, nextHop, nodesInPath).*/
+void processLSAMessage(string buffContent, int bytesRecvd, int neighborId)
+{
+    const char* recvBuf = buffContent.c_str();
+    short int fromId, destId, distance, nextHop;
+    string otherNodesInPathStr;    
 
+    memcpy(&fromId, recvBuf + 4, sizeof(short int));
+    memcpy(&destId, recvBuf + 4 + sizeof(short int), sizeof(short int));
+    memcpy(&distance, recvBuf + 4 + 2*sizeof(short int), sizeof(short int));
+    memcpy(&nextHop, recvBuf + 4 + 3*sizeof(short int), sizeof(short int));
+    otherNodesInPathStr.assign(recvBuf + 4 + 4*sizeof(short int), recvBuf + bytesRecvd);
+    unordered_set<int> otherNodesInPath;
+    if (distance != -1) {
+     otherNodesInPath = json::parse(otherNodesInPathStr);
+    }
+
+    // neighbor lost a path 
+    if (distance == -1) {
+        bool pathExistAndAffected = myPahts.find(destId) != myPahts.end() && get<1>(myPahts[destId]) == fromId;
+        if (pathExistAndAffected) {  // my path to destId becomes invalid
+            change_lock.lock();
+            paths_lock.lock();
+            changedPaths.insert(destId);
+            myPaths.erase(destId);   // remove this destId, myPaths only stores destId if I have a path to it, in tempory state it may have a destId of distance -1
+            paths.unlock();
+            change_lock.unlock();
+        }
+    } 
+    else { // neighbor has an alternative path 
+        if (myPahts.find(destId) == myPahts.end() || get<0>(myPahts[destId]) == -1) { // I do not have a path to this destId
+            change_lock.lock();
+            paths_lock.lock();
+            changedPaths.insert(destId);
+            myPaths[destId] = otherNodesInPath;   
+            myPahts[destId].insert(myNodeId);
+            paths.unlock();
+            change_lock.unlock(); 
+        } else if (otherNodesInPath.count(myNodeId) == 0) {  // i am not in the neighbor's path
+            if (distance + linkCost[fromId] < get<0>(myPahts[destId])  
+                 || (distance + linkCost[fromId] == get<0>(myPahts[destId]) && get<1>(myPahts[destId]) < fromId) ) { // neighbor path is better
+                    change_lock.lock();
+                    paths_lock.lock();
+                    changedPaths.insert(destId);
+                    myPaths[destId] = otherNodesInPath;   
+                    myPahts[destId].insert(myNodeId);
+                    paths.unlock();
+                    change_lock.unlock(); 
+            }
+        }
+    }
+
+    char buff[200];
+    snprintf(buff, sizeof(buff), "Processed LSA from neighbor %d, for destId %d, its path has nodes: %s.", fromId, destId, otherNodesInPathStr.c_str());
+    logMessageAndTime(buff);
+}
+
+
+/* Handling send or fowd message.
+   If we run this with another subthread, we need to copy the recvBuf and pass a sring. */
 void directMessage(string buffContent, int bytesRecvd)
-{
+{   
+    const char* recvBuf = buffContent.c_str();
+    char logLine[100];
     short int destNodeId;
-    memcpy(&destNodeId, buffContent.c_str() + 4, 2);
+    memcpy(&destNodeId, recvBuf + 4, 2);
     destNodeId = ntohs(destNodeId);
 
-    // string logContent = "Received send or forward message.";
-    // logMessageAndTime(logContent.c_str());
-    // cout << logContent << endl;
-
-    char logLine[BUFFERSIZE];
-
-    if (myNodeId == destNodeId)
-    {
-        sprintf(logLine, "receive packet message %s\n", buffContent.c_str() + 6);
+    if (myNodeId == destNodeId) {
+        sprintf(logLine, "receive packet message %s\n", recvBuf + 6);
     }
-    else
-    {
-        int nexthop = get<1>(myPaths[destNodeId]);
-        if (nexthop != -1)
-        {
-            if (!strncmp(buffContent.c_str(), "send", 4))
-            {
-                char fowdMessage[bytesRecvd + 1];
+    else {
+        int nexthop = getNextHop(destNodeId);
+        if (nexthop != -1) {
+            if (!strncmp(recvBuf, "send", 4)) {
+                char fowdMessage[bytesRecvd];
                 strcpy(fowdMessage, "fowd");
-                memcpy(fowdMessage + 4, buffContent.c_str() + 4, bytesRecvd - 4);
+                memcpy(fowdMessage, recvBuf + 4, bytesRecvd - 4);
 
                 sendto(mySocketUDP, fowdMessage, bytesRecvd, 0,
                     (struct sockaddr*)&allNodeSocketAddrs[nexthop], sizeof(allNodeSocketAddrs[nexthop]));
-
-                sprintf(logLine, "sending packet dest %d nexthop %d message %s\n", destNodeId, nexthop, buffContent.c_str() + 6);
+                sprintf(logLine, "sending packet dest %d nexthop %d message %s\n", destNodeId, nexthop, recvBuf + 6);
             }
-            else if (!strncmp(buffContent.c_str(), "fowd", 4))
-            {
-                sendto(mySocketUDP, buffContent.c_str(), bytesRecvd, 0,
+            else if (!strncmp(recvBuf, "fowd", 4)) {
+                sendto(mySocketUDP, recvBuf, bytesRecvd, 0,
                     (struct sockaddr*)&allNodeSocketAddrs[nexthop], sizeof(allNodeSocketAddrs[nexthop]));
-
-                sprintf(logLine, "forward packet dest %d nexthop %d message %s\n", destNodeId, nexthop, buffContent.c_str() + 6);
+                sprintf(logLine, "forward packet dest %d nexthop %d message %s\n", destNodeId, nexthop, recvBuf + 6);
             }
         }
-        else
-        {
+        else {
             sprintf(logLine, "unreachable dest %d\n", destNodeId);
         }
     }
@@ -648,10 +392,26 @@ void directMessage(string buffContent, int bytesRecvd)
     fflush(flog);
 }
 
-void setupNodeSockets()
-{
-    for (int i = 0; i < 256; i++)
-    {
+/* Read the link cost between me and my neighbors if we are connected. */
+void readCostFile(const char* costFile) {
+    FILE* fcost = fopen(costFile, "r");
+
+    if (fcost == NULL) {
+        return;
+    }
+
+    int destNodeId, cost;
+    while (fscanf(fcost, "%d %d", &(destNodeId), &(cost)) != EOF) {
+        linkCost[destNodeId] = cost;
+    }
+    fclose(fcost);
+    //cout << "Finished reading cost file" << endl;
+}
+
+/* Setup sockets for all possible nodes. */
+void setupNodeSockets() {
+    //std::cout << "Inside setup socket function." << std::endl;
+    for (int i = 0; i < 256; i++) {
         char tempaddr[100];
         sprintf(tempaddr, "10.1.1.%d", i);
         memset(&allNodeSocketAddrs[i], 0, sizeof(allNodeSocketAddrs[i]));
@@ -661,29 +421,21 @@ void setupNodeSockets()
     }
 
     // socket() and bind() our socket. We will do all sendto()ing and recvfrom()ing on this one.
-    if ((mySocketUDP = socket(AF_INET, SOCK_DGRAM, 0)) < 0)
-    {
+    if ((mySocketUDP = socket(AF_INET, SOCK_DGRAM, 0)) < 0) {
         perror("socket error");
         exit(1);
     }
 
-    char myAddr[100];
-    struct sockaddr_in bindAddr;
-    sprintf(myAddr, "10.1.1.%d", myNodeId);
-    memset(&bindAddr, 0, sizeof(bindAddr));
-    bindAddr.sin_family = AF_INET;
-    bindAddr.sin_port = htons(7777);
-    inet_pton(AF_INET, myAddr, &bindAddr.sin_addr);
-    if (bind(mySocketUDP, (struct sockaddr*)&bindAddr, sizeof(struct sockaddr_in)) < 0)
-    {
-        perror("bind");
+    struct sockaddr_in bindAddr = allNodeSocketAddrs[myNodeId];
+    if (bind(mySocketUDP, (struct sockaddr*)&bindAddr, sizeof(struct sockaddr_in)) < 0) {
+        perror("bind error");
         close(mySocketUDP);
-        exit(1);
+        exit(2);
     }
 }
 
-void logMessageAndTime(const char* message)
-{
+/* Helper function to log transitant information and time during program execution. */
+void logMessageAndTime(const char* message) {
     //return;
     char logLine[BUFFERSIZE];
     sprintf(logLine, " %s\n", message);
@@ -692,13 +444,13 @@ void logMessageAndTime(const char* message)
     logTime();
 }
 
-void logTime()
-{
+/* Helper function to log time during program execution. */
+void logTime() {
     struct timeval now;
     gettimeofday(&now, 0);
 
     char logLine[100];
-    sprintf(logLine, "Time is at <%ld.%06ld>\n", (long int)(now.tv_sec), (long int)(now.tv_usec));
+    sprintf(logLine, "    Time is at %ld ms.\n", (now.tv_sec * 1000000L + now.tv_usec) / 1000);
     fwrite(logLine, 1, strlen(logLine), flog);
     fflush(flog);
 }
