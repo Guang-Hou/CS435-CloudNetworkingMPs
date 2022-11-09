@@ -1,13 +1,18 @@
 /* Path Vector Routing
  - Periodically send only NEW, changed paths to existing neighbors. This avoids overflooding the network if dynamically send every new path.
  - Upon receiving a neighbor LSA <fromID(for sure my neighbor), destID, dist, nextHop, nodesInPath>
-    - use it to update my paths but do not immediately send my updated paths out.
+    - For active path LSA, use it to update my paths but do not immediately send my updated paths out.
+    - For lost path LSA (a neighbor lost a path to destId), if I have a good path, send that path immediately back to the neighbor.
  - During the whole process, check if a path to destId is changed since previous periodical sending out. This changedPaths will track the destId whose path from me to it has chagned.
     - Check new neighbor when receiving hearbeat.
     - Periodically check lost neighbor right before sending out updated LSA.
     - Check any paths are changed when processing neighbor LSA.
 - For a new neighbor
     - Immediately share all my valid paths to this new neighbor. 
+- One alternative strategy is to store my and all my neighbor's paths. When I lost a path, choose one alternative path by checking if my neighbor has a path.
+    - In this way, one node needs to store more data (my paths and all my neighbor's paths). 
+    - But do not need to send back my path if my neighbor announcing to me that he lost a path.
+    - So it stores more data and sends less LSA packets.
 */
 
 #pragma once
@@ -314,6 +319,7 @@ void processLSAMessage(string buffContent, int bytesRecvd, int neighborId)
     // neighbor lost a path 
     if (distance == -1) {
         bool pathExistAndAffected = myPahts.find(destId) != myPahts.end() && get<1>(myPahts[destId]) == fromId;
+        bool pathExistAndNotAffected = myPahts.find(destId) != myPahts.end() && get<1>(myPahts[destId]) != fromId && get<2>(myPahts[destId]).count(fromId) == 0;
         if (pathExistAndAffected) {  // my path to destId becomes invalid
             change_lock.lock();
             paths_lock.lock();
@@ -321,6 +327,14 @@ void processLSAMessage(string buffContent, int bytesRecvd, int neighborId)
             myPaths.erase(destId);   // remove this destId, myPaths only stores destId if I have a path to it, in tempory state it may have a destId of distance -1
             paths.unlock();
             change_lock.unlock();
+        } else if (pathExistAndNotAffected) { // I have an alternative path that is not using fromId, send it to this neighbor
+            char packetBuffer[BUFFERSIZE];
+            int packetSize;
+
+            memset(packetBuffer, 0, BUFFERSIZE);
+            packetSize = createLSAPacket(packetBuffer, destId);
+            sendto(mySocketUDP, packetBuffer, packetSize, 0,
+                (struct sockaddr*)&allNodeSocketAddrs[fromId], sizeof(allNodeSocketAddrs[fromId]));
         }
     } 
     else { // neighbor has an alternative path 
