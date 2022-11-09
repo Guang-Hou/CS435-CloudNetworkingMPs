@@ -4,7 +4,7 @@
     - check ttl if it is still fresh. If it is too old, discard it.
     - immediately forward it out to my neighbors except myself and the predecessor
     - use it to update my graph database but do not send my LSA out.
- - For new neighbor, share my new valid links as LSA to it.
+ - For new neighbor, share my new valid links as LSA to it. This part code is not tested, it is not needed to pass the test.
  - Data structure choice is critical for performance, use adjacency list instead of adjaceny matrix.
 */
 
@@ -42,8 +42,6 @@ int myNodeId, mySocketUDP;
 struct timeval previousHeartbeat[256]; // track last time a neighbor is seen to figure out who is lost
 struct sockaddr_in allNodeSocketAddrs[256];
 int linkCost[256];
-//int seqRecord[256];
-//map<int, map<int, int>> graph;  // graph[i][j] indicates i->j link cost, -1 means not connected. This is using map to represent adjacency matrix, taking tooo much space and is too slow for processing 
 map<int, pair<int, map<int, int>>> graph;    // graph[i] represents node i's latest sequence number and its adjacent neighbors in a map (neighborId -> cost)
 std::mutex graph_lock;
 atomic<bool> isChanged(false);               // track if my link status has changed since last time send out LSA
@@ -66,10 +64,8 @@ void processSeqShare(const char* recvBuf, int bytesRecvd, int newNeighborId);
 int createLSAPacket(char* packetBuffer, int nodeId);
 
 void sendLSAToNeighbors();
-//void processLSAMessage(const char* recvBuf, int bytesRecvd, int heardFrom);
 void processLSAMessage(string buffContent, int bytesRecvd, int heardFrom);
 int getNextHop(int destId);
-//void directMessage(const char* recvBuf, int bytesRecvd);
 void directMessage(string buffContent, int bytesRecvd);
 void testDij(int destId);
 
@@ -127,7 +123,7 @@ void* announceLSA(void* unusedParam) {
 
     while (1) {
         checkLostNeighbor(); // periodically check any lost neighbor, immediately check any new neighbor when reciving LSA in the listenForNeighbors function (main thread)
-        if (isChanged) {    // isChanged contains any new neighbor changes, which is covered in the listenForNeighbors function (main thread)
+        if (isChanged) {     // isChanged contains any new neighbor changes, which is covered in the listenForNeighbors function (main thread)
             sendLSAToNeighbors();  // create a new LSA and send it out
             isChanged = false;
         }
@@ -137,8 +133,6 @@ void* announceLSA(void* unusedParam) {
 
 /* Handle received messages from my neighbors. */
 void listenForNeighbors() {
-    // cout << "Inside listenForNeighbors function." << endl;
-
     char fromAddr[100];
     struct sockaddr_in theirAddr;
     socklen_t theirAddrLen = sizeof(theirAddr);
@@ -172,8 +166,6 @@ void listenForNeighbors() {
             }
             th[0] = thread(directMessage, buffContent, bytesRecvd);
 
-            // if not using separate thread, no need to create a string
-            //directMessage(recvBuf, bytesRecvd);
         }
         // LSA message
         else if (!strncmp(recvBuf, "LSAs", 4)) {
@@ -184,10 +176,6 @@ void listenForNeighbors() {
                 th[1].join();
             }
             th[1] = thread(processLSAMessage, buffContent, bytesRecvd, heardFrom);
-
-
-            // if not using separate thread, no need to create a string
-            //processLSAMessage(recvBuf, bytesRecvd, heardFrom);
         }
         // seqShare message from new neighbor
         else if (!strncmp(recvBuf, "seqs", 4)) {
@@ -197,9 +185,6 @@ void listenForNeighbors() {
             //    th[2].join();
             //}
             //th[2] = thread(processSeqShare, buffContent.c_str(), bytesRecvd, heardFrom);
-
-            // if not using separate thread, no need to create a string
-            //processSeqShare(recvBuf, bytesRecvd, heardFrom);
         }
 
     }
@@ -382,14 +367,6 @@ void broadcastToValidNeighbor(const char* packetBuffer, int packetSize, int skip
 /* Run Dijkstra's algorithm to find nextHop to reach destId from myself. */
 int getNextHop(int destId)
 {
-    for (int i = 0; i < 256; i += 1) {
-        if (graph.find(i) != graph.end()) {  // graph only stores active node sequence sicne a node record is created when seeing a LSA
-            json j_map(graph[i].second);
-            logMessageAndTime(j_map.dump().c_str());
-        }
-    }
-
-    // cout << "Inside getNextHop function." << endl;
     int prev[256];             // i's previous node in path to desId
     int pathNextHop[256];      // From source to node i, the next hop after sourceId
     int distanceToMyNode[256]; // i's total distance to desId
@@ -409,7 +386,6 @@ int getNextHop(int destId)
         int uDist = frontier.top().first;
         int u = frontier.top().second;
         frontier.pop();
-        //cout << "Poped: " << uDist << " , " << u << endl;
 
         for (auto const& kvPair : graph[u].second) {  // kv will be u's adjacent list map: (neighborId, cost)
             int v = kvPair.first;
@@ -422,14 +398,12 @@ int getNextHop(int destId)
             if ((distanceToMyNode[u] + uvCost < distanceToMyNode[v]) || ((distanceToMyNode[u] + uvCost == distanceToMyNode[v]) && pathNextHop[u] < pathNextHop[v])) {
                 distanceToMyNode[v] = distanceToMyNode[u] + uvCost;
                 frontier.push(std::make_pair(distanceToMyNode[v], v));  // this may add mutiple copies of one node to the priority_queue
-                //cout << "Added: " << distanceToMyNode[v] << " , " << v << endl;
                 prev[v] = u;
                 int p = v;
                 while (prev[p] != myNodeId) {
                     p = prev[p];
                 }
                 pathNextHop[v] = p;  // record v's path next hop after sourceId
-                //cout << "prev[" << v << "] =" << u << endl;
             }
         }
     }
@@ -440,23 +414,12 @@ int getNextHop(int destId)
         return -1;
     }
 
-    /*
-    for (int i = 0; i < 256; i += 1) {
-        if (graph.find(i) != graph.end()) {
-            cout << "i: " << i << " , prev[i]: " << prev[i] << endl;
-        }
-    }
-    */
-
-    // string logContent = "In getNextHop, found next hop";
-    // logMessageAndTime(logContent.c_str());
     return pathNextHop[destId];
 }
 
 /* Run init() first, then run this function to find the shortest path from myNodeId to destId. */
 void testDij(int destId)
 {
-    //graph =  [[0,[1,[[0,0],[1,1],[10,1]]]],[1,[1,[[0,1],[1,0],[2,1],[11,1]]]],[2,[1,[[1,1],[2,0],[3,1],[12,1]]]],[3,[1,[[2,1],[3,0],[4,1],[13,1]]]],[4,[2,[[3,1],[4,0],[5,1],[14,1]]]],[5,[2,[[4,1],[5,0],[6,1],[15,1]]]],[6,[1,[[5,1],[6,0],[7,1],[16,1]]]],[7,[1,[[6,1],[7,0],[17,1]]]],[10,[1,[[0,1],[10,0],[11,1],[20,1]]]],[11,[2,[[1,1],[10,1],[11,0],[12,1],[21,1]]]],[12,[1,[[2,1],[11,1],[12,0],[13,1],[22,1]]]],[13,[2,[[3,1],[12,1],[13,0],[14,1],[23,1]]]],[14,[1,[[4,1],[13,1],[14,0],[15,1],[24,1]]]],[15,[2,[[5,1],[14,1],[15,0],[16,1],[25,1]]]],[16,[2,[[6,1],[15,1],[16,0],[17,1],[26,1]]]],[17,[1,[[7,1],[16,1],[17,0],[27,1]]]],[20,[1,[[10,1],[20,0],[21,1],[30,1]]]],[21,[1,[[11,1],[20,1],[21,0],[22,1],[31,1]]]],[22,[2,[[12,1],[21,1],[22,0],[23,1],[32,1]]]],[23,[1,[[13,1],[22,1],[23,0],[24,1],[33,1]]]],[24,[2,[[14,1],[23,1],[24,0],[25,1],[34,1]]]],[25,[1,[[15,1],[24,1],[25,0],[26,1],[35,1]]]],[26,[1,[[16,1],[25,1],[26,0],[27,1],[36,1]]]],[27,[2,[[17,1],[26,1],[27,0],[37,1]]]],[30,[2,[[20,1],[30,0],[31,1],[40,1]]]],[31,[1,[[21,1],[30,1],[31,0],[32,1],[41,1]]]],[32,[2,[[22,1],[31,1],[32,0],[33,1],[42,1]]]],[33,[2,[[23,1],[32,1],[33,0],[34,1],[43,1]]]],[34,[2,[[24,1],[33,1],[34,0],[35,1],[44,1]]]],[35,[2,[[25,1],[34,1],[35,0],[36,1],[45,1]]]],[36,[1,[[26,1],[35,1],[36,0],[37,1],[46,1]]]],[37,[1,[[27,1],[36,1],[37,0],[47,1]]]],[40,[1,[[30,1],[40,0],[41,1],[50,1]]]],[41,[1,[[31,1],[40,1],[41,0],[42,1],[51,1]]]],[42,[2,[[32,1],[41,1],[42,0],[43,1],[52,1]]]],[43,[1,[[33,1],[42,1],[43,0],[44,1],[53,1]]]],[44,[2,[[34,1],[43,1],[44,0],[45,1],[54,1]]]],[45,[2,[[35,1],[44,1],[45,0],[46,1],[55,1]]]],[46,[1,[[36,1],[45,1],[46,0],[47,1],[56,1]]]],[47,[1,[[37,1],[46,1],[47,0],[57,1]]]],[50,[2,[[40,1],[50,0],[51,1],[60,1]]]],[51,[2,[[41,1],[50,1],[51,0],[52,1],[61,1]]]],[52,[2,[[42,1],[51,1],[52,0],[53,1],[62,1]]]],[53,[1,[[43,1],[52,1],[53,0],[54,1],[63,1]]]],[54,[1,[[44,1],[53,1],[54,0],[55,1],[64,1]]]],[55,[1,[[45,1],[54,1],[55,0],[56,1],[65,1]]]],[56,[1,[[46,1],[55,1],[56,0],[57,1],[66,1]]]],[57,[1,[[47,1],[56,1],[57,0],[67,1]]]],[60,[1,[[50,1],[60,0],[61,1],[70,1]]]],[61,[1,[[51,1],[60,1],[61,0],[62,1],[71,1]]]],[62,[1,[[52,1],[61,1],[62,0],[63,1],[72,1]]]],[63,[2,[[53,1],[62,1],[63,0],[64,1],[73,1]]]],[64,[1,[[54,1],[63,1],[64,0],[65,1],[74,1]]]],[65,[2,[[55,1],[64,1],[65,0],[66,1],[75,1]]]],[66,[2,[[56,1],[65,1],[66,0],[67,1],[76,1]]]],[67,[1,[[57,1],[66,1],[67,0],[77,1]]]],[70,[1,[[60,1],[70,0],[71,1]]]],[71,[2,[[61,1],[70,1],[71,0],[72,1]]]],[72,[1,[[62,1],[71,1],[72,0],[73,1]]]],[73,[2,[[63,1],[72,1],[73,0],[74,1]]]],[74,[1,[[64,1],[73,1],[74,0],[75,1]]]],[75,[2,[[65,1],[74,1],[75,0],[76,1]]]],[76,[1,[[66,1],[75,1],[76,0],[77,1]]]],[77,[1,[[67,1],[76,1],[77,0]]]]];
     graph[0].second = { {255, 555} };
     graph[1].second = { {2, 54}, {4, 1}, {5, 2}, {6, 1}, {255, 1} };
     graph[2].second = { {1, 54}, {3, 1}, {5, 1} };
@@ -528,12 +491,10 @@ void readCostFile(const char* costFile) {
         linkCost[destNodeId] = cost;
     }
     fclose(fcost);
-    //cout << "Finished reading cost file" << endl;
 }
 
 /* Setup sockets for all possible nodes. */
 void setupNodeSockets() {
-    //std::cout << "Inside setup socket function." << std::endl;
     for (int i = 0; i < 256; i++) {
         char tempaddr[100];
         sprintf(tempaddr, "10.1.1.%d", i);

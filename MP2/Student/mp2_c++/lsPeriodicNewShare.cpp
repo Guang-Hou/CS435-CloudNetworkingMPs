@@ -24,6 +24,4 @@ int main(int argc, char** argv)
     pthread_create(&announcerLSA, 0, announceLSA, (void*)0);
 
     listenForNeighbors();
-
-    //testDij(3);
 }
