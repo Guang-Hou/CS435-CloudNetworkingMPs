@@ -20,12 +20,10 @@ int main(int argc, char** argv)
     pthread_t announcerHeartbeat;
     pthread_create(&announcerHeartbeat, 0, announceHeartbeat, (void*)0);
 
-    //detectNeighbors();
-
     pthread_t announcerLSA;
     pthread_create(&announcerLSA, 0, announceLSA, (void*)0);
 
     listenForNeighbors();
 
-    // testDij(6, 3);
+    //testDij(3);
 }

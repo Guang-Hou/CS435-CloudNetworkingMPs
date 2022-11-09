@@ -71,7 +71,7 @@ void processLSAMessage(string buffContent, int bytesRecvd, int heardFrom);
 int getNextHop(int destId);
 //void directMessage(const char* recvBuf, int bytesRecvd);
 void directMessage(string buffContent, int bytesRecvd);
-// void testDij(int MyNodeId, int destId);
+void testDij(int destId);
 
 void setupNodeSockets();
 void logMessageAndTime(const char* message);
@@ -382,39 +382,21 @@ void broadcastToValidNeighbor(const char* packetBuffer, int packetSize, int skip
 /* Run Dijkstra's algorithm to find nextHop to reach destId from myself. */
 int getNextHop(int destId)
 {
-    char payload[BUFFERSIZE];
-    memset(payload, 0, BUFFERSIZE);
-    strcpy(payload, "seqs");
-
-    map<int, int> validSeq;
     for (int i = 0; i < 256; i += 1) {
         if (graph.find(i) != graph.end()) {  // graph only stores active node sequence sicne a node record is created when seeing a LSA
-            validSeq[i] = graph[i].first;
+            json j_map(graph[i].second);
+            logMessageAndTime(j_map.dump().c_str());
         }
     }
-    json myAdj(validSeq);  // it is a map nodeId->seq number for valid node in my graph
-    std::string strAdj = myAdj.dump();
-
-    memcpy(payload + 4, strAdj.c_str(), strAdj.length());
-
-    logMessageAndTime(payload);
 
     // cout << "Inside getNextHop function." << endl;
     int prev[256];             // i's previous node in path to desId
+    int pathNextHop[256];      // From source to node i, the next hop after sourceId
     int distanceToMyNode[256]; // i's total distance to desId
     prev[destId] = -1;
-    bool visited[256];
 
-    class Compare
-    {
-    public:
-        bool operator() (DN d1, DN d2)
-        {
-            return d1.first > d2.first || (d1.first == d2.first && d1.second > d2.second);
-        }
-    };
+    std::priority_queue<DN, std::vector<DN>, greater<DN>> frontier;  // pair<distanceToMyNode, nodeId>
 
-    std::priority_queue<DN, std::vector<DN>, Compare> frontier;  // pair<distanceToMyNode, nodeId>
     for (auto const& kv : graph) {
         int nodeId = kv.first;
         distanceToMyNode[nodeId] = INT_MAX;
@@ -427,24 +409,27 @@ int getNextHop(int destId)
         int uDist = frontier.top().first;
         int u = frontier.top().second;
         frontier.pop();
+        //cout << "Poped: " << uDist << " , " << u << endl;
 
-        if (visited[u]) {  // remove redudent entries of larger distance for teh same node
-            continue;
-        } 
-        visited[u] = true;
-
-        if (u == destId) {
-            break;
-        }
         for (auto const& kvPair : graph[u].second) {  // kv will be u's adjacent list map: (neighborId, cost)
             int v = kvPair.first;
             int uvCost = kvPair.second;
-            if (visited[v] == false) {
-                if (uDist + uvCost < distanceToMyNode[v]) {
-                    distanceToMyNode[v] = distanceToMyNode[u] + uvCost;
-                    frontier.push(std::make_pair(distanceToMyNode[v], v));  // this may add mutiple copies of one node to the priority_queue
-                    prev[v] = u;
+
+            if (v == u) {
+                continue;
+            }
+
+            if ((distanceToMyNode[u] + uvCost < distanceToMyNode[v]) || ((distanceToMyNode[u] + uvCost == distanceToMyNode[v]) && pathNextHop[u] < pathNextHop[v])) {
+                distanceToMyNode[v] = distanceToMyNode[u] + uvCost;
+                frontier.push(std::make_pair(distanceToMyNode[v], v));  // this may add mutiple copies of one node to the priority_queue
+                //cout << "Added: " << distanceToMyNode[v] << " , " << v << endl;
+                prev[v] = u;
+                int p = v;
+                while (prev[p] != myNodeId) {
+                    p = prev[p];
                 }
+                pathNextHop[v] = p;  // record v's path next hop after sourceId
+                //cout << "prev[" << v << "] =" << u << endl;
             }
         }
     }
@@ -455,14 +440,17 @@ int getNextHop(int destId)
         return -1;
     }
 
-    int p = destId;
-    while (prev[p] != myNodeId) {
-        p = prev[p];
+    /*
+    for (int i = 0; i < 256; i += 1) {
+        if (graph.find(i) != graph.end()) {
+            cout << "i: " << i << " , prev[i]: " << prev[i] << endl;
+        }
     }
+    */
 
     // string logContent = "In getNextHop, found next hop";
     // logMessageAndTime(logContent.c_str());
-    return p;
+    return pathNextHop[destId];
 }
 
 /* Run init() first, then run this function to find the shortest path from myNodeId to destId. */
@@ -474,7 +462,7 @@ void testDij(int destId)
     graph[2].second = { {1, 54}, {3, 1}, {5, 1} };
     graph[3].second = { {2, 1}, {4, 1} };
     graph[4].second = { {1, 1}, {3, 1}, {7, 1} };
-    graph[5].second = { {1, 2}, {2, 2}, {6, 1} };
+    graph[5].second = { {1, 2}, {2, 1}, {6, 1} };
     graph[6].second = { {7, 3}, {1, 1}, {5, 1} };
     graph[7].second = { {6, 3}, {4, 1} };
     graph[255].second = { {0, 555}, {1, 1} };
@@ -571,7 +559,7 @@ void setupNodeSockets() {
 
 /* Helper function to log transitant information and time during program execution. */
 void logMessageAndTime(const char* message) {
-    //return;
+    return;
     char logLine[BUFFERSIZE];
     sprintf(logLine, " %s\n", message);
     fwrite(logLine, 1, strlen(logLine), flog);
