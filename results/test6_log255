@@ -1,114 +1,182 @@
-   Saw a new neighbor 1
-    Time is at 1668138038359 ms.
- Created LSA packet. fromId: 255, destId: 255, distance: 0, nexHop: 255, and nodesInPath: [255].
-    Time is at 1668138038360 ms.
- Received LSA from neighbor 1, for destId 1, the distance is 0, the nexHop is 1, and its PATH is: [1].
-    Time is at 1668138038360 ms.
- After processing LSA, my path to destId 1 : the distance is 1, the nexHop is 1, and its PATH is: [255,1].
-    Time is at 1668138038360 ms.
- Received LSA from neighbor 1, for destId 2, the distance is 3, the nexHop is 5, and its PATH is: [1,5,2].
-    Time is at 1668138038361 ms.
- After processing LSA, my path to destId 2 : the distance is 4, the nexHop is 1, and its PATH is: [255,1,5,2].
-    Time is at 1668138038361 ms.
- Received LSA from neighbor 1, for destId 3, the distance is 4, the nexHop is 5, and its PATH is: [1,5,2,3].
-    Time is at 1668138038361 ms.
- After processing LSA, my path to destId 3 : the distance is 5, the nexHop is 1, and its PATH is: [3,2,255,5,1].
-    Time is at 1668138038361 ms.
- Received LSA from neighbor 1, for destId 4, the distance is 1, the nexHop is 4, and its PATH is: [1,4].
-    Time is at 1668138038362 ms.
- After processing LSA, my path to destId 4 : the distance is 2, the nexHop is 1, and its PATH is: [255,1,4].
-    Time is at 1668138038362 ms.
    Saw a new neighbor 0
-    Time is at 1668138038362 ms.
- Created LSA packet. fromId: 255, destId: 1, distance: 1, nexHop: 1, and nodesInPath: [255,1].
-    Time is at 1668138038362 ms.
- Created LSA packet. fromId: 255, destId: 2, distance: 4, nexHop: 1, and nodesInPath: [255,1,5,2].
-    Time is at 1668138038362 ms.
- Received LSA from neighbor 1, for destId 5, the distance is 2, the nexHop is 5, and its PATH is: [1,5].
-    Time is at 1668138038362 ms.
- After processing LSA, my path to destId 5 : the distance is 3, the nexHop is 1, and its PATH is: [1,255,5].
-    Time is at 1668138038362 ms.
- Created LSA packet. fromId: 255, destId: 3, distance: 5, nexHop: 1, and nodesInPath: [3,2,255,5,1].
-    Time is at 1668138038362 ms.
- Created LSA packet. fromId: 255, destId: 4, distance: 2, nexHop: 1, and nodesInPath: [255,1,4].
-    Time is at 1668138038362 ms.
- Created LSA packet. fromId: 255, destId: 5, distance: 3, nexHop: 1, and nodesInPath: [1,255,5].
-    Time is at 1668138038362 ms.
+    Time is at 1668170770977 ms.
  Created LSA packet. fromId: 255, destId: 255, distance: 0, nexHop: 255, and nodesInPath: [255].
-    Time is at 1668138038362 ms.
+    Time is at 1668170770977 ms.
+   Saw a new neighbor 1
+    Time is at 1668170770978 ms.
+ Created LSA packet. fromId: 255, destId: 255, distance: 0, nexHop: 255, and nodesInPath: [255].
+    Time is at 1668170770978 ms.
  Received LSA from neighbor 0, for destId 0, the distance is 0, the nexHop is 0, and its PATH is: [0].
-    Time is at 1668138038363 ms.
+    Time is at 1668170770978 ms.
  After processing LSA, my path to destId 0 : the distance is 555, the nexHop is 0, and its PATH is: [255,0].
-    Time is at 1668138038363 ms.
- Received LSA from neighbor 1, for destId 6, the distance is 1, the nexHop is 6, and its PATH is: [1,6].
-    Time is at 1668138038363 ms.
- After processing LSA, my path to destId 6 : the distance is 2, the nexHop is 1, and its PATH is: [255,1,6].
-    Time is at 1668138038363 ms.
- Received LSA from neighbor 1, for destId 5, the distance is 2, the nexHop is 5, and its PATH is: [1,5].
-    Time is at 1668138038732 ms.
- After processing LSA, my path to destId 5 : the distance is 3, the nexHop is 1, and its PATH is: [1,255,5].
-    Time is at 1668138038732 ms.
- Received LSA from neighbor 1, for destId 3, the distance is 4, the nexHop is 5, and its PATH is: [1,5,2,3].
-    Time is at 1668138038732 ms.
- After processing LSA, my path to destId 3 : the distance is 5, the nexHop is 1, and its PATH is: [3,2,255,5,1].
-    Time is at 1668138038732 ms.
+    Time is at 1668170770978 ms.
+ Received LSA from neighbor 1, for destId 1, the distance is 0, the nexHop is 1, and its PATH is: [1].
+    Time is at 1668170770978 ms.
+ After processing LSA, my path to destId 1 : the distance is 1, the nexHop is 1, and its PATH is: [255,1].
+    Time is at 1668170770978 ms.
+ Received LSA from neighbor 1, for destId 2, the distance is 54, the nexHop is 2, and its PATH is: [1,2].
+    Time is at 1668170770978 ms.
+ After processing LSA, my path to destId 2 : the distance is 55, the nexHop is 1, and its PATH is: [255,1,2].
+    Time is at 1668170770979 ms.
  Received LSA from neighbor 1, for destId 4, the distance is 1, the nexHop is 4, and its PATH is: [1,4].
-    Time is at 1668138038732 ms.
+    Time is at 1668170770979 ms.
  After processing LSA, my path to destId 4 : the distance is 2, the nexHop is 1, and its PATH is: [255,1,4].
-    Time is at 1668138038732 ms.
+    Time is at 1668170770979 ms.
+ Received LSA from neighbor 1, for destId 5, the distance is 2, the nexHop is 5, and its PATH is: [1,5].
+    Time is at 1668170770979 ms.
+ After processing LSA, my path to destId 5 : the distance is 3, the nexHop is 1, and its PATH is: [1,255,5].
+    Time is at 1668170770979 ms.
  Received LSA from neighbor 1, for destId 6, the distance is 1, the nexHop is 6, and its PATH is: [1,6].
-    Time is at 1668138038733 ms.
+    Time is at 1668170770979 ms.
  After processing LSA, my path to destId 6 : the distance is 2, the nexHop is 1, and its PATH is: [255,1,6].
-    Time is at 1668138038733 ms.
- Received LSA from neighbor 1, for destId 2, the distance is 3, the nexHop is 5, and its PATH is: [1,5,2].
-    Time is at 1668138038733 ms.
- After processing LSA, my path to destId 2 : the distance is 4, the nexHop is 1, and its PATH is: [255,1,5,2].
-    Time is at 1668138038733 ms.
+    Time is at 1668170770979 ms.
+ Received LSA from neighbor 1, for destId 6, the distance is 1, the nexHop is 6, and its PATH is: [1,6].
+    Time is at 1668170771368 ms.
+ Inside chooseAlternativePath, iterating through neighbor 0
+    Time is at 1668170771368 ms.
+ Inside chooseAlternativePath, iterating through neighbor 1
+    Time is at 1668170771368 ms.
+ Inside chooseAlternativePath, iterating through neighbor 255
+    Time is at 1668170771368 ms.
+ After processing LSA, my path to destId 6 : the distance is 2, the nexHop is 1, and its PATH is: [255,1,6].
+    Time is at 1668170771368 ms.
+ Received LSA from neighbor 1, for destId 5, the distance is 2, the nexHop is 5, and its PATH is: [1,5].
+    Time is at 1668170771369 ms.
+ Inside chooseAlternativePath, iterating through neighbor 0
+    Time is at 1668170771369 ms.
+ Inside chooseAlternativePath, iterating through neighbor 1
+    Time is at 1668170771369 ms.
+ Inside chooseAlternativePath, iterating through neighbor 255
+    Time is at 1668170771369 ms.
+ After processing LSA, my path to destId 5 : the distance is 3, the nexHop is 1, and its PATH is: [1,255,5].
+    Time is at 1668170771369 ms.
+ Received LSA from neighbor 1, for destId 4, the distance is 1, the nexHop is 4, and its PATH is: [1,4].
+    Time is at 1668170771369 ms.
+ Inside chooseAlternativePath, iterating through neighbor 0
+    Time is at 1668170771369 ms.
+ Inside chooseAlternativePath, iterating through neighbor 1
+    Time is at 1668170771369 ms.
+ Inside chooseAlternativePath, iterating through neighbor 255
+    Time is at 1668170771369 ms.
+ After processing LSA, my path to destId 4 : the distance is 2, the nexHop is 1, and its PATH is: [255,1,4].
+    Time is at 1668170771369 ms.
+ Received LSA from neighbor 1, for destId 2, the distance is 54, the nexHop is 2, and its PATH is: [1,2].
+    Time is at 1668170771370 ms.
+ Inside chooseAlternativePath, iterating through neighbor 0
+    Time is at 1668170771370 ms.
+ Inside chooseAlternativePath, iterating through neighbor 1
+    Time is at 1668170771370 ms.
+ Inside chooseAlternativePath, iterating through neighbor 255
+    Time is at 1668170771370 ms.
+ After processing LSA, my path to destId 2 : the distance is 55, the nexHop is 1, and its PATH is: [255,1,2].
+    Time is at 1668170771370 ms.
  Created LSA packet. fromId: 255, destId: 6, distance: 2, nexHop: 1, and nodesInPath: [255,1,6].
-    Time is at 1668138038761 ms.
- Created LSA packet. fromId: 255, destId: 0, distance: 555, nexHop: 0, and nodesInPath: [255,0].
-    Time is at 1668138038761 ms.
+    Time is at 1668170771378 ms.
  Created LSA packet. fromId: 255, destId: 5, distance: 3, nexHop: 1, and nodesInPath: [1,255,5].
-    Time is at 1668138038761 ms.
+    Time is at 1668170771378 ms.
  Created LSA packet. fromId: 255, destId: 4, distance: 2, nexHop: 1, and nodesInPath: [255,1,4].
-    Time is at 1668138038761 ms.
- Created LSA packet. fromId: 255, destId: 3, distance: 5, nexHop: 1, and nodesInPath: [3,2,255,5,1].
-    Time is at 1668138038761 ms.
- Created LSA packet. fromId: 255, destId: 2, distance: 4, nexHop: 1, and nodesInPath: [255,1,5,2].
-    Time is at 1668138038761 ms.
+    Time is at 1668170771378 ms.
+ Created LSA packet. fromId: 255, destId: 2, distance: 55, nexHop: 1, and nodesInPath: [255,1,2].
+    Time is at 1668170771378 ms.
  Created LSA packet. fromId: 255, destId: 1, distance: 1, nexHop: 1, and nodesInPath: [255,1].
-    Time is at 1668138038761 ms.
- Received LSA from neighbor 1, for destId 2, the distance is 3, the nexHop is 4, and its PATH is: [1,4,3,2].
-    Time is at 1668138039132 ms.
- After processing LSA, my path to destId 2 : the distance is 4, the nexHop is 1, and its PATH is: [255,1,5,2].
-    Time is at 1668138039132 ms.
- Received LSA from neighbor 1, for destId 3, the distance is 2, the nexHop is 4, and its PATH is: [1,4,3].
-    Time is at 1668138039133 ms.
- After processing LSA, my path to destId 3 : the distance is 3, the nexHop is 1, and its PATH is: [1,4,255,3].
-    Time is at 1668138039133 ms.
+    Time is at 1668170771378 ms.
+ Created LSA packet. fromId: 255, destId: 0, distance: 555, nexHop: 0, and nodesInPath: [255,0].
+    Time is at 1668170771378 ms.
  Received LSA from neighbor 1, for destId 7, the distance is 2, the nexHop is 4, and its PATH is: [1,4,7].
-    Time is at 1668138039133 ms.
+    Time is at 1668170771764 ms.
  After processing LSA, my path to destId 7 : the distance is 3, the nexHop is 1, and its PATH is: [255,1,4,7].
-    Time is at 1668138039133 ms.
- Created LSA packet. fromId: 255, destId: 7, distance: 3, nexHop: 1, and nodesInPath: [255,1,4,7].
-    Time is at 1668138039161 ms.
+    Time is at 1668170771765 ms.
+ Received LSA from neighbor 1, for destId 3, the distance is 2, the nexHop is 4, and its PATH is: [1,4,3].
+    Time is at 1668170771765 ms.
+ After processing LSA, my path to destId 3 : the distance is 3, the nexHop is 1, and its PATH is: [1,4,255,3].
+    Time is at 1668170771765 ms.
+ Received LSA from neighbor 1, for destId 2, the distance is 3, the nexHop is 5, and its PATH is: [1,5,2].
+    Time is at 1668170771766 ms.
+ Inside chooseAlternativePath, iterating through neighbor 0
+    Time is at 1668170771766 ms.
+ Inside chooseAlternativePath, iterating through neighbor 1
+    Time is at 1668170771766 ms.
+ Inside chooseAlternativePath, iterating through neighbor 255
+    Time is at 1668170771766 ms.
+ After processing LSA, my path to destId 2 : the distance is 4, the nexHop is 1, and its PATH is: [255,1,5,2].
+    Time is at 1668170771766 ms.
+ Created LSA packet. fromId: 255, destId: 2, distance: 4, nexHop: 1, and nodesInPath: [255,1,5,2].
+    Time is at 1668170771779 ms.
  Created LSA packet. fromId: 255, destId: 3, distance: 3, nexHop: 1, and nodesInPath: [1,4,255,3].
-    Time is at 1668138039161 ms.
+    Time is at 1668170771779 ms.
+ Created LSA packet. fromId: 255, destId: 7, distance: 3, nexHop: 1, and nodesInPath: [255,1,4,7].
+    Time is at 1668170771779 ms.
+ Received LSA from neighbor 1, for destId 2, the distance is 3, the nexHop is 4, and its PATH is: [1,4,3,2].
+    Time is at 1668170772165 ms.
+ Inside chooseAlternativePath, iterating through neighbor 0
+    Time is at 1668170772165 ms.
+ Inside chooseAlternativePath, iterating through neighbor 1
+    Time is at 1668170772165 ms.
+ Inside chooseAlternativePath, iterating through neighbor 255
+    Time is at 1668170772165 ms.
+ After processing LSA, my path to destId 2 : the distance is 4, the nexHop is 1, and its PATH is: [255,2,3,4,1].
+    Time is at 1668170772165 ms.
+ Created LSA packet. fromId: 255, destId: 2, distance: 4, nexHop: 1, and nodesInPath: [255,2,3,4,1].
+    Time is at 1668170772180 ms.
 forward packet dest 3 nextHop 1 message this is just the example topo... not partioned yet
  Received LSA from neighbor 1, for destId 7, the distance is 4, the nexHop is 6, and its PATH is: [1,6,7].
-    Time is at 1668138045291 ms.
- After processing LSA, my path to destId 7 : the distance is 3, the nexHop is 1, and its PATH is: [255,1,4,7].
-    Time is at 1668138045292 ms.
+    Time is at 1668170777829 ms.
+ Inside chooseAlternativePath, iterating through neighbor 0
+    Time is at 1668170777829 ms.
+ Inside chooseAlternativePath, iterating through neighbor 1
+    Time is at 1668170777829 ms.
+ Inside chooseAlternativePath, iterating through neighbor 255
+    Time is at 1668170777829 ms.
+ After processing LSA, my path to destId 7 : the distance is 5, the nexHop is 1, and its PATH is: [255,1,7,6].
+    Time is at 1668170777829 ms.
  Received LSA from neighbor 1, for destId 4, the distance is 56, the nexHop is 2, and its PATH is: [1,2,3,4].
-    Time is at 1668138045292 ms.
- After processing LSA, my path to destId 4 : the distance is 2, the nexHop is 1, and its PATH is: [255,1,4].
-    Time is at 1668138045292 ms.
+    Time is at 1668170777830 ms.
+ Inside chooseAlternativePath, iterating through neighbor 0
+    Time is at 1668170777830 ms.
+ Inside chooseAlternativePath, iterating through neighbor 1
+    Time is at 1668170777830 ms.
+ Inside chooseAlternativePath, iterating through neighbor 255
+    Time is at 1668170777830 ms.
+ After processing LSA, my path to destId 4 : the distance is 57, the nexHop is 1, and its PATH is: [255,4,3,2,1].
+    Time is at 1668170777830 ms.
  Received LSA from neighbor 1, for destId 3, the distance is 4, the nexHop is 5, and its PATH is: [1,5,2,3].
-    Time is at 1668138045292 ms.
- After processing LSA, my path to destId 3 : the distance is 3, the nexHop is 1, and its PATH is: [1,4,255,3].
-    Time is at 1668138045292 ms.
+    Time is at 1668170777831 ms.
+ Inside chooseAlternativePath, iterating through neighbor 0
+    Time is at 1668170777831 ms.
+ Inside chooseAlternativePath, iterating through neighbor 1
+    Time is at 1668170777831 ms.
+ Inside chooseAlternativePath, iterating through neighbor 255
+    Time is at 1668170777831 ms.
+ After processing LSA, my path to destId 3 : the distance is 5, the nexHop is 1, and its PATH is: [3,2,255,5,1].
+    Time is at 1668170777831 ms.
  Received LSA from neighbor 1, for destId 2, the distance is 3, the nexHop is 5, and its PATH is: [1,5,2].
-    Time is at 1668138045292 ms.
+    Time is at 1668170777832 ms.
+ Inside chooseAlternativePath, iterating through neighbor 0
+    Time is at 1668170777832 ms.
+ Inside chooseAlternativePath, iterating through neighbor 1
+    Time is at 1668170777832 ms.
+ Inside chooseAlternativePath, iterating through neighbor 255
+    Time is at 1668170777832 ms.
  After processing LSA, my path to destId 2 : the distance is 4, the nexHop is 1, and its PATH is: [255,1,5,2].
-    Time is at 1668138045292 ms.
+    Time is at 1668170777832 ms.
+ Created LSA packet. fromId: 255, destId: 2, distance: 4, nexHop: 1, and nodesInPath: [255,1,5,2].
+    Time is at 1668170777836 ms.
+ Created LSA packet. fromId: 255, destId: 3, distance: 5, nexHop: 1, and nodesInPath: [3,2,255,5,1].
+    Time is at 1668170777836 ms.
+ Created LSA packet. fromId: 255, destId: 4, distance: 57, nexHop: 1, and nodesInPath: [255,4,3,2,1].
+    Time is at 1668170777836 ms.
+ Created LSA packet. fromId: 255, destId: 7, distance: 5, nexHop: 1, and nodesInPath: [255,1,7,6].
+    Time is at 1668170777837 ms.
+ Received LSA from neighbor 1, for destId 4, the distance is 5, the nexHop is 5, and its PATH is: [1,4,3,2,5].
+    Time is at 1668170778230 ms.
+ Inside chooseAlternativePath, iterating through neighbor 0
+    Time is at 1668170778231 ms.
+ Inside chooseAlternativePath, iterating through neighbor 1
+    Time is at 1668170778231 ms.
+ Inside chooseAlternativePath, iterating through neighbor 255
+    Time is at 1668170778231 ms.
+ After processing LSA, my path to destId 4 : the distance is 6, the nexHop is 1, and its PATH is: [1,4,3,255,2,5].
+    Time is at 1668170778231 ms.
+ Created LSA packet. fromId: 255, destId: 4, distance: 6, nexHop: 1, and nodesInPath: [1,4,3,255,2,5].
+    Time is at 1668170778238 ms.
 forward packet dest 3 nextHop 1 message partioned!!

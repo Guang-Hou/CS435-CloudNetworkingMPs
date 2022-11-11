@@ -233,9 +233,12 @@ void checkLostNeighbor() {
             logContent += to_string(lostNb);
             logMessageAndTime(logContent.c_str());
 
+            change_lock.lock();
             paths_lock.lock();
-            i = nodePaths.erase(i);  // remove this neighbor's entry in my database
+            i = nodePaths.erase(i);             // remove this neighbor's entry in my database
+            //changedPaths.insert(lostNb);      // add it to the changedPath list, so i will send this infor out to my other neighbors
             paths_lock.unlock();
+            change_lock.unlock();
 
             lostNeighbors.insert(lostNb);
         }
@@ -244,7 +247,8 @@ void checkLostNeighbor() {
         }
     }
 
-    // check if this broken link causes my paths to chagne
+    // check if this broken link causes my paths to chagne, get the list of lost destIds
+    unordered_set<int> allLostDestIds;
     for (auto lostNb : lostNeighbors) {
         for (auto pathPtr = nodePaths[myNodeId].begin(); pathPtr != nodePaths[myNodeId].end(); ) {
             if (get<1>(pathPtr->second) == lostNb) { // I lost the path to destId due to broken link to the neighbor
@@ -258,17 +262,23 @@ void checkLostNeighbor() {
                 paths_lock.unlock();
                 change_lock.unlock();
 
+                allLostDestIds.insert(lostDestId);
+
                 char buff[200];
                 snprintf(buff, sizeof(buff), "Because of this lost neighbor %d, I lost my path to destId %d, becasue the next hop is %d.", lostNb, lostDestId, nextHop);
                 logMessageAndTime(buff);
-
-                chooseAlternativePath(lostDestId);
             }
             else {
                 ++pathPtr;
             }
         }
     }
+
+    // Only choose alternative path after removing all lost paths
+    for (auto const& lostDestId : allLostDestIds) {
+        chooseAlternativePath(lostDestId);
+    }
+
 }
 
 /* Choose an alternative next hop from my existing neighbors to reach destId.
@@ -418,13 +428,20 @@ void processLSAMessage(string buffContent, int bytesRecvd, int neighborId)
         paths_lock.unlock();
 
         // check if my paths are affected
+        unordered_set<int> allLostDestIds;
         bool pathExistAndAffected = nodePaths[myNodeId].find(destId) != nodePaths[myNodeId].end() && get<1>(nodePaths[myNodeId][destId]) == fromId;
         if (pathExistAndAffected) {  // my path to destId becomes invalid
             change_lock.lock();
             changedPaths.insert(destId);
             nodePaths[myNodeId].erase(destId);
             change_lock.unlock();
-            chooseAlternativePath(destId);
+
+            allLostDestIds.insert(destId);
+        }
+
+        // Only choose alternative path after removing all lost paths
+        for (auto const& lostDestId : allLostDestIds) {
+            chooseAlternativePath(lostDestId);
         }
     }
     else { // neighbor has an alternative path 
@@ -446,8 +463,18 @@ void processLSAMessage(string buffContent, int bytesRecvd, int neighborId)
             change_lock.unlock();
         }
         else if (otherNodesInPath.count(myNodeId) == 0) {  // the alternative path is valid to me, i.e. i am not in the neighbor's path
-            if (distance + linkCost[fromId] < get<0>(nodePaths[myNodeId][destId])
-                || (distance + linkCost[fromId] == get<0>(nodePaths[myNodeId][destId]) && get<1>(nodePaths[myNodeId][destId]) > fromId)) { // neighbor path is better
+            if (get<1>(nodePaths[myNodeId][destId]) == fromId) {  // my current path is going through this neighbor, and neighbor updated its path
+                change_lock.lock();
+                paths_lock.lock();
+                changedPaths.insert(destId);
+                nodePaths[myNodeId].erase(destId);
+                paths_lock.unlock();
+                change_lock.unlock();
+
+                chooseAlternativePath(destId);
+            }
+            else if (distance + linkCost[fromId] < get<0>(nodePaths[myNodeId][destId])  // neighbor path is from a new neighbor and it is better
+                || (distance + linkCost[fromId] == get<0>(nodePaths[myNodeId][destId]) && get<1>(nodePaths[myNodeId][destId]) > fromId)) {
                 change_lock.lock();
                 paths_lock.lock();
                 changedPaths.insert(destId);
