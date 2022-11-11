@@ -7,6 +7,9 @@
  - During the whole process, check if a path to destId is changed since previous periodical sending out. This changedPaths set will track the destId whose path from me to it has chagned.
     - Periodically check lost neighbor right before sending out updated LSA, to see if any of my paths changed.
     - Check any paths are changed when processing neighbor LSA.
+    - For any destId path that was changed, immediately remove its entry from nodePaths[myNode], add it to changedPaths list
+    - Before sending out LSA, choose alternative paths for all destIds in changedPaths. If we choose alternative path right away when finding a changed destID,
+      we may choose obselate paths and create loops.
 - For a new neighbor
     - Immediately share all my valid paths to this new neighbor.
 - For a lost neighbor
@@ -47,14 +50,10 @@ using json = nlohmann::json;
 using namespace std;
 
 typedef tuple<int, int, unordered_set<int>> PATH; // (distance, nextHop, nodesInPath)
-map<int, map<int, PATH>> nodePaths;  // nodePaths[i][j] the path from node i to destNode i; 
-// only store my paths and my active neighbors' paths to active destId
-// In temporary state, it may contain a destId of distance -1 when processign LSA and before sending this out in announceLSA.
-unordered_set<int> myNeighbors;      // track my live neighbors, necessary?
-unordered_set<int> changedPaths;     // track the destIds where my paths to them has changed since last sending LSA
+map<int, map<int, PATH>> nodePaths;  // nodePaths[i][j] the path from node i to destNode i; only stores myself and my active neighbors
+unordered_set<int> changedPaths;     // track the destIds where my paths to them MAY have changed since last sending LSA
 std::mutex change_lock;     // lock changedPaths when modifying it
 std::mutex paths_lock;      // lock nodePaths[myNodeId] when modifying it
-std::mutex neighbors_lock;  // lock myNeighbors when modifying it
 
 int myNodeId, mySocketUDP;
 struct timeval previousHeartbeat[256]; // track last time a neighbor is seen to figure out who is lost
@@ -129,9 +128,9 @@ void* announceLSA(void* unusedParam) {
     sleepFor.tv_nsec = 400 * 1000 * 1000; // 400 ms
 
     while (1) {
-        checkLostNeighbor();   // periodically check if I lost any neighbor and if any paths are affected
-
-        sendLSAToNeighbors();  // create a new LSA of path to dest node i and send it out to my neighbors
+        checkLostNeighbor();       // periodically check if I lost any neighbor and if any paths are affected
+        chooseAlternativePaths();  // select alternative paths for destId in changedPaths
+        sendLSAToNeighbors();      // create a new LSA of path for all destId in changedPaths and send it out to my neighbors
 
         change_lock.lock();
         changedPaths.clear();
@@ -236,7 +235,6 @@ void checkLostNeighbor() {
             change_lock.lock();
             paths_lock.lock();
             i = nodePaths.erase(i);             // remove this neighbor's entry in my database
-            //changedPaths.insert(lostNb);      // add it to the changedPath list, so i will send this infor out to my other neighbors
             paths_lock.unlock();
             change_lock.unlock();
 
@@ -248,7 +246,6 @@ void checkLostNeighbor() {
     }
 
     // check if this broken link causes my paths to chagne, get the list of lost destIds
-    unordered_set<int> allLostDestIds;
     for (auto lostNb : lostNeighbors) {
         for (auto pathPtr = nodePaths[myNodeId].begin(); pathPtr != nodePaths[myNodeId].end(); ) {
             if (get<1>(pathPtr->second) == lostNb) { // I lost the path to destId due to broken link to the neighbor
@@ -262,8 +259,6 @@ void checkLostNeighbor() {
                 paths_lock.unlock();
                 change_lock.unlock();
 
-                allLostDestIds.insert(lostDestId);
-
                 char buff[200];
                 snprintf(buff, sizeof(buff), "Because of this lost neighbor %d, I lost my path to destId %d, becasue the next hop is %d.", lostNb, lostDestId, nextHop);
                 logMessageAndTime(buff);
@@ -273,45 +268,41 @@ void checkLostNeighbor() {
             }
         }
     }
-
-    // Only choose alternative path after removing all lost paths
-    for (auto const& lostDestId : allLostDestIds) {
-        chooseAlternativePath(lostDestId);
-    }
-
 }
 
-/* Choose an alternative next hop from my existing neighbors to reach destId.
+/* For any desId in the changedPaths, choose an alternative next hop from my existing neighbors to reach destId.
    If there is an alternative path, update in nodePaths; if there none then do nothing, and nodePaths[myNodeId] will not contain destId.
    It is used in checkLostNeighbor() and processLSAMessage() when I lost my path to destId. */
-void chooseAlternativePath(int destId) {
-    int bestNb = -1;
-    int myDistToDest = INT_MAX;
-    for (const auto& i : nodePaths) {
-        string logContent = "Inside chooseAlternativePath, iterating through neighbor ";
-        logContent += to_string(i.first);
-        logMessageAndTime(logContent.c_str());
-
-        int nb = i.first;
-        if (nodePaths[nb].find(destId) != nodePaths[nb].end()) {      // this neibhor has a path to destId
-            if (get<2>(nodePaths[nb][destId]).count(myNodeId) == 0) { // this path doesn't go through me
-                int newDist = get<0>(nodePaths[nb][destId]) + linkCost[nb];
-                if (newDist < myDistToDest || (newDist == myDistToDest && nb < bestNb)) {
-                    bestNb = nb;
-                    myDistToDest = newDist;
+void chooseAlternativePaths() {
+    for (auto const& destId : changedPaths) {
+        int bestNb = -1;
+        int myDistToDest = INT_MAX;
+        for (const auto& i : nodePaths) {
+            int nb = i.first;
+            if (nb != myNodeId && nodePaths[nb].find(destId) != nodePaths[nb].end()) {      // this neibhor has a path to destId
+                if (get<2>(nodePaths[nb][destId]).count(myNodeId) == 0) { // this path doesn't go through me
+                    int newDist = get<0>(nodePaths[nb][destId]) + linkCost[nb];
+                    if (newDist < myDistToDest || (newDist == myDistToDest && nb < bestNb)) {
+                        bestNb = nb;
+                        myDistToDest = newDist;
+                    }
                 }
             }
         }
-    }
 
-    if (bestNb != -1) {
-        paths_lock.lock();
-        //get<0>(nodePaths[myNodeId][destId]) = myDistToDest;
-        //get<1>(nodePaths[myNodeId][destId]) = bestNb;
-        //get<2>(nodePaths[myNodeId][destId]) = nodePaths[bestNb][destId];
-        nodePaths[myNodeId][destId] = { myDistToDest, bestNb, get<2>(nodePaths[bestNb][destId]) };
-        get<2>(nodePaths[myNodeId][destId]).insert(myNodeId);
-        paths_lock.unlock();
+        if (bestNb != -1) {
+            paths_lock.lock();
+            //get<0>(nodePaths[myNodeId][destId]) = myDistToDest;
+            //get<1>(nodePaths[myNodeId][destId]) = bestNb;
+            //get<2>(nodePaths[myNodeId][destId]) = nodePaths[bestNb][destId];
+            nodePaths[myNodeId][destId] = { myDistToDest, bestNb, get<2>(nodePaths[bestNb][destId]) };
+            get<2>(nodePaths[myNodeId][destId]).insert(myNodeId);
+            paths_lock.unlock();
+        } else {
+            paths_lock.lock();
+            nodePaths[myNodeId].erase(destId); 
+            paths_lock.unlock();
+        }
     }
 }
 
@@ -386,7 +377,9 @@ void sendLSAToNeighbors() {
         memset(packetBuffer, 0, BUFFERSIZE);
         packetSize = createLSAPacket(packetBuffer, destId);
         for (auto const& i : nodePaths) {
-            if (i.first != myNodeId && get<2>(nodePaths[myNodeId][destId]).count(i.first) == 0) {  // only send path not going through the neighbor
+            bool notExist = nodePaths[myNodeId].find(destId) == nodePaths[myNodeId].end();
+            bool exitAndValidForNeighbor = nodePaths[myNodeId].find(destId) != nodePaths[myNodeId].end() && get<2>(nodePaths[myNodeId][destId]).count(i.first) == 0;
+            if (i.first != myNodeId && (notExit || existAndValidForNeighbor)) {  // only send lost path or path not going through the neighbor
                 sendto(mySocketUDP, packetBuffer, packetSize, 0,
                     (struct sockaddr*)&allNodeSocketAddrs[i.first], sizeof(allNodeSocketAddrs[i.first]));
             }
@@ -428,72 +421,50 @@ void processLSAMessage(string buffContent, int bytesRecvd, int neighborId)
         paths_lock.unlock();
 
         // check if my paths are affected
-        unordered_set<int> allLostDestIds;
         bool pathExistAndAffected = nodePaths[myNodeId].find(destId) != nodePaths[myNodeId].end() && get<1>(nodePaths[myNodeId][destId]) == fromId;
         if (pathExistAndAffected) {  // my path to destId becomes invalid
             change_lock.lock();
-            changedPaths.insert(destId);
+            changedPaths.insert(destId);        // just mark it here, later in chooseAlternativePaths(), we will try to find an alternative path
             nodePaths[myNodeId].erase(destId);
             change_lock.unlock();
-
-            allLostDestIds.insert(destId);
-        }
-
-        // Only choose alternative path after removing all lost paths
-        for (auto const& lostDestId : allLostDestIds) {
-            chooseAlternativePath(lostDestId);
         }
     }
-    else { // neighbor has an alternative path 
-        // update in nodePaths[fromId], update the path for destID
+    // neighbor shares his path to destId
+    else {  
+        // update in nodePaths[fromId]
         paths_lock.lock();
         nodePaths[fromId][destId] = { distance, nextHop, otherNodesInPath };
         paths_lock.unlock();
 
-        // check if this path is better for me
+        if (otherNodesInPath.count(myNodeId) == 0) { // if it is a valid path for me
+            change_lock.lock();
+            paths_lock.lock();
+            changedPaths.insert(destId);
+            nodePaths[myNodeId].erase(destId);  // later we will compare all valid paths in chooseAlternativePaths(), if we do it here, we may use obsolete paths
+            paths_lock.unlock();                // even if we do not have a path to destID, the map erase will not throw error
+            change_lock.unlock();
+        }
+
+        /*
+        // I do not have a path to this destId
         if (nodePaths[myNodeId].find(destId) == nodePaths[myNodeId].end() || get<0>(nodePaths[myNodeId][destId]) == -1) { // I do not have a path to this destId
             change_lock.lock();
             paths_lock.lock();
             changedPaths.insert(destId);
-            get<0>(nodePaths[myNodeId][destId]) = distance + linkCost[fromId];
-            get<1>(nodePaths[myNodeId][destId]) = fromId;
-            get<2>(nodePaths[myNodeId][destId]) = otherNodesInPath;
-            get<2>(nodePaths[myNodeId][destId]).insert(myNodeId);
             paths_lock.unlock();
             change_lock.unlock();
         }
+        // I have a path to this destId, and the neighbor' path is valid alternative
         else if (otherNodesInPath.count(myNodeId) == 0) {  // the alternative path is valid to me, i.e. i am not in the neighbor's path
-            if (get<1>(nodePaths[myNodeId][destId]) == fromId) {  // my current path is going through this neighbor, and neighbor updated its path
-                change_lock.lock();
-                paths_lock.lock();
-                changedPaths.insert(destId);
-                nodePaths[myNodeId].erase(destId);
-                paths_lock.unlock();
-                change_lock.unlock();
-
-                chooseAlternativePath(destId);
-            }
-            else if (distance + linkCost[fromId] < get<0>(nodePaths[myNodeId][destId])  // neighbor path is from a new neighbor and it is better
-                || (distance + linkCost[fromId] == get<0>(nodePaths[myNodeId][destId]) && get<1>(nodePaths[myNodeId][destId]) > fromId)) {
-                change_lock.lock();
-                paths_lock.lock();
-                changedPaths.insert(destId);
-                get<0>(nodePaths[myNodeId][destId]) = distance + linkCost[fromId];
-                get<1>(nodePaths[myNodeId][destId]) = fromId;
-                get<2>(nodePaths[myNodeId][destId]) = otherNodesInPath;
-                get<2>(nodePaths[myNodeId][destId]).insert(myNodeId);
-                paths_lock.unlock();
-                change_lock.unlock();
-            }
+            change_lock.lock();
+            paths_lock.lock();
+            changedPaths.insert(destId);
+            nodePaths[myNodeId].erase(destId);  // later we will compare all valid paths in chooseAlternativePaths(), if we do it here, we may use obsolete paths
+            paths_lock.unlock();
+            change_lock.unlock();;
         }
+        */
     }
-
-    memset(buff, 0, 200);
-    json j_set(get<2>(nodePaths[myNodeId][destId]));
-    string nodesInMyPathStr = j_set.dump();
-
-    snprintf(buff, sizeof(buff), "After processing LSA, my path to destId %d : the distance is %d, the nexHop is %d, and its PATH is: %s.", destId, get<0>(nodePaths[myNodeId][destId]), get<1>(nodePaths[myNodeId][destId]), nodesInMyPathStr.c_str());
-    logMessageAndTime(buff);
 }
 
 
