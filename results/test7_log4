@@ -1,0 +1,149 @@
+   Saw a new neighbor 1
+ Created LSA packet. fromId 4, destId 4, distance: 0, nexHop 4, and nodesInPath [4].
+ Inside sharePathsToNewNeighbor, sharing my path fromId 4 -> destId 4 to my neighbor 1, the nodes are [4].
+ Received LSA from neighbor 1, for destId 1, the distance is 0, the nexHop is 1, and its PATH is: [1].
+ I do not have a path to desId 1, but neighbor 1 has, I will use it.
+   Saw a new neighbor 3
+ Created LSA packet. fromId 4, destId 4, distance: 0, nexHop 4, and nodesInPath [4].
+ Inside sharePathsToNewNeighbor, sharing my path fromId 4 -> destId 4 to my neighbor 3, the nodes are [4].
+ Received LSA from neighbor 3, for destId 3, the distance is 0, the nexHop is 3, and its PATH is: [3].
+ I do not have a path to desId 3, but neighbor 3 has, I will use it.
+   Saw a new neighbor 7
+ Created LSA packet. fromId 4, destId 4, distance: 0, nexHop 4, and nodesInPath [4].
+ Inside sharePathsToNewNeighbor, sharing my path fromId 4 -> destId 4 to my neighbor 7, the nodes are [4].
+ Received LSA from neighbor 7, for destId 7, the distance is 0, the nexHop is 7, and its PATH is: [7].
+ I do not have a path to desId 7, but neighbor 7 has, I will use it.
+ Received LSA from neighbor 1, for destId 255, the distance is 1, the nexHop is 255, and its PATH is: [1,255].
+ I do not have a path to desId 255, but neighbor 1 has, I will use it.
+ Received LSA from neighbor 1, for destId 6, the distance is 1, the nexHop is 6, and its PATH is: [1,6].
+ I do not have a path to desId 6, but neighbor 1 has, I will use it.
+ Received LSA from neighbor 1, for destId 5, the distance is 2, the nexHop is 5, and its PATH is: [1,5].
+ I do not have a path to desId 5, but neighbor 1 has, I will use it.
+ Received LSA from neighbor 1, for destId 2, the distance is 54, the nexHop is 2, and its PATH is: [1,2].
+ I do not have a path to desId 2, but neighbor 1 has, I will use it.
+ Received LSA from neighbor 3, for destId 1, the distance is 4, the nexHop is 2, and its PATH is: [3,2,5,1].
+ Received LSA from neighbor 3, for destId 5, the distance is 2, the nexHop is 2, and its PATH is: [3,2,5].
+ Received LSA from neighbor 3, for destId 255, the distance is 56, the nexHop is 2, and its PATH is: [2,1,3,255].
+ Received LSA from neighbor 3, for destId 2, the distance is 1, the nexHop is 2, and its PATH is: [3,2].
+ We both have paths. Neighbor 3 has a better path to desId 2, I will use it.
+ Created LSA packet. fromId 4, destId 2, distance: 2, nexHop 3, and nodesInPath [4,3,2].
+ Inside sendLSAToNeighbors, sending my newer path fromId 4 -> destId 2 to my neighbor 1, the nodes are [4,3,2].
+ Inside sendLSAToNeighbors, sending my newer path fromId 4 -> destId 2 to my neighbor 7, the nodes are [4,3,2].
+ Created LSA packet. fromId 4, destId 5, distance: 3, nexHop 1, and nodesInPath [4,1,5].
+ Inside sendLSAToNeighbors, sending my newer path fromId 4 -> destId 5 to my neighbor 3, the nodes are [4,1,5].
+ Inside sendLSAToNeighbors, sending my newer path fromId 4 -> destId 5 to my neighbor 7, the nodes are [4,1,5].
+ Created LSA packet. fromId 4, destId 6, distance: 2, nexHop 1, and nodesInPath [4,1,6].
+ Inside sendLSAToNeighbors, sending my newer path fromId 4 -> destId 6 to my neighbor 3, the nodes are [4,1,6].
+ Inside sendLSAToNeighbors, sending my newer path fromId 4 -> destId 6 to my neighbor 7, the nodes are [4,1,6].
+ Created LSA packet. fromId 4, destId 255, distance: 2, nexHop 1, and nodesInPath [4,1,255].
+ Inside sendLSAToNeighbors, sending my newer path fromId 4 -> destId 255 to my neighbor 3, the nodes are [4,1,255].
+ Inside sendLSAToNeighbors, sending my newer path fromId 4 -> destId 255 to my neighbor 7, the nodes are [4,1,255].
+ Created LSA packet. fromId 4, destId 7, distance: 1, nexHop 7, and nodesInPath [4,7].
+ Inside sendLSAToNeighbors, sending my newer path fromId 4 -> destId 7 to my neighbor 1, the nodes are [4,7].
+ Inside sendLSAToNeighbors, sending my newer path fromId 4 -> destId 7 to my neighbor 3, the nodes are [4,7].
+ Created LSA packet. fromId 4, destId 3, distance: 1, nexHop 3, and nodesInPath [4,3].
+ Inside sendLSAToNeighbors, sending my newer path fromId 4 -> destId 3 to my neighbor 1, the nodes are [4,3].
+ Inside sendLSAToNeighbors, sending my newer path fromId 4 -> destId 3 to my neighbor 7, the nodes are [4,3].
+ Created LSA packet. fromId 4, destId 1, distance: 1, nexHop 1, and nodesInPath [4,1].
+ Inside sendLSAToNeighbors, sending my newer path fromId 4 -> destId 1 to my neighbor 3, the nodes are [4,1].
+ Inside sendLSAToNeighbors, sending my newer path fromId 4 -> destId 1 to my neighbor 7, the nodes are [4,1].
+ Received LSA from neighbor 1, for destId 0, the distance is 556, the nexHop is 255, and its PATH is: [1,255,0].
+ I do not have a path to desId 0, but neighbor 1 has, I will use it.
+ Received LSA from neighbor 3, for destId 6, the distance is 3, the nexHop is 2, and its PATH is: [3,2,5,6].
+ Created LSA packet. fromId 4, destId 0, distance: 557, nexHop 1, and nodesInPath [4,1,255,0].
+ Inside sendLSAToNeighbors, sending my newer path fromId 4 -> destId 0 to my neighbor 3, the nodes are [4,1,255,0].
+ Inside sendLSAToNeighbors, sending my newer path fromId 4 -> destId 0 to my neighbor 7, the nodes are [4,1,255,0].
+ Received send or fowd message.
+forward packet dest 3 nexthop 3 message this is just the example topo... not partioned yet
+ Received LSA from neighbor 3, for destId 6, the distance is 3, the nexHop is 4, and its PATH is: [3,4,1,6].
+ I lost neighbor node  1
+ Because of this lost neighbor 1, I lost my path to destId 0, becasue the next hop is 1.
+ Because of this lost neighbor 1, I lost my path to destId 1, becasue the next hop is 1.
+ Because of this lost neighbor 1, I lost my path to destId 5, becasue the next hop is 1.
+ Because of this lost neighbor 1, I lost my path to destId 6, becasue the next hop is 1.
+ Because of this lost neighbor 1, I lost my path to destId 255, becasue the next hop is 1.
+ chooseAlternativeForLostPaths: chose alternative path neighbor 3 to destId 255,and nodesInPath [4,255,3,1,2].
+ chooseAlternativeForLostPaths, no alternative path to destId 6. Erased this destId from nodePaths[myNodeId].
+ chooseAlternativeForLostPaths: chose alternative path neighbor 3 to destId 5,and nodesInPath [4,3,2,5].
+ chooseAlternativeForLostPaths: chose alternative path neighbor 3 to destId 1,and nodesInPath [4,1,5,2,3].
+ chooseAlternativeForLostPaths, no alternative path to destId 0. Erased this destId from nodePaths[myNodeId].
+ Created LSA packet. fromId 4, destId 255, distance: 57, nexHop 3, and nodesInPath [4,255,3,1,2].
+ Inside sendLSAToNeighbors, sending my lost-alternative path fromId 4 -> destId 255 to my neighbor 3, the nodes are [4,255,3,1,2].
+ Inside sendLSAToNeighbors, sending my lost-alternative path fromId 4 -> destId 255 to my neighbor 7, the nodes are [4,255,3,1,2].
+ Created LSA packet. fromId 4, destId 6, distance: 0, nexHop 0, and nodesInPath [].
+ Inside sendLSAToNeighbors, sending my lost-alternative path fromId 4 -> destId 6 to my neighbor 3, the nodes are [].
+ Inside sendLSAToNeighbors, sending my lost-alternative path fromId 4 -> destId 6 to my neighbor 7, the nodes are [].
+ Created LSA packet. fromId 4, destId 5, distance: 3, nexHop 3, and nodesInPath [4,3,2,5].
+ Inside sendLSAToNeighbors, sending my lost-alternative path fromId 4 -> destId 5 to my neighbor 3, the nodes are [4,3,2,5].
+ Inside sendLSAToNeighbors, sending my lost-alternative path fromId 4 -> destId 5 to my neighbor 7, the nodes are [4,3,2,5].
+ Created LSA packet. fromId 4, destId 1, distance: 5, nexHop 3, and nodesInPath [4,1,5,2,3].
+ Inside sendLSAToNeighbors, sending my lost-alternative path fromId 4 -> destId 1 to my neighbor 3, the nodes are [4,1,5,2,3].
+ Inside sendLSAToNeighbors, sending my lost-alternative path fromId 4 -> destId 1 to my neighbor 7, the nodes are [4,1,5,2,3].
+ Created LSA packet. fromId 4, destId 0, distance: 0, nexHop 0, and nodesInPath [].
+ Inside sendLSAToNeighbors, sending my lost-alternative path fromId 4 -> destId 0 to my neighbor 3, the nodes are [].
+ Inside sendLSAToNeighbors, sending my lost-alternative path fromId 4 -> destId 0 to my neighbor 7, the nodes are [].
+ Received LSA from neighbor 3, for destId 5, the distance is 4, the nexHop is 4, and its PATH is: [3,4,1,5].
+ We both have paths. Neighbor 3 is my current nextHop and it is now using me in his path to destId 5, then I lost my path to this destId.
+ Received LSA from neighbor 3, for destId 2, the distance is 0, the nexHop is 0, and its PATH is: [].
+ We both have paths. Neighbor 3 has a better path to desId 2, I will use it.
+ Received LSA from neighbor 7, for destId 0, the distance is 1, the nexHop is 4, and its PATH is: [7].
+ Received LSA from neighbor 3, for destId 0, the distance is 1, the nexHop is 4, and its PATH is: [3].
+ Received LSA from neighbor 7, for destId 1, the distance is 6, the nexHop is 4, and its PATH is: [7,4,1,5,2,3].
+ chooseAlternativeForLostPaths, no alternative path to destId 5. Erased this destId from nodePaths[myNodeId].
+ Created LSA packet. fromId 4, destId 2, distance: 1, nexHop 3, and nodesInPath [4].
+ Inside sendLSAToNeighbors, sending my newer path fromId 4 -> destId 2 to my neighbor 3, the nodes are [4].
+ Inside sendLSAToNeighbors, sending my newer path fromId 4 -> destId 2 to my neighbor 7, the nodes are [4].
+ Created LSA packet. fromId 4, destId 5, distance: 0, nexHop 0, and nodesInPath [].
+ Inside sendLSAToNeighbors, sending my lost-alternative path fromId 4 -> destId 5 to my neighbor 3, the nodes are [].
+ Received LSA from neighbor 3, for destId 1, the distance is 0, the nexHop is 0, and its PATH is: [].
+ Inside sendLSAToNeighbors, sending my lost-alternative path fromId 4 -> destId 5 to my neighbor 7, the nodes are [].
+ We both have paths. Neighbor 3 has a better path to desId 1, I will use it.
+ Received LSA from neighbor 7, for destId 6, the distance is 1, the nexHop is 4, and its PATH is: [7].
+ Received LSA from neighbor 3, for destId 5, the distance is 0, the nexHop is 0, and its PATH is: [].
+ Received LSA from neighbor 7, for destId 255, the distance is 58, the nexHop is 4, and its PATH is: [7,4,3,1,255,2].
+ Received LSA from neighbor 3, for destId 6, the distance is 1, the nexHop is 4, and its PATH is: [3].
+ Received LSA from neighbor 3, for destId 255, the distance is 0, the nexHop is 0, and its PATH is: [].
+ We both have paths. Neighbor 3 has a better path to desId 255, I will use it.
+ Received LSA from neighbor 7, for destId 5, the distance is 1, the nexHop is 4, and its PATH is: [7].
+ Created LSA packet. fromId 4, destId 255, distance: 1, nexHop 3, and nodesInPath [4].
+ Inside sendLSAToNeighbors, sending my newer path fromId 4 -> destId 255 to my neighbor 3, the nodes are [4].
+ Inside sendLSAToNeighbors, sending my newer path fromId 4 -> destId 255 to my neighbor 7, the nodes are [4].
+ Created LSA packet. fromId 4, destId 1, distance: 1, nexHop 3, and nodesInPath [4].
+ Inside sendLSAToNeighbors, sending my newer path fromId 4 -> destId 1 to my neighbor 3, the nodes are [4].
+ Inside sendLSAToNeighbors, sending my newer path fromId 4 -> destId 1 to my neighbor 7, the nodes are [4].
+   Saw a new neighbor 1
+ Created LSA packet. fromId 4, destId 0, distance: 0, nexHop 0, and nodesInPath [].
+ Inside sharePathsToNewNeighbor, sharing my path fromId 4 -> destId 0 to my neighbor 1, the nodes are [].
+ Created LSA packet. fromId 4, destId 2, distance: 1, nexHop 3, and nodesInPath [4].
+ Inside sharePathsToNewNeighbor, sharing my path fromId 4 -> destId 2 to my neighbor 1, the nodes are [4].
+ Created LSA packet. fromId 4, destId 3, distance: 1, nexHop 3, and nodesInPath [4,3].
+ Inside sharePathsToNewNeighbor, sharing my path fromId 4 -> destId 3 to my neighbor 1, the nodes are [4,3].
+ Created LSA packet. fromId 4, destId 4, distance: 0, nexHop 4, and nodesInPath [4].
+ Inside sharePathsToNewNeighbor, sharing my path fromId 4 -> destId 4 to my neighbor 1, the nodes are [4].
+ Created LSA packet. fromId 4, destId 5, distance: 0, nexHop 0, and nodesInPath [].
+ Inside sharePathsToNewNeighbor, sharing my path fromId 4 -> destId 5 to my neighbor 1, the nodes are [].
+ Created LSA packet. fromId 4, destId 6, distance: 0, nexHop 0, and nodesInPath [].
+ Inside sharePathsToNewNeighbor, sharing my path fromId 4 -> destId 6 to my neighbor 1, the nodes are [].
+ Created LSA packet. fromId 4, destId 7, distance: 1, nexHop 7, and nodesInPath [4,7].
+ Inside sharePathsToNewNeighbor, sharing my path fromId 4 -> destId 7 to my neighbor 1, the nodes are [4,7].
+ Created LSA packet. fromId 4, destId 255, distance: 1, nexHop 3, and nodesInPath [4].
+ Inside sharePathsToNewNeighbor, sharing my path fromId 4 -> destId 255 to my neighbor 1, the nodes are [4].
+ Received LSA from neighbor 1, for destId 0, the distance is 556, the nexHop is 255, and its PATH is: [1,255,0].
+ Received LSA from neighbor 1, for destId 1, the distance is 0, the nexHop is 1, and its PATH is: [1].
+ We both have paths. Neighbor 1 has a better path to desId 1, I will use it.
+ Received LSA from neighbor 1, for destId 2, the distance is 3, the nexHop is 5, and its PATH is: [1,5,2].
+ Received LSA from neighbor 1, for destId 3, the distance is 1, the nexHop is 6, and its PATH is: [1].
+ Received LSA from neighbor 1, for destId 5, the distance is 2, the nexHop is 5, and its PATH is: [1,5].
+ Received LSA from neighbor 1, for destId 6, the distance is 1, the nexHop is 6, and its PATH is: [1,6].
+ Received LSA from neighbor 1, for destId 7, the distance is 0, the nexHop is 0, and its PATH is: [].
+ We both have paths. Neighbor 1 has a better path to desId 7, I will use it.
+ Received LSA from neighbor 1, for destId 255, the distance is 1, the nexHop is 255, and its PATH is: [1,255].
+ Created LSA packet. fromId 4, destId 7, distance: 1, nexHop 1, and nodesInPath [4].
+ Inside sendLSAToNeighbors, sending my newer path fromId 4 -> destId 7 to my neighbor 1, the nodes are [4].
+ Inside sendLSAToNeighbors, sending my newer path fromId 4 -> destId 7 to my neighbor 3, the nodes are [4].
+ Created LSA packet. fromId 4, destId 1, distance: 1, nexHop 1, and nodesInPath [4,1].
+ Inside sendLSAToNeighbors, sending my newer path fromId 4 -> destId 1 to my neighbor 3, the nodes are [4,1].
+ Inside sendLSAToNeighbors, sending my newer path fromId 4 -> destId 1 to my neighbor 7, the nodes are [4,1].
+ Received LSA from neighbor 1, for destId 6, the distance is 1, the nexHop is 4, and its PATH is: [1].
+ Received LSA from neighbor 1, for destId 5, the distance is 1, the nexHop is 4, and its PATH is: [1].
+ Received LSA from neighbor 1, for destId 0, the distance is 1, the nexHop is 4, and its PATH is: [1].

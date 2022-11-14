@@ -1,0 +1,53 @@
+   Saw a new neighbor 255
+ Created LSA packet. fromId 0, destId 0, distance: 0, nexHop 0, and nodesInPath [0].
+ Inside sharePathsToNewNeighbor, sharing my path fromId 0 -> destId 0 to my neighbor 255, the nodes are [0].
+ Received LSA from neighbor 255, for destId 255, the distance is 0, the nexHop is 255, and its PATH is: [255].
+ I do not have a path to desId 255, but neighbor 255 has, I will use it.
+ Received LSA from neighbor 255, for destId 2, the distance is 55, the nexHop is 1, and its PATH is: [255,1,2].
+ I do not have a path to desId 2, but neighbor 255 has, I will use it.
+ Received LSA from neighbor 255, for destId 5, the distance is 3, the nexHop is 1, and its PATH is: [1,255,5].
+ I do not have a path to desId 5, but neighbor 255 has, I will use it.
+ Received LSA from neighbor 255, for destId 4, the distance is 2, the nexHop is 1, and its PATH is: [255,1,4].
+ I do not have a path to desId 4, but neighbor 255 has, I will use it.
+ Received LSA from neighbor 255, for destId 6, the distance is 2, the nexHop is 1, and its PATH is: [255,1,6].
+ I do not have a path to desId 6, but neighbor 255 has, I will use it.
+ Received LSA from neighbor 255, for destId 1, the distance is 1, the nexHop is 1, and its PATH is: [255,1].
+ I do not have a path to desId 1, but neighbor 255 has, I will use it.
+ Received LSA from neighbor 255, for destId 2, the distance is 4, the nexHop is 1, and its PATH is: [255,2,3,4,1].
+ We both have paths. Neighbor 255 has a better path to desId 2, I will use it.
+ Received LSA from neighbor 255, for destId 7, the distance is 3, the nexHop is 1, and its PATH is: [255,1,4,7].
+ I do not have a path to desId 7, but neighbor 255 has, I will use it.
+ Received LSA from neighbor 255, for destId 3, the distance is 3, the nexHop is 1, and its PATH is: [1,4,255,3].
+ I do not have a path to desId 3, but neighbor 255 has, I will use it.
+ Received send or fowd message.
+sending packet dest 3 nexthop 255 message this is just the example topo... not partioned yet
+ Received LSA from neighbor 255, for destId 2, the distance is 4, the nexHop is 1, and its PATH is: [255,1,5,2].
+ We both have paths. Neighbor 255 has a better path to desId 2, I will use it.
+ Received LSA from neighbor 255, for destId 3, the distance is 5, the nexHop is 1, and its PATH is: [3,2,255,5,1].
+ We both have paths. Neighbor 255 is my current nextHop and it got a worst path to desId 3, then I lost my path to this destId.
+ Received LSA from neighbor 255, for destId 4, the distance is 1, the nexHop is 1, and its PATH is: [255].
+ We both have paths. Neighbor 255 has a better path to desId 4, I will use it.
+ Received LSA from neighbor 255, for destId 7, the distance is 5, the nexHop is 1, and its PATH is: [255,1,7,6].
+ We both have paths. Neighbor 255 is my current nextHop and it got a worst path to desId 7, then I lost my path to this destId.
+ chooseAlternativeForLostPaths: chose alternative path neighbor 255 to destId 7,and nodesInPath [7,6,1,0,255].
+ chooseAlternativeForLostPaths: chose alternative path neighbor 255 to destId 3,and nodesInPath [0,3,2,255,5,1].
+ Created LSA packet. fromId 0, destId 7, distance: 560, nexHop 255, and nodesInPath [7,6,1,0,255].
+ Inside sendLSAToNeighbors, sending my lost-alternative path fromId 0 -> destId 7 to my neighbor 255, the nodes are [7,6,1,0,255].
+ Created LSA packet. fromId 0, destId 3, distance: 560, nexHop 255, and nodesInPath [0,3,2,255,5,1].
+ Inside sendLSAToNeighbors, sending my lost-alternative path fromId 0 -> destId 3 to my neighbor 255, the nodes are [0,3,2,255,5,1].
+ Received LSA from neighbor 255, for destId 3, the distance is 5, the nexHop is 1, and its PATH is: [3,255,2,5,1,6].
+ We both have paths. Neighbor 255 has a better path to desId 3, I will use it.
+ Received LSA from neighbor 255, for destId 7, the distance is 1, the nexHop is 1, and its PATH is: [255].
+ We both have paths. Neighbor 255 has a better path to desId 7, I will use it.
+ Received LSA from neighbor 255, for destId 3, the distance is 2, the nexHop is 1, and its PATH is: [255,1].
+ We both have paths. Neighbor 255 has a better path to desId 3, I will use it.
+ Received send or fowd message.
+sending packet dest 3 nexthop 255 message partioned!!
+ Received LSA from neighbor 255, for destId 2, the distance is 3, the nexHop is 1, and its PATH is: [255,1,4].
+ We both have paths. Neighbor 255 has a better path to desId 2, I will use it.
+ Received LSA from neighbor 255, for destId 5, the distance is 2, the nexHop is 1, and its PATH is: [255,1].
+ We both have paths. Neighbor 255 has a better path to desId 5, I will use it.
+ Received LSA from neighbor 255, for destId 6, the distance is 2, the nexHop is 1, and its PATH is: [255,1].
+ We both have paths. Neighbor 255 has a better path to desId 6, I will use it.
+ Received send or fowd message.
+sending packet dest 7 nexthop 255 message heal07
