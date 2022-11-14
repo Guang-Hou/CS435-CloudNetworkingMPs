@@ -419,13 +419,11 @@ void sendLSAToNeighbors() {
         memset(packetBuffer, 0, BUFFERSIZE);
         packetSize = 0;
 
-        for (auto const& i : nodePaths) {
-            int nb = i.first;
-            bool notExist = nodePaths[myNodeId].find(destId) == nodePaths[myNodeId].end();
-            //bool existAndValidForNeighbor = nodePaths[myNodeId].find(destId) != nodePaths[myNodeId].end() && get<2>(nodePaths[myNodeId][destId]).count(nb) == 0;
-            bool validForNeighbor = get<2>(nodePaths[myNodeId][destId]).count(nb) == 0;
-            //if (nb != myNodeId && (notExist || existAndValidForNeighbor)) {
-            if (lostPaths.count(destId) != 0) {  // I previous lost the path to destId and I chose an alternative path, then send it to all my neighbors
+        // I previous lost the path to destId and I chose an alternative path, then send it to all my neighbors
+        // the alternative path might be a withdraw announcemnet: distance = -1, or a real alternative path
+        if (lostPaths.count(destId) != 0) {  
+            for (auto const& i : nodePaths) {
+                int nb = i.first;
                 if (nb != myNodeId && nb != destId) {
                     if (packetSize == 0) {
                         packetSize = createLSAPacket(packetBuffer, destId);
@@ -441,8 +439,13 @@ void sendLSAToNeighbors() {
                     }
                 }
             }
-            else { // I got a new path, send it to only relative neighbors
-                if (nb != myNodeId && nb != destId && validForNeighbor) {
+        }
+        // I got a new path, send it to only relative neighbors
+        // the path will not be a withdraw announcement: distance = -1
+        else { 
+            for (auto const& i : nodePaths) {
+                int nb = i.first;
+                if (nb != myNodeId && nb != destId && get<2>(nodePaths[myNodeId][destId]).count(nb) == 0) {
                     if (packetSize == 0) {
                         packetSize = createLSAPacket(packetBuffer, destId);
                     }
@@ -726,3 +729,58 @@ void logTime() {
     fwrite(logLine, 1, strlen(logLine), flog);
     fflush(flog);
 }
+
+
+/*
+// Send out all my changed paths to neighbors periodically. It is used in announceLSA(). 
+void sendLSAToNeighbors() {
+    //logMessageAndTime("Inside sendLSAToNeighbors.");
+    char packetBuffer[BUFFERSIZE];
+    int packetSize;
+
+    for (auto const& destId : changedPaths) {
+        memset(packetBuffer, 0, BUFFERSIZE);
+        packetSize = 0;
+
+        for (auto const& i : nodePaths) {
+            int nb = i.first;
+            //bool notExist = nodePaths[myNodeId].find(destId) == nodePaths[myNodeId].end();
+            //bool existAndValidForNeighbor = nodePaths[myNodeId].find(destId) != nodePaths[myNodeId].end() && get<2>(nodePaths[myNodeId][destId]).count(nb) == 0;
+            //bool validForNeighbor = get<2>(nodePaths[myNodeId][destId]).count(nb) == 0;
+            //if (nb != myNodeId && (notExist || existAndValidForNeighbor)) {
+            if (lostPaths.count(destId) != 0) {  // I previous lost the path to destId and I chose an alternative path, then send it to all my neighbors
+                if (nb != myNodeId && nb != destId) {
+                    if (packetSize == 0) {
+                        packetSize = createLSAPacket(packetBuffer, destId);
+                    }
+
+                    sendto(mySocketUDP, packetBuffer, packetSize, 0,
+                        (struct sockaddr*)&allNodeSocketAddrs[nb], sizeof(allNodeSocketAddrs[nb]));
+
+                    if (enableLog) {
+                        char buff[200];
+                        snprintf(buff, sizeof(buff), "Inside sendLSAToNeighbors, sending my lost-alternative path fromId %d -> destId %d to my neighbor %d, the nodes are %s.", myNodeId, destId, nb, packetBuffer + 4 + 4 * sizeof(short int));
+                        logMessageAndTime(buff);
+                    }
+                }
+            }
+            else { // I got a new path, send it to only relative neighbors
+                if (nb != myNodeId && nb != destId && get<2>(nodePaths[myNodeId][destId]).count(nb) == 0) {
+                    if (packetSize == 0) {
+                        packetSize = createLSAPacket(packetBuffer, destId);
+                    }
+
+                    sendto(mySocketUDP, packetBuffer, packetSize, 0,
+                        (struct sockaddr*)&allNodeSocketAddrs[nb], sizeof(allNodeSocketAddrs[nb]));
+
+                    if (enableLog) {
+                        char buff[200];
+                        snprintf(buff, sizeof(buff), "Inside sendLSAToNeighbors, sending my newer path fromId %d -> destId %d to my neighbor %d, the nodes are %s.", myNodeId, destId, nb, packetBuffer + 4 + 4 * sizeof(short int));
+                        logMessageAndTime(buff);
+                    }
+                }
+            }
+        }
+    }
+}
+*/
