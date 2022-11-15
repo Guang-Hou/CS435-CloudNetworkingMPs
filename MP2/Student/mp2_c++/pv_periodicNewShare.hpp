@@ -51,9 +51,9 @@
 using json = nlohmann::json;
 using namespace std;
 
-typedef tuple<int, int, unordered_set<int>> PATH; // (distance, nextHop, nodesInPath)
+typedef tuple<int, int, unordered_set<int>> PATH; // (seq, distance, nextHop, nodesInPath)
 map<int, map<int, PATH>> nodePaths;  // nodePaths[i][j] the path from node i to destNode i; only stores myself and my active neighbors
-//unordered_set<int> changedPaths;     // track the destIds where my paths to them changed since last sending LSA: no path-> got a path; old path -> new path; old path -> lost the path
+//unordered_set<int> changedPaths;   // track the destIds where my paths to them changed since last sending LSA: no path-> got a path; old path -> new path; old path -> lost the path
 unordered_set<int> lostPaths;        // track the destIds where my paths to them are lost: only tracking old path -> lost the path. 
 //std::mutex change_lock;     // lock changedPaths when modifying it
 std::mutex lost_lock;       // lock lostPaths when modifying it
@@ -102,7 +102,7 @@ void init(int inputId, string costFile, string logFile) {
     }
 
     linkCost[myNodeId] = 0;
-    nodePaths[myNodeId][myNodeId] = { 0, myNodeId, unordered_set<int>{myNodeId} }; // for example of node 3: (0, (3,  {3})), the path includes the node itself
+    nodePaths[myNodeId][myNodeId] = { 0, 0, myNodeId, unordered_set<int>{myNodeId} }; // for example of node 3: (0, 0, 3, {3}), the path includes the node itself
 
     setupNodeSockets();
     readCostFile(costFile.c_str());
@@ -395,33 +395,36 @@ void sharePathsToNewNeighbor(int newNeighborId) {
 }
 
 /* Create LSA packet for my path to destId. Store the restuls in buffer packetBuffer, return the byte size of LSA packet.
-   LSA format is ("LSAs", fromId, destId, distance, nextHop, nodesInPath).
+   LSA format is ("LSAs", fromId, destId, seq, distance, nextHop, nodesInPath).
    This is used in sendLSAToNeighbors() and sharenodePaths[myNodeId]ToNewNeighbor(). */
 int createLSAPacket(char* packetBuffer, int destinationId) {
     //logMessageAndTime("Inside createLSAPacket.");
     strcpy(packetBuffer, "LSAs");
     short int fromId = (short int)myNodeId;
     short int destId = (short int)destinationId;
+    int seq;
     short int distance, nextHop;
     string strSet; // serialized nodesInPath
 
-    // if I do not have a path to this destId, this is used for sendLSAtoNeighbors() when I lost my path
-    if (nodePaths[myNodeId].find(destId) == nodePaths[myNodeId].end()) {
-        distance = -1;
+    seq = (int)get<0>(nodePaths[myNodeId][destId]);
+    distance = (short int)get<1>(nodePaths[myNodeId][destId]);
+    nextHop = (short int)get<2>(nodePaths[myNodeId][destId]);
+
+    // save time and space if this is a lost path message
+    if (distance == -1) {
         strSet = "";
     }
     else {
-        distance = (short int)get<0>(nodePaths[myNodeId][destId]);
-        nextHop = (short int)get<1>(nodePaths[myNodeId][destId]);
-        json j_set(get<2>(nodePaths[myNodeId][destId]));
+        json j_set(get<3>(nodePaths[myNodeId][destId]));
         strSet = j_set.dump();
     }
 
     memcpy(packetBuffer + 4, &fromId, sizeof(short int));
     memcpy(packetBuffer + 4 + sizeof(short int), &destId, sizeof(short int));
-    memcpy(packetBuffer + 4 + 2 * sizeof(short int), &distance, sizeof(short int));
-    memcpy(packetBuffer + 4 + 3 * sizeof(short int), &nextHop, sizeof(short int));
-    memcpy(packetBuffer + 4 + 4 * sizeof(short int), strSet.c_str(), strSet.length());
+    memcpy(packetBuffer + 4 + 2 * sizeof(short int), &seq, sizeof(int));
+    memcpy(packetBuffer + 4 + 2 * sizeof(short int) + sizeof(int), &distance, sizeof(short int));
+    memcpy(packetBuffer + 4 + 3 * sizeof(short int) + sizeof(int), &nextHop, sizeof(short int));
+    memcpy(packetBuffer + 4 + 4 * sizeof(short int) + sizeof(int), strSet.c_str(), strSet.length());
 
     if (enableLog) {
         char buff[200];
@@ -429,7 +432,7 @@ int createLSAPacket(char* packetBuffer, int destinationId) {
         logMessageAndTime(buff);
     }
 
-    return 4 + 4 * sizeof(short int) + strSet.length();
+    return 4 + 4 * sizeof(short int) + sizeof(int) + strSet.length();
 }
 
 
@@ -463,17 +466,25 @@ void processLSAMessage(string buffContent, int bytesRecvd, int neighborId)
     //logMessageAndTime("Inside processLSAMessage.");
     const char* recvBuf = buffContent.c_str();
     short int fromId, destId, distance, nextHop;
+    int seq;
     string otherNodesInPathStr;
 
     memcpy(&fromId, recvBuf + 4, sizeof(short int));
     memcpy(&destId, recvBuf + 4 + sizeof(short int), sizeof(short int));
-    memcpy(&distance, recvBuf + 4 + 2 * sizeof(short int), sizeof(short int));
-    memcpy(&nextHop, recvBuf + 4 + 3 * sizeof(short int), sizeof(short int));
-    otherNodesInPathStr.assign(recvBuf + 4 + 4 * sizeof(short int), recvBuf + bytesRecvd);
+    memcpy(&seq, recvBuf + 4 + 2 * sizeof(short int), sizeof(int));
 
-    if (destId == myNodeId) {
+    if (destId == myNodeId || seq <= get<0>(nodePaths[fromId][destId])) {
         return;
     }
+
+    memcpy(&distance, recvBuf + 4 + 2 * sizeof(short int) + sizeof(int), sizeof(short int));
+    memcpy(&nextHop, recvBuf + 4 + 3 * sizeof(short int) + sizeof(int), sizeof(short int));
+    otherNodesInPathStr.assign(recvBuf + 4 + 4 * sizeof(short int) + sizeof(int), recvBuf + bytesRecvd);
+
+    paths_lock.lock();
+    get<0>(nodePaths[fromId][destId]) = seq;
+    get<1>(nodePaths[fromId][destId]) = distance;
+    paths_lock.unlock();
 
     unordered_set<int> otherNodesInPath;
     if (distance != -1) {
@@ -490,11 +501,6 @@ void processLSAMessage(string buffContent, int bytesRecvd, int neighborId)
 
     // neighbor lost a path 
     if (distance == -1) {
-        // remove path from nodePaths for this path fromId -> destId
-        paths_lock.lock();
-        nodePaths[fromId].erase(destId);
-        paths_lock.unlock();
-
         // check if my paths are affected
         bool pathExistAndAffected = nodePaths[myNodeId].find(destId) != nodePaths[myNodeId].end() && get<1>(nodePaths[myNodeId][destId]) == fromId;
         if (pathExistAndAffected) {  // my path to destId becomes invalid
@@ -510,8 +516,8 @@ void processLSAMessage(string buffContent, int bytesRecvd, int neighborId)
             lost_lock.unlock();
             paths_lock.unlock();
 
-            chooseAlternativeForLostPaths();
-            sendAlternativePathToNeighbors();
+            //chooseAlternativeForLostPaths();
+            //sendAlternativePathToNeighbors();
         }
     }
     // neighbor shares to me his path fromId -> destId
@@ -519,12 +525,13 @@ void processLSAMessage(string buffContent, int bytesRecvd, int neighborId)
         // update in nodePaths[fromId]
         if (otherNodesInPath.count(myNodeId) == 0) {
             paths_lock.lock();
-            nodePaths[fromId][destId] = { distance, nextHop, otherNodesInPath };
+            get<2>nodePaths[fromId][destId] = nextHop;
+            get<3>nodePaths[fromId][destId] = otherNodesInPath;
             paths_lock.unlock();
         }
         else {
             paths_lock.lock();
-            nodePaths[fromId].erase(destId);
+            get<1>(nodePaths[fromId][destId]) = -1;  // for me, this neighbor's path is not valid
             paths_lock.unlock();
         }
 
@@ -537,11 +544,12 @@ void processLSAMessage(string buffContent, int bytesRecvd, int neighborId)
                     logMessageAndTime(buff);
                 }
 
+                int curSeq = get<0>(nodePaths[myNodeId][destId]);
                 paths_lock.lock();
-                nodePaths[myNodeId][destId] = { distance + linkCost[fromId], fromId, otherNodesInPath };
-                get<2>(nodePaths[myNodeId][destId]).insert(myNodeId);
+                nodePaths[myNodeId][destId] = { curSeq + 1, distance + linkCost[fromId], fromId, otherNodesInPath };
+                get<3>(nodePaths[myNodeId][destId]).insert(myNodeId);
                 paths_lock.unlock();
-                
+
                 char packetBuffer[BUFFERSIZE];
                 memset(packetBuffer, 0, BUFFERSIZE);
                 int packetSize = createLSAPacket(packetBuffer, destId);
@@ -562,9 +570,10 @@ void processLSAMessage(string buffContent, int bytesRecvd, int neighborId)
                         logMessageAndTime(buff);
                     }
 
+                    int curSeq = get<0>(nodePaths[myNodeId][destId]);
                     paths_lock.lock();
-                    nodePaths[myNodeId][destId] = { newDistance, fromId, otherNodesInPath };
-                    get<2>(nodePaths[myNodeId][destId]).insert(myNodeId);
+                    nodePaths[myNodeId][destId] = { curSeq + 1, distance + linkCost[fromId], fromId, otherNodesInPath };
+                    get<3>(nodePaths[myNodeId][destId]).insert(myNodeId);
                     paths_lock.unlock();
 
                     char packetBuffer[BUFFERSIZE];
