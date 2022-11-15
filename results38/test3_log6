@@ -1,0 +1,2518 @@
+   Saw a new neighbor 5
+    Time is at 1668482524658 ms.
+ Created LSA packet. fromId 6, destId 6, distance: 0, nexHop 6, and nodesInPath [6].
+    Time is at 1668482524658 ms.
+ Inside sharePathsToNewNeighbor, sharing my path fromId 6 -> destId 6 to my neighbor 5, the nodes are [6].
+    Time is at 1668482524658 ms.
+ Received LSA from neighbor 5, for destId 5, the distance is 0, the nexHop is 5, and its PATH is: [5].
+    Time is at 1668482524661 ms.
+ I do not have a path to desId 5, but neighbor 5 has, I will use it.
+    Time is at 1668482524661 ms.
+ Created LSA packet. fromId 6, destId 5, distance: 1, nexHop 5, and nodesInPath [6,5].
+    Time is at 1668482524661 ms.
+ Received LSA from neighbor 5, for destId 4, the distance is 1, the nexHop is 4, and its PATH is: [5,4].
+    Time is at 1668482524664 ms.
+ I do not have a path to desId 4, but neighbor 5 has, I will use it.
+    Time is at 1668482524664 ms.
+ Created LSA packet. fromId 6, destId 4, distance: 2, nexHop 5, and nodesInPath [6,5,4].
+    Time is at 1668482524664 ms.
+   Saw a new neighbor 7
+    Time is at 1668482524664 ms.
+ Created LSA packet. fromId 6, destId 4, distance: 2, nexHop 5, and nodesInPath [6,5,4].
+    Time is at 1668482524664 ms.
+ Inside sharePathsToNewNeighbor, sharing my path fromId 6 -> destId 4 to my neighbor 7, the nodes are [6,5,4].
+    Time is at 1668482524664 ms.
+ Created LSA packet. fromId 6, destId 5, distance: 1, nexHop 5, and nodesInPath [6,5].
+    Time is at 1668482524665 ms.
+ Inside sharePathsToNewNeighbor, sharing my path fromId 6 -> destId 5 to my neighbor 7, the nodes are [6,5].
+    Time is at 1668482524665 ms.
+ Created LSA packet. fromId 6, destId 6, distance: 0, nexHop 6, and nodesInPath [6].
+    Time is at 1668482524665 ms.
+ Inside sharePathsToNewNeighbor, sharing my path fromId 6 -> destId 6 to my neighbor 7, the nodes are [6].
+    Time is at 1668482524665 ms.
+ Received LSA from neighbor 5, for destId 0, the distance is 5, the nexHop is 4, and its PATH is: [5,4,0,1,2,3].
+    Time is at 1668482524666 ms.
+ I do not have a path to desId 0, but neighbor 5 has, I will use it.
+    Time is at 1668482524666 ms.
+ Created LSA packet. fromId 6, destId 0, distance: 6, nexHop 5, and nodesInPath [6,3,2,1,0,4,5].
+    Time is at 1668482524666 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 0 to my neighbor 7, the nodes are [6,3,2,1,0,4,5].
+    Time is at 1668482524666 ms.
+ Received LSA from neighbor 7, for destId 7, the distance is 0, the nexHop is 7, and its PATH is: [7].
+    Time is at 1668482524669 ms.
+ I do not have a path to desId 7, but neighbor 7 has, I will use it.
+    Time is at 1668482524669 ms.
+ Created LSA packet. fromId 6, destId 7, distance: 1, nexHop 7, and nodesInPath [6,7].
+    Time is at 1668482524669 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 7 to my neighbor 5, the nodes are [6,7].
+    Time is at 1668482524669 ms.
+ Received LSA from neighbor 5, for destId 1, the distance is 4, the nexHop is 4, and its PATH is: [5,1,2,3,4].
+    Time is at 1668482524672 ms.
+ I do not have a path to desId 1, but neighbor 5 has, I will use it.
+    Time is at 1668482524672 ms.
+ Created LSA packet. fromId 6, destId 1, distance: 5, nexHop 5, and nodesInPath [6,5,1,2,3,4].
+    Time is at 1668482524672 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 1 to my neighbor 7, the nodes are [6,5,1,2,3,4].
+    Time is at 1668482524673 ms.
+ Received LSA from neighbor 5, for destId 3, the distance is 2, the nexHop is 4, and its PATH is: [5,4,3].
+    Time is at 1668482524689 ms.
+ I do not have a path to desId 3, but neighbor 5 has, I will use it.
+    Time is at 1668482524689 ms.
+ Created LSA packet. fromId 6, destId 3, distance: 3, nexHop 5, and nodesInPath [6,5,4,3].
+    Time is at 1668482524689 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 3 to my neighbor 7, the nodes are [6,5,4,3].
+    Time is at 1668482524703 ms.
+ Received LSA from neighbor 5, for destId 2, the distance is 3, the nexHop is 4, and its PATH is: [5,4,3,2].
+    Time is at 1668482524705 ms.
+ I do not have a path to desId 2, but neighbor 5 has, I will use it.
+    Time is at 1668482524705 ms.
+ Created LSA packet. fromId 6, destId 2, distance: 4, nexHop 5, and nodesInPath [6,2,3,4,5].
+    Time is at 1668482524705 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 2 to my neighbor 7, the nodes are [6,2,3,4,5].
+    Time is at 1668482524705 ms.
+ Received LSA from neighbor 5, for destId 11, the distance is 5, the nexHop is 4, and its PATH is: [5,4,1,11,2,3].
+    Time is at 1668482524707 ms.
+ I do not have a path to desId 11, but neighbor 5 has, I will use it.
+    Time is at 1668482524707 ms.
+ Created LSA packet. fromId 6, destId 11, distance: 6, nexHop 5, and nodesInPath [6,3,2,1,11,4,5].
+    Time is at 1668482524707 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 11 to my neighbor 7, the nodes are [6,3,2,1,11,4,5].
+    Time is at 1668482524707 ms.
+ Received LSA from neighbor 5, for destId 10, the distance is 6, the nexHop is 4, and its PATH is: [5,2,1,0,10,3,4].
+    Time is at 1668482524710 ms.
+ I do not have a path to desId 10, but neighbor 5 has, I will use it.
+    Time is at 1668482524710 ms.
+ Created LSA packet. fromId 6, destId 10, distance: 7, nexHop 5, and nodesInPath [6,5,2,1,0,10,3,4].
+    Time is at 1668482524710 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 10 to my neighbor 7, the nodes are [6,5,2,1,0,10,3,4].
+    Time is at 1668482524710 ms.
+   Saw a new neighbor 16
+    Time is at 1668482524714 ms.
+ Created LSA packet. fromId 6, destId 0, distance: 6, nexHop 5, and nodesInPath [6,3,2,1,0,4,5].
+    Time is at 1668482524714 ms.
+ Inside sharePathsToNewNeighbor, sharing my path fromId 6 -> destId 0 to my neighbor 16, the nodes are [6,3,2,1,0,4,5].
+    Time is at 1668482524714 ms.
+ Created LSA packet. fromId 6, destId 1, distance: 5, nexHop 5, and nodesInPath [6,5,1,2,3,4].
+    Time is at 1668482524714 ms.
+ Inside sharePathsToNewNeighbor, sharing my path fromId 6 -> destId 1 to my neighbor 16, the nodes are [6,5,1,2,3,4].
+    Time is at 1668482524714 ms.
+ Created LSA packet. fromId 6, destId 2, distance: 4, nexHop 5, and nodesInPath [6,2,3,4,5].
+    Time is at 1668482524714 ms.
+ Inside sharePathsToNewNeighbor, sharing my path fromId 6 -> destId 2 to my neighbor 16, the nodes are [6,2,3,4,5].
+    Time is at 1668482524714 ms.
+ Created LSA packet. fromId 6, destId 3, distance: 3, nexHop 5, and nodesInPath [6,5,4,3].
+    Time is at 1668482524714 ms.
+ Inside sharePathsToNewNeighbor, sharing my path fromId 6 -> destId 3 to my neighbor 16, the nodes are [6,5,4,3].
+    Time is at 1668482524714 ms.
+ Created LSA packet. fromId 6, destId 4, distance: 2, nexHop 5, and nodesInPath [6,5,4].
+    Time is at 1668482524715 ms.
+ Inside sharePathsToNewNeighbor, sharing my path fromId 6 -> destId 4 to my neighbor 16, the nodes are [6,5,4].
+    Time is at 1668482524715 ms.
+ Created LSA packet. fromId 6, destId 5, distance: 1, nexHop 5, and nodesInPath [6,5].
+    Time is at 1668482524715 ms.
+ Inside sharePathsToNewNeighbor, sharing my path fromId 6 -> destId 5 to my neighbor 16, the nodes are [6,5].
+    Time is at 1668482524715 ms.
+ Created LSA packet. fromId 6, destId 6, distance: 0, nexHop 6, and nodesInPath [6].
+    Time is at 1668482524715 ms.
+ Inside sharePathsToNewNeighbor, sharing my path fromId 6 -> destId 6 to my neighbor 16, the nodes are [6].
+    Time is at 1668482524715 ms.
+ Created LSA packet. fromId 6, destId 7, distance: 1, nexHop 7, and nodesInPath [6,7].
+    Time is at 1668482524715 ms.
+ Inside sharePathsToNewNeighbor, sharing my path fromId 6 -> destId 7 to my neighbor 16, the nodes are [6,7].
+    Time is at 1668482524715 ms.
+ Created LSA packet. fromId 6, destId 10, distance: 7, nexHop 5, and nodesInPath [6,5,2,1,0,10,3,4].
+    Time is at 1668482524715 ms.
+ Inside sharePathsToNewNeighbor, sharing my path fromId 6 -> destId 10 to my neighbor 16, the nodes are [6,5,2,1,0,10,3,4].
+    Time is at 1668482524715 ms.
+ Created LSA packet. fromId 6, destId 11, distance: 6, nexHop 5, and nodesInPath [6,3,2,1,11,4,5].
+    Time is at 1668482524715 ms.
+ Inside sharePathsToNewNeighbor, sharing my path fromId 6 -> destId 11 to my neighbor 16, the nodes are [6,3,2,1,11,4,5].
+    Time is at 1668482524715 ms.
+ Received LSA from neighbor 16, for destId 16, the distance is 0, the nexHop is 16, and its PATH is: [16].
+    Time is at 1668482524738 ms.
+ I do not have a path to desId 16, but neighbor 16 has, I will use it.
+    Time is at 1668482524739 ms.
+ Created LSA packet. fromId 6, destId 16, distance: 1, nexHop 16, and nodesInPath [6,16].
+    Time is at 1668482524739 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 16 to my neighbor 5, the nodes are [6,16].
+    Time is at 1668482524739 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 16 to my neighbor 7, the nodes are [6,16].
+    Time is at 1668482524739 ms.
+ Received LSA from neighbor 5, for destId 14, the distance is 2, the nexHop is 4, and its PATH is: [5,4,14].
+    Time is at 1668482524747 ms.
+ I do not have a path to desId 14, but neighbor 5 has, I will use it.
+    Time is at 1668482524747 ms.
+ Created LSA packet. fromId 6, destId 14, distance: 3, nexHop 5, and nodesInPath [6,5,14,4].
+    Time is at 1668482524747 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 14 to my neighbor 7, the nodes are [6,5,14,4].
+    Time is at 1668482524747 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 14 to my neighbor 16, the nodes are [6,5,14,4].
+    Time is at 1668482524747 ms.
+ Received LSA from neighbor 5, for destId 15, the distance is 1, the nexHop is 15, and its PATH is: [5,15].
+    Time is at 1668482524748 ms.
+ I do not have a path to desId 15, but neighbor 5 has, I will use it.
+    Time is at 1668482524748 ms.
+ Created LSA packet. fromId 6, destId 15, distance: 2, nexHop 5, and nodesInPath [6,5,15].
+    Time is at 1668482524749 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 15 to my neighbor 7, the nodes are [6,5,15].
+    Time is at 1668482524749 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 15 to my neighbor 16, the nodes are [6,5,15].
+    Time is at 1668482524749 ms.
+ Received LSA from neighbor 16, for destId 15, the distance is 1, the nexHop is 15, and its PATH is: [16,15].
+    Time is at 1668482524750 ms.
+ Received LSA from neighbor 5, for destId 12, the distance is 6, the nexHop is 4, and its PATH is: [2,5,12,1,3,11,4].
+    Time is at 1668482524751 ms.
+ I do not have a path to desId 12, but neighbor 5 has, I will use it.
+    Time is at 1668482524751 ms.
+ Created LSA packet. fromId 6, destId 12, distance: 7, nexHop 5, and nodesInPath [6,2,5,12,1,3,11,4].
+    Time is at 1668482524751 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 12 to my neighbor 7, the nodes are [6,2,5,12,1,3,11,4].
+    Time is at 1668482524752 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 12 to my neighbor 16, the nodes are [6,2,5,12,1,3,11,4].
+    Time is at 1668482524752 ms.
+ Received LSA from neighbor 5, for destId 12, the distance is 4, the nexHop is 4, and its PATH is: [5,12,13,3,4].
+    Time is at 1668482524752 ms.
+ We both have paths. Neighbor 5 has a better path to desId 12, I will use it.
+    Time is at 1668482524752 ms.
+ Created LSA packet. fromId 6, destId 12, distance: 5, nexHop 5, and nodesInPath [6,5,12,13,3,4].
+    Time is at 1668482524752 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 12 to my neighbor 7, the nodes are [6,5,12,13,3,4].
+    Time is at 1668482524752 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 12 to my neighbor 16, the nodes are [6,5,12,13,3,4].
+    Time is at 1668482524752 ms.
+ Received LSA from neighbor 5, for destId 13, the distance is 3, the nexHop is 4, and its PATH is: [5,4,13,3].
+    Time is at 1668482524753 ms.
+ I do not have a path to desId 13, but neighbor 5 has, I will use it.
+    Time is at 1668482524753 ms.
+ Created LSA packet. fromId 6, destId 13, distance: 4, nexHop 5, and nodesInPath [6,3,13,4,5].
+    Time is at 1668482524753 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 13 to my neighbor 7, the nodes are [6,3,13,4,5].
+    Time is at 1668482524753 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 13 to my neighbor 16, the nodes are [6,3,13,4,5].
+    Time is at 1668482524753 ms.
+ Received LSA from neighbor 5, for destId 12, the distance is 4, the nexHop is 4, and its PATH is: [5,2,12,3,4].
+    Time is at 1668482524758 ms.
+ We both have paths. Neighbor 5 has a better path to desId 12, I will use it.
+    Time is at 1668482524758 ms.
+ Created LSA packet. fromId 6, destId 12, distance: 5, nexHop 5, and nodesInPath [6,5,2,12,3,4].
+    Time is at 1668482524758 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 12 to my neighbor 7, the nodes are [6,5,2,12,3,4].
+    Time is at 1668482524758 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 12 to my neighbor 16, the nodes are [6,5,2,12,3,4].
+    Time is at 1668482524758 ms.
+ Received LSA from neighbor 7, for destId 17, the distance is 1, the nexHop is 17, and its PATH is: [7,17].
+    Time is at 1668482524804 ms.
+ I do not have a path to desId 17, but neighbor 7 has, I will use it.
+    Time is at 1668482524804 ms.
+ Created LSA packet. fromId 6, destId 17, distance: 2, nexHop 7, and nodesInPath [6,7,17].
+    Time is at 1668482524804 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 17 to my neighbor 5, the nodes are [6,7,17].
+    Time is at 1668482524804 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 17 to my neighbor 16, the nodes are [6,7,17].
+    Time is at 1668482524804 ms.
+ Received LSA from neighbor 5, for destId 24, the distance is 3, the nexHop is 4, and its PATH is: [5,4,14,24].
+    Time is at 1668482524810 ms.
+ I do not have a path to desId 24, but neighbor 5 has, I will use it.
+    Time is at 1668482524810 ms.
+ Created LSA packet. fromId 6, destId 24, distance: 4, nexHop 5, and nodesInPath [6,24,14,4,5].
+    Time is at 1668482524810 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 24 to my neighbor 7, the nodes are [6,24,14,4,5].
+    Time is at 1668482524811 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 24 to my neighbor 16, the nodes are [6,24,14,4,5].
+    Time is at 1668482524811 ms.
+ Received LSA from neighbor 5, for destId 23, the distance is 4, the nexHop is 4, and its PATH is: [5,23,24,14,4].
+    Time is at 1668482524815 ms.
+ I do not have a path to desId 23, but neighbor 5 has, I will use it.
+    Time is at 1668482524815 ms.
+ Created LSA packet. fromId 6, destId 23, distance: 5, nexHop 5, and nodesInPath [6,5,23,24,14,4].
+    Time is at 1668482524815 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 23 to my neighbor 7, the nodes are [6,5,23,24,14,4].
+    Time is at 1668482524815 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 23 to my neighbor 16, the nodes are [6,5,23,24,14,4].
+    Time is at 1668482524815 ms.
+ Received LSA from neighbor 5, for destId 20, the distance is 7, the nexHop is 4, and its PATH is: [5,1,11,4,21,2,20,3].
+    Time is at 1668482524830 ms.
+ I do not have a path to desId 20, but neighbor 5 has, I will use it.
+    Time is at 1668482524830 ms.
+ Created LSA packet. fromId 6, destId 20, distance: 8, nexHop 5, and nodesInPath [6,3,20,2,21,4,11,1,5].
+    Time is at 1668482524830 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 20 to my neighbor 7, the nodes are [6,3,20,2,21,4,11,1,5].
+    Time is at 1668482524832 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 20 to my neighbor 16, the nodes are [6,3,20,2,21,4,11,1,5].
+    Time is at 1668482524832 ms.
+ Received LSA from neighbor 5, for destId 21, the distance is 6, the nexHop is 4, and its PATH is: [5,2,1,21,3,11,4].
+    Time is at 1668482524848 ms.
+ I do not have a path to desId 21, but neighbor 5 has, I will use it.
+    Time is at 1668482524848 ms.
+ Created LSA packet. fromId 6, destId 21, distance: 7, nexHop 5, and nodesInPath [6,5,2,1,3,11,21,4].
+    Time is at 1668482524848 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 21 to my neighbor 7, the nodes are [6,5,2,1,3,11,21,4].
+    Time is at 1668482524848 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 21 to my neighbor 16, the nodes are [6,5,2,1,3,11,21,4].
+    Time is at 1668482524848 ms.
+ Received LSA from neighbor 16, for destId 17, the distance is 1, the nexHop is 17, and its PATH is: [16,17].
+    Time is at 1668482524862 ms.
+ Received LSA from neighbor 5, for destId 20, the distance is 7, the nexHop is 4, and its PATH is: [5,4,1,0,2,10,20,3].
+    Time is at 1668482524867 ms.
+ We both have paths. Neighbor 5 has a better path to desId 20, I will use it.
+    Time is at 1668482524867 ms.
+ Created LSA packet. fromId 6, destId 20, distance: 8, nexHop 5, and nodesInPath [6,3,20,10,2,0,1,4,5].
+    Time is at 1668482524867 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 20 to my neighbor 7, the nodes are [6,3,20,10,2,0,1,4,5].
+    Time is at 1668482524868 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 20 to my neighbor 16, the nodes are [6,3,20,10,2,0,1,4,5].
+    Time is at 1668482524868 ms.
+ Received LSA from neighbor 16, for destId 14, the distance is 2, the nexHop is 15, and its PATH is: [16,15,14].
+    Time is at 1668482524891 ms.
+ Received LSA from neighbor 16, for destId 25, the distance is 2, the nexHop is 26, and its PATH is: [16,26,25].
+    Time is at 1668482524896 ms.
+ I do not have a path to desId 25, but neighbor 16 has, I will use it.
+    Time is at 1668482524896 ms.
+ Created LSA packet. fromId 6, destId 25, distance: 3, nexHop 16, and nodesInPath [6,16,25,26].
+    Time is at 1668482524896 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 25 to my neighbor 5, the nodes are [6,16,25,26].
+    Time is at 1668482524896 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 25 to my neighbor 7, the nodes are [6,16,25,26].
+    Time is at 1668482524896 ms.
+ Received LSA from neighbor 16, for destId 26, the distance is 1, the nexHop is 26, and its PATH is: [16,26].
+    Time is at 1668482524897 ms.
+ I do not have a path to desId 26, but neighbor 16 has, I will use it.
+    Time is at 1668482524897 ms.
+ Created LSA packet. fromId 6, destId 26, distance: 2, nexHop 16, and nodesInPath [6,16,26].
+    Time is at 1668482524897 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 26 to my neighbor 5, the nodes are [6,16,26].
+    Time is at 1668482524898 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 26 to my neighbor 7, the nodes are [6,16,26].
+    Time is at 1668482524898 ms.
+ Received LSA from neighbor 16, for destId 27, the distance is 2, the nexHop is 26, and its PATH is: [16,26,27].
+    Time is at 1668482524900 ms.
+ I do not have a path to desId 27, but neighbor 16 has, I will use it.
+    Time is at 1668482524900 ms.
+ Created LSA packet. fromId 6, destId 27, distance: 3, nexHop 16, and nodesInPath [16,26,6,27].
+    Time is at 1668482524900 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 27 to my neighbor 5, the nodes are [16,26,6,27].
+    Time is at 1668482524900 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 27 to my neighbor 7, the nodes are [16,26,6,27].
+    Time is at 1668482524900 ms.
+ Received LSA from neighbor 16, for destId 24, the distance is 3, the nexHop is 15, and its PATH is: [16,15,24,14].
+    Time is at 1668482524934 ms.
+ Received LSA from neighbor 16, for destId 23, the distance is 4, the nexHop is 15, and its PATH is: [16,23,24,14,15].
+    Time is at 1668482524938 ms.
+ Received LSA from neighbor 7, for destId 27, the distance is 2, the nexHop is 17, and its PATH is: [7,17,27].
+    Time is at 1668482524940 ms.
+ We both have paths. Neighbor 7 has a better path to desId 27, I will use it.
+    Time is at 1668482524940 ms.
+ Created LSA packet. fromId 6, destId 27, distance: 3, nexHop 7, and nodesInPath [7,17,6,27].
+    Time is at 1668482524940 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 27 to my neighbor 5, the nodes are [7,17,6,27].
+    Time is at 1668482524940 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 27 to my neighbor 16, the nodes are [7,17,6,27].
+    Time is at 1668482524940 ms.
+ Received LSA from neighbor 5, for destId 25, the distance is 4, the nexHop is 4, and its PATH is: [5,25,4,24,14].
+    Time is at 1668482524981 ms.
+ Received LSA from neighbor 16, for destId 12, the distance is 4, the nexHop is 15, and its PATH is: [16,12,13,14,15].
+    Time is at 1668482524983 ms.
+ Received LSA from neighbor 16, for destId 27, the distance is 2, the nexHop is 17, and its PATH is: [16,17,27].
+    Time is at 1668482524985 ms.
+ Received LSA from neighbor 16, for destId 13, the distance is 3, the nexHop is 15, and its PATH is: [16,15,14,13].
+    Time is at 1668482525003 ms.
+ Received LSA from neighbor 5, for destId 22, the distance is 5, the nexHop is 4, and its PATH is: [5,22,23,4,24,14].
+    Time is at 1668482525018 ms.
+ I do not have a path to desId 22, but neighbor 5 has, I will use it.
+    Time is at 1668482525018 ms.
+ Created LSA packet. fromId 6, destId 22, distance: 6, nexHop 5, and nodesInPath [6,14,24,4,23,22,5].
+    Time is at 1668482525018 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 22 to my neighbor 7, the nodes are [6,14,24,4,23,22,5].
+    Time is at 1668482525018 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 22 to my neighbor 16, the nodes are [6,14,24,4,23,22,5].
+    Time is at 1668482525019 ms.
+ Received LSA from neighbor 5, for destId 25, the distance is 2, the nexHop is 15, and its PATH is: [5,15,25].
+    Time is at 1668482525104 ms.
+ We both have paths. Neighbor 5 has a better path to desId 25, I will use it.
+    Time is at 1668482525104 ms.
+ Created LSA packet. fromId 6, destId 25, distance: 3, nexHop 5, and nodesInPath [6,5,15,25].
+    Time is at 1668482525104 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 25 to my neighbor 7, the nodes are [6,5,15,25].
+    Time is at 1668482525104 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 25 to my neighbor 16, the nodes are [6,5,15,25].
+    Time is at 1668482525105 ms.
+ Received LSA from neighbor 16, for destId 25, the distance is 2, the nexHop is 15, and its PATH is: [16,15,25].
+    Time is at 1668482525105 ms.
+ Received LSA from neighbor 16, for destId 11, the distance is 5, the nexHop is 15, and its PATH is: [16,15,11,12,13,14].
+    Time is at 1668482525129 ms.
+ Received LSA from neighbor 5, for destId 22, the distance is 5, the nexHop is 4, and its PATH is: [5,4,22,23,13,3].
+    Time is at 1668482525134 ms.
+ We both have paths. Neighbor 5 has a better path to desId 22, I will use it.
+    Time is at 1668482525134 ms.
+ Created LSA packet. fromId 6, destId 22, distance: 6, nexHop 5, and nodesInPath [3,6,13,23,22,4,5].
+    Time is at 1668482525135 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 22 to my neighbor 7, the nodes are [3,6,13,23,22,4,5].
+    Time is at 1668482525135 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 22 to my neighbor 16, the nodes are [3,6,13,23,22,4,5].
+    Time is at 1668482525135 ms.
+ Received LSA from neighbor 16, for destId 10, the distance is 6, the nexHop is 15, and its PATH is: [16,13,12,11,10,14,15].
+    Time is at 1668482525235 ms.
+ Received LSA from neighbor 16, for destId 22, the distance is 5, the nexHop is 15, and its PATH is: [16,15,22,23,24,14].
+    Time is at 1668482525251 ms.
+ Received LSA from neighbor 5, for destId 23, the distance is 4, the nexHop is 4, and its PATH is: [5,23,13,3,4].
+    Time is at 1668482525328 ms.
+ We both have paths. Neighbor 5 has a better path to desId 23, I will use it.
+    Time is at 1668482525328 ms.
+ Created LSA packet. fromId 6, destId 23, distance: 5, nexHop 5, and nodesInPath [6,5,23,13,3,4].
+    Time is at 1668482525328 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 23 to my neighbor 7, the nodes are [6,5,23,13,3,4].
+    Time is at 1668482525328 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 23 to my neighbor 16, the nodes are [6,5,23,13,3,4].
+    Time is at 1668482525328 ms.
+ Received LSA from neighbor 5, for destId 22, the distance is 5, the nexHop is 4, and its PATH is: [5,4,22,12,2,3].
+    Time is at 1668482525371 ms.
+ We both have paths. Neighbor 5 has a better path to desId 22, I will use it.
+    Time is at 1668482525371 ms.
+ Created LSA packet. fromId 6, destId 22, distance: 6, nexHop 5, and nodesInPath [6,3,2,22,4,12,5].
+    Time is at 1668482525371 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 22 to my neighbor 7, the nodes are [6,3,2,22,4,12,5].
+    Time is at 1668482525371 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 22 to my neighbor 16, the nodes are [6,3,2,22,4,12,5].
+    Time is at 1668482525371 ms.
+ Received LSA from neighbor 5, for destId 30, the distance is 8, the nexHop is 4, and its PATH is: [5,2,30,1,31,3,21,4,11].
+    Time is at 1668482525378 ms.
+ I do not have a path to desId 30, but neighbor 5 has, I will use it.
+    Time is at 1668482525378 ms.
+ Created LSA packet. fromId 6, destId 30, distance: 9, nexHop 5, and nodesInPath [6,11,4,21,3,31,1,30,2,5].
+    Time is at 1668482525378 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 30 to my neighbor 7, the nodes are [6,11,4,21,3,31,1,30,2,5].
+    Time is at 1668482525378 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 30 to my neighbor 16, the nodes are [6,11,4,21,3,31,1,30,2,5].
+    Time is at 1668482525378 ms.
+ Received LSA from neighbor 5, for destId 31, the distance is 7, the nexHop is 4, and its PATH is: [5,1,11,4,21,2,31,3].
+    Time is at 1668482525403 ms.
+ I do not have a path to desId 31, but neighbor 5 has, I will use it.
+    Time is at 1668482525403 ms.
+ Created LSA packet. fromId 6, destId 31, distance: 8, nexHop 5, and nodesInPath [6,3,31,2,21,4,11,1,5].
+    Time is at 1668482525403 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 31 to my neighbor 7, the nodes are [6,3,31,2,21,4,11,1,5].
+    Time is at 1668482525403 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 31 to my neighbor 16, the nodes are [6,3,31,2,21,4,11,1,5].
+    Time is at 1668482525403 ms.
+ Received LSA from neighbor 5, for destId 30, the distance is 8, the nexHop is 4, and its PATH is: [5,2,30,1,20,3,10,0,4].
+    Time is at 1668482525420 ms.
+ We both have paths. Neighbor 5 has a better path to desId 30, I will use it.
+    Time is at 1668482525420 ms.
+ Created LSA packet. fromId 6, destId 30, distance: 9, nexHop 5, and nodesInPath [6,4,0,10,3,20,1,30,2,5].
+    Time is at 1668482525420 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 30 to my neighbor 7, the nodes are [6,4,0,10,3,20,1,30,2,5].
+    Time is at 1668482525421 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 30 to my neighbor 16, the nodes are [6,4,0,10,3,20,1,30,2,5].
+    Time is at 1668482525421 ms.
+ Received LSA from neighbor 5, for destId 32, the distance is 6, the nexHop is 4, and its PATH is: [13,23,5,33,3,32,4].
+    Time is at 1668482525423 ms.
+ I do not have a path to desId 32, but neighbor 5 has, I will use it.
+    Time is at 1668482525423 ms.
+ Created LSA packet. fromId 6, destId 32, distance: 7, nexHop 5, and nodesInPath [13,6,23,5,33,3,32,4].
+    Time is at 1668482525423 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 32 to my neighbor 7, the nodes are [13,6,23,5,33,3,32,4].
+    Time is at 1668482525423 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 32 to my neighbor 16, the nodes are [13,6,23,5,33,3,32,4].
+    Time is at 1668482525423 ms.
+ Received LSA from neighbor 5, for destId 33, the distance is 5, the nexHop is 4, and its PATH is: [5,4,33,23,13,3].
+    Time is at 1668482525423 ms.
+ I do not have a path to desId 33, but neighbor 5 has, I will use it.
+    Time is at 1668482525423 ms.
+ Created LSA packet. fromId 6, destId 33, distance: 6, nexHop 5, and nodesInPath [3,6,13,23,4,33,5].
+    Time is at 1668482525423 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 33 to my neighbor 7, the nodes are [3,6,13,23,4,33,5].
+    Time is at 1668482525423 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 33 to my neighbor 16, the nodes are [3,6,13,23,4,33,5].
+    Time is at 1668482525424 ms.
+ Received LSA from neighbor 5, for destId 32, the distance is 6, the nexHop is 4, and its PATH is: [5,13,23,3,22,32,4].
+    Time is at 1668482525424 ms.
+ We both have paths. Neighbor 5 has a better path to desId 32, I will use it.
+    Time is at 1668482525424 ms.
+ Created LSA packet. fromId 6, destId 32, distance: 7, nexHop 5, and nodesInPath [13,6,23,3,5,22,32,4].
+    Time is at 1668482525424 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 32 to my neighbor 7, the nodes are [13,6,23,3,5,22,32,4].
+    Time is at 1668482525424 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 32 to my neighbor 16, the nodes are [13,6,23,3,5,22,32,4].
+    Time is at 1668482525424 ms.
+ Received LSA from neighbor 16, for destId 20, the distance is 7, the nexHop is 15, and its PATH is: [16,23,15,22,20,24,21,14].
+    Time is at 1668482525425 ms.
+ Received LSA from neighbor 16, for destId 21, the distance is 6, the nexHop is 15, and its PATH is: [24,16,23,14,21,22,15].
+    Time is at 1668482525491 ms.
+ Received LSA from neighbor 5, for destId 34, the distance is 6, the nexHop is 4, and its PATH is: [5,23,34,13,24,3,4].
+    Time is at 1668482525514 ms.
+ I do not have a path to desId 34, but neighbor 5 has, I will use it.
+    Time is at 1668482525514 ms.
+ Created LSA packet. fromId 6, destId 34, distance: 7, nexHop 5, and nodesInPath [5,6,23,34,13,24,3,4].
+    Time is at 1668482525514 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 34 to my neighbor 7, the nodes are [5,6,23,34,13,24,3,4].
+    Time is at 1668482525514 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 34 to my neighbor 16, the nodes are [5,6,23,34,13,24,3,4].
+    Time is at 1668482525514 ms.
+ Received LSA from neighbor 5, for destId 34, the distance is 4, the nexHop is 15, and its PATH is: [34,5,35,25,15].
+    Time is at 1668482525564 ms.
+ We both have paths. Neighbor 5 has a better path to desId 34, I will use it.
+    Time is at 1668482525564 ms.
+ Created LSA packet. fromId 6, destId 34, distance: 5, nexHop 5, and nodesInPath [6,34,5,35,25,15].
+    Time is at 1668482525564 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 34 to my neighbor 7, the nodes are [6,34,5,35,25,15].
+    Time is at 1668482525564 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 34 to my neighbor 16, the nodes are [6,34,5,35,25,15].
+    Time is at 1668482525564 ms.
+ Received LSA from neighbor 7, for destId 34, the distance is 6, the nexHop is 17, and its PATH is: [37,36,7,35,27,34,17].
+    Time is at 1668482525614 ms.
+ Received LSA from neighbor 5, for destId 35, the distance is 7, the nexHop is 4, and its PATH is: [5,4,23,34,13,35,24,3].
+    Time is at 1668482525636 ms.
+ I do not have a path to desId 35, but neighbor 5 has, I will use it.
+    Time is at 1668482525636 ms.
+ Created LSA packet. fromId 6, destId 35, distance: 8, nexHop 5, and nodesInPath [6,3,24,35,13,34,23,4,5].
+    Time is at 1668482525636 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 35 to my neighbor 7, the nodes are [6,3,24,35,13,34,23,4,5].
+    Time is at 1668482525636 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 35 to my neighbor 16, the nodes are [6,3,24,35,13,34,23,4,5].
+    Time is at 1668482525636 ms.
+ Received LSA from neighbor 7, for destId 35, the distance is 5, the nexHop is 17, and its PATH is: [7,35,36,17,37,27].
+    Time is at 1668482525674 ms.
+ We both have paths. Neighbor 7 has a better path to desId 35, I will use it.
+    Time is at 1668482525674 ms.
+ Created LSA packet. fromId 6, destId 35, distance: 6, nexHop 7, and nodesInPath [6,27,37,17,36,35,7].
+    Time is at 1668482525674 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 35 to my neighbor 5, the nodes are [6,27,37,17,36,35,7].
+    Time is at 1668482525674 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 35 to my neighbor 16, the nodes are [6,27,37,17,36,35,7].
+    Time is at 1668482525674 ms.
+ Received LSA from neighbor 5, for destId 35, the distance is 3, the nexHop is 15, and its PATH is: [5,15,25,35].
+    Time is at 1668482525696 ms.
+ We both have paths. Neighbor 5 has a better path to desId 35, I will use it.
+    Time is at 1668482525696 ms.
+ Created LSA packet. fromId 6, destId 35, distance: 4, nexHop 5, and nodesInPath [6,35,25,15,5].
+    Time is at 1668482525696 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 35 to my neighbor 7, the nodes are [6,35,25,15,5].
+    Time is at 1668482525696 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 35 to my neighbor 16, the nodes are [6,35,25,15,5].
+    Time is at 1668482525696 ms.
+ Received LSA from neighbor 16, for destId 20, the distance is 7, the nexHop is 15, and its PATH is: [16,15,12,11,20,13,21,14].
+    Time is at 1668482525726 ms.
+ Received LSA from neighbor 7, for destId 36, the distance is 4, the nexHop is 17, and its PATH is: [36,7,37,27,17].
+    Time is at 1668482525756 ms.
+ I do not have a path to desId 36, but neighbor 7 has, I will use it.
+    Time is at 1668482525756 ms.
+ Created LSA packet. fromId 6, destId 36, distance: 5, nexHop 7, and nodesInPath [36,7,37,27,6,17].
+    Time is at 1668482525756 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 36 to my neighbor 5, the nodes are [36,7,37,27,6,17].
+    Time is at 1668482525756 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 36 to my neighbor 16, the nodes are [36,7,37,27,6,17].
+    Time is at 1668482525756 ms.
+ Received LSA from neighbor 16, for destId 21, the distance is 6, the nexHop is 15, and its PATH is: [16,13,12,11,21,14,15].
+    Time is at 1668482525767 ms.
+ Received LSA from neighbor 16, for destId 34, the distance is 6, the nexHop is 17, and its PATH is: [16,37,36,35,27,34,17].
+    Time is at 1668482525770 ms.
+ Received LSA from neighbor 7, for destId 37, the distance is 3, the nexHop is 17, and its PATH is: [7,17,27,37].
+    Time is at 1668482525772 ms.
+ I do not have a path to desId 37, but neighbor 7 has, I will use it.
+    Time is at 1668482525772 ms.
+ Created LSA packet. fromId 6, destId 37, distance: 4, nexHop 7, and nodesInPath [6,37,27,17,7].
+    Time is at 1668482525772 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 37 to my neighbor 5, the nodes are [6,37,27,17,7].
+    Time is at 1668482525773 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 37 to my neighbor 16, the nodes are [6,37,27,17,7].
+    Time is at 1668482525773 ms.
+ Received LSA from neighbor 16, for destId 34, the distance is 4, the nexHop is 15, and its PATH is: [16,34,35,25,15].
+    Time is at 1668482525778 ms.
+ Received LSA from neighbor 16, for destId 35, the distance is 5, the nexHop is 17, and its PATH is: [35,36,17,37,16,27].
+    Time is at 1668482525784 ms.
+ Received LSA from neighbor 5, for destId 36, the distance is 4, the nexHop is 15, and its PATH is: [36,5,15,35,25].
+    Time is at 1668482525785 ms.
+ We both have paths. Neighbor 5 has a better path to desId 36, I will use it.
+    Time is at 1668482525785 ms.
+ Created LSA packet. fromId 6, destId 36, distance: 5, nexHop 5, and nodesInPath [6,5,15,35,36,25].
+    Time is at 1668482525785 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 36 to my neighbor 7, the nodes are [6,5,15,35,36,25].
+    Time is at 1668482525785 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 36 to my neighbor 16, the nodes are [6,5,15,35,36,25].
+    Time is at 1668482525785 ms.
+ Received LSA from neighbor 16, for destId 36, the distance is 4, the nexHop is 17, and its PATH is: [16,36,37,27,17].
+    Time is at 1668482525814 ms.
+ Received LSA from neighbor 7, for destId 44, the distance is 7, the nexHop is 17, and its PATH is: [7,36,35,37,17,34,44,27].
+    Time is at 1668482525815 ms.
+ I do not have a path to desId 44, but neighbor 7 has, I will use it.
+    Time is at 1668482525815 ms.
+ Created LSA packet. fromId 6, destId 44, distance: 8, nexHop 7, and nodesInPath [27,44,34,6,17,37,35,36,7].
+    Time is at 1668482525815 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 44 to my neighbor 5, the nodes are [27,44,34,6,17,37,35,36,7].
+    Time is at 1668482525815 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 44 to my neighbor 16, the nodes are [27,44,34,6,17,37,35,36,7].
+    Time is at 1668482525815 ms.
+ Received LSA from neighbor 16, for destId 22, the distance is 5, the nexHop is 15, and its PATH is: [16,15,22,23,13,14].
+    Time is at 1668482525816 ms.
+ Received LSA from neighbor 5, for destId 37, the distance is 5, the nexHop is 15, and its PATH is: [5,37,15,35,36,25].
+    Time is at 1668482525816 ms.
+ Received LSA from neighbor 16, for destId 37, the distance is 3, the nexHop is 17, and its PATH is: [17,27,16,37].
+    Time is at 1668482525840 ms.
+ Received LSA from neighbor 16, for destId 35, the distance is 3, the nexHop is 15, and its PATH is: [16,15,25,35].
+    Time is at 1668482525862 ms.
+ Received LSA from neighbor 5, for destId 44, the distance is 5, the nexHop is 15, and its PATH is: [5,34,44,15,35,25].
+    Time is at 1668482525878 ms.
+ We both have paths. Neighbor 5 has a better path to desId 44, I will use it.
+    Time is at 1668482525878 ms.
+ Created LSA packet. fromId 6, destId 44, distance: 6, nexHop 5, and nodesInPath [25,35,15,44,6,34,5].
+    Time is at 1668482525878 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 44 to my neighbor 7, the nodes are [25,35,15,44,6,34,5].
+    Time is at 1668482525878 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 44 to my neighbor 16, the nodes are [25,35,15,44,6,34,5].
+    Time is at 1668482525878 ms.
+ Received LSA from neighbor 7, for destId 46, the distance is 5, the nexHop is 17, and its PATH is: [7,36,46,17,37,27].
+    Time is at 1668482525931 ms.
+ I do not have a path to desId 46, but neighbor 7 has, I will use it.
+    Time is at 1668482525931 ms.
+ Created LSA packet. fromId 6, destId 46, distance: 6, nexHop 7, and nodesInPath [6,27,37,17,46,36,7].
+    Time is at 1668482525931 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 46 to my neighbor 5, the nodes are [6,27,37,17,46,36,7].
+    Time is at 1668482525931 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 46 to my neighbor 16, the nodes are [6,27,37,17,46,36,7].
+    Time is at 1668482525931 ms.
+ Received LSA from neighbor 16, for destId 44, the distance is 7, the nexHop is 17, and its PATH is: [16,36,35,37,17,34,44,27].
+    Time is at 1668482525975 ms.
+ Received LSA from neighbor 16, for destId 36, the distance is 4, the nexHop is 15, and its PATH is: [16,36,15,35,25].
+    Time is at 1668482526006 ms.
+ Received LSA from neighbor 7, for destId 47, the distance is 6, the nexHop is 17, and its PATH is: [7,37,47,36,27,46,17].
+    Time is at 1668482526049 ms.
+ I do not have a path to desId 47, but neighbor 7 has, I will use it.
+    Time is at 1668482526049 ms.
+ Created LSA packet. fromId 6, destId 47, distance: 7, nexHop 7, and nodesInPath [6,7,37,47,36,27,46,17].
+    Time is at 1668482526049 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 47 to my neighbor 5, the nodes are [6,7,37,47,36,27,46,17].
+    Time is at 1668482526049 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 47 to my neighbor 16, the nodes are [6,7,37,47,36,27,46,17].
+    Time is at 1668482526049 ms.
+ Received LSA from neighbor 16, for destId 23, the distance is 4, the nexHop is 15, and its PATH is: [16,13,23,14,15].
+    Time is at 1668482526052 ms.
+ Received LSA from neighbor 5, for destId 46, the distance is 5, the nexHop is 15, and its PATH is: [5,15,36,25,46,35].
+    Time is at 1668482526053 ms.
+ We both have paths. Neighbor 5 has a better path to desId 46, I will use it.
+    Time is at 1668482526053 ms.
+ Created LSA packet. fromId 6, destId 46, distance: 6, nexHop 5, and nodesInPath [6,35,46,25,36,15,5].
+    Time is at 1668482526053 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 46 to my neighbor 7, the nodes are [6,35,46,25,36,15,5].
+    Time is at 1668482526053 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 46 to my neighbor 16, the nodes are [6,35,46,25,36,15,5].
+    Time is at 1668482526053 ms.
+ Received LSA from neighbor 5, for destId 37, the distance is 5, the nexHop is 15, and its PATH is: [15,37,5,16,27,17].
+    Time is at 1668482526055 ms.
+ Received LSA from neighbor 16, for destId 44, the distance is 5, the nexHop is 15, and its PATH is: [16,34,44,15,35,25].
+    Time is at 1668482526056 ms.
+ Received LSA from neighbor 16, for destId 46, the distance is 5, the nexHop is 17, and its PATH is: [36,46,17,37,16,27].
+    Time is at 1668482526056 ms.
+ Received LSA from neighbor 5, for destId 43, the distance is 6, the nexHop is 15, and its PATH is: [5,35,25,34,44,43,15].
+    Time is at 1668482526058 ms.
+ I do not have a path to desId 43, but neighbor 5 has, I will use it.
+    Time is at 1668482526058 ms.
+ Created LSA packet. fromId 6, destId 43, distance: 7, nexHop 5, and nodesInPath [6,5,35,25,34,44,43,15].
+    Time is at 1668482526058 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 43 to my neighbor 7, the nodes are [6,5,35,25,34,44,43,15].
+    Time is at 1668482526058 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 43 to my neighbor 16, the nodes are [6,5,35,25,34,44,43,15].
+    Time is at 1668482526058 ms.
+ Received LSA from neighbor 5, for destId 47, the distance is 6, the nexHop is 15, and its PATH is: [35,46,25,5,47,36,15].
+    Time is at 1668482526059 ms.
+ We both have paths. Neighbor 5 has a better path to desId 47, I will use it.
+    Time is at 1668482526059 ms.
+ Created LSA packet. fromId 6, destId 47, distance: 7, nexHop 5, and nodesInPath [6,35,46,25,5,47,36,15].
+    Time is at 1668482526059 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 47 to my neighbor 7, the nodes are [6,35,46,25,5,47,36,15].
+    Time is at 1668482526059 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 47 to my neighbor 16, the nodes are [6,35,46,25,5,47,36,15].
+    Time is at 1668482526059 ms.
+ Received LSA from neighbor 16, for destId 47, the distance is 6, the nexHop is 17, and its PATH is: [16,37,47,36,27,46,17].
+    Time is at 1668482526073 ms.
+ Received LSA from neighbor 16, for destId 20, the distance is 7, the nexHop is 15, and its PATH is: [16,15,12,11,10,20,13,14].
+    Time is at 1668482526089 ms.
+ Received LSA from neighbor 16, for destId 46, the distance is 5, the nexHop is 15, and its PATH is: [16,15,36,25,46,35].
+    Time is at 1668482526090 ms.
+ Received LSA from neighbor 7, for destId 47, the distance is 4, the nexHop is 17, and its PATH is: [7,47,37,27,17].
+    Time is at 1668482526091 ms.
+ We both have paths. Neighbor 7 has a better path to desId 47, I will use it.
+    Time is at 1668482526091 ms.
+ Created LSA packet. fromId 6, destId 47, distance: 5, nexHop 7, and nodesInPath [7,47,37,27,6,17].
+    Time is at 1668482526091 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 47 to my neighbor 5, the nodes are [7,47,37,27,6,17].
+    Time is at 1668482526091 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 47 to my neighbor 16, the nodes are [7,47,37,27,6,17].
+    Time is at 1668482526091 ms.
+ Received LSA from neighbor 5, for destId 32, the distance is 6, the nexHop is 4, and its PATH is: [2,5,12,22,3,32,4].
+    Time is at 1668482526111 ms.
+ We both have paths. Neighbor 5 has a better path to desId 32, I will use it.
+    Time is at 1668482526111 ms.
+ Created LSA packet. fromId 6, destId 32, distance: 7, nexHop 5, and nodesInPath [6,2,12,5,22,3,32,4].
+    Time is at 1668482526111 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 32 to my neighbor 7, the nodes are [6,2,12,5,22,3,32,4].
+    Time is at 1668482526112 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 32 to my neighbor 16, the nodes are [6,2,12,5,22,3,32,4].
+    Time is at 1668482526112 ms.
+ Received LSA from neighbor 16, for destId 43, the distance is 6, the nexHop is 15, and its PATH is: [35,25,34,16,44,43,15].
+    Time is at 1668482526170 ms.
+ Received LSA from neighbor 5, for destId 34, the distance is 4, the nexHop is 15, and its PATH is: [24,34,5,25,15].
+    Time is at 1668482526212 ms.
+ We both have paths. Neighbor 5 has a better path to desId 34, I will use it.
+    Time is at 1668482526212 ms.
+ Created LSA packet. fromId 6, destId 34, distance: 5, nexHop 5, and nodesInPath [6,24,34,5,25,15].
+    Time is at 1668482526212 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 34 to my neighbor 7, the nodes are [6,24,34,5,25,15].
+    Time is at 1668482526212 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 34 to my neighbor 16, the nodes are [6,24,34,5,25,15].
+    Time is at 1668482526212 ms.
+ Received LSA from neighbor 7, for destId 43, the distance is 8, the nexHop is 17, and its PATH is: [7,37,44,27,36,43,34,17,35].
+    Time is at 1668482526222 ms.
+ Received LSA from neighbor 7, for destId 45, the distance is 6, the nexHop is 17, and its PATH is: [7,37,47,27,46,45,17].
+    Time is at 1668482526266 ms.
+ I do not have a path to desId 45, but neighbor 7 has, I will use it.
+    Time is at 1668482526266 ms.
+ Created LSA packet. fromId 6, destId 45, distance: 7, nexHop 7, and nodesInPath [6,7,37,47,27,46,45,17].
+    Time is at 1668482526266 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 45 to my neighbor 5, the nodes are [6,7,37,47,27,46,45,17].
+    Time is at 1668482526266 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 45 to my neighbor 16, the nodes are [6,7,37,47,27,46,45,17].
+    Time is at 1668482526266 ms.
+ Received LSA from neighbor 5, for destId 40, the distance is 9, the nexHop is 4, and its PATH is: [5,3,32,42,22,13,41,40,23,4].
+    Time is at 1668482526281 ms.
+ I do not have a path to desId 40, but neighbor 5 has, I will use it.
+    Time is at 1668482526281 ms.
+ Created LSA packet. fromId 6, destId 40, distance: 10, nexHop 5, and nodesInPath [6,4,23,40,41,13,22,42,32,3,5].
+    Time is at 1668482526281 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 40 to my neighbor 7, the nodes are [6,4,23,40,41,13,22,42,32,3,5].
+    Time is at 1668482526281 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 40 to my neighbor 16, the nodes are [6,4,23,40,41,13,22,42,32,3,5].
+    Time is at 1668482526281 ms.
+ Received LSA from neighbor 16, for destId 47, the distance is 6, the nexHop is 15, and its PATH is: [16,35,46,25,47,36,15].
+    Time is at 1668482526312 ms.
+ Received LSA from neighbor 5, for destId 41, the distance is 8, the nexHop is 4, and its PATH is: [5,13,41,23,42,32,22,3,4].
+    Time is at 1668482526319 ms.
+ I do not have a path to desId 41, but neighbor 5 has, I will use it.
+    Time is at 1668482526319 ms.
+ Created LSA packet. fromId 6, destId 41, distance: 9, nexHop 5, and nodesInPath [6,4,3,22,32,42,23,41,13,5].
+    Time is at 1668482526319 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 41 to my neighbor 7, the nodes are [6,4,3,22,32,42,23,41,13,5].
+    Time is at 1668482526325 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 41 to my neighbor 16, the nodes are [6,4,3,22,32,42,23,41,13,5].
+    Time is at 1668482526325 ms.
+ Received LSA from neighbor 7, for destId 56, the distance is 6, the nexHop is 17, and its PATH is: [37,47,27,7,56,46,17].
+    Time is at 1668482526341 ms.
+ I do not have a path to desId 56, but neighbor 7 has, I will use it.
+    Time is at 1668482526342 ms.
+ Created LSA packet. fromId 6, destId 56, distance: 7, nexHop 7, and nodesInPath [6,37,47,27,7,56,46,17].
+    Time is at 1668482526342 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 56 to my neighbor 5, the nodes are [6,37,47,27,7,56,46,17].
+    Time is at 1668482526342 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 56 to my neighbor 16, the nodes are [6,37,47,27,7,56,46,17].
+    Time is at 1668482526342 ms.
+ Received LSA from neighbor 5, for destId 42, the distance is 7, the nexHop is 4, and its PATH is: [23,13,5,22,4,32,42,3].
+    Time is at 1668482526346 ms.
+ I do not have a path to desId 42, but neighbor 5 has, I will use it.
+    Time is at 1668482526346 ms.
+ Created LSA packet. fromId 6, destId 42, distance: 8, nexHop 5, and nodesInPath [6,3,42,32,4,22,5,13,23].
+    Time is at 1668482526346 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 42 to my neighbor 7, the nodes are [6,3,42,32,4,22,5,13,23].
+    Time is at 1668482526346 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 42 to my neighbor 16, the nodes are [6,3,42,32,4,22,5,13,23].
+    Time is at 1668482526346 ms.
+ Received LSA from neighbor 16, for destId 22, the distance is 5, the nexHop is 15, and its PATH is: [16,15,12,22,13,14].
+    Time is at 1668482526384 ms.
+ Received LSA from neighbor 16, for destId 32, the distance is 6, the nexHop is 15, and its PATH is: [13,16,23,33,32,14,15].
+    Time is at 1668482526404 ms.
+ Received LSA from neighbor 5, for destId 40, the distance is 9, the nexHop is 4, and its PATH is: [5,3,21,31,13,41,22,40,23,4].
+    Time is at 1668482526453 ms.
+ We both have paths. Neighbor 5 has a better path to desId 40, I will use it.
+    Time is at 1668482526453 ms.
+ Created LSA packet. fromId 6, destId 40, distance: 10, nexHop 5, and nodesInPath [6,4,23,40,22,41,13,31,21,3,5].
+    Time is at 1668482526453 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 40 to my neighbor 7, the nodes are [6,4,23,40,22,41,13,31,21,3,5].
+    Time is at 1668482526453 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 40 to my neighbor 16, the nodes are [6,4,23,40,22,41,13,31,21,3,5].
+    Time is at 1668482526453 ms.
+ Received LSA from neighbor 16, for destId 33, the distance is 5, the nexHop is 15, and its PATH is: [16,15,33,23,13,14].
+    Time is at 1668482526484 ms.
+ Received LSA from neighbor 16, for destId 47, the distance is 4, the nexHop is 17, and its PATH is: [16,47,37,27,17].
+    Time is at 1668482526517 ms.
+ Received LSA from neighbor 7, for destId 45, the distance is 6, the nexHop is 17, and its PATH is: [7,37,27,36,46,45,17].
+    Time is at 1668482526564 ms.
+ We both have paths. Neighbor 7 has a better path to desId 45, I will use it.
+    Time is at 1668482526564 ms.
+ Created LSA packet. fromId 6, destId 45, distance: 7, nexHop 7, and nodesInPath [6,7,37,27,36,46,45,17].
+    Time is at 1668482526613 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 45 to my neighbor 5, the nodes are [6,7,37,27,36,46,45,17].
+    Time is at 1668482526613 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 45 to my neighbor 16, the nodes are [6,7,37,27,36,46,45,17].
+    Time is at 1668482526613 ms.
+ Received LSA from neighbor 7, for destId 56, the distance is 6, the nexHop is 17, and its PATH is: [37,27,36,46,7,56,17].
+    Time is at 1668482526656 ms.
+ We both have paths. Neighbor 7 has a better path to desId 56, I will use it.
+    Time is at 1668482526656 ms.
+ Created LSA packet. fromId 6, destId 56, distance: 7, nexHop 7, and nodesInPath [6,37,27,36,46,7,56,17].
+    Time is at 1668482526656 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 56 to my neighbor 5, the nodes are [6,37,27,36,46,7,56,17].
+    Time is at 1668482526656 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 56 to my neighbor 16, the nodes are [6,37,27,36,46,7,56,17].
+    Time is at 1668482526656 ms.
+ Received LSA from neighbor 5, for destId 41, the distance is 8, the nexHop is 4, and its PATH is: [5,13,41,23,31,3,21,4,22].
+    Time is at 1668482526657 ms.
+ We both have paths. Neighbor 5 has a better path to desId 41, I will use it.
+    Time is at 1668482526657 ms.
+ Created LSA packet. fromId 6, destId 41, distance: 9, nexHop 5, and nodesInPath [6,22,4,21,3,31,23,41,13,5].
+    Time is at 1668482526657 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 41 to my neighbor 7, the nodes are [6,22,4,21,3,31,23,41,13,5].
+    Time is at 1668482526657 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 41 to my neighbor 16, the nodes are [6,22,4,21,3,31,23,41,13,5].
+    Time is at 1668482526657 ms.
+ Received LSA from neighbor 16, for destId 30, the distance is 8, the nexHop is 15, and its PATH is: [16,13,30,23,31,14,32,15,22].
+    Time is at 1668482526680 ms.
+ Received LSA from neighbor 16, for destId 34, the distance is 4, the nexHop is 15, and its PATH is: [16,24,34,25,15].
+    Time is at 1668482526698 ms.
+ Received LSA from neighbor 5, for destId 44, the distance is 5, the nexHop is 15, and its PATH is: [5,44,34,24,15,25].
+    Time is at 1668482526699 ms.
+ We both have paths. Neighbor 5 has a better path to desId 44, I will use it.
+    Time is at 1668482526699 ms.
+ Created LSA packet. fromId 6, destId 44, distance: 6, nexHop 5, and nodesInPath [25,15,24,6,34,44,5].
+    Time is at 1668482526699 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 44 to my neighbor 7, the nodes are [25,15,24,6,34,44,5].
+    Time is at 1668482526699 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 44 to my neighbor 16, the nodes are [25,15,24,6,34,44,5].
+    Time is at 1668482526699 ms.
+ Received LSA from neighbor 16, for destId 45, the distance is 6, the nexHop is 17, and its PATH is: [16,37,47,27,46,45,17].
+    Time is at 1668482526699 ms.
+ Received LSA from neighbor 16, for destId 40, the distance is 9, the nexHop is 15, and its PATH is: [16,43,35,25,42,40,44,41,34,15].
+    Time is at 1668482526735 ms.
+ Received LSA from neighbor 16, for destId 56, the distance is 6, the nexHop is 17, and its PATH is: [16,37,47,27,56,46,17].
+    Time is at 1668482526761 ms.
+ Received LSA from neighbor 5, for destId 52, the distance is 8, the nexHop is 4, and its PATH is: [5,13,23,52,3,42,32,22,4].
+    Time is at 1668482526878 ms.
+ I do not have a path to desId 52, but neighbor 5 has, I will use it.
+    Time is at 1668482526878 ms.
+ Created LSA packet. fromId 6, destId 52, distance: 9, nexHop 5, and nodesInPath [6,4,22,32,42,3,52,23,13,5].
+    Time is at 1668482526878 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 52 to my neighbor 7, the nodes are [6,4,22,32,42,3,52,23,13,5].
+    Time is at 1668482526878 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 52 to my neighbor 16, the nodes are [6,4,22,32,42,3,52,23,13,5].
+    Time is at 1668482526878 ms.
+ Received LSA from neighbor 5, for destId 34, the distance is 4, the nexHop is 15, and its PATH is: [34,24,14,5,15].
+    Time is at 1668482526931 ms.
+ We both have paths. Neighbor 5 has a better path to desId 34, I will use it.
+    Time is at 1668482526932 ms.
+ Created LSA packet. fromId 6, destId 34, distance: 5, nexHop 5, and nodesInPath [6,34,24,14,5,15].
+    Time is at 1668482526933 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 34 to my neighbor 7, the nodes are [6,34,24,14,5,15].
+    Time is at 1668482526933 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 34 to my neighbor 16, the nodes are [6,34,24,14,5,15].
+    Time is at 1668482526933 ms.
+ Received LSA from neighbor 5, for destId 34, the distance is 4, the nexHop is 4, and its PATH is: [5,34,24,14,4].
+    Time is at 1668482526964 ms.
+ We both have paths. Neighbor 5 has a better path to desId 34, I will use it.
+    Time is at 1668482526964 ms.
+ Created LSA packet. fromId 6, destId 34, distance: 5, nexHop 5, and nodesInPath [6,5,34,24,14,4].
+    Time is at 1668482526964 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 34 to my neighbor 7, the nodes are [6,5,34,24,14,4].
+    Time is at 1668482526964 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 34 to my neighbor 16, the nodes are [6,5,34,24,14,4].
+    Time is at 1668482526964 ms.
+ Received LSA from neighbor 16, for destId 31, the distance is 7, the nexHop is 15, and its PATH is: [16,23,13,22,15,32,31,14].
+    Time is at 1668482526972 ms.
+ Received LSA from neighbor 7, for destId 57, the distance is 5, the nexHop is 17, and its PATH is: [7,17,57,47,37,27].
+    Time is at 1668482526979 ms.
+ I do not have a path to desId 57, but neighbor 7 has, I will use it.
+    Time is at 1668482526979 ms.
+ Created LSA packet. fromId 6, destId 57, distance: 6, nexHop 7, and nodesInPath [6,27,37,47,57,17,7].
+    Time is at 1668482526980 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 57 to my neighbor 5, the nodes are [6,27,37,47,57,17,7].
+    Time is at 1668482526980 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 57 to my neighbor 16, the nodes are [6,27,37,47,57,17,7].
+    Time is at 1668482526980 ms.
+ Received LSA from neighbor 16, for destId 32, the distance is 6, the nexHop is 15, and its PATH is: [13,16,23,32,14,22,15].
+    Time is at 1668482526986 ms.
+ Received LSA from neighbor 5, for destId 43, the distance is 6, the nexHop is 15, and its PATH is: [5,24,34,44,25,43,15].
+    Time is at 1668482526992 ms.
+ We both have paths. Neighbor 5 has a better path to desId 43, I will use it.
+    Time is at 1668482526992 ms.
+ Created LSA packet. fromId 6, destId 43, distance: 7, nexHop 5, and nodesInPath [6,5,24,34,44,25,43,15].
+    Time is at 1668482526992 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 43 to my neighbor 7, the nodes are [6,5,24,34,44,25,43,15].
+    Time is at 1668482526992 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 43 to my neighbor 16, the nodes are [6,5,24,34,44,25,43,15].
+    Time is at 1668482526992 ms.
+ Received LSA from neighbor 16, for destId 41, the distance is 10, the nexHop is 15, and its PATH is: [16,5,13,41,23,42,32,22,3,4,15].
+    Time is at 1668482527000 ms.
+ Received LSA from neighbor 16, for destId 42, the distance is 9, the nexHop is 15, and its PATH is: [23,13,16,5,22,4,15,32,42,3].
+    Time is at 1668482527015 ms.
+ Received LSA from neighbor 16, for destId 30, the distance is 8, the nexHop is 15, and its PATH is: [16,13,30,23,31,14,21,22,15].
+    Time is at 1668482527023 ms.
+ Received LSA from neighbor 16, for destId 45, the distance is 6, the nexHop is 17, and its PATH is: [16,37,27,36,46,45,17].
+    Time is at 1668482527039 ms.
+ Received LSA from neighbor 16, for destId 31, the distance is 7, the nexHop is 15, and its PATH is: [16,23,13,15,22,21,31,14].
+    Time is at 1668482527072 ms.
+ Received LSA from neighbor 16, for destId 56, the distance is 6, the nexHop is 17, and its PATH is: [16,37,27,36,46,56,17].
+    Time is at 1668482527082 ms.
+ Received LSA from neighbor 16, for destId 41, the distance is 8, the nexHop is 15, and its PATH is: [16,35,42,25,41,34,43,44,15].
+    Time is at 1668482527093 ms.
+ Received LSA from neighbor 5, for destId 40, the distance is 9, the nexHop is 4, and its PATH is: [5,3,2,21,31,41,11,40,1,4].
+    Time is at 1668482527112 ms.
+ We both have paths. Neighbor 5 has a better path to desId 40, I will use it.
+    Time is at 1668482527112 ms.
+ Created LSA packet. fromId 6, destId 40, distance: 10, nexHop 5, and nodesInPath [6,4,1,40,11,41,31,21,2,3,5].
+    Time is at 1668482527112 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 40 to my neighbor 7, the nodes are [6,4,1,40,11,41,31,21,2,3,5].
+    Time is at 1668482527112 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 40 to my neighbor 16, the nodes are [6,4,1,40,11,41,31,21,2,3,5].
+    Time is at 1668482527112 ms.
+ Received LSA from neighbor 16, for destId 42, the distance is 7, the nexHop is 15, and its PATH is: [16,34,44,15,43,35,42,25].
+    Time is at 1668482527130 ms.
+ Received LSA from neighbor 16, for destId 44, the distance is 5, the nexHop is 15, and its PATH is: [16,44,34,24,15,25].
+    Time is at 1668482527144 ms.
+ Received LSA from neighbor 16, for destId 34, the distance is 4, the nexHop is 15, and its PATH is: [16,34,24,14,15].
+    Time is at 1668482527144 ms.
+ Received LSA from neighbor 7, for destId 36, the distance is 4, the nexHop is 17, and its PATH is: [26,36,7,27,17].
+    Time is at 1668482527146 ms.
+ Received LSA from neighbor 5, for destId 51, the distance is 9, the nexHop is 4, and its PATH is: [5,3,13,32,42,52,22,51,23,4].
+    Time is at 1668482527175 ms.
+ I do not have a path to desId 51, but neighbor 5 has, I will use it.
+    Time is at 1668482527175 ms.
+ Created LSA packet. fromId 6, destId 51, distance: 10, nexHop 5, and nodesInPath [6,4,23,51,22,52,42,32,13,3,5].
+    Time is at 1668482527176 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 51 to my neighbor 7, the nodes are [6,4,23,51,22,52,42,32,13,3,5].
+    Time is at 1668482527176 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 51 to my neighbor 16, the nodes are [6,4,23,51,22,52,42,32,13,3,5].
+    Time is at 1668482527176 ms.
+ Received LSA from neighbor 16, for destId 36, the distance is 2, the nexHop is 26, and its PATH is: [16,26,36].
+    Time is at 1668482527208 ms.
+ We both have paths. Neighbor 16 has a better path to desId 36, I will use it.
+    Time is at 1668482527208 ms.
+ Created LSA packet. fromId 6, destId 36, distance: 3, nexHop 16, and nodesInPath [6,16,26,36].
+    Time is at 1668482527208 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 36 to my neighbor 5, the nodes are [6,16,26,36].
+    Time is at 1668482527208 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 36 to my neighbor 7, the nodes are [6,16,26,36].
+    Time is at 1668482527209 ms.
+ Received LSA from neighbor 5, for destId 40, the distance is 9, the nexHop is 4, and its PATH is: [5,10,3,20,2,30,40,0,1,4].
+    Time is at 1668482527222 ms.
+ We both have paths. Neighbor 5 has a better path to desId 40, I will use it.
+    Time is at 1668482527222 ms.
+ Created LSA packet. fromId 6, destId 40, distance: 10, nexHop 5, and nodesInPath [6,4,1,0,40,30,2,20,3,10,5].
+    Time is at 1668482527222 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 40 to my neighbor 7, the nodes are [6,4,1,0,40,30,2,20,3,10,5].
+    Time is at 1668482527223 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 40 to my neighbor 16, the nodes are [6,4,1,0,40,30,2,20,3,10,5].
+    Time is at 1668482527223 ms.
+ Received LSA from neighbor 16, for destId 57, the distance is 5, the nexHop is 17, and its PATH is: [17,57,47,37,16,27].
+    Time is at 1668482527239 ms.
+ Received LSA from neighbor 5, for destId 45, the distance is 4, the nexHop is 15, and its PATH is: [5,45,35,25,15].
+    Time is at 1668482527250 ms.
+ We both have paths. Neighbor 5 has a better path to desId 45, I will use it.
+    Time is at 1668482527250 ms.
+ Created LSA packet. fromId 6, destId 45, distance: 5, nexHop 5, and nodesInPath [6,5,45,35,25,15].
+    Time is at 1668482527250 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 45 to my neighbor 7, the nodes are [6,5,45,35,25,15].
+    Time is at 1668482527250 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 45 to my neighbor 16, the nodes are [6,5,45,35,25,15].
+    Time is at 1668482527251 ms.
+ Received LSA from neighbor 16, for destId 43, the distance is 6, the nexHop is 15, and its PATH is: [24,34,16,44,25,43,15].
+    Time is at 1668482527256 ms.
+ Received LSA from neighbor 5, for destId 56, the distance is 6, the nexHop is 15, and its PATH is: [5,45,56,35,46,25,15].
+    Time is at 1668482527264 ms.
+ We both have paths. Neighbor 5 has a better path to desId 56, I will use it.
+    Time is at 1668482527264 ms.
+ Created LSA packet. fromId 6, destId 56, distance: 7, nexHop 5, and nodesInPath [6,45,5,56,35,46,25,15].
+    Time is at 1668482527264 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 56 to my neighbor 7, the nodes are [6,45,5,56,35,46,25,15].
+    Time is at 1668482527264 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 56 to my neighbor 16, the nodes are [6,45,5,56,35,46,25,15].
+    Time is at 1668482527264 ms.
+ Received LSA from neighbor 16, for destId 46, the distance is 3, the nexHop is 26, and its PATH is: [16,26,36,46].
+    Time is at 1668482527273 ms.
+ We both have paths. Neighbor 16 has a better path to desId 46, I will use it.
+    Time is at 1668482527274 ms.
+ Created LSA packet. fromId 6, destId 46, distance: 4, nexHop 16, and nodesInPath [6,46,36,26,16].
+    Time is at 1668482527274 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 46 to my neighbor 5, the nodes are [6,46,36,26,16].
+    Time is at 1668482527274 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 46 to my neighbor 7, the nodes are [6,46,36,26,16].
+    Time is at 1668482527274 ms.
+ Received LSA from neighbor 5, for destId 41, the distance is 8, the nexHop is 4, and its PATH is: [5,2,1,41,31,3,21,4,11].
+    Time is at 1668482527284 ms.
+ We both have paths. Neighbor 5 has a better path to desId 41, I will use it.
+    Time is at 1668482527284 ms.
+ Created LSA packet. fromId 6, destId 41, distance: 9, nexHop 5, and nodesInPath [6,11,4,21,3,31,41,1,2,5].
+    Time is at 1668482527284 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 41 to my neighbor 7, the nodes are [6,11,4,21,3,31,41,1,2,5].
+    Time is at 1668482527284 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 41 to my neighbor 16, the nodes are [6,11,4,21,3,31,41,1,2,5].
+    Time is at 1668482527284 ms.
+ Received LSA from neighbor 5, for destId 44, the distance is 5, the nexHop is 15, and its PATH is: [5,15,44,34,24,14].
+    Time is at 1668482527292 ms.
+ We both have paths. Neighbor 5 has a better path to desId 44, I will use it.
+    Time is at 1668482527292 ms.
+ Created LSA packet. fromId 6, destId 44, distance: 6, nexHop 5, and nodesInPath [14,24,6,34,44,15,5].
+    Time is at 1668482527293 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 44 to my neighbor 7, the nodes are [14,24,6,34,44,15,5].
+    Time is at 1668482527293 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 44 to my neighbor 16, the nodes are [14,24,6,34,44,15,5].
+    Time is at 1668482527293 ms.
+ Received LSA from neighbor 16, for destId 52, the distance is 10, the nexHop is 15, and its PATH is: [16,5,13,23,52,3,42,32,22,4,15].
+    Time is at 1668482527324 ms.
+ Received LSA from neighbor 5, for destId 36, the distance is 4, the nexHop is 15, and its PATH is: [5,15,36,26,16].
+    Time is at 1668482527330 ms.
+ Received LSA from neighbor 16, for destId 30, the distance is 8, the nexHop is 15, and its PATH is: [16,13,30,12,31,14,21,11,15].
+    Time is at 1668482527337 ms.
+ Received LSA from neighbor 16, for destId 31, the distance is 7, the nexHop is 15, and its PATH is: [16,15,12,11,13,21,31,14].
+    Time is at 1668482527345 ms.
+ Received LSA from neighbor 16, for destId 45, the distance is 4, the nexHop is 15, and its PATH is: [16,45,35,25,15].
+    Time is at 1668482527353 ms.
+ Received LSA from neighbor 5, for destId 57, the distance is 7, the nexHop is 15, and its PATH is: [5,27,16,37,47,15,57,17].
+    Time is at 1668482527374 ms.
+ Received LSA from neighbor 7, for destId 46, the distance is 5, the nexHop is 17, and its PATH is: [7,46,36,26,17,27].
+    Time is at 1668482527389 ms.
+ Received LSA from neighbor 16, for destId 56, the distance is 6, the nexHop is 15, and its PATH is: [16,45,56,35,46,25,15].
+    Time is at 1668482527393 ms.
+ Received LSA from neighbor 7, for destId 36, the distance is 4, the nexHop is 17, and its PATH is: [36,26,16,7,17].
+    Time is at 1668482527400 ms.
+ Received LSA from neighbor 7, for destId 45, the distance is 6, the nexHop is 17, and its PATH is: [37,27,36,7,35,45,17].
+    Time is at 1668482527447 ms.
+ Received LSA from neighbor 5, for destId 46, the distance is 5, the nexHop is 15, and its PATH is: [46,36,15,26,5,16].
+    Time is at 1668482527471 ms.
+ Received LSA from neighbor 16, for destId 51, the distance is 11, the nexHop is 15, and its PATH is: [16,15,4,23,22,52,42,32,13,3,51,5].
+    Time is at 1668482527489 ms.
+ Received LSA from neighbor 5, for destId 43, the distance is 6, the nexHop is 15, and its PATH is: [5,24,34,44,14,43,15].
+    Time is at 1668482527505 ms.
+ We both have paths. Neighbor 5 has a better path to desId 43, I will use it.
+    Time is at 1668482527505 ms.
+ Created LSA packet. fromId 6, destId 43, distance: 7, nexHop 5, and nodesInPath [6,5,24,34,44,14,43,15].
+    Time is at 1668482527505 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 43 to my neighbor 7, the nodes are [6,5,24,34,44,14,43,15].
+    Time is at 1668482527506 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 43 to my neighbor 16, the nodes are [6,5,24,34,44,14,43,15].
+    Time is at 1668482527506 ms.
+ Received LSA from neighbor 16, for destId 44, the distance is 5, the nexHop is 15, and its PATH is: [16,15,44,34,24,14].
+    Time is at 1668482527511 ms.
+ Received LSA from neighbor 7, for destId 46, the distance is 5, the nexHop is 17, and its PATH is: [7,17,46,36,26,16].
+    Time is at 1668482527516 ms.
+ Received LSA from neighbor 7, for destId 52, the distance is 12, the nexHop is 17, and its PATH is: [7,15,22,32,23,52,13,5,42,3,16,4,17].
+    Time is at 1668482527517 ms.
+ Received LSA from neighbor 16, for destId 40, the distance is 9, the nexHop is 15, and its PATH is: [16,43,25,42,40,44,24,41,34,15].
+    Time is at 1668482527554 ms.
+ Received LSA from neighbor 7, for destId 45, the distance is 6, the nexHop is 17, and its PATH is: [15,25,7,35,16,45,17].
+    Time is at 1668482527560 ms.
+ Received LSA from neighbor 5, for destId 44, the distance is 5, the nexHop is 4, and its PATH is: [5,4,44,34,24,14].
+    Time is at 1668482527565 ms.
+ We both have paths. Neighbor 5 has a better path to desId 44, I will use it.
+    Time is at 1668482527565 ms.
+ Created LSA packet. fromId 6, destId 44, distance: 6, nexHop 5, and nodesInPath [14,24,6,34,44,4,5].
+    Time is at 1668482527565 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 44 to my neighbor 7, the nodes are [14,24,6,34,44,4,5].
+    Time is at 1668482527566 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 44 to my neighbor 16, the nodes are [14,24,6,34,44,4,5].
+    Time is at 1668482527566 ms.
+ Received LSA from neighbor 5, for destId 53, the distance is 9, the nexHop is 4, and its PATH is: [5,3,13,42,53,52,32,22,23,4].
+    Time is at 1668482527570 ms.
+ I do not have a path to desId 53, but neighbor 5 has, I will use it.
+    Time is at 1668482527571 ms.
+ Created LSA packet. fromId 6, destId 53, distance: 10, nexHop 5, and nodesInPath [6,4,23,22,32,52,53,42,13,3,5].
+    Time is at 1668482527571 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 53 to my neighbor 7, the nodes are [6,4,23,22,32,52,53,42,13,3,5].
+    Time is at 1668482527571 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 53 to my neighbor 16, the nodes are [6,4,23,22,32,52,53,42,13,3,5].
+    Time is at 1668482527571 ms.
+ Received LSA from neighbor 16, for destId 41, the distance is 8, the nexHop is 15, and its PATH is: [16,24,41,34,42,25,43,44,15].
+    Time is at 1668482527578 ms.
+ Received LSA from neighbor 16, for destId 42, the distance is 7, the nexHop is 15, and its PATH is: [16,34,44,24,15,43,42,25].
+    Time is at 1668482527586 ms.
+ Received LSA from neighbor 16, for destId 43, the distance is 6, the nexHop is 15, and its PATH is: [24,34,16,44,14,43,15].
+    Time is at 1668482527593 ms.
+ Received LSA from neighbor 5, for destId 50, the distance is 10, the nexHop is 4, and its PATH is: [5,3,22,50,51,23,32,52,42,13,4].
+    Time is at 1668482527593 ms.
+ I do not have a path to desId 50, but neighbor 5 has, I will use it.
+    Time is at 1668482527593 ms.
+ Created LSA packet. fromId 6, destId 50, distance: 11, nexHop 5, and nodesInPath [3,22,5,51,23,32,6,52,42,13,50,4].
+    Time is at 1668482527593 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 50 to my neighbor 7, the nodes are [3,22,5,51,23,32,6,52,42,13,50,4].
+    Time is at 1668482527594 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 50 to my neighbor 16, the nodes are [3,22,5,51,23,32,6,52,42,13,50,4].
+    Time is at 1668482527594 ms.
+ Received LSA from neighbor 16, for destId 32, the distance is 6, the nexHop is 15, and its PATH is: [16,13,12,32,14,22,15].
+    Time is at 1668482527594 ms.
+ Received LSA from neighbor 5, for destId 43, the distance is 6, the nexHop is 4, and its PATH is: [5,24,34,44,14,43,4].
+    Time is at 1668482527595 ms.
+ We both have paths. Neighbor 5 has a better path to desId 43, I will use it.
+    Time is at 1668482527595 ms.
+ Created LSA packet. fromId 6, destId 43, distance: 7, nexHop 5, and nodesInPath [6,5,24,34,44,14,43,4].
+    Time is at 1668482527595 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 43 to my neighbor 7, the nodes are [6,5,24,34,44,14,43,4].
+    Time is at 1668482527595 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 43 to my neighbor 16, the nodes are [6,5,24,34,44,14,43,4].
+    Time is at 1668482527595 ms.
+ Received LSA from neighbor 5, for destId 54, the distance is 10, the nexHop is 4, and its PATH is: [5,3,22,54,32,52,53,42,23,13,4].
+    Time is at 1668482527601 ms.
+ I do not have a path to desId 54, but neighbor 5 has, I will use it.
+    Time is at 1668482527601 ms.
+ Created LSA packet. fromId 6, destId 54, distance: 11, nexHop 5, and nodesInPath [5,3,22,54,32,6,52,53,42,23,13,4].
+    Time is at 1668482527601 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 54 to my neighbor 7, the nodes are [5,3,22,54,32,6,52,53,42,23,13,4].
+    Time is at 1668482527601 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 54 to my neighbor 16, the nodes are [5,3,22,54,32,6,52,53,42,23,13,4].
+    Time is at 1668482527601 ms.
+ Received LSA from neighbor 5, for destId 62, the distance is 9, the nexHop is 4, and its PATH is: [5,3,32,42,52,13,62,22,23,4].
+    Time is at 1668482527605 ms.
+ I do not have a path to desId 62, but neighbor 5 has, I will use it.
+    Time is at 1668482527605 ms.
+ Created LSA packet. fromId 6, destId 62, distance: 10, nexHop 5, and nodesInPath [6,4,23,22,62,13,52,42,32,3,5].
+    Time is at 1668482527606 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 62 to my neighbor 7, the nodes are [6,4,23,22,62,13,52,42,32,3,5].
+    Time is at 1668482527606 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 62 to my neighbor 16, the nodes are [6,4,23,22,62,13,52,42,32,3,5].
+    Time is at 1668482527606 ms.
+ Received LSA from neighbor 7, for destId 51, the distance is 13, the nexHop is 17, and its PATH is: [7,5,51,22,52,23,17,4,15,32,3,13,42,16].
+    Time is at 1668482527610 ms.
+ Received LSA from neighbor 5, for destId 50, the distance is 10, the nexHop is 4, and its PATH is: [5,3,0,10,50,1,40,30,20,2,4].
+    Time is at 1668482527615 ms.
+ We both have paths. Neighbor 5 has a better path to desId 50, I will use it.
+    Time is at 1668482527615 ms.
+ Created LSA packet. fromId 6, destId 50, distance: 11, nexHop 5, and nodesInPath [6,5,3,0,10,1,40,30,20,2,50,4].
+    Time is at 1668482527615 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 50 to my neighbor 7, the nodes are [6,5,3,0,10,1,40,30,20,2,50,4].
+    Time is at 1668482527615 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 50 to my neighbor 16, the nodes are [6,5,3,0,10,1,40,30,20,2,50,4].
+    Time is at 1668482527615 ms.
+ Received LSA from neighbor 5, for destId 63, the distance is 10, the nexHop is 4, and its PATH is: [5,3,22,32,42,62,63,52,23,13,4].
+    Time is at 1668482527623 ms.
+ I do not have a path to desId 63, but neighbor 5 has, I will use it.
+    Time is at 1668482527623 ms.
+ Created LSA packet. fromId 6, destId 63, distance: 11, nexHop 5, and nodesInPath [5,3,22,32,42,62,63,6,52,23,13,4].
+    Time is at 1668482527623 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 63 to my neighbor 7, the nodes are [5,3,22,32,42,62,63,6,52,23,13,4].
+    Time is at 1668482527623 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 63 to my neighbor 16, the nodes are [5,3,22,32,42,62,63,6,52,23,13,4].
+    Time is at 1668482527623 ms.
+ Received LSA from neighbor 5, for destId 42, the distance is 7, the nexHop is 4, and its PATH is: [12,5,22,4,32,42,2,3].
+    Time is at 1668482527647 ms.
+ We both have paths. Neighbor 5 has a better path to desId 42, I will use it.
+    Time is at 1668482527647 ms.
+ Created LSA packet. fromId 6, destId 42, distance: 8, nexHop 5, and nodesInPath [6,3,2,42,32,4,22,5,12].
+    Time is at 1668482527647 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 42 to my neighbor 7, the nodes are [6,3,2,42,32,4,22,5,12].
+    Time is at 1668482527648 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 42 to my neighbor 16, the nodes are [6,3,2,42,32,4,22,5,12].
+    Time is at 1668482527648 ms.
+ Received LSA from neighbor 5, for destId 43, the distance is 6, the nexHop is 4, and its PATH is: [13,23,5,33,43,3,4].
+    Time is at 1668482527683 ms.
+ We both have paths. Neighbor 5 has a better path to desId 43, I will use it.
+    Time is at 1668482527683 ms.
+ Created LSA packet. fromId 6, destId 43, distance: 7, nexHop 5, and nodesInPath [13,6,23,5,33,43,3,4].
+    Time is at 1668482527683 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 43 to my neighbor 7, the nodes are [13,6,23,5,33,43,3,4].
+    Time is at 1668482527683 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 43 to my neighbor 16, the nodes are [13,6,23,5,33,43,3,4].
+    Time is at 1668482527683 ms.
+ Received LSA from neighbor 5, for destId 54, the distance is 8, the nexHop is 4, and its PATH is: [5,54,3,44,23,34,13,24,4].
+    Time is at 1668482527696 ms.
+ We both have paths. Neighbor 5 has a better path to desId 54, I will use it.
+    Time is at 1668482527696 ms.
+ Created LSA packet. fromId 6, destId 54, distance: 9, nexHop 5, and nodesInPath [6,4,24,13,34,23,44,3,54,5].
+    Time is at 1668482527697 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 54 to my neighbor 7, the nodes are [6,4,24,13,34,23,44,3,54,5].
+    Time is at 1668482527697 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 54 to my neighbor 16, the nodes are [6,4,24,13,34,23,44,3,54,5].
+    Time is at 1668482527697 ms.
+ Received LSA from neighbor 16, for destId 56, the distance is 6, the nexHop is 15, and its PATH is: [16,25,46,35,56,36,15].
+    Time is at 1668482527706 ms.
+ Received LSA from neighbor 5, for destId 56, the distance is 6, the nexHop is 15, and its PATH is: [5,25,46,35,56,36,15].
+    Time is at 1668482527715 ms.
+ We both have paths. Neighbor 5 has a better path to desId 56, I will use it.
+    Time is at 1668482527715 ms.
+ Created LSA packet. fromId 6, destId 56, distance: 7, nexHop 5, and nodesInPath [6,25,46,35,5,56,36,15].
+    Time is at 1668482527715 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 56 to my neighbor 7, the nodes are [6,25,46,35,5,56,36,15].
+    Time is at 1668482527715 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 56 to my neighbor 16, the nodes are [6,25,46,35,5,56,36,15].
+    Time is at 1668482527715 ms.
+ Received LSA from neighbor 5, for destId 61, the distance is 10, the nexHop is 4, and its PATH is: [5,3,22,61,32,62,52,42,23,13,4].
+    Time is at 1668482527724 ms.
+ I do not have a path to desId 61, but neighbor 5 has, I will use it.
+    Time is at 1668482527724 ms.
+ Created LSA packet. fromId 6, destId 61, distance: 11, nexHop 5, and nodesInPath [5,3,22,61,32,62,6,52,42,23,13,4].
+    Time is at 1668482527724 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 61 to my neighbor 7, the nodes are [5,3,22,61,32,62,6,52,42,23,13,4].
+    Time is at 1668482527724 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 61 to my neighbor 16, the nodes are [5,3,22,61,32,62,6,52,42,23,13,4].
+    Time is at 1668482527724 ms.
+ Received LSA from neighbor 16, for destId 53, the distance is 11, the nexHop is 15, and its PATH is: [16,15,4,23,22,32,52,53,42,13,3,5].
+    Time is at 1668482527730 ms.
+ Received LSA from neighbor 16, for destId 50, the distance is 12, the nexHop is 15, and its PATH is: [4,50,13,52,32,23,51,5,22,16,42,3,15].
+    Time is at 1668482527752 ms.
+ Received LSA from neighbor 16, for destId 55, the distance is 9, the nexHop is 17, and its PATH is: [16,27,67,57,66,55,37,65,47,17].
+    Time is at 1668482527766 ms.
+ I do not have a path to desId 55, but neighbor 16 has, I will use it.
+    Time is at 1668482527766 ms.
+ Created LSA packet. fromId 6, destId 55, distance: 10, nexHop 16, and nodesInPath [6,17,47,65,37,55,66,57,67,27,16].
+    Time is at 1668482527766 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 55 to my neighbor 5, the nodes are [6,17,47,65,37,55,66,57,67,27,16].
+    Time is at 1668482527766 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 55 to my neighbor 7, the nodes are [6,17,47,65,37,55,66,57,67,27,16].
+    Time is at 1668482527766 ms.
+ Received LSA from neighbor 16, for destId 64, the distance is 9, the nexHop is 17, and its PATH is: [16,27,67,66,37,65,57,64,47,17].
+    Time is at 1668482527770 ms.
+ I do not have a path to desId 64, but neighbor 16 has, I will use it.
+    Time is at 1668482527770 ms.
+ Created LSA packet. fromId 6, destId 64, distance: 10, nexHop 16, and nodesInPath [6,17,47,64,57,65,37,66,67,27,16].
+    Time is at 1668482527770 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 64 to my neighbor 5, the nodes are [6,17,47,64,57,65,37,66,67,27,16].
+    Time is at 1668482527780 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 64 to my neighbor 7, the nodes are [6,17,47,64,57,65,37,66,67,27,16].
+    Time is at 1668482527780 ms.
+ Received LSA from neighbor 7, for destId 55, the distance is 9, the nexHop is 17, and its PATH is: [7,27,67,57,66,55,37,65,47,17].
+    Time is at 1668482527797 ms.
+ We both have paths. Neighbor 7 has a better path to desId 55, I will use it.
+    Time is at 1668482527797 ms.
+ Created LSA packet. fromId 6, destId 55, distance: 10, nexHop 7, and nodesInPath [6,17,47,65,37,55,66,57,67,27,7].
+    Time is at 1668482527801 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 55 to my neighbor 5, the nodes are [6,17,47,65,37,55,66,57,67,27,7].
+    Time is at 1668482527801 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 55 to my neighbor 16, the nodes are [6,17,47,65,37,55,66,57,67,27,7].
+    Time is at 1668482527801 ms.
+ Received LSA from neighbor 7, for destId 64, the distance is 9, the nexHop is 17, and its PATH is: [7,27,67,66,37,65,57,64,47,17].
+    Time is at 1668482527838 ms.
+ We both have paths. Neighbor 7 has a better path to desId 64, I will use it.
+    Time is at 1668482527838 ms.
+ Created LSA packet. fromId 6, destId 64, distance: 10, nexHop 7, and nodesInPath [6,17,47,64,57,65,37,66,67,27,7].
+    Time is at 1668482527838 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 64 to my neighbor 5, the nodes are [6,17,47,64,57,65,37,66,67,27,7].
+    Time is at 1668482527838 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 64 to my neighbor 16, the nodes are [6,17,47,64,57,65,37,66,67,27,7].
+    Time is at 1668482527838 ms.
+ Received LSA from neighbor 7, for destId 65, the distance is 8, the nexHop is 17, and its PATH is: [7,37,65,66,47,67,57,27,17].
+    Time is at 1668482527851 ms.
+ I do not have a path to desId 65, but neighbor 7 has, I will use it.
+    Time is at 1668482527851 ms.
+ Created LSA packet. fromId 6, destId 65, distance: 9, nexHop 7, and nodesInPath [6,17,27,57,67,47,66,65,37,7].
+    Time is at 1668482527851 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 65 to my neighbor 5, the nodes are [6,17,27,57,67,47,66,65,37,7].
+    Time is at 1668482527851 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 65 to my neighbor 16, the nodes are [6,17,27,57,67,47,66,65,37,7].
+    Time is at 1668482527851 ms.
+ Received LSA from neighbor 16, for destId 30, the distance is 8, the nexHop is 15, and its PATH is: [16,13,30,20,12,10,11,14,15].
+    Time is at 1668482527853 ms.
+ Received LSA from neighbor 16, for destId 65, the distance is 8, the nexHop is 17, and its PATH is: [37,65,66,47,67,57,16,27,17].
+    Time is at 1668482527857 ms.
+ Received LSA from neighbor 16, for destId 54, the distance is 12, the nexHop is 15, and its PATH is: [4,23,53,13,52,32,22,16,42,3,5,54,15].
+    Time is at 1668482527864 ms.
+ Received LSA from neighbor 16, for destId 62, the distance is 11, the nexHop is 15, and its PATH is: [15,4,23,22,16,62,13,52,42,32,3,5].
+    Time is at 1668482527872 ms.
+ Received LSA from neighbor 5, for destId 52, the distance is 8, the nexHop is 4, and its PATH is: [5,2,12,52,3,42,32,22,4].
+    Time is at 1668482527887 ms.
+ We both have paths. Neighbor 5 has a better path to desId 52, I will use it.
+    Time is at 1668482527887 ms.
+ Created LSA packet. fromId 6, destId 52, distance: 9, nexHop 5, and nodesInPath [6,4,22,32,42,3,52,12,2,5].
+    Time is at 1668482527888 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 52 to my neighbor 7, the nodes are [6,4,22,32,42,3,52,12,2,5].
+    Time is at 1668482527888 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 52 to my neighbor 16, the nodes are [6,4,22,32,42,3,52,12,2,5].
+    Time is at 1668482527888 ms.
+ Received LSA from neighbor 7, for destId 53, the distance is 13, the nexHop is 17, and its PATH is: [7,5,53,22,52,23,17,4,15,32,3,13,42,16].
+    Time is at 1668482527910 ms.
+ Received LSA from neighbor 7, for destId 66, the distance is 7, the nexHop is 17, and its PATH is: [7,47,57,67,37,17,66,27].
+    Time is at 1668482527963 ms.
+ I do not have a path to desId 66, but neighbor 7 has, I will use it.
+    Time is at 1668482527963 ms.
+ Created LSA packet. fromId 6, destId 66, distance: 8, nexHop 7, and nodesInPath [27,66,6,17,37,67,57,47,7].
+    Time is at 1668482527963 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 66 to my neighbor 5, the nodes are [27,66,6,17,37,67,57,47,7].
+    Time is at 1668482527964 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 66 to my neighbor 16, the nodes are [27,66,6,17,37,67,57,47,7].
+    Time is at 1668482527964 ms.
+ Received LSA from neighbor 16, for destId 50, the distance is 12, the nexHop is 15, and its PATH is: [50,20,4,30,40,1,10,0,16,3,5,2,15].
+    Time is at 1668482527995 ms.
+ Received LSA from neighbor 7, for destId 50, the distance is 14, the nexHop is 17, and its PATH is: [7,3,15,32,42,13,22,5,23,52,16,50,4,51,17].
+    Time is at 1668482528005 ms.
+ Received LSA from neighbor 16, for destId 66, the distance is 7, the nexHop is 17, and its PATH is: [47,57,16,67,37,17,66,27].
+    Time is at 1668482528013 ms.
+ Received LSA from neighbor 7, for destId 55, the distance is 9, the nexHop is 17, and its PATH is: [7,27,56,66,55,46,37,65,36,17].
+    Time is at 1668482528014 ms.
+ We both have paths. Neighbor 7 has a better path to desId 55, I will use it.
+    Time is at 1668482528014 ms.
+ Created LSA packet. fromId 6, destId 55, distance: 10, nexHop 7, and nodesInPath [6,17,36,65,37,46,55,66,56,27,7].
+    Time is at 1668482528014 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 55 to my neighbor 5, the nodes are [6,17,36,65,37,46,55,66,56,27,7].
+    Time is at 1668482528014 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 55 to my neighbor 16, the nodes are [6,17,36,65,37,46,55,66,56,27,7].
+    Time is at 1668482528014 ms.
+ Received LSA from neighbor 16, for destId 55, the distance is 9, the nexHop is 17, and its PATH is: [16,27,56,66,55,46,37,65,36,17].
+    Time is at 1668482528019 ms.
+ Received LSA from neighbor 7, for destId 64, the distance is 9, the nexHop is 17, and its PATH is: [7,27,56,66,46,37,65,64,36,17].
+    Time is at 1668482528027 ms.
+ We both have paths. Neighbor 7 has a better path to desId 64, I will use it.
+    Time is at 1668482528027 ms.
+ Created LSA packet. fromId 6, destId 64, distance: 10, nexHop 7, and nodesInPath [6,17,36,64,65,37,46,66,56,27,7].
+    Time is at 1668482528027 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 64 to my neighbor 5, the nodes are [6,17,36,64,65,37,46,66,56,27,7].
+    Time is at 1668482528027 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 64 to my neighbor 16, the nodes are [6,17,36,64,65,37,46,66,56,27,7].
+    Time is at 1668482528027 ms.
+ Received LSA from neighbor 16, for destId 64, the distance is 9, the nexHop is 17, and its PATH is: [16,27,56,66,46,37,65,64,36,17].
+    Time is at 1668482528033 ms.
+ Received LSA from neighbor 16, for destId 63, the distance is 12, the nexHop is 15, and its PATH is: [4,13,52,63,23,62,32,22,16,42,3,5,15].
+    Time is at 1668482528062 ms.
+ Received LSA from neighbor 7, for destId 65, the distance is 8, the nexHop is 17, and its PATH is: [7,37,65,36,66,56,46,27,17].
+    Time is at 1668482528071 ms.
+ We both have paths. Neighbor 7 has a better path to desId 65, I will use it.
+    Time is at 1668482528071 ms.
+ Created LSA packet. fromId 6, destId 65, distance: 9, nexHop 7, and nodesInPath [6,17,27,46,56,66,36,65,37,7].
+    Time is at 1668482528071 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 65 to my neighbor 5, the nodes are [6,17,27,46,56,66,36,65,37,7].
+    Time is at 1668482528071 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 65 to my neighbor 16, the nodes are [6,17,27,46,56,66,36,65,37,7].
+    Time is at 1668482528071 ms.
+ Received LSA from neighbor 16, for destId 65, the distance is 8, the nexHop is 17, and its PATH is: [37,65,36,66,56,46,16,27,17].
+    Time is at 1668482528087 ms.
+ Received LSA from neighbor 16, for destId 40, the distance is 9, the nexHop is 15, and its PATH is: [16,14,43,42,40,44,24,41,34,15].
+    Time is at 1668482528098 ms.
+ Received LSA from neighbor 5, for destId 60, the distance is 11, the nexHop is 4, and its PATH is: [5,2,10,20,60,4,50,40,30,0,1,3].
+    Time is at 1668482528107 ms.
+ I do not have a path to desId 60, but neighbor 5 has, I will use it.
+    Time is at 1668482528107 ms.
+ Created LSA packet. fromId 6, destId 60, distance: 12, nexHop 5, and nodesInPath [6,3,0,1,40,50,30,4,60,20,10,2,5].
+    Time is at 1668482528108 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 60 to my neighbor 7, the nodes are [6,3,0,1,40,50,30,4,60,20,10,2,5].
+    Time is at 1668482528108 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 60 to my neighbor 16, the nodes are [6,3,0,1,40,50,30,4,60,20,10,2,5].
+    Time is at 1668482528108 ms.
+ Received LSA from neighbor 5, for destId 51, the distance is 9, the nexHop is 4, and its PATH is: [5,3,32,42,52,22,2,51,12,4].
+    Time is at 1668482528123 ms.
+ We both have paths. Neighbor 5 has a better path to desId 51, I will use it.
+    Time is at 1668482528123 ms.
+ Created LSA packet. fromId 6, destId 51, distance: 10, nexHop 5, and nodesInPath [6,4,12,51,2,22,52,42,32,3,5].
+    Time is at 1668482528123 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 51 to my neighbor 7, the nodes are [6,4,12,51,2,22,52,42,32,3,5].
+    Time is at 1668482528123 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 51 to my neighbor 16, the nodes are [6,4,12,51,2,22,52,42,32,3,5].
+    Time is at 1668482528123 ms.
+ Received LSA from neighbor 16, for destId 41, the distance is 8, the nexHop is 15, and its PATH is: [16,24,41,23,42,25,32,15,22].
+    Time is at 1668482528133 ms.
+ Received LSA from neighbor 7, for destId 67, the distance is 6, the nexHop is 17, and its PATH is: [7,37,47,57,67,27,17].
+    Time is at 1668482528141 ms.
+ I do not have a path to desId 67, but neighbor 7 has, I will use it.
+    Time is at 1668482528141 ms.
+ Created LSA packet. fromId 6, destId 67, distance: 7, nexHop 7, and nodesInPath [7,37,47,6,57,67,27,17].
+    Time is at 1668482528141 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 67 to my neighbor 5, the nodes are [7,37,47,6,57,67,27,17].
+    Time is at 1668482528141 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 67 to my neighbor 16, the nodes are [7,37,47,6,57,67,27,17].
+    Time is at 1668482528142 ms.
+ Received LSA from neighbor 7, for destId 66, the distance is 7, the nexHop is 17, and its PATH is: [7,36,46,56,17,66,37,27].
+    Time is at 1668482528189 ms.
+ We both have paths. Neighbor 7 has a better path to desId 66, I will use it.
+    Time is at 1668482528189 ms.
+ Created LSA packet. fromId 6, destId 66, distance: 8, nexHop 7, and nodesInPath [27,37,66,6,17,56,46,36,7].
+    Time is at 1668482528189 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 66 to my neighbor 5, the nodes are [27,37,66,6,17,56,46,36,7].
+    Time is at 1668482528189 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 66 to my neighbor 16, the nodes are [27,37,66,6,17,56,46,36,7].
+    Time is at 1668482528189 ms.
+ Received LSA from neighbor 16, for destId 40, the distance is 9, the nexHop is 15, and its PATH is: [16,14,32,42,22,13,41,40,23,15].
+    Time is at 1668482528195 ms.
+ Received LSA from neighbor 16, for destId 42, the distance is 7, the nexHop is 15, and its PATH is: [16,23,22,24,15,32,42,25].
+    Time is at 1668482528198 ms.
+ Received LSA from neighbor 7, for destId 55, the distance is 7, the nexHop is 17, and its PATH is: [7,17,36,46,56,37,55,27].
+    Time is at 1668482528201 ms.
+ We both have paths. Neighbor 7 has a better path to desId 55, I will use it.
+    Time is at 1668482528201 ms.
+ Created LSA packet. fromId 6, destId 55, distance: 8, nexHop 7, and nodesInPath [27,55,37,56,46,36,6,17,7].
+    Time is at 1668482528201 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 55 to my neighbor 5, the nodes are [27,55,37,56,46,36,6,17,7].
+    Time is at 1668482528201 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 55 to my neighbor 16, the nodes are [27,55,37,56,46,36,6,17,7].
+    Time is at 1668482528201 ms.
+ Received LSA from neighbor 7, for destId 64, the distance is 9, the nexHop is 17, and its PATH is: [7,27,56,46,55,37,65,64,36,17].
+    Time is at 1668482528205 ms.
+ We both have paths. Neighbor 7 has a better path to desId 64, I will use it.
+    Time is at 1668482528205 ms.
+ Created LSA packet. fromId 6, destId 64, distance: 10, nexHop 7, and nodesInPath [6,17,36,64,65,37,55,46,56,27,7].
+    Time is at 1668482528205 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 64 to my neighbor 5, the nodes are [6,17,36,64,65,37,55,46,56,27,7].
+    Time is at 1668482528205 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 64 to my neighbor 16, the nodes are [6,17,36,64,65,37,55,46,56,27,7].
+    Time is at 1668482528206 ms.
+ Received LSA from neighbor 5, for destId 53, the distance is 7, the nexHop is 4, and its PATH is: [5,23,33,43,4,53,13,3].
+    Time is at 1668482528212 ms.
+ We both have paths. Neighbor 5 has a better path to desId 53, I will use it.
+    Time is at 1668482528213 ms.
+ Created LSA packet. fromId 6, destId 53, distance: 8, nexHop 5, and nodesInPath [6,3,13,53,4,43,33,23,5].
+    Time is at 1668482528213 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 53 to my neighbor 7, the nodes are [6,3,13,53,4,43,33,23,5].
+    Time is at 1668482528213 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 53 to my neighbor 16, the nodes are [6,3,13,53,4,43,33,23,5].
+    Time is at 1668482528213 ms.
+ Received LSA from neighbor 7, for destId 65, the distance is 8, the nexHop is 17, and its PATH is: [7,37,65,55,27,36,56,46,17].
+    Time is at 1668482528221 ms.
+ We both have paths. Neighbor 7 has a better path to desId 65, I will use it.
+    Time is at 1668482528221 ms.
+ Created LSA packet. fromId 6, destId 65, distance: 9, nexHop 7, and nodesInPath [6,17,46,56,36,27,55,65,37,7].
+    Time is at 1668482528221 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 65 to my neighbor 5, the nodes are [6,17,46,56,36,27,55,65,37,7].
+    Time is at 1668482528221 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 65 to my neighbor 16, the nodes are [6,17,46,56,36,27,55,65,37,7].
+    Time is at 1668482528221 ms.
+ Received LSA from neighbor 16, for destId 41, the distance is 8, the nexHop is 15, and its PATH is: [16,24,41,34,42,14,43,44,15].
+    Time is at 1668482528238 ms.
+ Received LSA from neighbor 16, for destId 67, the distance is 6, the nexHop is 17, and its PATH is: [16,37,47,57,67,27,17].
+    Time is at 1668482528242 ms.
+ Received LSA from neighbor 16, for destId 66, the distance is 7, the nexHop is 17, and its PATH is: [16,36,46,56,17,66,37,27].
+    Time is at 1668482528247 ms.
+ Received LSA from neighbor 16, for destId 42, the distance is 7, the nexHop is 15, and its PATH is: [16,34,44,24,15,43,42,14].
+    Time is at 1668482528251 ms.
+ Received LSA from neighbor 7, for destId 53, the distance is 9, the nexHop is 17, and its PATH is: [7,34,27,44,37,54,35,53,36,17].
+    Time is at 1668482528255 ms.
+ Received LSA from neighbor 16, for destId 41, the distance is 8, the nexHop is 15, and its PATH is: [16,13,41,23,42,14,32,15,22].
+    Time is at 1668482528256 ms.
+ Received LSA from neighbor 16, for destId 55, the distance is 7, the nexHop is 17, and its PATH is: [16,17,36,46,56,37,55,27].
+    Time is at 1668482528256 ms.
+ Received LSA from neighbor 16, for destId 42, the distance is 7, the nexHop is 15, and its PATH is: [16,23,13,22,15,32,42,14].
+    Time is at 1668482528257 ms.
+ Received LSA from neighbor 5, for destId 54, the distance is 6, the nexHop is 15, and its PATH is: [24,34,44,5,54,25,15].
+    Time is at 1668482528291 ms.
+ We both have paths. Neighbor 5 has a better path to desId 54, I will use it.
+    Time is at 1668482528291 ms.
+ Created LSA packet. fromId 6, destId 54, distance: 7, nexHop 5, and nodesInPath [6,24,34,44,5,54,25,15].
+    Time is at 1668482528291 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 54 to my neighbor 7, the nodes are [6,24,34,44,5,54,25,15].
+    Time is at 1668482528291 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 54 to my neighbor 16, the nodes are [6,24,34,44,5,54,25,15].
+    Time is at 1668482528291 ms.
+ Received LSA from neighbor 5, for destId 55, the distance is 9, the nexHop is 4, and its PATH is: [5,3,54,13,24,55,44,34,23,4].
+    Time is at 1668482528374 ms.
+ Received LSA from neighbor 5, for destId 64, the distance is 11, the nexHop is 4, and its PATH is: [5,4,55,44,64,65,54,13,24,34,23,3].
+    Time is at 1668482528408 ms.
+ Received LSA from neighbor 5, for destId 65, the distance is 10, the nexHop is 4, and its PATH is: [5,3,55,44,34,23,65,54,24,13,4].
+    Time is at 1668482528434 ms.
+ Received LSA from neighbor 16, for destId 64, the distance is 9, the nexHop is 17, and its PATH is: [16,27,56,46,55,37,65,64,36,17].
+    Time is at 1668482528441 ms.
+ Received LSA from neighbor 5, for destId 64, the distance is 9, the nexHop is 4, and its PATH is: [5,34,23,44,3,54,13,24,64,4].
+    Time is at 1668482528465 ms.
+ We both have paths. Neighbor 5 has a better path to desId 64, I will use it.
+    Time is at 1668482528465 ms.
+ Created LSA packet. fromId 6, destId 64, distance: 10, nexHop 5, and nodesInPath [6,4,64,24,13,54,3,44,23,34,5].
+    Time is at 1668482528465 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 64 to my neighbor 7, the nodes are [6,4,64,24,13,54,3,44,23,34,5].
+    Time is at 1668482528466 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 64 to my neighbor 16, the nodes are [6,4,64,24,13,54,3,44,23,34,5].
+    Time is at 1668482528466 ms.
+ Received LSA from neighbor 7, for destId 74, the distance is 10, the nexHop is 17, and its PATH is: [7,27,46,74,56,64,36,65,55,37,17].
+    Time is at 1668482528519 ms.
+ I do not have a path to desId 74, but neighbor 7 has, I will use it.
+    Time is at 1668482528519 ms.
+ Created LSA packet. fromId 6, destId 74, distance: 11, nexHop 7, and nodesInPath [6,7,27,46,74,56,64,36,65,55,37,17].
+    Time is at 1668482528520 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 74 to my neighbor 5, the nodes are [6,7,27,46,74,56,64,36,65,55,37,17].
+    Time is at 1668482528520 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 74 to my neighbor 16, the nodes are [6,7,27,46,74,56,64,36,65,55,37,17].
+    Time is at 1668482528520 ms.
+ Received LSA from neighbor 16, for destId 53, the distance is 7, the nexHop is 15, and its PATH is: [16,15,34,44,54,24,53,25].
+    Time is at 1668482528615 ms.
+ Received LSA from neighbor 16, for destId 40, the distance is 9, the nexHop is 15, and its PATH is: [16,21,14,31,13,41,22,40,23,15].
+    Time is at 1668482528652 ms.
+ Received LSA from neighbor 16, for destId 52, the distance is 8, the nexHop is 15, and its PATH is: [16,24,52,23,42,25,32,15,22].
+    Time is at 1668482528658 ms.
+ Received LSA from neighbor 5, for destId 74, the distance is 10, the nexHop is 4, and its PATH is: [5,3,74,34,23,64,24,13,54,44,4].
+    Time is at 1668482528671 ms.
+ We both have paths. Neighbor 5 has a better path to desId 74, I will use it.
+    Time is at 1668482528671 ms.
+ Created LSA packet. fromId 6, destId 74, distance: 11, nexHop 5, and nodesInPath [6,3,5,74,34,23,64,24,13,54,44,4].
+    Time is at 1668482528671 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 74 to my neighbor 7, the nodes are [6,3,5,74,34,23,64,24,13,54,44,4].
+    Time is at 1668482528671 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 74 to my neighbor 16, the nodes are [6,3,5,74,34,23,64,24,13,54,44,4].
+    Time is at 1668482528671 ms.
+ Received LSA from neighbor 16, for destId 65, the distance is 8, the nexHop is 17, and its PATH is: [37,65,55,16,27,36,56,46,17].
+    Time is at 1668482528699 ms.
+ Received LSA from neighbor 5, for destId 54, the distance is 6, the nexHop is 4, and its PATH is: [24,34,44,5,54,14,4].
+    Time is at 1668482528708 ms.
+ We both have paths. Neighbor 5 has a better path to desId 54, I will use it.
+    Time is at 1668482528708 ms.
+ Created LSA packet. fromId 6, destId 54, distance: 7, nexHop 5, and nodesInPath [6,24,34,44,5,54,14,4].
+    Time is at 1668482528709 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 54 to my neighbor 7, the nodes are [6,24,34,44,5,54,14,4].
+    Time is at 1668482528709 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 54 to my neighbor 16, the nodes are [6,24,34,44,5,54,14,4].
+    Time is at 1668482528709 ms.
+ Received LSA from neighbor 16, for destId 51, the distance is 9, the nexHop is 15, and its PATH is: [16,32,25,42,24,52,22,51,23,15].
+    Time is at 1668482528729 ms.
+ Received LSA from neighbor 5, for destId 70, the distance is 12, the nexHop is 4, and its PATH is: [22,72,13,52,32,71,5,70,3,42,62,23,4].
+    Time is at 1668482528739 ms.
+ I do not have a path to desId 70, but neighbor 5 has, I will use it.
+    Time is at 1668482528739 ms.
+ Created LSA packet. fromId 6, destId 70, distance: 13, nexHop 5, and nodesInPath [6,22,72,5,70,32,3,13,71,42,52,23,62,4].
+    Time is at 1668482528739 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 70 to my neighbor 7, the nodes are [6,22,72,5,70,32,3,13,71,42,52,23,62,4].
+    Time is at 1668482528739 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 70 to my neighbor 16, the nodes are [6,22,72,5,70,32,3,13,71,42,52,23,62,4].
+    Time is at 1668482528739 ms.
+ Received LSA from neighbor 16, for destId 41, the distance is 8, the nexHop is 15, and its PATH is: [16,13,41,23,31,14,21,22,15].
+    Time is at 1668482528748 ms.
+ Received LSA from neighbor 5, for destId 71, the distance is 11, the nexHop is 4, and its PATH is: [5,4,13,32,71,22,42,62,52,23,72,3].
+    Time is at 1668482528759 ms.
+ I do not have a path to desId 71, but neighbor 5 has, I will use it.
+    Time is at 1668482528759 ms.
+ Created LSA packet. fromId 6, destId 71, distance: 12, nexHop 5, and nodesInPath [72,23,62,3,42,22,6,71,32,52,13,4,5].
+    Time is at 1668482528759 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 71 to my neighbor 7, the nodes are [72,23,62,3,42,22,6,71,32,52,13,4,5].
+    Time is at 1668482528760 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 71 to my neighbor 16, the nodes are [72,23,62,3,42,22,6,71,32,52,13,4,5].
+    Time is at 1668482528760 ms.
+ Received LSA from neighbor 7, for destId 56, the distance is 6, the nexHop is 17, and its PATH is: [26,36,46,7,56,27,17].
+    Time is at 1668482528793 ms.
+ Received LSA from neighbor 5, for destId 72, the distance is 10, the nexHop is 4, and its PATH is: [5,3,22,32,72,23,62,52,42,13,4].
+    Time is at 1668482528804 ms.
+ I do not have a path to desId 72, but neighbor 5 has, I will use it.
+    Time is at 1668482528804 ms.
+ Created LSA packet. fromId 6, destId 72, distance: 11, nexHop 5, and nodesInPath [5,22,32,3,72,23,62,6,52,42,13,4].
+    Time is at 1668482528804 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 72 to my neighbor 7, the nodes are [5,22,32,3,72,23,62,6,52,42,13,4].
+    Time is at 1668482528804 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 72 to my neighbor 16, the nodes are [5,22,32,3,72,23,62,6,52,42,13,4].
+    Time is at 1668482528804 ms.
+ Received LSA from neighbor 16, for destId 54, the distance is 6, the nexHop is 15, and its PATH is: [24,34,16,44,54,25,15].
+    Time is at 1668482528850 ms.
+ Received LSA from neighbor 5, for destId 73, the distance is 11, the nexHop is 4, and its PATH is: [5,13,32,42,52,22,4,73,62,23,72,3].
+    Time is at 1668482529079 ms.
+ I do not have a path to desId 73, but neighbor 5 has, I will use it.
+    Time is at 1668482529079 ms.
+ Created LSA packet. fromId 6, destId 73, distance: 12, nexHop 5, and nodesInPath [72,23,62,73,4,22,3,42,6,32,52,13,5].
+    Time is at 1668482529079 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 73 to my neighbor 7, the nodes are [72,23,62,73,4,22,3,42,6,32,52,13,5].
+    Time is at 1668482529079 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 73 to my neighbor 16, the nodes are [72,23,62,73,4,22,3,42,6,32,52,13,5].
+    Time is at 1668482529079 ms.
+ Received LSA from neighbor 16, for destId 52, the distance is 8, the nexHop is 15, and its PATH is: [16,13,23,52,42,14,32,15,22].
+    Time is at 1668482529111 ms.
+ Received LSA from neighbor 16, for destId 50, the distance is 10, the nexHop is 15, and its PATH is: [16,25,22,50,51,23,32,52,42,24,15].
+    Time is at 1668482529148 ms.
+ Received LSA from neighbor 5, for destId 70, the distance is 12, the nexHop is 4, and its PATH is: [2,0,10,50,60,5,70,40,1,4,30,20,3].
+    Time is at 1668482529240 ms.
+ We both have paths. Neighbor 5 has a better path to desId 70, I will use it.
+    Time is at 1668482529240 ms.
+ Created LSA packet. fromId 6, destId 70, distance: 13, nexHop 5, and nodesInPath [6,0,10,50,2,60,5,70,40,4,1,30,20,3].
+    Time is at 1668482529240 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 70 to my neighbor 7, the nodes are [6,0,10,50,2,60,5,70,40,4,1,30,20,3].
+    Time is at 1668482529240 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 70 to my neighbor 16, the nodes are [6,0,10,50,2,60,5,70,40,4,1,30,20,3].
+    Time is at 1668482529240 ms.
+ Received LSA from neighbor 16, for destId 56, the distance is 4, the nexHop is 26, and its PATH is: [16,56,46,36,26].
+    Time is at 1668482529270 ms.
+ We both have paths. Neighbor 16 has a better path to desId 56, I will use it.
+    Time is at 1668482529270 ms.
+ Created LSA packet. fromId 6, destId 56, distance: 5, nexHop 16, and nodesInPath [6,16,56,46,36,26].
+    Time is at 1668482529270 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 56 to my neighbor 5, the nodes are [6,16,56,46,36,26].
+    Time is at 1668482529270 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 56 to my neighbor 7, the nodes are [6,16,56,46,36,26].
+    Time is at 1668482529270 ms.
+ Received LSA from neighbor 16, for destId 62, the distance is 9, the nexHop is 15, and its PATH is: [16,32,25,42,24,52,62,22,23,15].
+    Time is at 1668482529279 ms.
+ Received LSA from neighbor 5, for destId 62, the distance is 9, the nexHop is 4, and its PATH is: [5,3,2,32,42,52,62,22,12,4].
+    Time is at 1668482529286 ms.
+ We both have paths. Neighbor 5 has a better path to desId 62, I will use it.
+    Time is at 1668482529286 ms.
+ Created LSA packet. fromId 6, destId 62, distance: 10, nexHop 5, and nodesInPath [6,4,12,22,62,52,42,32,2,3,5].
+    Time is at 1668482529286 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 62 to my neighbor 7, the nodes are [6,4,12,22,62,52,42,32,2,3,5].
+    Time is at 1668482529286 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 62 to my neighbor 16, the nodes are [6,4,12,22,62,52,42,32,2,3,5].
+    Time is at 1668482529286 ms.
+ Received LSA from neighbor 5, for destId 63, the distance is 10, the nexHop is 4, and its PATH is: [5,3,22,32,42,12,62,63,52,2,4].
+    Time is at 1668482529297 ms.
+ We both have paths. Neighbor 5 has a better path to desId 63, I will use it.
+    Time is at 1668482529297 ms.
+ Created LSA packet. fromId 6, destId 63, distance: 11, nexHop 5, and nodesInPath [5,3,22,32,42,12,62,63,6,52,2,4].
+    Time is at 1668482529297 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 63 to my neighbor 7, the nodes are [5,3,22,32,42,12,62,63,6,52,2,4].
+    Time is at 1668482529297 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 63 to my neighbor 16, the nodes are [5,3,22,32,42,12,62,63,6,52,2,4].
+    Time is at 1668482529313 ms.
+ Received LSA from neighbor 5, for destId 55, the distance is 9, the nexHop is 4, and its PATH is: [5,3,35,24,13,45,23,34,55,4].
+    Time is at 1668482529372 ms.
+ Received LSA from neighbor 7, for destId 73, the distance is 11, the nexHop is 17, and its PATH is: [7,17,37,56,74,46,55,75,65,36,73,27].
+    Time is at 1668482529374 ms.
+ Received LSA from neighbor 16, for destId 51, the distance is 9, the nexHop is 15, and its PATH is: [16,14,13,32,42,52,22,51,23,15].
+    Time is at 1668482529414 ms.
+ Received LSA from neighbor 7, for destId 75, the distance is 9, the nexHop is 17, and its PATH is: [7,27,56,46,55,37,65,75,36,17].
+    Time is at 1668482529459 ms.
+ I do not have a path to desId 75, but neighbor 7 has, I will use it.
+    Time is at 1668482529459 ms.
+ Created LSA packet. fromId 6, destId 75, distance: 10, nexHop 7, and nodesInPath [6,17,36,75,65,37,55,46,56,27,7].
+    Time is at 1668482529459 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 75 to my neighbor 5, the nodes are [6,17,36,75,65,37,55,46,56,27,7].
+    Time is at 1668482529459 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 75 to my neighbor 16, the nodes are [6,17,36,75,65,37,55,46,56,27,7].
+    Time is at 1668482529459 ms.
+ Received LSA from neighbor 5, for destId 65, the distance is 10, the nexHop is 4, and its PATH is: [5,3,65,55,23,34,45,24,35,13,4].
+    Time is at 1668482529468 ms.
+ Received LSA from neighbor 5, for destId 61, the distance is 10, the nexHop is 4, and its PATH is: [5,3,22,61,12,32,62,52,42,2,4].
+    Time is at 1668482529472 ms.
+ We both have paths. Neighbor 5 has a better path to desId 61, I will use it.
+    Time is at 1668482529472 ms.
+ Created LSA packet. fromId 6, destId 61, distance: 11, nexHop 5, and nodesInPath [5,3,22,61,12,32,62,6,52,42,2,4].
+    Time is at 1668482529472 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 61 to my neighbor 7, the nodes are [5,3,22,61,12,32,62,6,52,42,2,4].
+    Time is at 1668482529472 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 61 to my neighbor 16, the nodes are [5,3,22,61,12,32,62,6,52,42,2,4].
+    Time is at 1668482529472 ms.
+ Received LSA from neighbor 7, for destId 76, the distance is 8, the nexHop is 17, and its PATH is: [7,37,76,27,47,77,67,57,17].
+    Time is at 1668482529484 ms.
+ I do not have a path to desId 76, but neighbor 7 has, I will use it.
+    Time is at 1668482529484 ms.
+ Created LSA packet. fromId 6, destId 76, distance: 9, nexHop 7, and nodesInPath [6,17,57,67,77,47,27,76,37,7].
+    Time is at 1668482529484 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 76 to my neighbor 5, the nodes are [6,17,57,67,77,47,27,76,37,7].
+    Time is at 1668482529484 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 76 to my neighbor 16, the nodes are [6,17,57,67,77,47,27,76,37,7].
+    Time is at 1668482529484 ms.
+ Received LSA from neighbor 7, for destId 77, the distance is 7, the nexHop is 17, and its PATH is: [7,17,47,57,67,77,37,27].
+    Time is at 1668482529520 ms.
+ I do not have a path to desId 77, but neighbor 7 has, I will use it.
+    Time is at 1668482529520 ms.
+ Created LSA packet. fromId 6, destId 77, distance: 8, nexHop 7, and nodesInPath [27,37,77,67,57,47,6,17,7].
+    Time is at 1668482529521 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 77 to my neighbor 5, the nodes are [27,37,77,67,57,47,6,17,7].
+    Time is at 1668482529521 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 77 to my neighbor 16, the nodes are [27,37,77,67,57,47,6,17,7].
+    Time is at 1668482529521 ms.
+ Received LSA from neighbor 7, for destId 64, the distance is 9, the nexHop is 17, and its PATH is: [7,34,27,44,37,54,35,64,36,17].
+    Time is at 1668482529522 ms.
+ Received LSA from neighbor 16, for destId 74, the distance is 10, the nexHop is 17, and its PATH is: [16,27,46,74,56,64,36,65,55,37,17].
+    Time is at 1668482529523 ms.
+ Received LSA from neighbor 16, for destId 63, the distance is 10, the nexHop is 15, and its PATH is: [16,25,22,32,42,62,63,52,23,24,15].
+    Time is at 1668482529524 ms.
+ Received LSA from neighbor 5, for destId 55, the distance is 7, the nexHop is 15, and its PATH is: [5,15,44,54,55,34,24,25].
+    Time is at 1668482529546 ms.
+ We both have paths. Neighbor 5 has a better path to desId 55, I will use it.
+    Time is at 1668482529546 ms.
+ Created LSA packet. fromId 6, destId 55, distance: 8, nexHop 5, and nodesInPath [6,25,24,34,54,55,44,15,5].
+    Time is at 1668482529547 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 55 to my neighbor 7, the nodes are [6,25,24,34,54,55,44,15,5].
+    Time is at 1668482529547 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 55 to my neighbor 16, the nodes are [6,25,24,34,54,55,44,15,5].
+    Time is at 1668482529547 ms.
+ Received LSA from neighbor 16, for destId 61, the distance is 10, the nexHop is 15, and its PATH is: [16,25,22,61,32,62,52,42,23,24,15].
+    Time is at 1668482529551 ms.
+ Received LSA from neighbor 7, for destId 55, the distance is 7, the nexHop is 17, and its PATH is: [7,36,35,17,45,37,55,27].
+    Time is at 1668482529605 ms.
+ Received LSA from neighbor 16, for destId 50, the distance is 10, the nexHop is 15, and its PATH is: [16,25,22,50,21,40,23,30,20,24,15].
+    Time is at 1668482529686 ms.
+ Received LSA from neighbor 5, for destId 65, the distance is 8, the nexHop is 15, and its PATH is: [5,24,34,55,44,65,54,25,15].
+    Time is at 1668482529688 ms.
+ We both have paths. Neighbor 5 has a better path to desId 65, I will use it.
+    Time is at 1668482529688 ms.
+ Created LSA packet. fromId 6, destId 65, distance: 9, nexHop 5, and nodesInPath [6,15,25,54,65,44,55,34,24,5].
+    Time is at 1668482529688 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 65 to my neighbor 7, the nodes are [6,15,25,54,65,44,55,34,24,5].
+    Time is at 1668482529688 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 65 to my neighbor 16, the nodes are [6,15,25,54,65,44,55,34,24,5].
+    Time is at 1668482529688 ms.
+ Received LSA from neighbor 5, for destId 75, the distance is 11, the nexHop is 4, and its PATH is: [4,44,54,13,24,5,74,34,23,75,64,3].
+    Time is at 1668482529711 ms.
+ Received LSA from neighbor 5, for destId 64, the distance is 7, the nexHop is 15, and its PATH is: [5,34,44,54,15,64,24,25].
+    Time is at 1668482529727 ms.
+ We both have paths. Neighbor 5 has a better path to desId 64, I will use it.
+    Time is at 1668482529728 ms.
+ Created LSA packet. fromId 6, destId 64, distance: 8, nexHop 5, and nodesInPath [6,25,24,64,15,54,44,34,5].
+    Time is at 1668482529728 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 64 to my neighbor 7, the nodes are [6,25,24,64,15,54,44,34,5].
+    Time is at 1668482529728 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 64 to my neighbor 16, the nodes are [6,25,24,64,15,54,44,34,5].
+    Time is at 1668482529728 ms.
+ Received LSA from neighbor 7, for destId 65, the distance is 8, the nexHop is 17, and its PATH is: [7,37,65,36,55,27,45,35,17].
+    Time is at 1668482529741 ms.
+ Received LSA from neighbor 16, for destId 53, the distance is 7, the nexHop is 15, and its PATH is: [16,15,34,44,54,24,53,14].
+    Time is at 1668482529764 ms.
+ Received LSA from neighbor 7, for destId 74, the distance is 10, the nexHop is 17, and its PATH is: [7,27,35,34,74,64,36,54,37,44,17].
+    Time is at 1668482529777 ms.
+ Received LSA from neighbor 5, for destId 66, the distance is 7, the nexHop is 15, and its PATH is: [36,25,46,35,5,56,15,66].
+    Time is at 1668482529785 ms.
+ We both have paths. Neighbor 5 has a better path to desId 66, I will use it.
+    Time is at 1668482529785 ms.
+ Created LSA packet. fromId 6, destId 66, distance: 8, nexHop 5, and nodesInPath [6,66,15,56,5,35,46,25,36].
+    Time is at 1668482529786 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 66 to my neighbor 7, the nodes are [6,66,15,56,5,35,46,25,36].
+    Time is at 1668482529786 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 66 to my neighbor 16, the nodes are [6,66,15,56,5,35,46,25,36].
+    Time is at 1668482529786 ms.
+ Received LSA from neighbor 16, for destId 50, the distance is 10, the nexHop is 15, and its PATH is: [16,14,22,50,51,23,32,52,42,13,15].
+    Time is at 1668482529802 ms.
+ Received LSA from neighbor 16, for destId 73, the distance is 11, the nexHop is 17, and its PATH is: [16,17,37,56,74,46,55,75,65,36,73,27].
+    Time is at 1668482529862 ms.
+ Received LSA from neighbor 16, for destId 75, the distance is 9, the nexHop is 17, and its PATH is: [16,27,56,46,55,37,65,75,36,17].
+    Time is at 1668482529872 ms.
+ Received LSA from neighbor 16, for destId 76, the distance is 8, the nexHop is 17, and its PATH is: [37,76,16,27,47,77,67,57,17].
+    Time is at 1668482529882 ms.
+ Received LSA from neighbor 7, for destId 76, the distance is 8, the nexHop is 17, and its PATH is: [7,37,36,76,27,66,56,46,17].
+    Time is at 1668482529913 ms.
+ We both have paths. Neighbor 7 has a better path to desId 76, I will use it.
+    Time is at 1668482529913 ms.
+ Created LSA packet. fromId 6, destId 76, distance: 9, nexHop 7, and nodesInPath [6,17,46,56,66,27,76,36,37,7].
+    Time is at 1668482529913 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 76 to my neighbor 5, the nodes are [6,17,46,56,66,27,76,36,37,7].
+    Time is at 1668482529913 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 76 to my neighbor 16, the nodes are [6,17,46,56,66,27,76,36,37,7].
+    Time is at 1668482529913 ms.
+ Received LSA from neighbor 5, for destId 74, the distance is 8, the nexHop is 15, and its PATH is: [5,24,34,74,25,64,54,44,15].
+    Time is at 1668482529924 ms.
+ We both have paths. Neighbor 5 has a better path to desId 74, I will use it.
+    Time is at 1668482529924 ms.
+ Created LSA packet. fromId 6, destId 74, distance: 9, nexHop 5, and nodesInPath [6,15,44,54,64,25,74,34,24,5].
+    Time is at 1668482529950 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 74 to my neighbor 7, the nodes are [6,15,44,54,64,25,74,34,24,5].
+    Time is at 1668482529950 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 74 to my neighbor 16, the nodes are [6,15,44,54,64,25,74,34,24,5].
+    Time is at 1668482529950 ms.
+ Received LSA from neighbor 5, for destId 75, the distance is 11, the nexHop is 4, and its PATH is: [5,4,75,13,24,54,65,55,44,34,23,3].
+    Time is at 1668482529989 ms.
+ Received LSA from neighbor 7, for destId 63, the distance is 10, the nexHop is 17, and its PATH is: [7,27,35,63,34,64,36,54,37,44,17].
+    Time is at 1668482529999 ms.
+ Received LSA from neighbor 5, for destId 55, the distance is 7, the nexHop is 4, and its PATH is: [5,44,54,4,55,34,24,14].
+    Time is at 1668482530009 ms.
+ We both have paths. Neighbor 5 has a better path to desId 55, I will use it.
+    Time is at 1668482530009 ms.
+ Created LSA packet. fromId 6, destId 55, distance: 8, nexHop 5, and nodesInPath [6,14,24,34,4,54,55,44,5].
+    Time is at 1668482530009 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 55 to my neighbor 7, the nodes are [6,14,24,34,4,54,55,44,5].
+    Time is at 1668482530009 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 55 to my neighbor 16, the nodes are [6,14,24,34,4,54,55,44,5].
+    Time is at 1668482530009 ms.
+ Received LSA from neighbor 5, for destId 63, the distance is 8, the nexHop is 15, and its PATH is: [5,24,63,34,64,54,44,25,15].
+    Time is at 1668482530092 ms.
+ We both have paths. Neighbor 5 has a better path to desId 63, I will use it.
+    Time is at 1668482530092 ms.
+ Created LSA packet. fromId 6, destId 63, distance: 9, nexHop 5, and nodesInPath [6,15,25,44,54,64,34,63,24,5].
+    Time is at 1668482530092 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 63 to my neighbor 7, the nodes are [6,15,25,44,54,64,34,63,24,5].
+    Time is at 1668482530092 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 63 to my neighbor 16, the nodes are [6,15,25,44,54,64,34,63,24,5].
+    Time is at 1668482530092 ms.
+ Received LSA from neighbor 5, for destId 55, the distance is 5, the nexHop is 15, and its PATH is: [5,15,55,45,35,25].
+    Time is at 1668482530120 ms.
+ We both have paths. Neighbor 5 has a better path to desId 55, I will use it.
+    Time is at 1668482530120 ms.
+ Created LSA packet. fromId 6, destId 55, distance: 6, nexHop 5, and nodesInPath [25,35,45,6,55,15,5].
+    Time is at 1668482530121 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 55 to my neighbor 7, the nodes are [25,35,45,6,55,15,5].
+    Time is at 1668482530121 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 55 to my neighbor 16, the nodes are [25,35,45,6,55,15,5].
+    Time is at 1668482530121 ms.
+ Received LSA from neighbor 5, for destId 65, the distance is 6, the nexHop is 15, and its PATH is: [5,35,45,55,65,25,15].
+    Time is at 1668482530187 ms.
+ We both have paths. Neighbor 5 has a better path to desId 65, I will use it.
+    Time is at 1668482530187 ms.
+ Created LSA packet. fromId 6, destId 65, distance: 7, nexHop 5, and nodesInPath [6,5,35,45,55,65,25,15].
+    Time is at 1668482530188 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 65 to my neighbor 7, the nodes are [6,5,35,45,55,65,25,15].
+    Time is at 1668482530188 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 65 to my neighbor 16, the nodes are [6,5,35,45,55,65,25,15].
+    Time is at 1668482530188 ms.
+ Received LSA from neighbor 16, for destId 26, the distance is 1, the nexHop is 26, and its PATH is: [16,26].
+    Time is at 1668482530382 ms.
+ We both have paths. Neighbor 16 has a better path to desId 26, I will use it.
+    Time is at 1668482530382 ms.
+ Created LSA packet. fromId 6, destId 26, distance: 2, nexHop 16, and nodesInPath [6,16,26].
+    Time is at 1668482530383 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 26 to my neighbor 5, the nodes are [6,16,26].
+    Time is at 1668482530383 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 26 to my neighbor 7, the nodes are [6,16,26].
+    Time is at 1668482530383 ms.
+ Received LSA from neighbor 7, for destId 73, the distance is 11, the nexHop is 17, and its PATH is: [7,17,37,34,44,74,64,54,35,36,73,27].
+    Time is at 1668482530400 ms.
+ Received LSA from neighbor 5, for destId 64, the distance is 7, the nexHop is 4, and its PATH is: [5,4,34,44,54,64,24,14].
+    Time is at 1668482530452 ms.
+ We both have paths. Neighbor 5 has a better path to desId 64, I will use it.
+    Time is at 1668482530452 ms.
+ Created LSA packet. fromId 6, destId 64, distance: 8, nexHop 5, and nodesInPath [6,14,24,64,54,44,34,4,5].
+    Time is at 1668482530452 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 64 to my neighbor 7, the nodes are [6,14,24,64,54,44,34,4,5].
+    Time is at 1668482530452 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 64 to my neighbor 16, the nodes are [6,14,24,64,54,44,34,4,5].
+    Time is at 1668482530452 ms.
+ Received LSA from neighbor 16, for destId 36, the distance is 2, the nexHop is 26, and its PATH is: [16,26,36].
+    Time is at 1668482530463 ms.
+ We both have paths. Neighbor 16 has a better path to desId 36, I will use it.
+    Time is at 1668482530463 ms.
+ Created LSA packet. fromId 6, destId 36, distance: 3, nexHop 16, and nodesInPath [6,16,26,36].
+    Time is at 1668482530463 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 36 to my neighbor 5, the nodes are [6,16,26,36].
+    Time is at 1668482530463 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 36 to my neighbor 7, the nodes are [6,16,26,36].
+    Time is at 1668482530463 ms.
+ Received LSA from neighbor 16, for destId 46, the distance is 3, the nexHop is 26, and its PATH is: [16,26,36,46].
+    Time is at 1668482530511 ms.
+ We both have paths. Neighbor 16 has a better path to desId 46, I will use it.
+    Time is at 1668482530511 ms.
+ Created LSA packet. fromId 6, destId 46, distance: 4, nexHop 16, and nodesInPath [6,46,36,26,16].
+    Time is at 1668482530511 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 46 to my neighbor 5, the nodes are [6,46,36,26,16].
+    Time is at 1668482530511 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 46 to my neighbor 7, the nodes are [6,46,36,26,16].
+    Time is at 1668482530511 ms.
+ Received LSA from neighbor 5, for destId 63, the distance is 8, the nexHop is 4, and its PATH is: [5,13,23,63,53,43,33,3,4].
+    Time is at 1668482530601 ms.
+ We both have paths. Neighbor 5 has a better path to desId 63, I will use it.
+    Time is at 1668482530601 ms.
+ Created LSA packet. fromId 6, destId 63, distance: 9, nexHop 5, and nodesInPath [6,4,3,33,43,53,63,23,13,5].
+    Time is at 1668482530601 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 63 to my neighbor 7, the nodes are [6,4,3,33,43,53,63,23,13,5].
+    Time is at 1668482530602 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 63 to my neighbor 16, the nodes are [6,4,3,33,43,53,63,23,13,5].
+    Time is at 1668482530602 ms.
+ Received LSA from neighbor 5, for destId 73, the distance is 11, the nexHop is 4, and its PATH is: [4,73,13,24,44,5,74,34,23,64,54,3].
+    Time is at 1668482530705 ms.
+ We both have paths. Neighbor 5 has a better path to desId 73, I will use it.
+    Time is at 1668482530705 ms.
+ Created LSA packet. fromId 6, destId 73, distance: 12, nexHop 5, and nodesInPath [6,3,54,64,23,74,5,44,24,13,34,73,4].
+    Time is at 1668482530705 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 73 to my neighbor 7, the nodes are [6,3,54,64,23,74,5,44,24,13,34,73,4].
+    Time is at 1668482530706 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 73 to my neighbor 16, the nodes are [6,3,54,64,23,74,5,44,24,13,34,73,4].
+    Time is at 1668482530706 ms.
+ Received LSA from neighbor 16, for destId 56, the distance is 4, the nexHop is 26, and its PATH is: [16,56,46,36,26].
+    Time is at 1668482530718 ms.
+ We both have paths. Neighbor 16 has a better path to desId 56, I will use it.
+    Time is at 1668482530718 ms.
+ Created LSA packet. fromId 6, destId 56, distance: 5, nexHop 16, and nodesInPath [6,16,56,46,36,26].
+    Time is at 1668482530718 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 56 to my neighbor 5, the nodes are [6,16,56,46,36,26].
+    Time is at 1668482530718 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 56 to my neighbor 7, the nodes are [6,16,56,46,36,26].
+    Time is at 1668482530718 ms.
+ Received LSA from neighbor 16, for destId 77, the distance is 7, the nexHop is 17, and its PATH is: [17,47,57,16,67,77,37,27].
+    Time is at 1668482530731 ms.
+ Received LSA from neighbor 16, for destId 64, the distance is 9, the nexHop is 17, and its PATH is: [34,16,27,44,37,54,35,64,36,17].
+    Time is at 1668482530764 ms.
+ Received LSA from neighbor 5, for destId 74, the distance is 8, the nexHop is 4, and its PATH is: [5,24,34,74,64,54,44,14,4].
+    Time is at 1668482530780 ms.
+ We both have paths. Neighbor 5 has a better path to desId 74, I will use it.
+    Time is at 1668482530780 ms.
+ Created LSA packet. fromId 6, destId 74, distance: 9, nexHop 5, and nodesInPath [6,4,14,44,54,64,74,34,24,5].
+    Time is at 1668482530780 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 74 to my neighbor 7, the nodes are [6,4,14,44,54,64,74,34,24,5].
+    Time is at 1668482530780 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 74 to my neighbor 16, the nodes are [6,4,14,44,54,64,74,34,24,5].
+    Time is at 1668482530780 ms.
+ Received LSA from neighbor 5, for destId 72, the distance is 10, the nexHop is 15, and its PATH is: [5,25,22,32,72,23,62,52,42,24,15].
+    Time is at 1668482530789 ms.
+ We both have paths. Neighbor 5 has a better path to desId 72, I will use it.
+    Time is at 1668482530789 ms.
+ Created LSA packet. fromId 6, destId 72, distance: 11, nexHop 5, and nodesInPath [5,25,22,32,72,23,62,6,52,42,24,15].
+    Time is at 1668482530789 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 72 to my neighbor 7, the nodes are [5,25,22,32,72,23,62,6,52,42,24,15].
+    Time is at 1668482530789 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 72 to my neighbor 16, the nodes are [5,25,22,32,72,23,62,6,52,42,24,15].
+    Time is at 1668482530789 ms.
+ Received LSA from neighbor 5, for destId 73, the distance is 9, the nexHop is 15, and its PATH is: [5,25,35,54,64,74,44,73,34,15].
+    Time is at 1668482530795 ms.
+ We both have paths. Neighbor 5 has a better path to desId 73, I will use it.
+    Time is at 1668482530795 ms.
+ Created LSA packet. fromId 6, destId 73, distance: 10, nexHop 5, and nodesInPath [6,15,34,73,44,74,64,54,35,25,5].
+    Time is at 1668482530795 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 73 to my neighbor 7, the nodes are [6,15,34,73,44,74,64,54,35,25,5].
+    Time is at 1668482530795 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 73 to my neighbor 16, the nodes are [6,15,34,73,44,74,64,54,35,25,5].
+    Time is at 1668482530795 ms.
+ Received LSA from neighbor 5, for destId 71, the distance is 11, the nexHop is 15, and its PATH is: [5,15,24,32,22,42,72,62,52,23,71,25].
+    Time is at 1668482530810 ms.
+ We both have paths. Neighbor 5 has a better path to desId 71, I will use it.
+    Time is at 1668482530810 ms.
+ Created LSA packet. fromId 6, destId 71, distance: 12, nexHop 5, and nodesInPath [25,52,23,62,72,42,22,6,71,32,24,15,5].
+    Time is at 1668482530810 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 71 to my neighbor 7, the nodes are [25,52,23,62,72,42,22,6,71,32,24,15,5].
+    Time is at 1668482530810 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 71 to my neighbor 16, the nodes are [25,52,23,62,72,42,22,6,71,32,24,15,5].
+    Time is at 1668482530810 ms.
+ Received LSA from neighbor 16, for destId 62, the distance is 9, the nexHop is 15, and its PATH is: [16,14,32,42,52,13,62,22,23,15].
+    Time is at 1668482530818 ms.
+ Received LSA from neighbor 16, for destId 63, the distance is 10, the nexHop is 15, and its PATH is: [16,14,22,32,42,62,63,52,23,13,15].
+    Time is at 1668482530833 ms.
+ Received LSA from neighbor 16, for destId 55, the distance is 7, the nexHop is 15, and its PATH is: [16,15,44,54,55,34,24,25].
+    Time is at 1668482530848 ms.
+ Received LSA from neighbor 16, for destId 54, the distance is 6, the nexHop is 15, and its PATH is: [24,34,16,44,54,14,15].
+    Time is at 1668482530856 ms.
+ Received LSA from neighbor 16, for destId 40, the distance is 9, the nexHop is 15, and its PATH is: [16,14,21,20,22,13,30,40,23,15].
+    Time is at 1668482530862 ms.
+ Received LSA from neighbor 5, for destId 75, the distance is 11, the nexHop is 4, and its PATH is: [5,4,75,13,24,65,44,55,34,45,23,3].
+    Time is at 1668482530872 ms.
+ Received LSA from neighbor 5, for destId 71, the distance is 11, the nexHop is 4, and its PATH is: [5,4,32,2,71,22,42,62,52,12,72,3].
+    Time is at 1668482530912 ms.
+ We both have paths. Neighbor 5 has a better path to desId 71, I will use it.
+    Time is at 1668482530912 ms.
+ Created LSA packet. fromId 6, destId 71, distance: 12, nexHop 5, and nodesInPath [72,12,52,62,3,42,22,2,6,71,32,4,5].
+    Time is at 1668482530912 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 71 to my neighbor 7, the nodes are [72,12,52,62,3,42,22,2,6,71,32,4,5].
+    Time is at 1668482530912 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 71 to my neighbor 16, the nodes are [72,12,52,62,3,42,22,2,6,71,32,4,5].
+    Time is at 1668482530912 ms.
+ Received LSA from neighbor 5, for destId 72, the distance is 10, the nexHop is 4, and its PATH is: [5,3,22,32,72,62,52,42,12,2,4].
+    Time is at 1668482530935 ms.
+ We both have paths. Neighbor 5 has a better path to desId 72, I will use it.
+    Time is at 1668482530935 ms.
+ Created LSA packet. fromId 6, destId 72, distance: 11, nexHop 5, and nodesInPath [5,22,32,3,72,62,6,52,42,12,2,4].
+    Time is at 1668482530935 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 72 to my neighbor 7, the nodes are [5,22,32,3,72,62,6,52,42,12,2,4].
+    Time is at 1668482530935 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 72 to my neighbor 16, the nodes are [5,22,32,3,72,62,6,52,42,12,2,4].
+    Time is at 1668482530935 ms.
+ Received LSA from neighbor 5, for destId 73, the distance is 9, the nexHop is 15, and its PATH is: [5,25,54,64,74,44,24,73,34,15].
+    Time is at 1668482531006 ms.
+ We both have paths. Neighbor 5 has a better path to desId 73, I will use it.
+    Time is at 1668482531006 ms.
+ Created LSA packet. fromId 6, destId 73, distance: 10, nexHop 5, and nodesInPath [6,15,34,73,24,44,74,64,54,25,5].
+    Time is at 1668482531006 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 73 to my neighbor 7, the nodes are [6,15,34,73,24,44,74,64,54,25,5].
+    Time is at 1668482531006 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 73 to my neighbor 16, the nodes are [6,15,34,73,24,44,74,64,54,25,5].
+    Time is at 1668482531006 ms.
+ Received LSA from neighbor 16, for destId 64, the distance is 9, the nexHop is 15, and its PATH is: [16,25,24,54,65,64,44,55,34,15].
+    Time is at 1668482531019 ms.
+ Received LSA from neighbor 16, for destId 65, the distance is 8, the nexHop is 15, and its PATH is: [16,24,34,55,44,65,54,25,15].
+    Time is at 1668482531066 ms.
+ Received LSA from neighbor 5, for destId 51, the distance is 9, the nexHop is 4, and its PATH is: [5,3,32,42,22,2,51,41,12,4].
+    Time is at 1668482531083 ms.
+ We both have paths. Neighbor 5 has a better path to desId 51, I will use it.
+    Time is at 1668482531083 ms.
+ Created LSA packet. fromId 6, destId 51, distance: 10, nexHop 5, and nodesInPath [6,4,12,41,51,2,22,42,32,3,5].
+    Time is at 1668482531083 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 51 to my neighbor 7, the nodes are [6,4,12,41,51,2,22,42,32,3,5].
+    Time is at 1668482531083 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 51 to my neighbor 16, the nodes are [6,4,12,41,51,2,22,42,32,3,5].
+    Time is at 1668482531084 ms.
+ Received LSA from neighbor 5, for destId 75, the distance is 9, the nexHop is 15, and its PATH is: [5,25,36,35,46,56,55,65,75,15].
+    Time is at 1668482531106 ms.
+ We both have paths. Neighbor 5 has a better path to desId 75, I will use it.
+    Time is at 1668482531106 ms.
+ Created LSA packet. fromId 6, destId 75, distance: 10, nexHop 5, and nodesInPath [6,15,75,65,55,56,46,35,36,25,5].
+    Time is at 1668482531106 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 75 to my neighbor 7, the nodes are [6,15,75,65,55,56,46,35,36,25,5].
+    Time is at 1668482531106 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 75 to my neighbor 16, the nodes are [6,15,75,65,55,56,46,35,36,25,5].
+    Time is at 1668482531106 ms.
+ Received LSA from neighbor 16, for destId 64, the distance is 7, the nexHop is 15, and its PATH is: [16,34,44,54,15,64,24,25].
+    Time is at 1668482531144 ms.
+ Received LSA from neighbor 5, for destId 75, the distance is 9, the nexHop is 15, and its PATH is: [5,25,35,64,75,74,54,44,34,15].
+    Time is at 1668482531155 ms.
+ We both have paths. Neighbor 5 has a better path to desId 75, I will use it.
+    Time is at 1668482531155 ms.
+ Created LSA packet. fromId 6, destId 75, distance: 10, nexHop 5, and nodesInPath [6,15,34,44,54,74,75,64,35,25,5].
+    Time is at 1668482531155 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 75 to my neighbor 7, the nodes are [6,15,34,44,54,74,75,64,35,25,5].
+    Time is at 1668482531155 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 75 to my neighbor 16, the nodes are [6,15,34,44,54,74,75,64,35,25,5].
+    Time is at 1668482531155 ms.
+ Received LSA from neighbor 16, for destId 40, the distance is 9, the nexHop is 15, and its PATH is: [16,14,32,42,22,13,41,40,12,15].
+    Time is at 1668482531167 ms.
+ Received LSA from neighbor 16, for destId 41, the distance is 8, the nexHop is 15, and its PATH is: [16,13,41,12,42,14,32,15,22].
+    Time is at 1668482531184 ms.
+ Received LSA from neighbor 16, for destId 42, the distance is 7, the nexHop is 15, and its PATH is: [16,12,22,15,32,13,42,14].
+    Time is at 1668482531206 ms.
+ Received LSA from neighbor 16, for destId 66, the distance is 7, the nexHop is 15, and its PATH is: [16,36,25,46,35,56,15,66].
+    Time is at 1668482531315 ms.
+ Received LSA from neighbor 16, for destId 43, the distance is 6, the nexHop is 15, and its PATH is: [13,16,23,33,14,43,15].
+    Time is at 1668482531325 ms.
+ Received LSA from neighbor 16, for destId 74, the distance is 10, the nexHop is 17, and its PATH is: [16,27,35,34,74,64,36,54,37,44,17].
+    Time is at 1668482531333 ms.
+ Received LSA from neighbor 5, for destId 51, the distance is 9, the nexHop is 4, and its PATH is: [5,3,21,31,41,2,51,11,1,4].
+    Time is at 1668482531334 ms.
+ We both have paths. Neighbor 5 has a better path to desId 51, I will use it.
+    Time is at 1668482531334 ms.
+ Created LSA packet. fromId 6, destId 51, distance: 10, nexHop 5, and nodesInPath [6,4,1,11,51,2,41,31,21,3,5].
+    Time is at 1668482531334 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 51 to my neighbor 7, the nodes are [6,4,1,11,51,2,41,31,21,3,5].
+    Time is at 1668482531334 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 51 to my neighbor 16, the nodes are [6,4,1,11,51,2,41,31,21,3,5].
+    Time is at 1668482531334 ms.
+ Received LSA from neighbor 16, for destId 61, the distance is 10, the nexHop is 15, and its PATH is: [16,14,22,61,32,62,52,42,23,13,15].
+    Time is at 1668482531334 ms.
+ Received LSA from neighbor 16, for destId 60, the distance is 11, the nexHop is 15, and its PATH is: [16,15,24,21,20,60,50,22,40,23,30,25].
+    Time is at 1668482531335 ms.
+ Received LSA from neighbor 16, for destId 50, the distance is 10, the nexHop is 15, and its PATH is: [16,14,22,50,21,40,23,30,13,20,15].
+    Time is at 1668482531374 ms.
+ Received LSA from neighbor 16, for destId 74, the distance is 8, the nexHop is 15, and its PATH is: [16,24,34,74,25,64,54,44,15].
+    Time is at 1668482531386 ms.
+ Received LSA from neighbor 5, for destId 76, the distance is 8, the nexHop is 15, and its PATH is: [5,76,36,25,66,15,56,35,46].
+    Time is at 1668482531398 ms.
+ We both have paths. Neighbor 5 has a better path to desId 76, I will use it.
+    Time is at 1668482531398 ms.
+ Created LSA packet. fromId 6, destId 76, distance: 9, nexHop 5, and nodesInPath [6,46,35,56,15,66,25,36,76,5].
+    Time is at 1668482531398 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 76 to my neighbor 7, the nodes are [6,46,35,56,15,66,25,36,76,5].
+    Time is at 1668482531398 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 76 to my neighbor 16, the nodes are [6,46,35,56,15,66,25,36,76,5].
+    Time is at 1668482531399 ms.
+ Received LSA from neighbor 16, for destId 76, the distance is 8, the nexHop is 17, and its PATH is: [37,36,76,16,27,66,56,46,17].
+    Time is at 1668482531403 ms.
+ Received LSA from neighbor 5, for destId 75, the distance is 9, the nexHop is 15, and its PATH is: [5,25,35,44,55,65,54,75,34,15].
+    Time is at 1668482531410 ms.
+ We both have paths. Neighbor 5 has a better path to desId 75, I will use it.
+    Time is at 1668482531410 ms.
+ Created LSA packet. fromId 6, destId 75, distance: 10, nexHop 5, and nodesInPath [6,15,34,75,54,65,55,44,35,25,5].
+    Time is at 1668482531410 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 75 to my neighbor 7, the nodes are [6,15,34,75,54,65,55,44,35,25,5].
+    Time is at 1668482531410 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 75 to my neighbor 16, the nodes are [6,15,34,75,54,65,55,44,35,25,5].
+    Time is at 1668482531410 ms.
+ Received LSA from neighbor 16, for destId 40, the distance is 9, the nexHop is 15, and its PATH is: [16,21,14,31,13,41,22,40,12,15].
+    Time is at 1668482531451 ms.
+ Received LSA from neighbor 5, for destId 75, the distance is 9, the nexHop is 15, and its PATH is: [5,25,64,75,74,24,54,44,34,15].
+    Time is at 1668482531459 ms.
+ We both have paths. Neighbor 5 has a better path to desId 75, I will use it.
+    Time is at 1668482531459 ms.
+ Created LSA packet. fromId 6, destId 75, distance: 10, nexHop 5, and nodesInPath [6,15,34,44,54,24,74,75,64,25,5].
+    Time is at 1668482531459 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 75 to my neighbor 7, the nodes are [6,15,34,44,54,24,74,75,64,25,5].
+    Time is at 1668482531459 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 75 to my neighbor 16, the nodes are [6,15,34,44,54,24,74,75,64,25,5].
+    Time is at 1668482531459 ms.
+ Received LSA from neighbor 5, for destId 73, the distance is 9, the nexHop is 4, and its PATH is: [5,14,54,64,74,44,24,73,34,4].
+    Time is at 1668482531498 ms.
+ We both have paths. Neighbor 5 has a better path to desId 73, I will use it.
+    Time is at 1668482531498 ms.
+ Created LSA packet. fromId 6, destId 73, distance: 10, nexHop 5, and nodesInPath [6,4,34,73,24,44,74,64,54,14,5].
+    Time is at 1668482531498 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 73 to my neighbor 7, the nodes are [6,4,34,73,24,44,74,64,54,14,5].
+    Time is at 1668482531500 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 73 to my neighbor 16, the nodes are [6,4,34,73,24,44,74,64,54,14,5].
+    Time is at 1668482531500 ms.
+ Received LSA from neighbor 16, for destId 63, the distance is 8, the nexHop is 15, and its PATH is: [16,24,63,34,64,54,44,25,15].
+    Time is at 1668482531570 ms.
+ Received LSA from neighbor 16, for destId 55, the distance is 5, the nexHop is 15, and its PATH is: [16,15,55,45,35,25].
+    Time is at 1668482531585 ms.
+ Received LSA from neighbor 5, for destId 75, the distance is 9, the nexHop is 15, and its PATH is: [5,25,44,55,65,54,24,75,34,15].
+    Time is at 1668482531595 ms.
+ We both have paths. Neighbor 5 has a better path to desId 75, I will use it.
+    Time is at 1668482531595 ms.
+ Created LSA packet. fromId 6, destId 75, distance: 10, nexHop 5, and nodesInPath [6,15,34,75,24,54,65,55,44,25,5].
+    Time is at 1668482531595 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 75 to my neighbor 7, the nodes are [6,15,34,75,24,54,65,55,44,25,5].
+    Time is at 1668482531595 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 75 to my neighbor 16, the nodes are [6,15,34,75,24,54,65,55,44,25,5].
+    Time is at 1668482531595 ms.
+ Received LSA from neighbor 16, for destId 41, the distance is 8, the nexHop is 15, and its PATH is: [16,13,41,31,14,21,12,22,15].
+    Time is at 1668482531622 ms.
+ Received LSA from neighbor 16, for destId 65, the distance is 6, the nexHop is 15, and its PATH is: [35,45,55,16,65,25,15].
+    Time is at 1668482531690 ms.
+ Received LSA from neighbor 7, for destId 75, the distance is 9, the nexHop is 17, and its PATH is: [7,27,45,55,37,65,75,35,36,17].
+    Time is at 1668482531702 ms.
+ Received LSA from neighbor 16, for destId 52, the distance is 8, the nexHop is 15, and its PATH is: [16,13,12,52,42,14,32,15,22].
+    Time is at 1668482531710 ms.
+ Received LSA from neighbor 16, for destId 73, the distance is 11, the nexHop is 17, and its PATH is: [16,17,37,34,44,74,64,54,35,36,73,27].
+    Time is at 1668482531722 ms.
+ Received LSA from neighbor 5, for destId 45, the distance is 4, the nexHop is 15, and its PATH is: [5,45,35,25,15].
+    Time is at 1668482531780 ms.
+ We both have paths. Neighbor 5 has a better path to desId 45, I will use it.
+    Time is at 1668482531780 ms.
+ Created LSA packet. fromId 6, destId 45, distance: 5, nexHop 5, and nodesInPath [6,5,45,35,25,15].
+    Time is at 1668482531780 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 45 to my neighbor 7, the nodes are [6,5,45,35,25,15].
+    Time is at 1668482531780 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 45 to my neighbor 16, the nodes are [6,5,45,35,25,15].
+    Time is at 1668482531780 ms.
+ Received LSA from neighbor 5, for destId 55, the distance is 5, the nexHop is 15, and its PATH is: [5,15,55,45,35,25].
+    Time is at 1668482531781 ms.
+ We both have paths. Neighbor 5 has a better path to desId 55, I will use it.
+    Time is at 1668482531781 ms.
+ Created LSA packet. fromId 6, destId 55, distance: 6, nexHop 5, and nodesInPath [25,35,45,6,55,15,5].
+    Time is at 1668482531781 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 55 to my neighbor 7, the nodes are [25,35,45,6,55,15,5].
+    Time is at 1668482531781 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 55 to my neighbor 16, the nodes are [25,35,45,6,55,15,5].
+    Time is at 1668482531781 ms.
+ Received LSA from neighbor 16, for destId 70, the distance is 12, the nexHop is 15, and its PATH is: [24,70,22,72,52,32,71,25,16,42,62,23,15].
+    Time is at 1668482531811 ms.
+ Received LSA from neighbor 16, for destId 71, the distance is 11, the nexHop is 15, and its PATH is: [15,24,32,22,42,72,16,62,52,23,71,25].
+    Time is at 1668482531822 ms.
+ Received LSA from neighbor 5, for destId 65, the distance is 6, the nexHop is 15, and its PATH is: [5,35,45,55,65,25,15].
+    Time is at 1668482531831 ms.
+ We both have paths. Neighbor 5 has a better path to desId 65, I will use it.
+    Time is at 1668482531831 ms.
+ Created LSA packet. fromId 6, destId 65, distance: 7, nexHop 5, and nodesInPath [6,5,35,45,55,65,25,15].
+    Time is at 1668482531831 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 65 to my neighbor 7, the nodes are [6,5,35,45,55,65,25,15].
+    Time is at 1668482531831 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 65 to my neighbor 16, the nodes are [6,5,35,45,55,65,25,15].
+    Time is at 1668482531831 ms.
+ Received LSA from neighbor 16, for destId 72, the distance is 10, the nexHop is 15, and its PATH is: [16,25,22,32,72,23,62,52,42,24,15].
+    Time is at 1668482531885 ms.
+ Received LSA from neighbor 5, for destId 75, the distance is 7, the nexHop is 15, and its PATH is: [5,15,45,55,65,75,35,25].
+    Time is at 1668482531895 ms.
+ We both have paths. Neighbor 5 has a better path to desId 75, I will use it.
+    Time is at 1668482531895 ms.
+ Created LSA packet. fromId 6, destId 75, distance: 8, nexHop 5, and nodesInPath [6,25,35,75,65,55,45,15,5].
+    Time is at 1668482531895 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 75 to my neighbor 7, the nodes are [6,25,35,75,65,55,45,15,5].
+    Time is at 1668482531895 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 75 to my neighbor 16, the nodes are [6,25,35,75,65,55,45,15,5].
+    Time is at 1668482531895 ms.
+ Received LSA from neighbor 16, for destId 51, the distance is 9, the nexHop is 15, and its PATH is: [16,14,13,32,42,52,22,51,12,15].
+    Time is at 1668482531918 ms.
+ Received LSA from neighbor 16, for destId 53, the distance is 7, the nexHop is 15, and its PATH is: [16,34,44,24,53,15,43,14].
+    Time is at 1668482531950 ms.
+ Received LSA from neighbor 16, for destId 73, the distance is 11, the nexHop is 15, and its PATH is: [15,24,32,42,52,22,72,73,16,62,23,25].
+    Time is at 1668482532011 ms.
+ Received LSA from neighbor 16, for destId 40, the distance is 9, the nexHop is 15, and its PATH is: [16,21,14,31,13,41,11,40,12,15].
+    Time is at 1668482532057 ms.
+ Received LSA from neighbor 16, for destId 60, the distance is 11, the nexHop is 15, and its PATH is: [16,15,13,21,20,50,22,40,23,30,60,14].
+    Time is at 1668482532072 ms.
+ Received LSA from neighbor 16, for destId 73, the distance is 9, the nexHop is 15, and its PATH is: [16,25,35,54,64,74,44,73,34,15].
+    Time is at 1668482532093 ms.
+ Received LSA from neighbor 16, for destId 53, the distance is 7, the nexHop is 15, and its PATH is: [23,16,33,15,43,53,13,14].
+    Time is at 1668482532135 ms.
+ Received LSA from neighbor 16, for destId 73, the distance is 9, the nexHop is 15, and its PATH is: [16,25,54,64,74,44,24,73,34,15].
+    Time is at 1668482532156 ms.
+ Received LSA from neighbor 5, for destId 66, the distance is 7, the nexHop is 15, and its PATH is: [36,25,46,5,56,15,66,26].
+    Time is at 1668482532263 ms.
+ We both have paths. Neighbor 5 has a better path to desId 66, I will use it.
+    Time is at 1668482532263 ms.
+ Created LSA packet. fromId 6, destId 66, distance: 8, nexHop 5, and nodesInPath [6,66,26,15,56,5,46,25,36].
+    Time is at 1668482532263 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 66 to my neighbor 7, the nodes are [6,66,26,15,56,5,46,25,36].
+    Time is at 1668482532264 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 66 to my neighbor 16, the nodes are [6,66,26,15,56,5,46,25,36].
+    Time is at 1668482532264 ms.
+ Received LSA from neighbor 7, for destId 66, the distance is 7, the nexHop is 17, and its PATH is: [7,36,46,56,17,66,26,27].
+    Time is at 1668482532290 ms.
+ Received LSA from neighbor 16, for destId 63, the distance is 8, the nexHop is 15, and its PATH is: [16,24,63,53,25,43,34,44,15].
+    Time is at 1668482532342 ms.
+ Received LSA from neighbor 5, for destId 64, the distance is 7, the nexHop is 4, and its PATH is: [5,4,34,44,54,64,24,14].
+    Time is at 1668482532353 ms.
+ We both have paths. Neighbor 5 has a better path to desId 64, I will use it.
+    Time is at 1668482532353 ms.
+ Created LSA packet. fromId 6, destId 64, distance: 8, nexHop 5, and nodesInPath [6,14,24,64,54,44,34,4,5].
+    Time is at 1668482532354 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 64 to my neighbor 7, the nodes are [6,14,24,64,54,44,34,4,5].
+    Time is at 1668482532354 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 64 to my neighbor 16, the nodes are [6,14,24,64,54,44,34,4,5].
+    Time is at 1668482532354 ms.
+ Received LSA from neighbor 16, for destId 75, the distance is 9, the nexHop is 15, and its PATH is: [16,25,36,35,46,56,55,65,75,15].
+    Time is at 1668482532396 ms.
+ Received LSA from neighbor 16, for destId 75, the distance is 9, the nexHop is 15, and its PATH is: [16,25,35,64,75,74,54,44,34,15].
+    Time is at 1668482532427 ms.
+ Received LSA from neighbor 16, for destId 41, the distance is 8, the nexHop is 15, and its PATH is: [16,13,41,12,31,14,21,11,15].
+    Time is at 1668482532427 ms.
+ Received LSA from neighbor 5, for destId 73, the distance is 9, the nexHop is 4, and its PATH is: [5,14,54,64,74,44,24,73,34,4].
+    Time is at 1668482532428 ms.
+ We both have paths. Neighbor 5 has a better path to desId 73, I will use it.
+    Time is at 1668482532428 ms.
+ Created LSA packet. fromId 6, destId 73, distance: 10, nexHop 5, and nodesInPath [6,4,34,73,24,44,74,64,54,14,5].
+    Time is at 1668482532428 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 73 to my neighbor 7, the nodes are [6,4,34,73,24,44,74,64,54,14,5].
+    Time is at 1668482532428 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 73 to my neighbor 16, the nodes are [6,4,34,73,24,44,74,64,54,14,5].
+    Time is at 1668482532428 ms.
+ Received LSA from neighbor 16, for destId 64, the distance is 7, the nexHop is 15, and its PATH is: [16,34,44,54,15,64,24,14].
+    Time is at 1668482532444 ms.
+ Received LSA from neighbor 16, for destId 66, the distance is 5, the nexHop is 26, and its PATH is: [16,26,66,56,46,36].
+    Time is at 1668482532453 ms.
+ We both have paths. Neighbor 16 has a better path to desId 66, I will use it.
+    Time is at 1668482532453 ms.
+ Created LSA packet. fromId 6, destId 66, distance: 6, nexHop 16, and nodesInPath [6,36,46,56,66,26,16].
+    Time is at 1668482532453 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 66 to my neighbor 5, the nodes are [6,36,46,56,66,26,16].
+    Time is at 1668482532453 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 66 to my neighbor 7, the nodes are [6,36,46,56,66,26,16].
+    Time is at 1668482532453 ms.
+ Received LSA from neighbor 16, for destId 74, the distance is 8, the nexHop is 15, and its PATH is: [16,24,34,74,64,54,44,14,15].
+    Time is at 1668482532464 ms.
+ Received LSA from neighbor 5, for destId 74, the distance is 8, the nexHop is 4, and its PATH is: [5,24,34,74,64,54,44,14,4].
+    Time is at 1668482532540 ms.
+ We both have paths. Neighbor 5 has a better path to desId 74, I will use it.
+    Time is at 1668482532540 ms.
+ Created LSA packet. fromId 6, destId 74, distance: 9, nexHop 5, and nodesInPath [6,4,14,44,54,64,74,34,24,5].
+    Time is at 1668482532540 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 74 to my neighbor 7, the nodes are [6,4,14,44,54,64,74,34,24,5].
+    Time is at 1668482532540 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 74 to my neighbor 16, the nodes are [6,4,14,44,54,64,74,34,24,5].
+    Time is at 1668482532540 ms.
+ Received LSA from neighbor 5, for destId 66, the distance is 7, the nexHop is 15, and its PATH is: [36,46,5,56,15,66,26,16].
+    Time is at 1668482532555 ms.
+ Received LSA from neighbor 16, for destId 76, the distance is 8, the nexHop is 15, and its PATH is: [16,76,36,25,66,15,56,35,46].
+    Time is at 1668482532563 ms.
+ Received LSA from neighbor 16, for destId 75, the distance is 9, the nexHop is 15, and its PATH is: [16,25,35,44,55,65,54,75,34,15].
+    Time is at 1668482532575 ms.
+ Received LSA from neighbor 16, for destId 75, the distance is 9, the nexHop is 15, and its PATH is: [16,25,64,75,74,24,54,44,34,15].
+    Time is at 1668482532586 ms.
+ Received LSA from neighbor 16, for destId 63, the distance is 8, the nexHop is 15, and its PATH is: [16,24,63,14,34,64,54,44,15].
+    Time is at 1668482532647 ms.
+ Received LSA from neighbor 16, for destId 70, the distance is 12, the nexHop is 15, and its PATH is: [22,72,13,52,32,71,70,16,42,62,23,14,15].
+    Time is at 1668482532721 ms.
+ Received LSA from neighbor 16, for destId 71, the distance is 11, the nexHop is 15, and its PATH is: [15,13,32,71,22,42,72,16,62,52,23,14].
+    Time is at 1668482532727 ms.
+ Received LSA from neighbor 16, for destId 75, the distance is 9, the nexHop is 15, and its PATH is: [16,25,44,55,65,54,24,75,34,15].
+    Time is at 1668482532734 ms.
+ Received LSA from neighbor 16, for destId 72, the distance is 10, the nexHop is 15, and its PATH is: [16,14,22,32,72,23,62,52,42,13,15].
+    Time is at 1668482532750 ms.
+ Received LSA from neighbor 16, for destId 73, the distance is 9, the nexHop is 15, and its PATH is: [16,25,54,64,74,44,24,73,34,15].
+    Time is at 1668482532753 ms.
+ Received LSA from neighbor 16, for destId 50, the distance is 10, the nexHop is 15, and its PATH is: [16,14,22,50,51,32,52,42,12,13,15].
+    Time is at 1668482532785 ms.
+ Received LSA from neighbor 16, for destId 40, the distance is 9, the nexHop is 15, and its PATH is: [16,14,10,20,13,30,11,40,12,15].
+    Time is at 1668482532789 ms.
+ Received LSA from neighbor 16, for destId 45, the distance is 4, the nexHop is 15, and its PATH is: [16,45,35,25,15].
+    Time is at 1668482532794 ms.
+ Received LSA from neighbor 16, for destId 55, the distance is 5, the nexHop is 15, and its PATH is: [16,15,55,45,35,25].
+    Time is at 1668482532809 ms.
+ Received LSA from neighbor 16, for destId 62, the distance is 9, the nexHop is 15, and its PATH is: [16,14,32,42,52,13,62,22,12,15].
+    Time is at 1668482532827 ms.
+ Received LSA from neighbor 16, for destId 73, the distance is 9, the nexHop is 15, and its PATH is: [16,14,54,64,74,44,24,73,34,15].
+    Time is at 1668482532920 ms.
+ Received LSA from neighbor 16, for destId 65, the distance is 6, the nexHop is 15, and its PATH is: [35,45,55,16,65,25,15].
+    Time is at 1668482532945 ms.
+ Received LSA from neighbor 16, for destId 63, the distance is 8, the nexHop is 15, and its PATH is: [16,24,63,14,53,43,34,44,15].
+    Time is at 1668482532951 ms.
+ Received LSA from neighbor 16, for destId 75, the distance is 7, the nexHop is 15, and its PATH is: [16,15,45,55,65,75,35,25].
+    Time is at 1668482532952 ms.
+ Received LSA from neighbor 16, for destId 50, the distance is 10, the nexHop is 15, and its PATH is: [16,14,11,10,50,40,12,30,13,20,15].
+    Time is at 1668482532957 ms.
+ Received LSA from neighbor 5, for destId 72, the distance is 10, the nexHop is 4, and its PATH is: [5,3,33,32,72,23,62,52,42,13,4].
+    Time is at 1668482532990 ms.
+ We both have paths. Neighbor 5 has a better path to desId 72, I will use it.
+    Time is at 1668482532990 ms.
+ Created LSA packet. fromId 6, destId 72, distance: 11, nexHop 5, and nodesInPath [5,33,32,3,72,23,62,6,52,42,13,4].
+    Time is at 1668482532990 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 72 to my neighbor 7, the nodes are [5,33,32,3,72,23,62,6,52,42,13,4].
+    Time is at 1668482532991 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 72 to my neighbor 16, the nodes are [5,33,32,3,72,23,62,6,52,42,13,4].
+    Time is at 1668482532991 ms.
+ Received LSA from neighbor 16, for destId 61, the distance is 10, the nexHop is 15, and its PATH is: [16,14,22,61,12,32,62,52,42,13,15].
+    Time is at 1668482533017 ms.
+ Received LSA from neighbor 16, for destId 70, the distance is 12, the nexHop is 15, and its PATH is: [16,13,22,50,40,14,60,21,70,30,20,23,15].
+    Time is at 1668482533017 ms.
+ Received LSA from neighbor 5, for destId 71, the distance is 11, the nexHop is 4, and its PATH is: [4,13,32,42,71,22,61,5,51,41,23,3].
+    Time is at 1668482533022 ms.
+ We both have paths. Neighbor 5 has a better path to desId 71, I will use it.
+    Time is at 1668482533022 ms.
+ Created LSA packet. fromId 6, destId 71, distance: 12, nexHop 5, and nodesInPath [23,41,51,5,61,22,3,42,6,71,32,13,4].
+    Time is at 1668482533022 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 71 to my neighbor 7, the nodes are [23,41,51,5,61,22,3,42,6,71,32,13,4].
+    Time is at 1668482533022 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 71 to my neighbor 16, the nodes are [23,41,51,5,61,22,3,42,6,71,32,13,4].
+    Time is at 1668482533022 ms.
+ Received LSA from neighbor 5, for destId 71, the distance is 11, the nexHop is 4, and its PATH is: [4,13,32,31,71,22,61,5,51,41,23,3].
+    Time is at 1668482533023 ms.
+ We both have paths. Neighbor 5 has a better path to desId 71, I will use it.
+    Time is at 1668482533023 ms.
+ Created LSA packet. fromId 6, destId 71, distance: 12, nexHop 5, and nodesInPath [3,23,41,51,61,22,5,31,6,71,32,13,4].
+    Time is at 1668482533023 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 71 to my neighbor 7, the nodes are [3,23,41,51,61,22,5,31,6,71,32,13,4].
+    Time is at 1668482533023 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 71 to my neighbor 16, the nodes are [3,23,41,51,61,22,5,31,6,71,32,13,4].
+    Time is at 1668482533024 ms.
+ Received LSA from neighbor 5, for destId 62, the distance is 9, the nexHop is 4, and its PATH is: [5,3,43,33,42,52,13,62,23,4].
+    Time is at 1668482533024 ms.
+ We both have paths. Neighbor 5 has a better path to desId 62, I will use it.
+    Time is at 1668482533025 ms.
+ Created LSA packet. fromId 6, destId 62, distance: 10, nexHop 5, and nodesInPath [6,4,23,62,13,52,42,33,43,3,5].
+    Time is at 1668482533025 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 62 to my neighbor 7, the nodes are [6,4,23,62,13,52,42,33,43,3,5].
+    Time is at 1668482533025 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 62 to my neighbor 16, the nodes are [6,4,23,62,13,52,42,33,43,3,5].
+    Time is at 1668482533025 ms.
+ Received LSA from neighbor 5, for destId 72, the distance is 10, the nexHop is 4, and its PATH is: [5,3,33,43,72,23,62,52,42,13,4].
+    Time is at 1668482533026 ms.
+ We both have paths. Neighbor 5 has a better path to desId 72, I will use it.
+    Time is at 1668482533026 ms.
+ Created LSA packet. fromId 6, destId 72, distance: 11, nexHop 5, and nodesInPath [5,33,43,3,72,23,62,6,52,42,13,4].
+    Time is at 1668482533026 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 72 to my neighbor 7, the nodes are [5,33,43,3,72,23,62,6,52,42,13,4].
+    Time is at 1668482533026 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 72 to my neighbor 16, the nodes are [5,33,43,3,72,23,62,6,52,42,13,4].
+    Time is at 1668482533026 ms.
+ Received LSA from neighbor 5, for destId 61, the distance is 10, the nexHop is 4, and its PATH is: [5,3,22,32,61,51,23,41,31,13,4].
+    Time is at 1668482533054 ms.
+ We both have paths. Neighbor 5 has a better path to desId 61, I will use it.
+    Time is at 1668482533054 ms.
+ Created LSA packet. fromId 6, destId 61, distance: 11, nexHop 5, and nodesInPath [6,3,22,32,61,5,51,23,41,31,13,4].
+    Time is at 1668482533054 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 61 to my neighbor 7, the nodes are [6,3,22,32,61,5,51,23,41,31,13,4].
+    Time is at 1668482533054 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 61 to my neighbor 16, the nodes are [6,3,22,32,61,5,51,23,41,31,13,4].
+    Time is at 1668482533054 ms.
+ Received LSA from neighbor 5, for destId 73, the distance is 9, the nexHop is 4, and its PATH is: [5,14,54,44,53,63,24,73,34,4].
+    Time is at 1668482533118 ms.
+ We both have paths. Neighbor 5 has a better path to desId 73, I will use it.
+    Time is at 1668482533118 ms.
+ Created LSA packet. fromId 6, destId 73, distance: 10, nexHop 5, and nodesInPath [6,4,34,73,24,63,53,44,54,14,5].
+    Time is at 1668482533118 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 73 to my neighbor 7, the nodes are [6,4,34,73,24,63,53,44,54,14,5].
+    Time is at 1668482533118 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 73 to my neighbor 16, the nodes are [6,4,34,73,24,63,53,44,54,14,5].
+    Time is at 1668482533118 ms.
+ Received LSA from neighbor 16, for destId 64, the distance is 7, the nexHop is 15, and its PATH is: [16,34,44,54,15,64,24,14].
+    Time is at 1668482533139 ms.
+ Received LSA from neighbor 5, for destId 73, the distance is 9, the nexHop is 4, and its PATH is: [5,14,43,53,63,24,73,44,34,4].
+    Time is at 1668482533274 ms.
+ We both have paths. Neighbor 5 has a better path to desId 73, I will use it.
+    Time is at 1668482533274 ms.
+ Created LSA packet. fromId 6, destId 73, distance: 10, nexHop 5, and nodesInPath [6,4,34,44,73,24,63,53,43,14,5].
+    Time is at 1668482533275 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 73 to my neighbor 7, the nodes are [6,4,34,44,73,24,63,53,43,14,5].
+    Time is at 1668482533275 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 73 to my neighbor 16, the nodes are [6,4,34,44,73,24,63,53,43,14,5].
+    Time is at 1668482533275 ms.
+ Received LSA from neighbor 16, for destId 73, the distance is 9, the nexHop is 15, and its PATH is: [16,14,54,64,74,44,24,73,34,15].
+    Time is at 1668482533328 ms.
+ Received LSA from neighbor 16, for destId 74, the distance is 8, the nexHop is 15, and its PATH is: [16,24,34,74,64,54,44,14,15].
+    Time is at 1668482533330 ms.
+ Received LSA from neighbor 5, for destId 71, the distance is 11, the nexHop is 4, and its PATH is: [5,4,32,61,2,71,22,42,62,52,12,3].
+    Time is at 1668482533366 ms.
+ We both have paths. Neighbor 5 has a better path to desId 71, I will use it.
+    Time is at 1668482533366 ms.
+ Created LSA packet. fromId 6, destId 71, distance: 12, nexHop 5, and nodesInPath [12,52,62,3,42,2,22,61,6,71,32,4,5].
+    Time is at 1668482533366 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 71 to my neighbor 7, the nodes are [12,52,62,3,42,2,22,61,6,71,32,4,5].
+    Time is at 1668482533366 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 71 to my neighbor 16, the nodes are [12,52,62,3,42,2,22,61,6,71,32,4,5].
+    Time is at 1668482533366 ms.
+ Received LSA from neighbor 5, for destId 61, the distance is 10, the nexHop is 4, and its PATH is: [5,3,22,51,61,12,32,52,42,13,4].
+    Time is at 1668482533448 ms.
+ We both have paths. Neighbor 5 has a better path to desId 61, I will use it.
+    Time is at 1668482533448 ms.
+ Created LSA packet. fromId 6, destId 61, distance: 11, nexHop 5, and nodesInPath [3,22,5,51,61,12,32,6,52,42,13,4].
+    Time is at 1668482533448 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 61 to my neighbor 7, the nodes are [3,22,5,51,61,12,32,6,52,42,13,4].
+    Time is at 1668482533448 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 61 to my neighbor 16, the nodes are [3,22,5,51,61,12,32,6,52,42,13,4].
+    Time is at 1668482533448 ms.
+ Received LSA from neighbor 5, for destId 61, the distance is 10, the nexHop is 4, and its PATH is: [5,3,22,51,61,12,32,52,42,2,4].
+    Time is at 1668482533550 ms.
+ We both have paths. Neighbor 5 has a better path to desId 61, I will use it.
+    Time is at 1668482533550 ms.
+ Created LSA packet. fromId 6, destId 61, distance: 11, nexHop 5, and nodesInPath [3,22,5,51,61,12,32,6,52,42,2,4].
+    Time is at 1668482533550 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 61 to my neighbor 7, the nodes are [3,22,5,51,61,12,32,6,52,42,2,4].
+    Time is at 1668482533550 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 61 to my neighbor 16, the nodes are [3,22,5,51,61,12,32,6,52,42,2,4].
+    Time is at 1668482533550 ms.
+ Received LSA from neighbor 16, for destId 63, the distance is 8, the nexHop is 15, and its PATH is: [16,13,23,63,14,53,43,33,15].
+    Time is at 1668482533555 ms.
+ Received LSA from neighbor 16, for destId 60, the distance is 11, the nexHop is 15, and its PATH is: [16,15,13,10,20,11,50,40,30,12,60,14].
+    Time is at 1668482533562 ms.
+ Received LSA from neighbor 16, for destId 72, the distance is 10, the nexHop is 15, and its PATH is: [16,14,22,32,72,23,62,52,42,24,15].
+    Time is at 1668482533611 ms.
+ Received LSA from neighbor 16, for destId 71, the distance is 11, the nexHop is 15, and its PATH is: [15,24,32,71,22,42,72,16,62,52,23,14].
+    Time is at 1668482533634 ms.
+ Received LSA from neighbor 5, for destId 51, the distance is 9, the nexHop is 4, and its PATH is: [5,3,21,31,41,2,51,11,12,4].
+    Time is at 1668482533639 ms.
+ We both have paths. Neighbor 5 has a better path to desId 51, I will use it.
+    Time is at 1668482533639 ms.
+ Created LSA packet. fromId 6, destId 51, distance: 10, nexHop 5, and nodesInPath [6,4,12,11,51,2,41,31,21,3,5].
+    Time is at 1668482533639 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 51 to my neighbor 7, the nodes are [6,4,12,11,51,2,41,31,21,3,5].
+    Time is at 1668482533639 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 51 to my neighbor 16, the nodes are [6,4,12,11,51,2,41,31,21,3,5].
+    Time is at 1668482533639 ms.
+ Received LSA from neighbor 5, for destId 61, the distance is 10, the nexHop is 4, and its PATH is: [5,3,22,61,12,51,41,32,42,2,4].
+    Time is at 1668482533642 ms.
+ We both have paths. Neighbor 5 has a better path to desId 61, I will use it.
+    Time is at 1668482533642 ms.
+ Created LSA packet. fromId 6, destId 61, distance: 11, nexHop 5, and nodesInPath [6,3,22,61,12,5,51,41,32,42,2,4].
+    Time is at 1668482533642 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 61 to my neighbor 7, the nodes are [6,3,22,61,12,5,51,41,32,42,2,4].
+    Time is at 1668482533642 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 61 to my neighbor 16, the nodes are [6,3,22,61,12,5,51,41,32,42,2,4].
+    Time is at 1668482533642 ms.
+ Received LSA from neighbor 16, for destId 73, the distance is 9, the nexHop is 15, and its PATH is: [16,14,54,44,53,63,24,73,34,15].
+    Time is at 1668482533693 ms.
+ Received LSA from neighbor 16, for destId 70, the distance is 12, the nexHop is 15, and its PATH is: [22,62,72,13,52,32,71,70,16,42,12,14,15].
+    Time is at 1668482533739 ms.
+ Received LSA from neighbor 16, for destId 71, the distance is 11, the nexHop is 15, and its PATH is: [15,13,32,71,22,42,72,16,62,52,12,14].
+    Time is at 1668482533739 ms.
+ Received send or fowd message.
+    Time is at 1668482533761 ms.
+forward packet dest 77 nexthop 7 message woooo big ole grid
+ Received LSA from neighbor 5, for destId 71, the distance is 11, the nexHop is 4, and its PATH is: [4,32,2,71,22,61,5,51,42,52,12,3].
+    Time is at 1668482533836 ms.
+ We both have paths. Neighbor 5 has a better path to desId 71, I will use it.
+    Time is at 1668482533836 ms.
+ Created LSA packet. fromId 6, destId 71, distance: 12, nexHop 5, and nodesInPath [52,3,42,12,51,5,61,22,2,6,71,32,4].
+    Time is at 1668482533836 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 71 to my neighbor 7, the nodes are [52,3,42,12,51,5,61,22,2,6,71,32,4].
+    Time is at 1668482533836 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 71 to my neighbor 16, the nodes are [52,3,42,12,51,5,61,22,2,6,71,32,4].
+    Time is at 1668482533836 ms.
+ Received LSA from neighbor 16, for destId 72, the distance is 10, the nexHop is 15, and its PATH is: [16,14,22,32,72,62,52,42,12,13,15].
+    Time is at 1668482533885 ms.
+ Received LSA from neighbor 5, for destId 72, the distance is 10, the nexHop is 4, and its PATH is: [5,3,33,72,23,62,52,43,53,13,4].
+    Time is at 1668482533902 ms.
+ We both have paths. Neighbor 5 has a better path to desId 72, I will use it.
+    Time is at 1668482533902 ms.
+ Created LSA packet. fromId 6, destId 72, distance: 11, nexHop 5, and nodesInPath [5,33,3,72,23,62,6,52,43,53,13,4].
+    Time is at 1668482533903 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 72 to my neighbor 7, the nodes are [5,33,3,72,23,62,6,52,43,53,13,4].
+    Time is at 1668482533903 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 72 to my neighbor 16, the nodes are [5,33,3,72,23,62,6,52,43,53,13,4].
+    Time is at 1668482533903 ms.
+ Received LSA from neighbor 5, for destId 72, the distance is 10, the nexHop is 4, and its PATH is: [5,3,33,62,72,23,43,63,53,13,4].
+    Time is at 1668482533942 ms.
+ We both have paths. Neighbor 5 has a better path to desId 72, I will use it.
+    Time is at 1668482533942 ms.
+ Created LSA packet. fromId 6, destId 72, distance: 11, nexHop 5, and nodesInPath [6,5,33,62,3,72,23,43,63,53,13,4].
+    Time is at 1668482533942 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 72 to my neighbor 7, the nodes are [6,5,33,62,3,72,23,43,63,53,13,4].
+    Time is at 1668482533942 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 72 to my neighbor 16, the nodes are [6,5,33,62,3,72,23,43,63,53,13,4].
+    Time is at 1668482533942 ms.
+ Received LSA from neighbor 16, for destId 73, the distance is 9, the nexHop is 15, and its PATH is: [16,14,43,53,63,24,73,44,34,15].
+    Time is at 1668482533979 ms.
+ Received LSA from neighbor 16, for destId 51, the distance is 9, the nexHop is 15, and its PATH is: [16,14,32,42,22,51,13,41,12,15].
+    Time is at 1668482533989 ms.
+ Received LSA from neighbor 5, for destId 62, the distance is 9, the nexHop is 4, and its PATH is: [5,3,43,53,33,13,62,52,23,4].
+    Time is at 1668482533999 ms.
+ We both have paths. Neighbor 5 has a better path to desId 62, I will use it.
+    Time is at 1668482533999 ms.
+ Created LSA packet. fromId 6, destId 62, distance: 10, nexHop 5, and nodesInPath [6,4,23,52,62,13,33,53,43,3,5].
+    Time is at 1668482534000 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 62 to my neighbor 7, the nodes are [6,4,23,52,62,13,33,53,43,3,5].
+    Time is at 1668482534000 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 62 to my neighbor 16, the nodes are [6,4,23,52,62,13,33,53,43,3,5].
+    Time is at 1668482534000 ms.
+ Received LSA from neighbor 5, for destId 71, the distance is 11, the nexHop is 4, and its PATH is: [4,32,42,2,71,22,61,5,51,41,12,3].
+    Time is at 1668482534000 ms.
+ We both have paths. Neighbor 5 has a better path to desId 71, I will use it.
+    Time is at 1668482534000 ms.
+ Created LSA packet. fromId 6, destId 71, distance: 12, nexHop 5, and nodesInPath [12,51,5,61,22,41,2,3,42,6,71,32,4].
+    Time is at 1668482534001 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 71 to my neighbor 7, the nodes are [12,51,5,61,22,41,2,3,42,6,71,32,4].
+    Time is at 1668482534001 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 71 to my neighbor 16, the nodes are [12,51,5,61,22,41,2,3,42,6,71,32,4].
+    Time is at 1668482534001 ms.
+ Received LSA from neighbor 5, for destId 62, the distance is 9, the nexHop is 4, and its PATH is: [5,3,43,53,63,33,13,62,23,4].
+    Time is at 1668482534046 ms.
+ We both have paths. Neighbor 5 has a better path to desId 62, I will use it.
+    Time is at 1668482534046 ms.
+ Created LSA packet. fromId 6, destId 62, distance: 10, nexHop 5, and nodesInPath [6,4,23,62,13,33,63,53,43,3,5].
+    Time is at 1668482534046 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 62 to my neighbor 7, the nodes are [6,4,23,62,13,33,63,53,43,3,5].
+    Time is at 1668482534046 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 62 to my neighbor 16, the nodes are [6,4,23,62,13,33,63,53,43,3,5].
+    Time is at 1668482534047 ms.
+ Received LSA from neighbor 5, for destId 61, the distance is 10, the nexHop is 4, and its PATH is: [5,3,22,32,61,12,51,41,31,2,4].
+    Time is at 1668482534089 ms.
+ We both have paths. Neighbor 5 has a better path to desId 61, I will use it.
+    Time is at 1668482534089 ms.
+ Created LSA packet. fromId 6, destId 61, distance: 11, nexHop 5, and nodesInPath [6,3,22,32,61,12,5,51,41,31,2,4].
+    Time is at 1668482534089 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 61 to my neighbor 7, the nodes are [6,3,22,32,61,12,5,51,41,31,2,4].
+    Time is at 1668482534090 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 61 to my neighbor 16, the nodes are [6,3,22,32,61,12,5,51,41,31,2,4].
+    Time is at 1668482534090 ms.
+ Received LSA from neighbor 5, for destId 71, the distance is 11, the nexHop is 4, and its PATH is: [4,32,31,2,71,22,61,5,51,41,12,3].
+    Time is at 1668482534207 ms.
+ We both have paths. Neighbor 5 has a better path to desId 71, I will use it.
+    Time is at 1668482534207 ms.
+ Created LSA packet. fromId 6, destId 71, distance: 12, nexHop 5, and nodesInPath [3,12,51,61,22,41,2,5,31,6,71,32,4].
+    Time is at 1668482534207 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 71 to my neighbor 7, the nodes are [3,12,51,61,22,41,2,5,31,6,71,32,4].
+    Time is at 1668482534207 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 71 to my neighbor 16, the nodes are [3,12,51,61,22,41,2,5,31,6,71,32,4].
+    Time is at 1668482534208 ms.
+ Received LSA from neighbor 16, for destId 70, the distance is 12, the nexHop is 15, and its PATH is: [16,13,10,11,50,60,40,14,70,30,20,12,15].
+    Time is at 1668482534223 ms.
+ Received LSA from neighbor 16, for destId 51, the distance is 9, the nexHop is 15, and its PATH is: [16,32,22,14,31,13,41,51,12,15].
+    Time is at 1668482534238 ms.
+ Received LSA from neighbor 16, for destId 51, the distance is 9, the nexHop is 15, and its PATH is: [16,21,14,31,13,41,51,22,12,15].
+    Time is at 1668482534239 ms.
+ Received LSA from neighbor 16, for destId 72, the distance is 10, the nexHop is 15, and its PATH is: [16,14,33,32,72,23,62,52,42,13,15].
+    Time is at 1668482534242 ms.
+ Received LSA from neighbor 16, for destId 71, the distance is 11, the nexHop is 15, and its PATH is: [16,13,32,42,71,22,15,61,51,41,23,14].
+    Time is at 1668482534243 ms.
+ Received LSA from neighbor 16, for destId 62, the distance is 9, the nexHop is 15, and its PATH is: [16,14,43,33,42,52,13,62,23,15].
+    Time is at 1668482534304 ms.
+ Received LSA from neighbor 16, for destId 71, the distance is 11, the nexHop is 15, and its PATH is: [16,13,32,31,71,22,15,61,51,41,23,14].
+    Time is at 1668482534318 ms.
+ Received LSA from neighbor 16, for destId 61, the distance is 10, the nexHop is 15, and its PATH is: [16,14,22,32,61,51,23,41,31,13,15].
+    Time is at 1668482534329 ms.
+ Received LSA from neighbor 16, for destId 72, the distance is 10, the nexHop is 15, and its PATH is: [16,14,33,43,72,23,62,52,42,13,15].
+    Time is at 1668482534342 ms.
+ Received LSA from neighbor 16, for destId 51, the distance is 9, the nexHop is 15, and its PATH is: [16,21,14,31,13,41,51,11,12,15].
+    Time is at 1668482534354 ms.
+ Received LSA from neighbor 16, for destId 71, the distance is 11, the nexHop is 15, and its PATH is: [13,32,15,61,71,22,42,16,62,52,12,14].
+    Time is at 1668482534365 ms.
+ Received LSA from neighbor 5, for destId 61, the distance is 10, the nexHop is 4, and its PATH is: [5,3,22,21,61,12,51,41,31,2,4].
+    Time is at 1668482534421 ms.
+ We both have paths. Neighbor 5 has a better path to desId 61, I will use it.
+    Time is at 1668482534421 ms.
+ Created LSA packet. fromId 6, destId 61, distance: 11, nexHop 5, and nodesInPath [6,3,22,21,61,12,5,51,41,31,2,4].
+    Time is at 1668482534421 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 61 to my neighbor 7, the nodes are [6,3,22,21,61,12,5,51,41,31,2,4].
+    Time is at 1668482534421 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 61 to my neighbor 16, the nodes are [6,3,22,21,61,12,5,51,41,31,2,4].
+    Time is at 1668482534421 ms.
+ Received LSA from neighbor 5, for destId 51, the distance is 9, the nexHop is 4, and its PATH is: [5,3,32,42,52,22,2,51,12,4].
+    Time is at 1668482534493 ms.
+ We both have paths. Neighbor 5 has a better path to desId 51, I will use it.
+    Time is at 1668482534493 ms.
+ Created LSA packet. fromId 6, destId 51, distance: 10, nexHop 5, and nodesInPath [6,4,12,51,2,22,52,42,32,3,5].
+    Time is at 1668482534493 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 51 to my neighbor 7, the nodes are [6,4,12,51,2,22,52,42,32,3,5].
+    Time is at 1668482534493 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 51 to my neighbor 16, the nodes are [6,4,12,51,2,22,52,42,32,3,5].
+    Time is at 1668482534493 ms.
+ Received LSA from neighbor 16, for destId 61, the distance is 10, the nexHop is 15, and its PATH is: [16,14,22,51,61,12,32,52,42,13,15].
+    Time is at 1668482534517 ms.
+ Received LSA from neighbor 16, for destId 61, the distance is 10, the nexHop is 15, and its PATH is: [16,14,22,61,12,51,41,32,42,13,15].
+    Time is at 1668482534530 ms.
+ Received LSA from neighbor 5, for destId 71, the distance is 11, the nexHop is 4, and its PATH is: [4,21,31,2,71,22,61,5,51,41,12,3].
+    Time is at 1668482534531 ms.
+ We both have paths. Neighbor 5 has a better path to desId 71, I will use it.
+    Time is at 1668482534531 ms.
+ Created LSA packet. fromId 6, destId 71, distance: 12, nexHop 5, and nodesInPath [3,12,51,61,22,6,71,41,2,5,31,21,4].
+    Time is at 1668482534531 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 71 to my neighbor 7, the nodes are [3,12,51,61,22,6,71,41,2,5,31,21,4].
+    Time is at 1668482534531 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 71 to my neighbor 16, the nodes are [3,12,51,61,22,6,71,41,2,5,31,21,4].
+    Time is at 1668482534531 ms.
+ Received LSA from neighbor 16, for destId 71, the distance is 11, the nexHop is 15, and its PATH is: [16,13,32,71,22,15,61,51,42,52,12,14].
+    Time is at 1668482534535 ms.
+ Received LSA from neighbor 16, for destId 72, the distance is 10, the nexHop is 15, and its PATH is: [16,14,33,72,23,62,52,43,53,13,15].
+    Time is at 1668482534581 ms.
+ Received LSA from neighbor 16, for destId 72, the distance is 10, the nexHop is 15, and its PATH is: [16,14,33,62,72,23,43,63,53,13,15].
+    Time is at 1668482534602 ms.
+ Received LSA from neighbor 16, for destId 62, the distance is 9, the nexHop is 15, and its PATH is: [16,14,43,53,33,13,62,52,23,15].
+    Time is at 1668482534610 ms.
+ Received LSA from neighbor 16, for destId 62, the distance is 9, the nexHop is 15, and its PATH is: [16,14,43,53,63,33,13,62,23,15].
+    Time is at 1668482534613 ms.
+ Received LSA from neighbor 16, for destId 71, the distance is 11, the nexHop is 15, and its PATH is: [16,13,32,42,71,22,15,61,51,41,12,14].
+    Time is at 1668482534622 ms.
+ Received LSA from neighbor 16, for destId 61, the distance is 10, the nexHop is 15, and its PATH is: [16,14,22,32,61,12,51,41,31,13,15].
+    Time is at 1668482534659 ms.
+ Received LSA from neighbor 5, for destId 61, the distance is 10, the nexHop is 4, and its PATH is: [5,3,11,21,61,51,41,31,1,2,4].
+    Time is at 1668482534681 ms.
+ We both have paths. Neighbor 5 has a better path to desId 61, I will use it.
+    Time is at 1668482534681 ms.
+ Created LSA packet. fromId 6, destId 61, distance: 11, nexHop 5, and nodesInPath [6,3,11,21,61,5,51,41,31,1,2,4].
+    Time is at 1668482534681 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 61 to my neighbor 7, the nodes are [6,3,11,21,61,5,51,41,31,1,2,4].
+    Time is at 1668482534682 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 61 to my neighbor 16, the nodes are [6,3,11,21,61,5,51,41,31,1,2,4].
+    Time is at 1668482534682 ms.
+ Received LSA from neighbor 16, for destId 71, the distance is 11, the nexHop is 15, and its PATH is: [16,13,32,31,71,22,15,61,51,41,12,14].
+    Time is at 1668482534685 ms.
+ Received LSA from neighbor 16, for destId 61, the distance is 10, the nexHop is 15, and its PATH is: [16,14,22,21,61,12,51,41,31,13,15].
+    Time is at 1668482534687 ms.
+ Received LSA from neighbor 16, for destId 51, the distance is 9, the nexHop is 15, and its PATH is: [16,14,13,32,42,52,22,51,12,15].
+    Time is at 1668482534690 ms.
+ Received LSA from neighbor 16, for destId 71, the distance is 11, the nexHop is 15, and its PATH is: [16,13,21,31,71,22,15,61,51,41,12,14].
+    Time is at 1668482534692 ms.
+ Received LSA from neighbor 16, for destId 61, the distance is 10, the nexHop is 15, and its PATH is: [16,14,11,21,61,12,51,41,31,13,15].
+    Time is at 1668482534694 ms.
+ Received LSA from neighbor 5, for destId 71, the distance is 11, the nexHop is 4, and its PATH is: [4,21,31,2,71,61,5,51,41,11,1,3].
+    Time is at 1668482534718 ms.
+ We both have paths. Neighbor 5 has a better path to desId 71, I will use it.
+    Time is at 1668482534718 ms.
+ Created LSA packet. fromId 6, destId 71, distance: 12, nexHop 5, and nodesInPath [3,1,11,51,61,6,71,41,2,5,31,21,4].
+    Time is at 1668482534718 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 71 to my neighbor 7, the nodes are [3,1,11,51,61,6,71,41,2,5,31,21,4].
+    Time is at 1668482534718 ms.
+ Inside sendLSAToNeighbors, sending my newer path fromId 6 -> destId 71 to my neighbor 16, the nodes are [3,1,11,51,61,6,71,41,2,5,31,21,4].
+    Time is at 1668482534718 ms.
+ Received LSA from neighbor 16, for destId 71, the distance is 11, the nexHop is 15, and its PATH is: [16,13,21,31,71,15,61,51,41,11,12,14].
+    Time is at 1668482534719 ms.
+ Received send or fowd message.
+    Time is at 1668482536668 ms.
+forward packet dest 0 nexthop 5 message more gridness

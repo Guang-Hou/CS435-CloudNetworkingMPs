@@ -64,7 +64,7 @@ struct timeval previousHeartbeat[256]; // track last time a neighbor is seen to 
 struct sockaddr_in allNodeSocketAddrs[256];
 int linkCost[256];
 FILE* flog;
-bool enableLog = false;  // whether to log run time information
+bool enableLog = true;  // whether to log run time information
 
 std::thread th[4];
 
@@ -331,6 +331,38 @@ void chooseAlternativeForLostPaths() {
     }
 }
 
+/* Send out the alternative path for lostDestId in lostPaths to all neighbors.
+   Use this after calling chooseAlternativeForLostPaths(). */
+void sendAlternativePathToNeighbors() {
+    //logMessageAndTime("Inside sendLSAToNeighbors.");
+    char packetBuffer[BUFFERSIZE];
+    int packetSize;
+
+    // I previous lost the path to destId and I already chose an alternative path, then send it to all my neighbors
+    // the alternative path might be a withdraw announcemnet: distance = -1, or a real alternative path
+    for (auto const& destId : lostPaths) {
+        memset(packetBuffer, 0, BUFFERSIZE);
+        packetSize = createLSAPacket(packetBuffer, destId);
+        for (auto const& i : nodePaths) {
+            int nb = i.first;
+            if (nb != myNodeId && nb != destId) {
+                sendto(mySocketUDP, packetBuffer, packetSize, 0,
+                    (struct sockaddr*)&allNodeSocketAddrs[nb], sizeof(allNodeSocketAddrs[nb]));
+
+                if (enableLog) {
+                    char buff[200];
+                    snprintf(buff, sizeof(buff), "Inside sendLSAToNeighbors, sending my lost-alternative path fromId %d -> destId %d to my neighbor %d, the nodes are %s.", myNodeId, destId, nb, packetBuffer + 4 + 4 * sizeof(short int));
+                    logMessageAndTime(buff);
+                }
+            }
+        }
+    }
+
+    lost_lock.lock();
+    lostPaths.clear();
+    lost_lock.unlock();
+}
+
 
 /* When seeing a new neighbor, share my paths not including the new neighbor to it. */
 void sharePathsToNewNeighbor(int newNeighborId) {
@@ -424,39 +456,6 @@ void sendNewLSAToValidNeighbors(int destId, char* packetBuffer, int packetSize) 
     }
 }
 
-
-/* Send out the alternative path for lostDestId to all neighbors. It is used in announceLSA().
-   Use this after calling chooseAlternativeForLostPaths(). */
-void sendAlternativePathToNeighbors() {
-    //logMessageAndTime("Inside sendLSAToNeighbors.");
-    char packetBuffer[BUFFERSIZE];
-    int packetSize;
-
-    // I previous lost the path to destId and I already chose an alternative path, then send it to all my neighbors
-    // the alternative path might be a withdraw announcemnet: distance = -1, or a real alternative path
-    for (auto const& destId : lostPaths) {
-        memset(packetBuffer, 0, BUFFERSIZE);
-        packetSize = createLSAPacket(packetBuffer, destId);
-        for (auto const& i : nodePaths) {
-            int nb = i.first;
-            if (nb != myNodeId && nb != destId) {
-                sendto(mySocketUDP, packetBuffer, packetSize, 0,
-                    (struct sockaddr*)&allNodeSocketAddrs[nb], sizeof(allNodeSocketAddrs[nb]));
-
-                if (enableLog) {
-                    char buff[200];
-                    snprintf(buff, sizeof(buff), "Inside sendLSAToNeighbors, sending my lost-alternative path fromId %d -> destId %d to my neighbor %d, the nodes are %s.", myNodeId, destId, nb, packetBuffer + 4 + 4 * sizeof(short int));
-                    logMessageAndTime(buff);
-                }
-            }
-        }
-    }
-
-    lost_lock.lock();
-    lostPaths.clear();
-    lost_lock.unlock();
-}
-
 /*  Process the received LSA message, update nodePaths[myNodeId].
     LSA format is ("LSAs", fromId, destId, distance, nextHop, nodesInPath).*/
 void processLSAMessage(string buffContent, int bytesRecvd, int neighborId)
@@ -510,6 +509,9 @@ void processLSAMessage(string buffContent, int bytesRecvd, int neighborId)
             nodePaths[myNodeId].erase(destId);
             lost_lock.unlock();
             paths_lock.unlock();
+
+            chooseAlternativeForLostPaths();
+            sendAlternativePathToNeighbors();
         }
     }
     // neighbor shares to me his path fromId -> destId
@@ -535,13 +537,11 @@ void processLSAMessage(string buffContent, int bytesRecvd, int neighborId)
                     logMessageAndTime(buff);
                 }
 
-
                 paths_lock.lock();
                 nodePaths[myNodeId][destId] = { distance + linkCost[fromId], fromId, otherNodesInPath };
                 get<2>(nodePaths[myNodeId][destId]).insert(myNodeId);
                 paths_lock.unlock();
-
-
+                
                 char packetBuffer[BUFFERSIZE];
                 memset(packetBuffer, 0, BUFFERSIZE);
                 int packetSize = createLSAPacket(packetBuffer, destId);
@@ -586,6 +586,9 @@ void processLSAMessage(string buffContent, int bytesRecvd, int neighborId)
                         nodePaths[myNodeId].erase(destId);
                         paths_lock.unlock();
                         lost_lock.unlock();
+
+                        chooseAlternativeForLostPaths();
+                        sendAlternativePathToNeighbors();
                     }
                 }
             }
@@ -603,6 +606,9 @@ void processLSAMessage(string buffContent, int bytesRecvd, int neighborId)
                     nodePaths[myNodeId].erase(destId);
                     paths_lock.unlock();
                     lost_lock.unlock();
+
+                    chooseAlternativeForLostPaths();
+                    sendAlternativePathToNeighbors();
                 }
             }
         }
