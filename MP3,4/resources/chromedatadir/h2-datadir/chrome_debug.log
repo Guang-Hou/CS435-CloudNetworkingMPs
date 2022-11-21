@@ -1,0 +1,390 @@
+[479503:479503:1119/113900.357437:VERBOSE1:chrome_crash_reporter_client.cc(195)] GetCollectStatsConsent(): settings_consent: 0 so returning that
+[479503:479503:1119/113900.370882:VERBOSE1:chrome_crash_reporter_client.cc(195)] GetCollectStatsConsent(): settings_consent: 0 so returning that
+[479606:479606:1119/113900.436543:VERBOSE1:cdm_registration.cc(182)] Registering bundled Widevine 4.10.2557.0
+[479606:479606:1119/113900.437510:INFO:cpu_info.cc(53)] Available number of cores: 3
+[479606:479606:1119/113900.437684:VERBOSE1:zygote_main_linux.cc(218)] ZygoteMain: initializing 0 fork delegates
+[479607:479607:1119/113900.438040:VERBOSE1:cdm_registration.cc(182)] Registering bundled Widevine 4.10.2557.0
+[479607:479607:1119/113900.439415:INFO:cpu_info.cc(53)] Available number of cores: 3
+[479607:479607:1119/113900.439532:VERBOSE1:zygote_main_linux.cc(218)] ZygoteMain: initializing 1 fork delegates
+[479607:479607:1119/113900.439833:VERBOSE1:nacl_fork_delegate_linux.cc(147)] NaClForkDelegate::Init()
+[479503:479503:1119/113900.451078:VERBOSE1:chrome_browser_cloud_management_controller.cc(93)] DM token = none
+[479503:479503:1119/113900.451268:VERBOSE1:chrome_browser_cloud_management_controller.cc(99)] Enrollment token = 
+[479503:479503:1119/113900.451410:VERBOSE1:chrome_browser_cloud_management_controller.cc(100)] Client ID = HmeuiuCQCKxjIIL2_12_EeJI5TY
+[479503:479503:1119/113903.135976:VERBOSE1:webrtc_event_log_manager.cc(96)] WebRTC remote-bound event logging enabled.
+[479503:479503:1119/113903.140180:VERBOSE1:pref_proxy_config_tracker_impl.cc(187)] 0x3b4c00323000: set chrome proxy config service to 0x3b4c0034bb80
+[479503:479503:1119/113903.148649:VERBOSE1:cdm_registration.cc(182)] Registering bundled Widevine 4.10.2557.0
+[479503:479656:1119/113903.149297:ERROR:bus.cc(399)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[479503:479656:1119/113903.149655:ERROR:bus.cc(399)] Failed to connect to the bus: Could not parse server address: Unknown address type (examples of valid types are "tcp" and on UNIX "unix")
+[479503:479656:1119/113903.150524:VERBOSE1:select_file_dialog_linux_portal.cc(248)] File chooser portal available: no
+[479503:479642:1119/113903.159612:VERBOSE1:media_stream_manager.cc(1079)] MSM::InitializeMaybeAsync([this=0x3b4c00318200])
+[479503:479642:1119/113903.160389:VERBOSE1:media_stream_manager.cc(1079)] MDM::MediaDevicesManager()
+[479503:479642:1119/113903.160736:VERBOSE1:media_stream_manager.cc(1079)] MSM::MediaStreamManager([this=0x3b4c00318200]))
+[479503:479503:1119/113903.161582:VERBOSE1:key_storage_util_linux.cc(54)] Password storage detected desktop environment: (unknown)
+[479503:479503:1119/113903.162308:VERBOSE1:key_storage_linux.cc(122)] Selected backend for OSCrypt: BASIC_TEXT
+[479503:479503:1119/113903.162677:VERBOSE1:key_storage_linux.cc(142)] OSCrypt did not initialize a backend.
+[479503:479503:1119/113903.178474:ERROR:process_singleton_posix.cc(335)] Failed to create /media/sf_CS435-CloudNetworkingMPs/MP3,4/code/resources/chromedatadir/h2-datadir/SingletonLock: Operation not permitted (1)
+[479503:479503:1119/113903.178844:ERROR:chrome_browser_main.cc(1446)] Failed to create a ProcessSingleton for your profile directory. This means that running multiple instances would start multiple browser processes rather than opening a new window in the existing process. Aborting now to avoid profile corruption.
+[479503:479657:1119/113903.208598:VERBOSE1:bus.cc(709)] Requested to remove an unknown filter function: 1 with associated data: 0x3b4c00d4b800
+[479503:479657:1119/113903.209147:VERBOSE1:bus.cc(709)] Requested to remove an unknown filter function: 1 with associated data: 0x3b4c00d4aae0
+[479503:479503:1119/113903.212427:VERBOSE1:component_updater_service.cc(149)] CrxUpdateService stopping
+[479503:479503:1119/113903.217359:VERBOSE1:statistics_recorder.cc(458)] Collections of all histograms
+Histogram: Chrome.CommandLineDatDirCount recorded 1 samples, mean = 1.0 (flags = 0x41)
+0  O                                                                         (0 = 0.0%)
+1  -O                                                                        (1 = 100.0%) {0.0%}
+2  ... 
+
+Histogram: Chrome.ProcessSingleton.NotifyResult recorded 1 samples, mean = 3.0 (flags = 0x41)
+0  ... 
+3  -O                                                                        (1 = 100.0%) {0.0%}
+4  O                                                                         (0 = 0.0%) {100.0%}
+
+Histogram: Chrome.ProcessSingleton.TimeToFailure recorded 1 samples, mean = 6.0 (flags = 0x41)
+0  -O                                                                        (1 = 100.0%)
+10 ... 
+
+Histogram: Chrome.SystemNetworkContextManager.NetworkSandboxState recorded 1 samples, mean = 0.0 (flags = 0x41)
+0  -O                                                                        (1 = 100.0%)
+1  ... 
+
+Histogram: DiskCache.4.Error recorded 2 samples, mean = 7.5 (flags = 0x41)
+0   -O                                                                        (1 = 50.0%)
+1   ... 
+15  -O                                                                        (1 = 50.0%) {50.0%}
+16  ... 
+
+Histogram: DiskCache.CreateBlock recorded 1 samples, mean = 0.0 (flags = 0x40)
+0  -O                                                                        (1 = 100.0%)
+1  ... 
+
+Histogram: DiskCache.GetFileForNewBlock recorded 1 samples, mean = 0.0 (flags = 0x40)
+0  -O                                                                        (1 = 100.0%)
+1  ... 
+
+Histogram: Display.ParseEdidFailure recorded 1 samples, mean = 1.0 (flags = 0x41)
+0  O                                                                         (0 = 0.0%)
+1  -O                                                                        (1 = 100.0%) {0.0%}
+2  ... 
+
+Histogram: Enterprise.PolicyLoadStatus recorded 4 samples, mean = 1.0 (flags = 0x1)
+0  --O                                                                       (2 = 50.0%)
+1  O                                                                         (0 = 0.0%) {50.0%}
+2  --O                                                                       (2 = 50.0%) {50.0%}
+3  ... 
+
+Histogram: Extensions.ChromeExtensionsClientInitTime2 recorded 1 samples, mean = 478.0 (flags = 0x41)
+0    ... 
+391  -O                                                                        (1 = 100.0%) {0.0%}
+542  ... 
+
+Histogram: GPU.GPUProcessTerminationStatus2 recorded 1 samples, mean = 4.0 (flags = 0x41)
+0  ... 
+4  -O                                                                        (1 = 100.0%) {0.0%}
+5  ... 
+
+Histogram: GPU.HardwareAccelerationModeEnabled recorded 1 samples, mean = 1.0 (flags = 0x41)
+0  O                                                                         (0 = 0.0%)
+1  -O                                                                        (1 = 100.0%) {0.0%}
+2  O                                                                         (0 = 0.0%) {100.0%}
+
+Histogram: GPU.ProcessLifetimeEvents.HardwareAccelerated recorded 1 samples, mean = 0.0 (flags = 0x41)
+0  -O                                                                        (1 = 100.0%)
+1  ... 
+
+Histogram: HeapProfiling.InProcess.Enabled recorded 1 samples, mean = 0.0 (flags = 0x41)
+0  -O                                                                        (1 = 100.0%)
+1  ... 
+
+Histogram: HeapProfiling.InProcess.Enabled.Browser recorded 1 samples, mean = 0.0 (flags = 0x41)
+0  -O                                                                        (1 = 100.0%)
+1  ... 
+
+Histogram: ImportantFile.SerializationDuration.Local_State recorded 3 samples, mean = 0.0 (flags = 0x41)
+0  ---O                                                                      (3 = 100.0%)
+1  ... 
+
+Histogram: ImportantFile.WriteDuration.Local_State recorded 3 samples, mean = 3.3 (flags = 0x41)
+0  ... 
+3  --O                                                                       (2 = 66.7%) {0.0%}
+4  -O                                                                        (1 = 33.3%) {66.7%}
+5  ... 
+
+Histogram: Linux.SandboxStatus recorded 2 samples (flags = 0x1)
+0  --O                                                                       (2 = 100.0%)
+
+Histogram: Linux.WindowManager recorded 1 samples, mean = 9.0 (flags = 0x41)
+0  ... 
+9  -O                                                                        (1 = 100.0%) {0.0%}
+10 ... 
+
+Histogram: MPArch.ChildProcessLaunchFirst recorded 1 samples, mean = 5.0 (flags = 0x41)
+0  ... 
+5  -O                                                                        (1 = 100.0%) {0.0%}
+6  ... 
+
+Histogram: MPArch.ChildProcessLaunchSubsequent recorded 1 samples, mean = 6.0 (flags = 0x41)
+0  ... 
+6  -O                                                                        (1 = 100.0%) {0.0%}
+7  ... 
+
+Histogram: MPArch.ForkTime recorded 3 samples, mean = 3.0 (flags = 0x1)
+0  O                                                                         (0 = 0.0%)
+1  -O                                                                        (1 = 33.3%) {0.0%}
+2  O                                                                         (0 = 0.0%) {33.3%}
+3  -O                                                                        (1 = 33.3%) {33.3%}
+4  O                                                                         (0 = 0.0%) {66.7%}
+5  -O                                                                        (1 = 33.3%) {66.7%}
+6  ... 
+
+Histogram: Media.VideoCaptureService.DurationFromLastConnectToClosingConnectionAfterEnumerationOnly recorded 1 samples, mean = 100581656.0 (flags = 0x41)
+0      ... 
+60000  -O                                                                        (1 = 100.0%) {0.0%}
+
+Histogram: Media.VideoCaptureService.Event recorded 1 samples, mean = 7.0 (flags = 0x41)
+0  ... 
+7  -O                                                                        (1 = 100.0%) {0.0%}
+8  ... 
+
+Histogram: Memory.ShmemDir.AmountOfFreeSpace recorded 1 samples, mean = 2511.0 (flags = 0x41)
+0     ... 
+2218  -O                                                                        (1 = 100.0%) {0.0%}
+2586  ... 
+
+Histogram: Mojo.Channel.WriteMessageHandles recorded 4 samples, mean = 0.5 (flags = 0x41)
+0  --O                                                                       (2 = 50.0%)
+1  --O                                                                       (2 = 50.0%) {50.0%}
+2  ... 
+
+Histogram: Mojo.Channel.WriteMessageLatency recorded 4 samples, mean = 0.0 (flags = 0x41)
+0  ----O                                                                     (4 = 100.0%)
+1  ... 
+
+Histogram: Mojo.Channel.WriteMessageSize recorded 4 samples, mean = 44.0 (flags = 0x41)
+0   ... 
+20  --O                                                                       (2 = 50.0%) {0.0%}
+25  ... 
+61  --O                                                                       (2 = 50.0%) {50.0%}
+76  ... 
+
+Histogram: NQE.ContentObserver.NetworkQualityMeaningfullyChanged recorded 1 samples, mean = 1.0 (flags = 0x40)
+0  O                                                                         (0 = 0.0%)
+1  -O                                                                        (1 = 100.0%) {0.0%}
+2  O                                                                         (0 = 0.0%) {100.0%}
+
+Histogram: Net.DNS.DnsConfig.Nsswitch.Compatible recorded 1 samples, mean = 1.0 (flags = 0x41)
+0  O                                                                         (0 = 0.0%)
+1  -O                                                                        (1 = 100.0%) {0.0%}
+2  O                                                                         (0 = 0.0%) {100.0%}
+
+Histogram: Net.DNS.DnsConfig.Nsswitch.HostsFound recorded 1 samples, mean = 1.0 (flags = 0x41)
+0  O                                                                         (0 = 0.0%)
+1  -O                                                                        (1 = 100.0%) {0.0%}
+2  O                                                                         (0 = 0.0%) {100.0%}
+
+Histogram: Net.DNS.DnsConfig.Nsswitch.NisServiceInHosts recorded 1 samples, mean = 0.0 (flags = 0x41)
+0  -O                                                                        (1 = 100.0%)
+1  ... 
+
+Histogram: Net.DNS.DnsConfig.Nsswitch.Read recorded 1 samples, mean = 1.0 (flags = 0x41)
+0  O                                                                         (0 = 0.0%)
+1  -O                                                                        (1 = 100.0%) {0.0%}
+2  O                                                                         (0 = 0.0%) {100.0%}
+
+Histogram: Net.DNS.DnsConfig.Nsswitch.TooLarge recorded 1 samples, mean = 0.0 (flags = 0x41)
+0  -O                                                                        (1 = 100.0%)
+1  ... 
+
+Histogram: Net.DNS.DnsConfig.Resolv.Compatible recorded 1 samples, mean = 1.0 (flags = 0x41)
+0  O                                                                         (0 = 0.0%)
+1  -O                                                                        (1 = 100.0%) {0.0%}
+2  O                                                                         (0 = 0.0%) {100.0%}
+
+Histogram: Net.DNS.DnsConfig.Resolv.Read recorded 1 samples, mean = 1.0 (flags = 0x41)
+0  O                                                                         (0 = 0.0%)
+1  -O                                                                        (1 = 100.0%) {0.0%}
+2  O                                                                         (0 = 0.0%) {100.0%}
+
+Histogram: Net.DNS.DnsConfig.Resolv.Valid recorded 1 samples, mean = 1.0 (flags = 0x41)
+0  O                                                                         (0 = 0.0%)
+1  -O                                                                        (1 = 100.0%) {0.0%}
+2  O                                                                         (0 = 0.0%) {100.0%}
+
+Histogram: Net.DNS.DnsConfig.SecureDnsMode recorded 1 samples, mean = 4.0 (flags = 0x41)
+0  ... 
+4  -O                                                                        (1 = 100.0%) {0.0%}
+5  ... 
+
+Histogram: OSCrypt.BackendUsage recorded 1 samples, mean = 3.0 (flags = 0x41)
+0  ... 
+3  -O                                                                        (1 = 100.0%) {0.0%}
+4  ... 
+
+Histogram: PrefService.ReadError recorded 1 samples, mean = 6.0 (flags = 0x1)
+0  ... 
+6  -O                                                                        (1 = 100.0%) {0.0%}
+7  ... 
+
+Histogram: PrivacyBudget.Identifiability.FinchConfigValidationResult recorded 1 samples, mean = 1.0 (flags = 0x41)
+0  O                                                                         (0 = 0.0%)
+1  -O                                                                        (1 = 100.0%) {0.0%}
+2  O                                                                         (0 = 0.0%) {100.0%}
+
+Histogram: Profile.DidDestroyProfileBeforeShutdown recorded 1 samples, mean = 0.0 (flags = 0x41)
+0  -O                                                                        (1 = 100.0%)
+1  ... 
+
+Histogram: SafeBrowsing.FileTypeUpdate.ResourceBundleResult recorded 1 samples (flags = 0x41)
+1  -O                                                                        (1 = 100.0%)
+
+Histogram: SafeBrowsing.FileTypeUpdate.ResourceBundleVersion recorded 1 samples (flags = 0x41)
+52  -O                                                                        (1 = 100.0%)
+
+Histogram: SafeBrowsing.V4Store.OldFileNameExists.UrlCsdDownloadWhitelist recorded 1 samples, mean = 0.0 (flags = 0x41)
+0  -O                                                                        (1 = 100.0%)
+1  ... 
+
+Histogram: SafeBrowsing.V4Store.OldFileNameExists.UrlCsdWhitelist recorded 1 samples, mean = 0.0 (flags = 0x41)
+0  -O                                                                        (1 = 100.0%)
+1  ... 
+
+Histogram: SafeBrowsing.V4Store.OldFileNameInUse.UrlCsdDownloadWhitelist recorded 1 samples, mean = 0.0 (flags = 0x41)
+0  -O                                                                        (1 = 100.0%)
+1  ... 
+
+Histogram: SafeBrowsing.V4Store.OldFileNameInUse.UrlCsdWhitelist recorded 1 samples, mean = 0.0 (flags = 0x41)
+0  -O                                                                        (1 = 100.0%)
+1  ... 
+
+Histogram: SharedMemory.MapBlockedForSecurity recorded 4 samples, mean = 0.0 (flags = 0x41)
+0  ----O                                                                     (4 = 100.0%)
+1  ... 
+
+Histogram: Shutdown.Renderers.Slow2 recorded 1 samples, mean = 0.0 (flags = 0x41)
+0  -O                                                                        (1 = 100.0%)
+1  ... 
+
+Histogram: Shutdown.Renderers.Total2 recorded 1 samples, mean = 0.0 (flags = 0x41)
+0  -O                                                                        (1 = 100.0%)
+1  ... 
+
+Histogram: Shutdown.ShutdownType recorded 1 samples, mean = 0.0 (flags = 0x41)
+0  -O                                                                        (1 = 100.0%)
+1  ... 
+
+Histogram: Shutdown.ShutdownType2 recorded 1 samples, mean = 0.0 (flags = 0x41)
+0  -O                                                                        (1 = 100.0%)
+1  ... 
+
+Histogram: Stability.Counts2 recorded 1 samples, mean = 15.0 (flags = 0x43)
+0   ... 
+15  -O                                                                        (1 = 100.0%) {0.0%}
+16  ... 
+
+Histogram: Startup.BrowserMainRunnerImplInitializeLongTime recorded 1 samples, mean = 2707.0 (flags = 0x41)
+0     ... 
+2394  -O                                                                        (1 = 100.0%) {0.0%}
+2763  ... 
+
+Histogram: Startup.BrowserMainRunnerImplInitializeStep1Time recorded 1 samples, mean = 2662.0 (flags = 0x41)
+0     ... 
+2516  -O                                                                        (1 = 100.0%) {0.0%}
+2990  ... 
+
+Histogram: Startup.BrowserProcessImpl_PreMainMessageLoopRunTime recorded 1 samples, mean = 13.0 (flags = 0x41)
+0   ... 
+12  -O                                                                        (1 = 100.0%) {0.0%}
+14  ... 
+
+Histogram: Startup.PreMainMessageLoopRunImplLongTime recorded 1 samples, mean = 20.0 (flags = 0x41)
+0   ... 
+18  -O                                                                        (1 = 100.0%) {0.0%}
+21  ... 
+
+Histogram: UKM.PersistentLogRecall.Status recorded 1 samples, mean = 1.0 (flags = 0x41)
+0  O                                                                         (0 = 0.0%)
+1  -O                                                                        (1 = 100.0%) {0.0%}
+2  ... 
+
+Histogram: UMA.EntropySourceType recorded 1 samples, mean = 2.0 (flags = 0x1)
+0  ... 
+2  -O                                                                        (1 = 100.0%) {0.0%}
+3  O                                                                         (0 = 0.0%) {100.0%}
+
+Histogram: UMA.LowEntropySource3Value recorded 2 samples (flags = 0x1)
+6363  --O                                                                       (2 = 100.0%)
+
+Histogram: UMA.MetricsService.Initialize.Time recorded 1 samples, mean = 102.0 (flags = 0x41)
+0   ... 
+86  -O                                                                        (1 = 100.0%) {0.0%}
+113 ... 
+
+Histogram: UMA.PersistentAllocator.BrowserMetrics.Errors recorded 0 samples (flags = 0x41)
+
+Histogram: UMA.PersistentAllocator.BrowserMetrics.UsedPct recorded 0 samples (flags = 0x41)
+0 ... 
+
+Histogram: UMA.PersistentAllocator.FieldTrialAllocator.Errors recorded 0 samples (flags = 0x41)
+
+Histogram: UMA.PersistentAllocator.FieldTrialAllocator.UsedPct recorded 2 samples, mean = 0.0 (flags = 0x41)
+0  --O                                                                       (2 = 100.0%)
+1  ... 
+
+Histogram: UMA.PersistentHistograms.InitResult recorded 1 samples, mean = 2.0 (flags = 0x41)
+0  ... 
+2  -O                                                                        (1 = 100.0%) {0.0%}
+3  ... 
+
+Histogram: Variations.ExtendedSafeMode.BeaconFileDeserializationError recorded 1 samples (flags = 0x1)
+1003  -O                                                                        (1 = 100.0%)
+
+Histogram: Variations.ExtendedSafeMode.BeaconFileStateAtStartup recorded 1 samples, mean = 1.0 (flags = 0x1)
+0  O                                                                         (0 = 0.0%)
+1  -O                                                                        (1 = 100.0%) {0.0%}
+2  ... 
+
+Histogram: Variations.ExtendedSafeMode.BeaconFileWrite recorded 2 samples, mean = 1.0 (flags = 0x1)
+0  O                                                                         (0 = 0.0%)
+1  --O                                                                       (2 = 100.0%) {0.0%}
+2  O                                                                         (0 = 0.0%) {100.0%}
+
+Histogram: Variations.Headers.ExperimentCount recorded 2 samples, mean = 1.0 (flags = 0x41)
+0  O                                                                         (0 = 0.0%)
+1  --O                                                                       (2 = 100.0%) {0.0%}
+2  ... 
+
+Histogram: Variations.LoadPermanentConsistencyCountryResult recorded 1 samples, mean = 0.0 (flags = 0x1)
+0  -O                                                                        (1 = 100.0%)
+1  ... 
+
+Histogram: Variations.PolicyRestriction recorded 1 samples, mean = 0.0 (flags = 0x1)
+0  -O                                                                        (1 = 100.0%)
+1  ... 
+
+Histogram: Variations.SafeMode.Streak.Crashes recorded 1 samples (flags = 0x1)
+0  -O                                                                        (1 = 100.0%)
+
+Histogram: Variations.SafeMode.Streak.FetchFailures recorded 1 samples (flags = 0x1)
+0  -O                                                                        (1 = 100.0%)
+
+Histogram: Variations.SeedLoadResult recorded 1 samples, mean = 1.0 (flags = 0x1)
+0  O                                                                         (0 = 0.0%)
+1  -O                                                                        (1 = 100.0%) {0.0%}
+2  ... 
+
+Histogram: Variations.SeedUsage recorded 1 samples, mean = 2.0 (flags = 0x1)
+0  ... 
+2  -O                                                                        (1 = 100.0%) {0.0%}
+3  ... 
+
+Histogram: Variations.UserChannel recorded 1 samples (flags = 0x1)
+3  -O                                                                        (1 = 100.0%)
+
+Histogram: Views.ColorProviderCacheSize recorded 1 samples, mean = 1.0 (flags = 0x41)
+0  O                                                                         (0 = 0.0%)
+1  -O                                                                        (1 = 100.0%) {0.0%}
+2  ... 
+
+
+[479665:479665:0100/000000.805865:VERBOSE1:va_stubs.cc(734)] dlopen(libva.so.2) failed.
+[479665:479665:0100/000000.806235:VERBOSE1:va_stubs.cc(736)] dlerror() says:
+libva.so.2: cannot open shared object file: No such file or directory
+[479665:479665:0100/000000.811577:WARNING:sandbox_linux.cc(380)] InitializeSandbox() called with multiple threads in process gpu-process.
