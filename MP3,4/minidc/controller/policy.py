@@ -188,7 +188,7 @@ class StaticPolicy(object):
                 if h.name in edge.neighbors:
                     outport = topo.ports[edge.name][h.name]
                 else:
-                    core = self.topo.getVlanCore(h.vlans[0])
+                    core = topo.getVlanCore(h.vlans[0])
                     outport = topo.ports[edge.name][core]
 
                 routingTable[edge.dpid].append({
